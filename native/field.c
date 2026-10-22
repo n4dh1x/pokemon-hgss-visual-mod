@@ -26,6 +26,8 @@ extern void Heap_FreeExplicit(int heap, void *memory);
 extern void *SaveArray_Party_Get(void *save);
 extern int Party_GetCount(void *party);
 extern void *Party_GetMonByIndex(void *party, int index);
+extern void *Save_Roamers_Get(void *save);
+extern int RoamerSave_RepelNotInUse(void *roamers);
 extern u32 GetMonData(void *mon, int field, void *destination);
 extern int MonIsShiny(void *mon);
 extern int MapHeader_HasWildEncounters(u32 map);
@@ -78,11 +80,12 @@ struct VisibleState {
     struct VisibleSlot slots[6];
     u32 roam_delay[6], walk_commands, paused_mask;
     u32 suppress_ordinary, discarded_ordinary;
+    u32 repelled_contacts, map_releases;
 };
 /* Counters aid emulator verification. They are session-only, not save data. */
 struct VisibleState gVisibleState;
 _Static_assert(sizeof(struct VisibleSlot) == 260, "Visible slot diagnostic ABI");
-_Static_assert(sizeof(struct VisibleState) == 1632, "Visible state diagnostic ABI");
+_Static_assert(sizeof(struct VisibleState) == 1640, "Visible state diagnostic ABI");
 
 static int owned(void *object) {
     if (!object || !gVisibleState.manager || !(word(object, 0) & 1) ||
@@ -90,7 +93,8 @@ static int owned(void *object) {
         return -1;
     for (int i = 0; i < 6; ++i)
         if (gVisibleState.slots[i].object == object &&
-            word(object, 8) == gVisibleState.slots[i].id)
+            word(object, 8) == gVisibleState.slots[i].id &&
+            word(object, 0x0C) == gVisibleState.slots[i].map)
             return i;
     return -1;
 }
@@ -164,6 +168,24 @@ static int alive(void *field) {
         void *mon = Party_GetMonByIndex(party, i);
         if (GetMonData(mon, 5, 0) && !GetMonData(mon, 76, 0) && GetMonData(mon, 163, 0))
             return 1;
+    }
+    return 0;
+}
+
+static int repel_allows_contact(void *field, u32 wild_level) {
+    void *save = ptr(field, 0x0C);
+    if (RoamerSave_RepelNotInUse(Save_Roamers_Get(save)))
+        return 1;
+    /* Match HGSS's current first alive, non-egg party member. A Repel used or
+     * a party reordered after spawning must affect unsolicited contact now. */
+    void *party = SaveArray_Party_Get(save);
+    int count = Party_GetCount(party);
+    if (count < 1 || count > 6)
+        return 0;
+    for (int i = 0; i < count; ++i) {
+        void *mon = Party_GetMonByIndex(party, i);
+        if (GetMonData(mon, 5, 0) && !GetMonData(mon, 76, 0) && GetMonData(mon, 163, 0))
+            return GetMonData(mon, 161, 0) <= wild_level;
     }
     return 0;
 }
@@ -345,8 +367,12 @@ static int roam(void *field, int index) {
         return 0;
     void *player = ptr(ptr(field, 0x40), 0x30);
     if (x == (int)word(player, 0x64) && z == (int)word(player, 0x6C) &&
-        distance(word(object, 0x68), word(player, 0x68)) < 2)
-        return launch(field, index);
+        distance(word(object, 0x68), word(player, 0x68)) < 2) {
+        if (repel_allows_contact(field, gVisibleState.slots[index].level))
+            return launch(field, index);
+        ++gVisibleState.repelled_contacts;
+        return 0;
+    }
     if (ObjectCollision(object, x, word(object, 0x68), z))
         return 0;
     /* Native normal-walk commands update facing, interpolation and the same
@@ -378,7 +404,10 @@ int EnhancedFieldInput(void *input, void *field) {
             continue;
         }
         int x = word(object, 0x64), z = word(object, 0x6C);
-        if ((unsigned)i >= limit || distance(x, px) > 12 || distance(z, pz) > 12) {
+        if ((unsigned)i >= limit || gVisibleState.slots[i].map != word(ptr(field, 0x20), 0) ||
+            distance(x, px) > 12 || distance(z, pz) > 12) {
+            if (gVisibleState.slots[i].map != word(ptr(field, 0x20), 0))
+                ++gVisibleState.map_releases;
             release_slot(i);
             continue;
         }

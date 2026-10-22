@@ -56,7 +56,7 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-04'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-05'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -92,6 +92,7 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'enhancement_menu': {'open_button': 'SELECT',
             'options': ['visible_wild', 'trade_evo', 'infinite_tms'],
             'apply': 'Save and close', 'cancel': 'B or Cancel'},
+        'diagnostics': {'visible_state_bytes': 1640, 'settings_state_bytes': 1060, 'menu_state_bytes': 60},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'symbols': {name: value for name, value in payload.symbols.items()

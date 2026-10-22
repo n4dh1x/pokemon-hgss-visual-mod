@@ -85,3 +85,13 @@ window/task menu, runtime TM wrapper and two-copy settings journal state. It
 uses the existing field hooks; the TM teaching BL targets the new wrapper.
 The build guards the native flash allocation table and size/access routines
 before enabling journal writes. Original ITCM/DTCM content remains unchanged.
+
+## Milestone 05 contact and connected maps
+
+The payload is 7,904 bytes, ending at `0x01FFAEE0`. The field code reads the
+native Repel flag through guarded USA save APIs and scans the current party for
+HGSS's first alive non-egg member before unsolicited contact. It preserves
+deliberate contact. Object ownership now includes map ID; free field input
+releases old-map objects on connected transitions. Two appended diagnostic
+counters record blocked contacts and map releases; existing slot offsets remain
+unchanged. See [encounter-refinements.md](encounter-refinements.md).

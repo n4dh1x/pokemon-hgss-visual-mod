@@ -43,6 +43,8 @@ def replace(data, base, address, before, after, behavior):
 def install_field(rom, payload: Payload) -> tuple[list[PatchResult], list[OverlayPatch]]:
     arm = bytearray(rom.arm9)
     base = rom.arm9RamAddress
+    fingerprint(arm, base, 0x0202D9C4, 12, '101aa1751b7950e918a3160614f091f0894f68d2d9db003d6ba062121e5cff4d')
+    fingerprint(arm, base, 0x0202DB08, 16, 'e8868befa007c2e6c1c512dd52795fe0c486af30b4c5341222860326d2b1075b')
     fingerprint(arm, base, 0x0203E15C, 0x198, '652e669711e0f8af6e082cad86640e34db51b0229ece1b731001b3f19bc49f16')
     fingerprint(arm, base, 0x0205E5EC, 0x5C, 'd1e26d932f67ffa9f3172f1a2b8965b464f434e2ecc03a824159c97a29b29ea6')
     fingerprint(arm, base, 0x0205E0E8, 0x1C, '4f992d38cdf5fefd9739bbd4160ca005475856b601d1fb6f2fd744050496ebc5')

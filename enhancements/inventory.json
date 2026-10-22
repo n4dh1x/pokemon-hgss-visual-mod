@@ -165,7 +165,7 @@
       "category": "custom",
       "base_heartgold": "Random grass/cave/water encounters plus specific scripted overworld Pokemon; no general roaming-spawn system.",
       "visual_plus": "Not added.",
-      "required_work": "Native follower models walk and turn as grass wilds retain native-generated Pokemon into contact battles. Milestone 04 adds saved Off/Few/Some/Many controls, with four/six-object grass runs and Off removal. Finish cave/water support, all mode/capacity/transition/Repel cases, shiny sparkle and spawn effects.",
+      "required_work": "Native follower models walk as grass wilds retain their generated Pokemon into contact battles. Saved Off/Few/Some/Many controls are integrated. Milestone 05 adds current native Repel checks on unsolicited contact and map-aware cleanup; both games pass protected/control contact runs and Route 29 to New Bark transitions. Finish cave/water support, full mode/capacity/map/party/Repel coverage, shiny sparkle and spawn effects.",
       "evidence": [
         "patches/pokeemerald/0014-visible-wild.patch",
         "patches/pokeemerald/0056-follower-pokemon.patch",
@@ -178,7 +178,9 @@
         "native/settings.c",
         "native/menu.c",
         "tests/test_settings.py",
-        "enhancements/milestone-04-verification.json"
+        "enhancements/milestone-04-verification.json",
+        "docs/encounter-refinements.md",
+        "enhancements/milestone-05-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
@@ -191,7 +193,11 @@
         "transient_save_exclusion_and_cold_reload_heartgold": "passed",
         "caves_water_all_modes_capacity_transitions_repels": "pending",
         "runtime_ui_and_persistence": "passed",
-        "short_grass_capacity_some_ss_many_both_off_hg": "passed"
+        "short_grass_capacity_some_ss_many_both_off_hg": "passed",
+        "native_repel_use_and_unsolicited_contact_both_games": "passed",
+        "deliberate_contact_under_repel_heartgold": "passed",
+        "connected_route29_newbark_cleanup_both_games": "passed",
+        "returned_grass_repel_filter_and_simulated_expiry_respawn_heartgold": "passed"
       }
     },
     {

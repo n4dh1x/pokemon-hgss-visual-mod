@@ -59,12 +59,47 @@ def png(path: Path, width: int, height: int, pitch: int, pixels: bytes, format: 
                      + chunk(b'IDAT', zlib.compress(scanlines)) + chunk(b'IEND', b''))
 
 
-def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tuple], captures: set[int], load_state: Path | None = None, touches: list[tuple] | None = None, load_save: Path | None = None):
+def apply_ram_fixture(ram: bytes, fixture: dict, rom_sha256: str) -> bytes:
+    """Prepare a bounded developer fixture; reject every mismatch before writing.
+
+    Fixtures seed isolated test states, not user saves or release ROMs. Matching
+    the entire RAM image prevents applying a pointer from a different session.
+    """
+    if len(ram) != 0x400000 or fixture.get('kind') != 'hgss-verification-ram-fixture':
+        raise ValueError('Expected a 4 MiB HGSS developer RAM fixture.')
+    if fixture.get('rom_sha256') != rom_sha256 or fixture.get('source_ram_sha256') != hashlib.sha256(ram).hexdigest():
+        raise ValueError('RAM fixture does not match this ROM and exact checkpoint.')
+    changes = fixture.get('changes', [])
+    if not changes or len(changes) > 64:
+        raise ValueError('RAM fixture requires 1..64 bounded changes.')
+    result, occupied = bytearray(ram), set()
+    for change in changes:
+        address = change['address']
+        before, after = bytes.fromhex(change['before']), bytes.fromhex(change['after'])
+        offset = address - 0x02000000
+        if not change.get('reason') or not before or len(before) != len(after) or len(before) > 256:
+            raise ValueError('RAM fixture change requires a reason and 1..256 equal-length bytes.')
+        if offset < 0 or offset + len(before) > len(ram) or ram[offset:offset + len(before)] != before:
+            raise ValueError('RAM fixture address or expected bytes differ.')
+        span = set(range(offset, offset + len(before)))
+        if occupied & span or len(occupied | span) > 4096:
+            raise ValueError('RAM fixture changes overlap or exceed 4096 bytes.')
+        occupied |= span
+        result[offset:offset + len(before)] = after
+    return bytes(result)
+
+
+def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tuple], captures: set[int], load_state: Path | None = None, touches: list[tuple] | None = None, load_save: Path | None = None, ram_fixture: Path | None = None):
     core_path, rom, output = core_path.resolve(), rom.resolve(), output.resolve()
     load_state = load_state.resolve() if load_state else None
     load_save = load_save.resolve() if load_save else None
+    ram_fixture = ram_fixture.resolve() if ram_fixture else None
     if load_state and load_save:
         raise ValueError('Choose a savestate or a cartridge save, not both.')
+    if ram_fixture and not load_state:
+        raise ValueError('A developer RAM fixture requires an exact loaded checkpoint.')
+    fixture_bytes = ram_fixture.read_bytes() if ram_fixture else None
+    fixture = json.loads(fixture_bytes) if fixture_bytes is not None else None
     save_bytes = load_save.read_bytes() if load_save else None
     if save_bytes is not None and len(save_bytes) != 0x80000:
         raise ValueError('This HGSS test host expects an exact 512 KiB cartridge save.')
@@ -232,6 +267,17 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
             state = C.create_string_buffer(load_state.read_bytes())
             if not core.retro_unserialize(state, len(state) - 1):
                 raise RuntimeError('melonDS rejected the supplied savestate.')
+        fixture_report = None
+        if fixture is not None:
+            size, pointer = core.retro_get_memory_size(2), core.retro_get_memory_data(2)
+            if size != 0x400000 or not pointer:
+                raise RuntimeError('Core main memory is unavailable for the developer fixture.')
+            patched_ram = apply_ram_fixture(C.string_at(pointer, size), fixture, rom_sha)
+            C.memmove(pointer, patched_ram, size)
+            fixture_report = {'fixture_sha256': hashlib.sha256(fixture_bytes).hexdigest(),
+                'source_ram_sha256': fixture['source_ram_sha256'],
+                'applied_ram_sha256': hashlib.sha256(patched_ram).hexdigest(),
+                'changes': fixture['changes']}
         for frame in range(1, frames + 1):
             core.retro_run()
         ram_size = core.retro_get_memory_size(2)
@@ -266,6 +312,7 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
                   'inputs': {'buttons': presses, 'touches': touches},
                   'save_import_sha256': hashlib.sha256(save_bytes).hexdigest() if save_bytes is not None else None,
                   'save_export': save_export,
+                  'developer_ram_fixture': fixture_report,
                   'scope': 'Boot/smoke check only; not full gameplay verification.'}
         (output / 'smoke-report.json').write_text(json.dumps(report, indent=2) + '\n')
         return report
@@ -285,6 +332,7 @@ def main():
     parser.add_argument('--capture', type=int, action='append', default=[])
     parser.add_argument('--load-state', type=Path)
     parser.add_argument('--load-save', type=Path, help='Copy an exact 512 KiB cartridge save into the isolated test core')
+    parser.add_argument('--ram-fixture', type=Path, help='Apply a ROM/RAM-hash-matched developer fixture to an isolated loaded state')
     parser.add_argument('--press', action='append', default=[], help='BUTTON:START_FRAME:END_FRAME')
     parser.add_argument('--touch', action='append', default=[], help='X:Y:START_FRAME:END_FRAME on the 256x192 lower DS screen')
     args = parser.parse_args()
@@ -292,6 +340,8 @@ def main():
         parser.error('--frames must be positive')
     if args.load_state and args.load_save:
         parser.error('--load-state and --load-save are mutually exclusive')
+    if args.ram_fixture and not args.load_state:
+        parser.error('--ram-fixture requires --load-state')
     presses = []
     for event in args.press:
         button, start, end = event.split(':')
@@ -308,7 +358,7 @@ def main():
             parser.error(f'Invalid touch interval: {event}')
         touches.append((x, y, start, end))
     print(json.dumps(run(args.core, args.rom, args.output, args.frames, presses,
-                         set(args.capture) | {args.frames}, args.load_state, touches, args.load_save), indent=2))
+                         set(args.capture) | {args.frames}, args.load_state, touches, args.load_save, args.ram_fixture), indent=2))
 
 
 if __name__ == '__main__':

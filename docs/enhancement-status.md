@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 58 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- Fifty-three tests pass, including compiled ARM field logic and independently checked
+- Sixty-one tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The final 7,648-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The final 7,904-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -25,7 +25,13 @@
   Many; SoulSilver also shows four in Some. HeartGold Off removes all wilds.
 - Both games load saved values. HeartGold Cancel preserves the whole save; native
   Save preserves both journal pages, and damaged-newer-copy recovery passes.
-- Cave/water support, all mode/capacity/transition/Repel cases and sparkle/spawn
+- Milestone 05 verifies native Repel use after spawning in both games: seven and
+  four blocked unsolicited contacts, with retained-identity battles in matched
+  unprotected controls. HeartGold deliberate contact under Repel also passes.
+- Both games cross Route 29 to New Bark Town with old-map wilds cleared. HeartGold
+  returns to grass, filters low-level spawns and regenerates fresh identities in
+  a separate declared simulated-expiry copy.
+- Cave/water support, full mode/capacity/transition/Repel coverage and sparkle/spawn
   effects remain pending. No complete visible-encounter parity claim is made.
 - Reusable TMs and trade evolution now have saved runtime controls; full teaching
   and evolution/cancellation flows and bag quantity labels remain pending.
@@ -158,7 +164,7 @@ of compatibility between every future build and every older save.
 See [visible-encounters.md](visible-encounters.md) for behavior, hooks, bounded
 verification and remaining acceptance cases. Source and detailed evidence are
 recorded in [milestone-03-verification.json](../enhancements/milestone-03-verification.json).
-The normal build command now produces milestone 04 candidates for both games.
+The normal build command now produces milestone 05 candidates for both games.
 Previous experimental revisions remain local under ignored `build/experiments`.
 
 ## Milestone 04: native settings menu and durable controls
@@ -167,3 +173,12 @@ See [enhancement-settings.md](enhancement-settings.md) for controls, the audited
 flash journal, corruption recovery, runtime TM behavior and verification limits.
 Detailed bounded evidence is in
 [milestone-04-verification.json](../enhancements/milestone-04-verification.json).
+
+## Milestone 05: Repel and connected-map cleanup
+
+See [encounter-refinements.md](encounter-refinements.md) for native level rules,
+protected/control emulator comparisons, current-party behavior, deliberate contact
+and map ownership. Declared test fixtures seed only isolated checkpoints; the
+simulated expiry does not verify the complete natural wear-off dialogue.
+Detailed evidence is in
+[milestone-05-verification.json](../enhancements/milestone-05-verification.json).

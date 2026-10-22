@@ -59,6 +59,8 @@ class TestVisibleField(unittest.TestCase):
         self.allowed, self.movement_busy, self.blocked, self.occupied = True, False, False, False
         self.moves = []
         self.roamer_result = False
+        self.repel = False
+        self.party_mons = [self.mon]
         self.calls, self.freed, self.removed, self.script_calls = [], [], [], []
         self.battle_mon = None
         self.iterator = []
@@ -98,9 +100,15 @@ class TestVisibleField(unittest.TestCase):
         elif address == 0x02074904:
             result = self.party
         elif address == 0x02074640:
-            result = 1
+            result = len(self.party_mons) if a == self.party else 1
         elif address == 0x02074644:
-            result = self.mon
+            result = self.party_mons[b] if a == self.party else self.mon
+        elif address == 0x0202D9C4:
+            self.assertEqual(a, self.save)
+            result = self.save + 0x200
+        elif address == 0x0202DB08:
+            self.assertEqual(a, self.save + 0x200)
+            result = int(not self.repel)
         elif address == 0x0206E540:
             field = {0: 0, 5: 1, 161: 2, 76: 3, 163: 4, 112: 5, 111: 6}[b]
             result = self.get(a + field * 4)
@@ -315,6 +323,75 @@ class TestVisibleField(unittest.TestCase):
         self.assertEqual(self.get(self.state + 1628), 1)
         self.assertEqual(self.freed, [self.setup])
         self.assertFalse(any(c[0] == 0x02050B08 for c in self.calls))
+
+    def position_for_unsolicited_contact(self):
+        self.put(self.player + 0x64, self.get(self.created + 0x64))
+        self.put(self.player + 0x6C, self.get(self.created + 0x6C) - 1)
+        self.put(self.state + 1592, 0)
+
+    def test_repel_used_after_spawn_blocks_wild_contact_until_it_expires(self):
+        self.make_spawn()
+        self.put(self.mon + 8, 10)
+        self.repel = True
+        self.position_for_unsolicited_contact()
+        self.assertEqual(self.execute('EnhancedFieldInput', self.input, self.field), 0)
+        self.assertEqual(self.get(self.state + 20), 0)
+        self.assertEqual(self.get(self.state + 1632), 1)
+        self.assertEqual(self.get(self.state + 32), self.created)
+        self.assertEqual(self.removed, [])
+        self.assertEqual(self.moves, [])
+        self.repel = False
+        self.position_for_unsolicited_contact()
+        self.assertEqual(self.execute('EnhancedFieldInput', self.input, self.field), 1)
+        self.assertEqual(self.battle_mon, self.native_mon)
+
+    def test_repel_uses_current_first_alive_member_and_allows_equal_level(self):
+        self.make_spawn()
+        self.repel = True
+        egg, fainted = 0x02230000, 0x02231000
+        for address in (egg, fainted): self.uc.mem_write(address, self.native_mon)
+        self.put(egg + 12, 1)
+        self.put(egg + 8, 50)
+        self.put(fainted + 16, 0)
+        self.put(fainted + 8, 40)
+        self.party_mons = [egg, fainted, self.mon]
+        self.put(self.mon + 8, 4)
+        self.position_for_unsolicited_contact()
+        self.assertEqual(self.execute('EnhancedFieldInput', self.input, self.field), 0)
+        self.put(self.mon + 8, 3)
+        self.position_for_unsolicited_contact()
+        self.assertEqual(self.execute('EnhancedFieldInput', self.input, self.field), 1)
+        self.assertEqual(self.battle_mon, self.native_mon)
+
+    def test_player_can_deliberately_interact_with_repellable_wild(self):
+        self.make_spawn()
+        self.put(self.mon + 8, 50)
+        self.repel = True
+        self.execute('EnhancedStartScript', self.field, 0, self.created)
+        self.assertEqual(self.battle_mon, self.native_mon)
+
+    def test_connected_map_change_releases_old_wild_before_contact(self):
+        self.make_spawn()
+        self.position_for_unsolicited_contact()
+        self.put(self.location, 34)
+        self.assertEqual(self.execute('EnhancedFieldInput', self.input, self.field), 0)
+        self.assertEqual(self.removed, [self.created])
+        self.assertEqual(self.get(self.state + 32), 0)
+        self.assertEqual(self.get(self.state + 1636), 1)
+        self.assertIsNone(self.battle_mon)
+
+    def test_reused_object_on_new_map_is_not_owned_or_removed(self):
+        self.make_spawn()
+        self.put(self.created + 0x0C, 34)
+        self.put(self.location, 34)
+        self.put(self.state + 12, 0)
+        self.iterator = [self.created]
+        out, index = 0x02220000, 0x02220004
+        self.assertEqual(self.execute('EnhancedSaveIterator', self.manager, out, index, 1), 1)
+        self.assertEqual(self.get(out), self.created)
+        self.execute('EnhancedFieldInput', self.input, self.field)
+        self.assertEqual(self.removed, [])
+        self.assertEqual(self.get(self.state + 32), 0)
 
 
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for ROM field hooks.')

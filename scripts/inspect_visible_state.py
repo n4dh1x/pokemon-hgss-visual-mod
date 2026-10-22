@@ -76,7 +76,8 @@ def inspect_run(run: Path, report_path: Path) -> dict:
                  'pokemon_sha256': hashlib.sha256(mon).hexdigest(), 'owned_active': False}
         if address:
             flags = word(address)
-            entry['owned_active'] = bool(flags & 1 and word(address + 8) == id and word(address + 0xB4) == header[0])
+            entry['object_map'] = word(address + 0x0C)
+            entry['owned_active'] = bool(flags & 1 and word(address + 8) == id and word(address + 0xB4) == header[0] and entry['object_map'] == map_id)
             entry['flags'] = hex(flags)
             entry['position'] = list(struct.unpack('<3i', read(address + 0x64, 12)))
             entry['vector'] = list(struct.unpack('<3i', read(address + 0x70, 12)))
@@ -87,10 +88,17 @@ def inspect_run(run: Path, report_path: Path) -> dict:
             raise ValueError('Roaming state lies outside the resident payload.')
         result['walk_commands'], result['paused_mask'] = struct.unpack_from('<2I', state, start + 1616)
         result['discarded_ordinary'] = struct.unpack_from('<I', state, start + 1628)[0]
+    if report.get('diagnostics', {}).get('visible_state_bytes') == 1640:
+        if start + 1640 > base + report['resident_payload']['size']:
+            raise ValueError('Contact diagnostics lie outside the resident payload.')
+        result['repelled_contacts'], result['map_releases'] = struct.unpack_from('<2I', state, start + 1632)
     # Audited USA sFieldSysPtr. The field task chain identifies an actual native
     # battle setup, avoiding a broad memory-pattern match as identity evidence.
     field = word(0x021D4158)
     if field:
+        location = word(field + 0x20)
+        if location:
+            result['current_map'] = word(location)
         avatar = word(field + 0x40)
         if avatar:
             player = word(avatar + 0x30)

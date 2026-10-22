@@ -22,6 +22,11 @@ working grass integration, not complete Emerald feature parity.
 - Moving into a wild, interacting with it, or a wild walking into the player
   starts its retained battle through the normal native encounter task. Current
   player party/bag data is initialized at contact, not snapshotted at spawn.
+- Repel keeps its native level rule: below the first alive non-egg party member
+  is suppressed; equal/higher levels remain eligible. Rarity and rolled levels
+  are unchanged. If Repel is used after spawning, lower-level wilds remain visible
+  but cannot initiate a battle by walking into the player. Deliberate player
+  contact remains allowed, matching Emerald's visible-encounter behavior.
 - Few/Some keep ordinary random encounters. Many intercepts only ordinary grass
   step-generated battles; the separate native roamer launch remains intact.
   Safari, contest, Pal Park and partner contexts are excluded from spawning.
@@ -31,10 +36,13 @@ working grass integration, not complete Emerald feature parity.
   Player, follower and authored NPC entries remain. Manager teardown clears wild
   ownership before the original heap allocations are freed. Consumed wilds are
   removed; unconsumed wilds retain their identities over the tested battle return.
+- Connected-map changes remove remaining old-map wilds even if the object
+  manager is reused. Ownership includes the object's map as well as ID, pointer
+  and manager, preventing removal/save-filtering of a reused new-map NPC.
 
 ## Verified evidence
 
-Fifty-three tests pass across the project. Field tests execute compiled ARM code for identity copying,
+Sixty-one tests pass across the project. Field tests execute compiled ARM code for identity copying,
 contact from either direction, ordinary encounter fallback, special contexts,
 save exclusion, cleanup, native walking selection, collision constraints and
 freeze/resume. Both baselines independently accept the exact guarded hook bytes;
@@ -70,6 +78,13 @@ The inspector checks ROM hashes, state format, resident config uniqueness and
 RAM bounds. It follows the native battle task to the enemy party rather than
 treating an arbitrary memory-pattern match as identity proof.
 
+Milestone 05 verifies actual native Repel use after spawning in both games, followed
+by protected and matched unprotected contact runs. Both games also cross Route 29
+to New Bark Town with no carried wild objects. HeartGold deliberate contact under
+Repel retains the exact enemy, and returning to grass demonstrates spawn filtering
+and new identity generation after a declared simulated expiry. See
+[encounter-refinements.md](encounter-refinements.md) for exact scope and fixture use.
+
 ## Remaining acceptance work
 
 Milestone 04 adds a native settings menu and persistent modes. HeartGold shows
@@ -79,7 +94,7 @@ the test area includes Hoothoot and Rattata, not six distinct simultaneous speci
 
 Do not mark the overall feature verified yet. Cave/water support,
 all Few/Some/Many/off capacity cases, six-species texture/heap limits,
-busy maps, long play, connected-map crossings/warps, Repel changes after spawn,
+busy maps, long play, further connected-map crossings/warps and party/Repel edge cases,
 shiny sparkle, spawn/despawn effects, capture and additional script/fade cases
 still require implementation or verification. The original full encounter
 specification in [emerald-parity.md](emerald-parity.md) remains authoritative.
