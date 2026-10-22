@@ -1,0 +1,50 @@
+{
+  "game": "heartgold",
+  "candidate": "heartgold-visual-plus-gameplay-milestone-02.nds",
+  "candidate_sha256": "a7d5cf99efa79466804d034f672e431e617e9f951b55b9675f5b633242a58f52",
+  "core": "melonDS DS 1.3.1",
+  "save_bytes": 524288,
+  "save_sha256": "d9f86cb38ee5828de468dcf676c7000ee1acefbec36d0dd1d855a27309fa93f2",
+  "scope": "Native early-game story, follower and save/reload check; not full new-mechanic verification",
+  "observed": [
+    "intro completed with normal input",
+    "Chikorita chosen through native starter app",
+    "native follower active",
+    "Pokegear acquired through native mother dialog",
+    "cartridge save written using native Save menu",
+    "cold boot detected Continue with the test player",
+    "Continue restored player, map, party menu and follower"
+  ],
+  "runs": {
+    "hg02-save-05": {
+      "frames": 1200,
+      "audio_samples": 656473,
+      "last_frame_sha256": "979a5fa295421589f9c9ed5df4d36cebebe04ca7fc9c0ee198d1df36d69b757b",
+      "save_import_sha256": null,
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "d9f86cb38ee5828de468dcf676c7000ee1acefbec36d0dd1d855a27309fa93f2"
+      }
+    },
+    "hg02-reload-01": {
+      "frames": 2400,
+      "audio_samples": 1312945,
+      "last_frame_sha256": "4e8a39ed085d473bf1a13b60e5b8769e42536b2563c30569b8f1aa1ddfc301a2",
+      "save_import_sha256": "d9f86cb38ee5828de468dcf676c7000ee1acefbec36d0dd1d855a27309fa93f2",
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "d9f86cb38ee5828de468dcf676c7000ee1acefbec36d0dd1d855a27309fa93f2"
+      }
+    },
+    "hg02-reload-02": {
+      "frames": 600,
+      "audio_samples": 328236,
+      "last_frame_sha256": "7884ac62a6f82940ec8300592f18f78f03a188d5dd6900ed1c9a5f13b3eae2a1",
+      "save_import_sha256": null,
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "d9f86cb38ee5828de468dcf676c7000ee1acefbec36d0dd1d855a27309fa93f2"
+      }
+    }
+  }
+}

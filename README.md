@@ -48,7 +48,9 @@ Experimental gameplay builds (after installing `requirements-dev.txt`):
 Each candidate records its exact enabled changes and limitations in a JSON report,
 and produces a locally verified xdelta patch. `scripts/smoke_libretro.py` can run
 an installed melonDS DS core with isolated test directories and capture video,
-audio counts, RAM and ROM-matched savestates. It is a development test host;
+audio counts, RAM and ROM-matched savestates. It supports recorded lower-screen
+touches and isolated cartridge-save import/export. A fresh HeartGold save has
+passed native Save, cold boot and Continue checks. It is a development test host;
 booting alone does not prove gameplay correctness.
 
 ---

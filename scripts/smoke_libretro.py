@@ -59,9 +59,15 @@ def png(path: Path, width: int, height: int, pitch: int, pixels: bytes, format: 
                      + chunk(b'IDAT', zlib.compress(scanlines)) + chunk(b'IEND', b''))
 
 
-def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tuple], captures: set[int], load_state: Path | None = None):
+def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tuple], captures: set[int], load_state: Path | None = None, touches: list[tuple] | None = None, load_save: Path | None = None):
     core_path, rom, output = core_path.resolve(), rom.resolve(), output.resolve()
     load_state = load_state.resolve() if load_state else None
+    load_save = load_save.resolve() if load_save else None
+    if load_state and load_save:
+        raise ValueError('Choose a savestate or a cartridge save, not both.')
+    save_bytes = load_save.read_bytes() if load_save else None
+    if save_bytes is not None and len(save_bytes) != 0x80000:
+        raise ValueError('This HGSS test host expects an exact 512 KiB cartridge save.')
     output.mkdir(parents=True, exist_ok=True)
     for name in ('system', 'save'):
         (output / name).mkdir(exist_ok=True)
@@ -73,6 +79,7 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
                  'melonds_jit_enable': 'disabled', 'melonds_network_mode': 'disabled',
                  'melonds_start_time_mode': 'absolute'}
     frame, video_format, last_video, audio_samples = 0, 0, None, 0
+    touches = touches or []
     errors = []
 
     def set_string(data, value):
@@ -157,7 +164,19 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
 
     @C.CFUNCTYPE(C.c_int16, C.c_uint, C.c_uint, C.c_uint, C.c_uint)
     def input_state(port, device, index, id):
-        if port or device != 1:
+        if port:
+            return 0
+        if device == 6 and index == 0:  # RETRO_DEVICE_POINTER, top-bottom layout
+            active = [(x, y) for x, y, start, end in touches if start <= frame < end]
+            if not active:
+                return 0
+            x, y = active[-1]
+            if id == 0:
+                return round(x * 65534 / 255 - 32767)
+            if id == 1:
+                return round((y + 192) * 65534 / 383 - 32767)
+            return int(id in (2, 3))  # pressed / pointer count
+        if device != 1:
             return 0
         down = {BUTTONS[button] for button, start, end in presses if start <= frame < end}
         if id == 256:
@@ -199,6 +218,12 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
         loaded = True
         (output / 'core-options.json').write_text(json.dumps({'defaults': defaults, 'choices': choices}, indent=2))
         rom_sha = hashlib.sha256(rom.read_bytes()).hexdigest()
+        save_size = core.retro_get_memory_size(0)
+        save_memory = core.retro_get_memory_data(0)
+        if save_bytes is not None:
+            if not save_memory or save_size != len(save_bytes):
+                raise RuntimeError('Core cartridge-save memory does not match the supplied save.')
+            C.memmove(save_memory, save_bytes, len(save_bytes))
         if load_state:
             load_state = load_state.resolve()
             metadata = json.loads(load_state.with_suffix('.json').read_text())
@@ -213,6 +238,13 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
         ram = core.retro_get_memory_data(2)
         if ram and ram_size:
             (output / 'main-ram.bin').write_bytes(C.string_at(ram, ram_size))
+        save_size = core.retro_get_memory_size(0)
+        save_memory = core.retro_get_memory_data(0)
+        save_export = None
+        if save_memory and save_size:
+            exported = C.string_at(save_memory, save_size)
+            (output / 'cartridge.sav').write_bytes(exported)
+            save_export = {'bytes': save_size, 'sha256': hashlib.sha256(exported).hexdigest()}
         if errors:
             raise RuntimeError('; '.join(errors))
         if last_video is None:
@@ -231,6 +263,9 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
                   'last_frame_sha256': hashlib.sha256(last_video[3]).hexdigest(),
                   'effective_options': {k: overrides.get(k, v) if overrides.get(k, v) in choices[k] else v for k, v in defaults.items()},
                   'unsupported_environment_commands': sorted(unknown),
+                  'inputs': {'buttons': presses, 'touches': touches},
+                  'save_import_sha256': hashlib.sha256(save_bytes).hexdigest() if save_bytes is not None else None,
+                  'save_export': save_export,
                   'scope': 'Boot/smoke check only; not full gameplay verification.'}
         (output / 'smoke-report.json').write_text(json.dumps(report, indent=2) + '\n')
         return report
@@ -249,18 +284,31 @@ def main():
     parser.add_argument('--frames', type=int, default=600)
     parser.add_argument('--capture', type=int, action='append', default=[])
     parser.add_argument('--load-state', type=Path)
+    parser.add_argument('--load-save', type=Path, help='Copy an exact 512 KiB cartridge save into the isolated test core')
     parser.add_argument('--press', action='append', default=[], help='BUTTON:START_FRAME:END_FRAME')
+    parser.add_argument('--touch', action='append', default=[], help='X:Y:START_FRAME:END_FRAME on the 256x192 lower DS screen')
     args = parser.parse_args()
     if args.frames < 1:
         parser.error('--frames must be positive')
+    if args.load_state and args.load_save:
+        parser.error('--load-state and --load-save are mutually exclusive')
     presses = []
     for event in args.press:
         button, start, end = event.split(':')
         if button not in BUTTONS or int(start) < 1 or int(end) <= int(start):
             parser.error(f'Invalid button interval: {event}')
         presses.append((button, int(start), int(end)))
+    touches = []
+    for event in args.touch:
+        try:
+            x, y, start, end = map(int, event.split(':'))
+        except ValueError:
+            parser.error(f'Invalid touch interval: {event}')
+        if not (0 <= x < 256 and 0 <= y < 192 and 1 <= start < end):
+            parser.error(f'Invalid touch interval: {event}')
+        touches.append((x, y, start, end))
     print(json.dumps(run(args.core, args.rom, args.output, args.frames, presses,
-                         set(args.capture) | {args.frames}, args.load_state), indent=2))
+                         set(args.capture) | {args.frames}, args.load_state, touches, args.load_save), indent=2))
 
 
 if __name__ == '__main__':

@@ -115,3 +115,32 @@ The injector adds a small ITCM autoload section and advances the SDK arena
 start beyond it. It verifies original instructions, loader layout and exact
 recorded changes. See [native-integration.md](native-integration.md) and
 [milestone-02-verification.json](../enhancements/milestone-02-verification.json).
+
+## Fresh gameplay verification fixture
+
+A new isolated HeartGold game has progressed through starter selection and
+Pokegear acquisition with normal input. Chikorita and its native follower were
+observed in Visual+. The game saved through its native Save menu; a cold boot
+with the exported 512 KiB cartridge save showed Continue and restored the map,
+player and follower. Save/state/screenshot data remains local and ignored.
+Hashes and bounded observations are in
+[field-fixture-verification.json](../enhancements/field-fixture-verification.json).
+This checks normal early-game compatibility, not full TM or trade-evolution flows.
+
+The emulator harness now records button/touch inputs, exports cartridge RAM and
+accepts an isolated copy with `--load-save`. Loading a cartridge save and a
+savestate simultaneously is rejected. Imports require exactly 512 KiB and a
+matching core memory size; savestates still require an exact ROM hash.
+
+```sh
+.venv/bin/python -B scripts/smoke_libretro.py \
+  --rom build/candidates/heartgold-visual-plus-gameplay-milestone-02.nds \
+  --output local_data/verification/reload-example \
+  --load-save local_data/verification/hg02-save-05/cartridge.sav \
+  --frames 2400 --press A:1810:1814 --press START:1970:1974
+```
+
+`--touch X:Y:START:END` targets the lower 256x192 DS screen in the fixed
+top-bottom layout. The fixture save was created for this project; no existing
+player save was supplied or modified. A gameplay fixture is not a guarantee
+of compatibility between every future build and every older save.
