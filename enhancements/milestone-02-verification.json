@@ -1,0 +1,217 @@
+{
+  "milestone": 2,
+  "final_release": false,
+  "features": [
+    "infinite_tms",
+    "trade_evo"
+  ],
+  "tests_passed": 28,
+  "scope": "ARM routine and native loader verification; full gameplay flows and runtime settings pending",
+  "roms": {
+    "heartgold": {
+      "kind": "experimental-gameplay-milestone",
+      "final_release": false,
+      "game": "heartgold",
+      "visual_plus_variant": "full",
+      "source_rom_sha256": "65f02a56842b75aa92d775d56d657a56fe3fa993550b04dc20704ab82d760105",
+      "baseline_sha256": "eb0aaed35ba445f26a3fdfdc00c86ab8e1abac72b2191984f57290b383fb8379",
+      "output_sha256": "a7d5cf99efa79466804d034f672e431e617e9f951b55b9675f5b633242a58f52",
+      "patch_sha256": "0e115806c2ed7ecacc3d09870e638d1629a8f49010b758a2e5f9745e17030249",
+      "features": [
+        {
+          "feature": "infinite_tms",
+          "address": 34088372,
+          "before": "f5f73eff",
+          "after": "c046c046",
+          "behavior": "TMs retained after teaching; build-time enabled"
+        },
+        {
+          "feature": "trade_evo",
+          "address": 34016820,
+          "before": "f0b591b00f1c009001920026381c0521",
+          "after": "08b4024b9c4608bc6047c0464190ff01",
+          "behavior": "Optional level-40 trade alternatives; native trading and completion retained"
+        }
+      ],
+      "code_changes": [
+        {
+          "feature": "infinite_tms",
+          "address": 34088372,
+          "before": "f5f73eff",
+          "after": "c046c046",
+          "behavior": "TMs retained after teaching; build-time enabled"
+        },
+        {
+          "feature": "trade_evo",
+          "address": 34016820,
+          "before": "f0b591b00f1c009001920026381c0521",
+          "after": "08b4024b9c4608bc6047c0464190ff01",
+          "behavior": "Optional level-40 trade alternatives; native trading and completion retained"
+        },
+        {
+          "feature": "resident_code_reservation",
+          "address": 34417768,
+          "before": "2086ff01",
+          "after": "0c91ff01",
+          "behavior": "Reserve enhancement code outside the SDK ITCM arena"
+        }
+      ],
+      "resident_payload": {
+        "address": 33525760,
+        "size": 268,
+        "sha256": "e9b23caff65e99bd6f2ba64fc7b682f8e602b52d7d0391daa7c1a492797fca5e",
+        "symbols": {
+          "EnhancedEvolution": 33525825,
+          "OriginalEvolution": 33525793,
+          "gEnhancedOptions": 33525760,
+          "__enhanced_end": 33526028
+        },
+        "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+        "linker": "LLD 22.1.6 (https://github.com/rust-lang/llvm-project.git dcc3606807c989700e0ac1cac18c31741bcd40d9) (compatible with GNU linkers)"
+      },
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "NitroFS/overlays/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ],
+      "runtime_gameplay_tested": false,
+      "limitations": [
+        "Reusable TMs currently enabled at build time; runtime UI pending.",
+        "Trade evolution option is enabled in resident config; runtime UI pending.",
+        "Full in-game TM teaching and evolution/cancellation flows still need verification.",
+        "Bag TM quantity labels retain their original presentation.",
+        "All other new Emerald enhancements remain pending."
+      ]
+    },
+    "soulsilver": {
+      "kind": "experimental-gameplay-milestone",
+      "final_release": false,
+      "game": "soulsilver",
+      "visual_plus_variant": "full",
+      "source_rom_sha256": "51d0f94a16af7d77c067b4cb7d821ba890a13203a2e2c76049623332c0582e20",
+      "baseline_sha256": "5b3a377d20b2aa45fa1b9e6fbab842aaddc75e4fef38c38624662c9f5e48bf8e",
+      "output_sha256": "30cdeb4037680b93b5ea0e662e626d9c8950e098450cdcf9f69609c85d52d6b0",
+      "patch_sha256": "c1344acf926a7e0140bb492f1325395829361cc00c6024419e3f12fcb99cd6ff",
+      "features": [
+        {
+          "feature": "infinite_tms",
+          "address": 34088372,
+          "before": "f5f73eff",
+          "after": "c046c046",
+          "behavior": "TMs retained after teaching; build-time enabled"
+        },
+        {
+          "feature": "trade_evo",
+          "address": 34016820,
+          "before": "f0b591b00f1c009001920026381c0521",
+          "after": "08b4024b9c4608bc6047c0464190ff01",
+          "behavior": "Optional level-40 trade alternatives; native trading and completion retained"
+        }
+      ],
+      "code_changes": [
+        {
+          "feature": "infinite_tms",
+          "address": 34088372,
+          "before": "f5f73eff",
+          "after": "c046c046",
+          "behavior": "TMs retained after teaching; build-time enabled"
+        },
+        {
+          "feature": "trade_evo",
+          "address": 34016820,
+          "before": "f0b591b00f1c009001920026381c0521",
+          "after": "08b4024b9c4608bc6047c0464190ff01",
+          "behavior": "Optional level-40 trade alternatives; native trading and completion retained"
+        },
+        {
+          "feature": "resident_code_reservation",
+          "address": 34417768,
+          "before": "2086ff01",
+          "after": "0c91ff01",
+          "behavior": "Reserve enhancement code outside the SDK ITCM arena"
+        }
+      ],
+      "resident_payload": {
+        "address": 33525760,
+        "size": 268,
+        "sha256": "e9b23caff65e99bd6f2ba64fc7b682f8e602b52d7d0391daa7c1a492797fca5e",
+        "symbols": {
+          "EnhancedEvolution": 33525825,
+          "OriginalEvolution": 33525793,
+          "gEnhancedOptions": 33525760,
+          "__enhanced_end": 33526028
+        },
+        "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+        "linker": "LLD 22.1.6 (https://github.com/rust-lang/llvm-project.git dcc3606807c989700e0ac1cac18c31741bcd40d9) (compatible with GNU linkers)"
+      },
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "NitroFS/overlays/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ],
+      "runtime_gameplay_tested": false,
+      "limitations": [
+        "Reusable TMs currently enabled at build time; runtime UI pending.",
+        "Trade evolution option is enabled in resident config; runtime UI pending.",
+        "Full in-game TM teaching and evolution/cancellation flows still need verification.",
+        "Bag TM quantity labels retain their original presentation.",
+        "All other new Emerald enhancements remain pending."
+      ]
+    }
+  },
+  "smoke": {
+    "heartgold": {
+      "core": "melonDS DS",
+      "version": "1.3.1",
+      "frames": 2400,
+      "audio_samples": 1312945,
+      "last_frame_dimensions": [
+        256,
+        384
+      ],
+      "last_frame_sha256": "8da6cc5b8cfacdf4119c852f009079a47093700440ceabc70d283b9e4279bede",
+      "scope": "Boot/smoke check only; not full gameplay verification."
+    },
+    "soulsilver": {
+      "core": "melonDS DS",
+      "version": "1.3.1",
+      "frames": 2400,
+      "audio_samples": 1312945,
+      "last_frame_dimensions": [
+        256,
+        384
+      ],
+      "last_frame_sha256": "e678bf5b1cd823ed3afdc68bf962e56a4043e980d2a322d7e24575349c5d5a0e",
+      "scope": "Boot/smoke check only; not full gameplay verification."
+    }
+  },
+  "resident_startup": {
+    "heartgold": {
+      "itcm_arena_low_address": "0x023FFDAC",
+      "itcm_arena_low_value": "0x1ff910c",
+      "expected_payload_end": "0x1ff910c",
+      "exact_payload_occurrences_in_state": 1,
+      "exact_payload_occurrences_in_main_ram": 0
+    },
+    "soulsilver": {
+      "itcm_arena_low_address": "0x023FFDAC",
+      "itcm_arena_low_value": "0x1ff910c",
+      "expected_payload_end": "0x1ff910c",
+      "exact_payload_occurrences_in_state": 1,
+      "exact_payload_occurrences_in_main_ram": 0
+    }
+  },
+  "core": {
+    "name": "melonDS DS",
+    "version": "1.3.1",
+    "sha256": "028c1d65db6eeafef33b29a90018fe037fcf0f643965031f3eb4a8b1ca23b57a"
+  }
+}

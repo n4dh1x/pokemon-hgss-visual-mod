@@ -22,6 +22,7 @@ import ndspy.fnt
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from gameplay.patches import reusable_tms
+from gameplay.native import build_payload, inject_evolution, verify_arm9_changes, PAYLOAD_BASE
 from build_baseline import build_baseline, read_rom, sha256
 
 
@@ -42,19 +43,20 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     original = ndspy.rom.NintendoDSRom.fromFile(baseline)
     arm9 = bytearray(original.arm9)
     results = [reusable_tms(arm9, original.arm9RamAddress)]
+    payload = build_payload()
+    injection = inject_evolution(bytes(arm9), original.arm9RamAddress, payload)
+    results.extend(injection.changes)
     patched = ndspy.rom.NintendoDSRom.fromFile(baseline)
-    patched.arm9 = bytes(arm9)
+    patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-01'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-02'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
     encoded = patched.save()
     parsed = ndspy.rom.NintendoDSRom(encoded)
     verify_unchanged_data(original, parsed)
-    changed = [i for i, (a, b) in enumerate(zip(original.arm9, parsed.arm9)) if a != b]
-    if len(parsed.arm9) != len(original.arm9) or changed != list(range(0x825B4, 0x825B8)):
-        raise ValueError('Unexpected ARM9 modifications outside the four-byte TM patch.')
+    verify_arm9_changes(original.arm9, parsed.arm9, original.arm9RamAddress, results, payload)
     with tempfile.TemporaryDirectory(prefix='.gameplay-', dir=output_dir) as workdir:
         work = Path(workdir)
         clean, candidate, delta, restored = [work / n for n in ('clean.nds', 'candidate.nds', 'candidate.xdelta', 'restored.nds')]
@@ -76,11 +78,20 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'baseline_sha256': info['output_sha256'],
         'output_sha256': sha256(encoded),
         'patch_sha256': sha256(patch_output.read_bytes()),
-        'features': [dataclasses.asdict(r) for r in results],
-        'checks': ['baseline checksum', 'patch-site fingerprint', 'four-byte ARM9 change only',
+        'features': [dataclasses.asdict(r) for r in results if r.feature != 'resident_code_reservation'],
+        'code_changes': [dataclasses.asdict(r) for r in results],
+        'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
+                             'sha256': sha256(payload.data),
+                             'symbols': {name: value for name, value in payload.symbols.items()
+                                         if name in ('EnhancedEvolution', 'OriginalEvolution', 'gEnhancedOptions', '__enhanced_end')},
+                             'compiler': payload.compiler, 'linker': payload.linker},
+        'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
+                   'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
                    'NitroFS/overlays/ARM7/banner unchanged', 'xdelta round-trip'],
         'runtime_gameplay_tested': False,
-        'limitations': ['Reusable TMs currently enabled at build time.',
+        'limitations': ['Reusable TMs currently enabled at build time; runtime UI pending.',
+                       'Trade evolution option is enabled in resident config; runtime UI pending.',
+                       'Full in-game TM teaching and evolution/cancellation flows still need verification.',
                        'Bag TM quantity labels retain their original presentation.',
                        'All other new Emerald enhancements remain pending.'],
     }

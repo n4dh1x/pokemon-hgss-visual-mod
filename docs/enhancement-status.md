@@ -10,17 +10,18 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 58 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- Fourteen tests pass in the project environment: inventory/release checks plus
-  actual ARM instruction tests of TM teaching for both ROMs, all four move slots,
-  HMs/itemless teaching, mismatch rejection and repeated-patch rejection.
-- Both reusable-TM candidate ROMs pass xdelta round-trip verification. Only four
-  ARM9 bytes differ from each Visual+ baseline; NitroFS files, overlays, ARM7 and
-  banner remain identical.
-- Both candidates complete 1,800-frame opening smoke runs with video/audio using
-  the installed melonDS DS 1.3.1 core. HeartGold also advances to new-game help
-  through button input. This is not a full teaching-flow test.
-- Reusable TMs are build-time enabled in experimental milestone 01. Bag quantity
-  labels and runtime toggle remain pending. Other new enhancements remain pending.
+- Twenty-eight tests pass: inventory/release checks, reusable-TM ARM tests,
+  resident loader/ABI checks and trade-evolution ARM tests for both games.
+- Both milestone 02 candidates pass xdelta round-trip verification. Changes to
+  ARM9 are limited to recorded hooks, loader metadata and an added resident
+  section. Original ITCM/DTCM sections, NitroFS, overlays, ARM7 and banner match.
+- Both candidates reach new-game help in 2,400-frame melonDS DS 1.3.1 smoke
+  runs with video/audio. Serialized state contains the exact compiled payload;
+  the SDK ITCM arena begins at its end, `0x01FF910C`.
+- Reusable TMs remain build-time enabled. Trade evolution is enabled in resident
+  config. Runtime UI, persistence, bag labels and full in-game teaching,
+  evolution and cancellation verification remain pending.
+- All other new enhancements remain pending; none are silently dropped.
 - No hardware test has been performed. Mac melonDS/RetroArch is the priority.
 - The persistent goal covers the full audited scope, not only easy features.
 
@@ -69,8 +70,8 @@ Then add cave/water encounters and all remaining edge cases in the inventory.
 ## Later phases
 
 The complete ordered plan and per-feature differences are in
-[emerald-parity.md](emerald-parity.md). Capture EXP, IV/EV display, reusable TMs
-and Repel routines have donor code; they are not yet merged. No estimate is
+[emerald-parity.md](emerald-parity.md). Capture EXP, IV/EV display and Repel routines have donor code; these
+remain unmerged. Reusable TMs and trade evolutions are integrated as described below. No estimate is
 claimed for full parity, and DS/3DS hardware differences are explicitly recorded.
 
 ## Milestone 01: reusable TMs
@@ -92,3 +93,25 @@ mode with separate save/system directories under ignored `local_data/verificatio
 It can save and resume ROM-matched checkpoints. Screenshots and memory/state
 artifacts are local only. Software-rendered game opening frames and audio output
 were observed in both candidates; no old player save was supplied or modified.
+
+## Milestone 02: level-40 trade evolutions and resident code
+
+`native/evolution.c` wraps the original USA evolution routine in both games.
+At level 40 or above, ordinary trade evolutions become level-up alternatives;
+held-item trade evolutions still require their matching item. Normal trades
+continue to work. A qualifying held item selects Slowking over Slowbro for
+Slowpoke; other native evolutions remain fallback behavior. Everstone retains
+the native Kadabra exception. The native successful-completion path removes
+trade items; eligibility checks never remove them.
+
+`tests/test_trade_evolutions.py` executes the actual hooked and original ARM
+instructions with controlled game API fixtures and native ROM evolution tables.
+It checks every trade entry, level boundaries, items, eggs, Everstone, normal
+trading, disabled config, stone-use arguments and all non-trade species. It
+also executes native held-item cleanup. Full evolution/cancellation UI has
+not yet been exercised in the emulator.
+
+The injector adds a small ITCM autoload section and advances the SDK arena
+start beyond it. It verifies original instructions, loader layout and exact
+recorded changes. See [native-integration.md](native-integration.md) and
+[milestone-02-verification.json](../enhancements/milestone-02-verification.json).

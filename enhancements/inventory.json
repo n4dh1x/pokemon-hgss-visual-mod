@@ -115,12 +115,23 @@
       "category": "custom",
       "base_heartgold": "Trade requirements remain.",
       "visual_plus": "Not added.",
-      "required_work": "Add level-up alternative at level >=40; held trade items still required and consumed only after successful evolution. Retain normal trades.",
+      "required_work": "Milestone 02 adds a level-up alternative at level >=40 in both games, retaining normal trades and native held-item completion. ARM tests and melonDS startup pass. Full in-game evolution/cancellation, runtime controls and persistence remain.",
       "evidence": [
         "patches/pokeemerald/0012-trade-evolutions.patch",
-        "local_data/reference/hg-engine/src/individual/GetMonEvolutionInternal.c"
+        "local_data/reference/hg-engine/src/individual/GetMonEvolutionInternal.c",
+        "native/evolution.c",
+        "gameplay/native.py",
+        "tests/test_trade_evolutions.py",
+        "enhancements/milestone-02-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "arm_instruction_tests": "passed",
+        "rom_patch_roundtrip": "passed",
+        "resident_payload_startup": "passed",
+        "evolution_and_cancellation_in_melonds": "pending",
+        "runtime_toggle_and_persistence": "pending"
+      }
     },
     {
       "id": "field_hms",
