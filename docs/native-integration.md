@@ -95,3 +95,20 @@ deliberate contact. Object ownership now includes map ID; free field input
 releases old-map objects on connected transitions. Two appended diagnostic
 counters record blocked contacts and map releases; existing slot offsets remain
 unchanged. See [encounter-refinements.md](encounter-refinements.md).
+
+## Milestone 06 prompt, shared UI and early interaction guard
+
+The payload is 9,372 bytes, ending at `0x01FFB49C`. Menu/dialog windows share native
+font, window and NPC pause helpers. Config remains 32 bytes; Repel prompt occupies
+word 5. The menu diagnostic is 64 bytes and the new dialog diagnostic 68 bytes;
+visible/settings diagnostics remain 1,640/1,060 bytes. Native early A launch now
+rechecks map, enabled capacity and regular field context.
+
+Two fingerprinted calls are added: overlay 15 `0x021FBACA` records successful native
+Repel use; overlay 2 `0x0224BB06` handles wear-off. Native SAVE_ROAMER remains 0x68
+bytes; audited unused byte 0x66 remembers item 76/77/79 alongside the native step
+counter at 0x65. This uses normal save/checksum handling. Unknown byte values are
+preserved and fall back to the native wear-off message. The independent options
+journal keeps its v1 layout; reserved word 0 bit 0 marks value 3 as present, allowing
+legacy records to default On while preserving explicit Off and future reserved
+words. See [repel-prompt.md](repel-prompt.md) for verification and limitations.

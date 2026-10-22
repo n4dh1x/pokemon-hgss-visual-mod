@@ -232,7 +232,20 @@ static void release_slot(int index) {
 }
 
 static int launch(void *field, int index) {
-    if (!alive(field) || owned(gVisibleState.slots[index].object) != index)
+    if (owned(gVisibleState.slots[index].object) != index)
+        return 0;
+    u32 mode = gEnhancedOptions.visible_encounters;
+    /* Native A interaction dispatches before our ordinary free-input loop.
+     * Validate here too, including immediately after an option/map/context
+     * change, before constructing any battle or consuming the stored Pokemon. */
+    if (!mode || mode > 3 || (u32)index >= mode * 2 ||
+        gVisibleState.slots[index].map != word(ptr(field, 0x20), 0) || !regular(field)) {
+        if (gVisibleState.slots[index].map != word(ptr(field, 0x20), 0))
+            ++gVisibleState.map_releases;
+        release_slot(index);
+        return 0;
+    }
+    if (!alive(field))
         return 0;
     void *setup = BattleSetup_New(11, 0);
     if (!setup)
@@ -397,6 +410,7 @@ int EnhancedFieldInput(void *input, void *field) {
     int px = word(player, 0x64), pz = word(player, 0x6C);
     u32 mode = gEnhancedOptions.visible_encounters;
     unsigned limit = mode > 3 ? 0 : mode * 2;
+    int context = regular(field);
     for (int i = 0; i < 6; ++i) {
         void *object = gVisibleState.slots[i].object;
         if (owned(object) != i) {
@@ -404,7 +418,7 @@ int EnhancedFieldInput(void *input, void *field) {
             continue;
         }
         int x = word(object, 0x64), z = word(object, 0x6C);
-        if ((unsigned)i >= limit || gVisibleState.slots[i].map != word(ptr(field, 0x20), 0) ||
+        if ((unsigned)i >= limit || !context || gVisibleState.slots[i].map != word(ptr(field, 0x20), 0) ||
             distance(x, px) > 12 || distance(z, pz) > 12) {
             if (gVisibleState.slots[i].map != word(ptr(field, 0x20), 0))
                 ++gVisibleState.map_releases;
@@ -422,7 +436,7 @@ int EnhancedFieldInput(void *input, void *field) {
         if (roam(field, i))
             return 1;
     }
-    if (!limit || !regular(field) || !alive(field) ||
+    if (!limit || !context || !alive(field) ||
         !grass(GetMetatileBehavior(field, px, pz)))
         return 0;
     if (++gVisibleState.tick < 60)

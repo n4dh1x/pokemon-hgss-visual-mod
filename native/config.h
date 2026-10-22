@@ -13,7 +13,8 @@ struct EnhancedOptions {
     u32 trade_evolutions;
     u32 reusable_tms;
     u32 visible_encounters; /* 0 Off, 1 Few, 2 Some, 3 Many */
-    u32 reserved[3];
+    u32 repel_prompt;
+    u32 reserved[2];
 };
 
 extern volatile struct EnhancedOptions gEnhancedOptions;

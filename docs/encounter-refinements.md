@@ -12,7 +12,8 @@ wild attempts to walk into the player, using the current party and Repel state.
 A suppressed wild stays visible, waits and continues roaming. The player can
 deliberately walk into or interact with it, matching the audited Emerald visible
 encounter behavior. Native HGSS still consumes the Repel item and decrements its
-step counter. The additional "use another Repel?" enhancement remains pending.
+step counter. Milestone 06 integrates the additional same-type prompt; see
+[repel-prompt.md](repel-prompt.md).
 
 Object ownership now checks the stored map in addition to object pointer, ID
 and manager. A connected-map transition releases remaining old-map wilds in the
@@ -51,11 +52,10 @@ fixture, with six active wilds and the level-5 Chikorita:
   same grass position produces six fresh native-generated identities, taking the
   session's generated count from six to twelve.
 
-The free-input transition path is verified. Native A interaction runs earlier
-in the input dispatcher; contact during an immediate map/option/context change
-still needs its own eligibility guard and tests before full transition acceptance.
-The simulated expiry does not establish the complete real wear-off dialogue or
-the pending repeat-Repel prompt. Tests do not cover every party change in the
+The free-input transition path is verified here. Milestone 06 adds the eligibility
+guard and compiled ARM tests for native early A during map/option/context changes.
+This milestone 05 simulated expiry does not establish the wear-off dialogue;
+milestone 06 separately checks natural expiry and the repeat-Repel prompt. Tests do not cover every party change in the
 emulator, every map/warp, caves/water, long sessions or six distinct species at
 once. SoulSilver uses a copied HeartGold fixture, not a fresh story playthrough.
 

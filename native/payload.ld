@@ -78,3 +78,6 @@ FieldDrawMapName_Reset = 0x021EFACD;
 Bag_TakeItem = 0x02078435;
 Save_Roamers_Get = 0x0202D9C5;
 RoamerSave_RepelNotInUse = 0x0202DB09;
+Save_Bag_Get = 0x0207879D;
+Bag_HasItem = 0x020784B1;
+PlaySE = 0x0200604D;

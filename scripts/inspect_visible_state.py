@@ -60,10 +60,20 @@ def inspect_run(run: Path, report_path: Path) -> dict:
             'trade_evolutions': struct.unpack_from('<I', state, base + 8)[0],
             'reusable_tms': struct.unpack_from('<I', state, base + 12)[0]}
     if 'gEnhancedMenu' in symbols:
-        menu = resident_words('gEnhancedMenu', 15)
+        extended_menu = report.get('diagnostics', {}).get('menu_state_bytes') == 64
+        menu = resident_words('gEnhancedMenu', 16 if extended_menu else 15)
         result['enhancement_menu'] = {'active': bool(menu[6]), 'phase': menu[7],
             'row': menu[8], 'staged_trade': menu[9], 'staged_tms': menu[10],
-            'staged_visible': menu[11], 'error': menu[12]}
+            'staged_visible': menu[11], 'error': menu[13] if extended_menu else menu[12]}
+        if extended_menu:
+            result['enhancement_menu']['staged_repel_prompt'] = menu[12]
+            result['settings']['repel_prompt'] = struct.unpack_from('<I', state, base + 20)[0]
+    if 'gEnhancedRepelDialog' in symbols:
+        dialog = resident_words('gEnhancedRepelDialog', 17)
+        result['repel_dialog'] = {'active': bool(dialog[6]), 'phase': dialog[7],
+            'choice': dialog[8], 'item': dialog[9], 'offered': dialog[12],
+            'accepted': dialog[13], 'declined': dialog[14], 'failures': dialog[15],
+            'remembered': dialog[16]}
     retained = []
     for index in range(6):
         offset = start + 32 + 260 * index

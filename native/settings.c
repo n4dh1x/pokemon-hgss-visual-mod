@@ -36,6 +36,7 @@ static int valid_format(const struct EnhancedJournal *r) {
     return r->magic == ENHANCED_JOURNAL_MAGIC && r->version == ENHANCED_JOURNAL_VERSION &&
         r->count == ENHANCED_SETTINGS_COUNT && r->values[0] <= 1 &&
         r->values[1] <= 1 && r->values[2] <= 3 &&
+        (!(r->reserved[0] & 1) || r->values[3] <= 1) &&
         r->checksum == EnhancedSettingsCRC(r, 252);
 }
 int EnhancedSettingsValid(const struct EnhancedJournal *r, u32 owner) {
@@ -67,6 +68,7 @@ void EnhancedSettingsEnsure(void *field) {
     gEnhancedOptions.trade_evolutions = 1;
     gEnhancedOptions.reusable_tms = 1;
     gEnhancedOptions.visible_encounters = 1;
+    gEnhancedOptions.repel_prompt = 1;
     for (int i = 0; i < 2; ++i) {
         struct EnhancedJournal *r = &gSettingsState.pages[i];
         int read = FlashLoadChunk(journal_offsets[i], r, sizeof(*r));
@@ -81,12 +83,18 @@ void EnhancedSettingsEnsure(void *field) {
             gEnhancedOptions.trade_evolutions = r->values[0];
             gEnhancedOptions.reusable_tms = r->values[1];
             gEnhancedOptions.visible_encounters = r->values[2];
+            /* The presence bit distinguishes legacy padding from explicit Off. */
+            gEnhancedOptions.repel_prompt = (r->reserved[0] & 1) ? r->values[3] : 1;
         }
     }
 }
 
-int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible) {
-    if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3)
+void *EnhancedSettingsSaveData(void) {
+    return gSettingsState.loaded ? gSettingsState.save : 0;
+}
+
+int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel) {
+    if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3 || repel > 1)
         return 0;
     int target = gSettingsState.last_slot < 0 ? 0 : 1 - gSettingsState.last_slot;
     if (gSettingsState.last_slot < 0 && !gSettingsState.writable[target])
@@ -104,12 +112,17 @@ int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible) {
     r->sequence = gSettingsState.sequence + 1;
     r->owner = gSettingsState.owner;
     r->count = ENHANCED_SETTINGS_COUNT;
-    if (gSettingsState.last_slot >= 0)
+    if (gSettingsState.last_slot >= 0) {
         for (int i = 0; i < ENHANCED_SETTINGS_COUNT; ++i)
             r->values[i] = gSettingsState.pages[gSettingsState.last_slot].values[i];
+        for (int i = 0; i < 10; ++i)
+            r->reserved[i] = gSettingsState.pages[gSettingsState.last_slot].reserved[i];
+    }
     r->values[0] = trade;
     r->values[1] = tms;
     r->values[2] = visible;
+    r->values[3] = repel;
+    r->reserved[0] |= 1;
     r->checksum = EnhancedSettingsCRC(r, 252);
     Sys_SetSleepDisableFlag(1);
     int result = FlashWriteChunk(journal_offsets[target], r, sizeof(*r));
@@ -137,5 +150,6 @@ int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible) {
     gEnhancedOptions.trade_evolutions = trade;
     gEnhancedOptions.reusable_tms = tms;
     gEnhancedOptions.visible_encounters = visible;
+    gEnhancedOptions.repel_prompt = repel;
     return 1;
 }

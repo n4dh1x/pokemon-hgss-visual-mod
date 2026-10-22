@@ -239,7 +239,7 @@ class TestSettings(unittest.TestCase):
         self.execute('EnhancedMenuOpen', self.field)
         self.execute('EnhancedMenuTask', 0)
         self.put(self.menu + 44, 3)
-        self.put(self.menu + 32, 3)
+        self.put(self.menu + 32, 4)
         self.put(0x021D1154, 1)
         self.assertEqual(self.execute('EnhancedMenuTask', 0), 0)
         self.assertEqual(self.writes, [])
@@ -248,6 +248,16 @@ class TestSettings(unittest.TestCase):
         self.assertEqual(self.values(), (1, 1, 3))
         self.assertEqual(len(self.writes), 1)
         self.assertEqual(self.get(self.menu + 24), 0)
+
+    def test_legacy_journal_defaults_new_repel_option_on_then_preserves_explicit_off(self):
+        self.install(0, record(self.owner, 8, (0, 1, 3)))
+        self.reload()
+        self.assertEqual(self.get(PAYLOAD_BASE + 20), 1)
+        self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 0), 1)
+        self.reload()
+        self.assertEqual(self.values(), (0, 1, 3))
+        self.assertEqual(self.get(PAYLOAD_BASE + 20), 0)
+        self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 2), 0)
 
 
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for save layout audit.')

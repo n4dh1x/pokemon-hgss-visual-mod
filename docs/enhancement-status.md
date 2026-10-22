@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 58 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- Sixty-one tests pass, including compiled ARM field logic and independently checked
+- Seventy-five tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The final 7,904-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 9,372-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -84,8 +84,8 @@ Then add cave/water encounters and all remaining edge cases in the inventory.
 ## Later phases
 
 The complete ordered plan and per-feature differences are in
-[emerald-parity.md](emerald-parity.md). Capture EXP, IV/EV display and Repel routines have donor code; these
-remain unmerged. Reusable TMs and trade evolutions are integrated as described below. No estimate is
+[emerald-parity.md](emerald-parity.md). Capture EXP and IV/EV display have donor code and remain unmerged.
+The repeat-Repel prompt is integrated with bounded verification in milestone 06. Reusable TMs and trade evolutions are integrated as described below. No estimate is
 claimed for full parity, and DS/3DS hardware differences are explicitly recorded.
 
 ## Milestone 01: reusable TMs
@@ -164,7 +164,7 @@ of compatibility between every future build and every older save.
 See [visible-encounters.md](visible-encounters.md) for behavior, hooks, bounded
 verification and remaining acceptance cases. Source and detailed evidence are
 recorded in [milestone-03-verification.json](../enhancements/milestone-03-verification.json).
-The normal build command now produces milestone 05 candidates for both games.
+The normal build command now produces milestone 06 candidates for both games.
 Previous experimental revisions remain local under ignored `build/experiments`.
 
 ## Milestone 04: native settings menu and durable controls
@@ -182,3 +182,15 @@ and map ownership. Declared test fixtures seed only isolated checkpoints; the
 simulated expiry does not verify the complete natural wear-off dialogue.
 Detailed evidence is in
 [milestone-05-verification.json](../enhancements/milestone-05-verification.json).
+
+## Milestone 06: same-type repeat Repel
+
+The fourth saved option defaults On, including migration from the older three-option
+journal. Native successful bag use records the last Repel type in the normal game
+save. Wear-off offers only that same type, with Yes/No and inventory rechecking.
+Both games pass natural 200-step expiry after native saving and a cold reload;
+accepted and declined prompts, all three item durations, saved Off and no-substitution
+fallback are also checked. Early native A interaction now checks map/mode/context
+eligibility before a wild battle. Seventy-five tests pass. Special-area restrictions
+and the broader inventory remain pending. See [repel-prompt.md](repel-prompt.md) and
+[milestone-06-verification.json](../enhancements/milestone-06-verification.json).

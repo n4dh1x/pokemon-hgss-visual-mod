@@ -15,7 +15,8 @@ struct EnhancedJournal {
 _Static_assert(sizeof(struct EnhancedJournal) == 256, "Settings flash page ABI");
 
 void EnhancedSettingsEnsure(void *field);
-int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible);
+int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel);
+void *EnhancedSettingsSaveData(void);
 int EnhancedMenuOpen(void *field);
 u32 EnhancedSettingsCRC(const void *data, u32 size);
 int EnhancedSettingsValid(const struct EnhancedJournal *record, u32 owner);

@@ -393,6 +393,38 @@ class TestVisibleField(unittest.TestCase):
         self.assertEqual(self.removed, [])
         self.assertEqual(self.get(self.state + 32), 0)
 
+    def test_early_a_interaction_on_changed_map_discards_before_battle(self):
+        self.make_spawn()
+        self.put(self.location, 34)
+        self.execute('EnhancedStartScript', self.field, 0, self.created)
+        self.assertEqual(self.removed, [self.created])
+        self.assertEqual(self.get(self.state + 1636), 1)
+        self.assertEqual(self.get(self.state + 20), 0)
+        self.assertIsNone(self.battle_mon)
+        self.assertEqual(self.script_calls, [])
+
+    def test_early_a_interaction_after_mode_off_does_not_launch(self):
+        self.make_spawn()
+        self.put(PAYLOAD_BASE + 16, 0)
+        self.execute('EnhancedStartScript', self.field, 0, self.created)
+        self.assertEqual(self.removed, [self.created])
+        self.assertIsNone(self.battle_mon)
+
+    def test_existing_wild_is_removed_when_special_context_starts(self):
+        self.make_spawn()
+        self.special = True
+        self.position_for_unsolicited_contact()
+        self.execute('EnhancedFieldInput', self.input, self.field)
+        self.assertEqual(self.removed, [self.created])
+        self.assertIsNone(self.battle_mon)
+
+    def test_early_a_interaction_in_special_context_does_not_launch(self):
+        self.make_spawn()
+        self.special = True
+        self.execute('EnhancedStartScript', self.field, 0, self.created)
+        self.assertEqual(self.removed, [self.created])
+        self.assertIsNone(self.battle_mon)
+
 
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for ROM field hooks.')
 class TestFieldHooks(unittest.TestCase):

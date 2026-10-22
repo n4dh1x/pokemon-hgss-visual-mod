@@ -25,6 +25,7 @@ from gameplay.patches import reusable_tms
 from gameplay.native import build_payload, inject_evolution, verify_arm9_changes, PAYLOAD_BASE
 from gameplay.field import install_field, verify_field_files
 from gameplay.settings import audit_save_layout
+from gameplay.repel import install_repel
 from build_baseline import build_baseline, read_rom, sha256
 
 
@@ -52,11 +53,13 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     patched.arm9 = bytes(arm9)
     field_changes, overlay_changes = install_field(patched, payload)
     results.extend(field_changes)
+    repel_changes, repel_storage = install_repel(patched, payload)
+    overlay_changes.extend(repel_changes)
     injection = inject_evolution(patched.arm9, original.arm9RamAddress, payload)
     results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-05'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-06'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -85,25 +88,28 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'baseline_sha256': info['output_sha256'],
         'output_sha256': sha256(encoded),
         'patch_sha256': sha256(patch_output.read_bytes()),
-        'features': [dataclasses.asdict(r) for r in results if r.feature != 'resident_code_reservation'],
+        'features': [dataclasses.asdict(r) for r in results if r.feature != 'resident_code_reservation'] +
+                    [dataclasses.asdict(r.patch) for r in repel_changes],
         'code_changes': [dataclasses.asdict(r) for r in results],
         'overlay_changes': [dataclasses.asdict(r) for r in overlay_changes],
         'settings_storage': settings_storage,
+        'repel_storage': repel_storage,
         'enhancement_menu': {'open_button': 'SELECT',
-            'options': ['visible_wild', 'trade_evo', 'infinite_tms'],
+            'options': ['visible_wild', 'trade_evo', 'infinite_tms', 'repel_prompt'],
             'apply': 'Save and close', 'cancel': 'B or Cancel'},
-        'diagnostics': {'visible_state_bytes': 1640, 'settings_state_bytes': 1060, 'menu_state_bytes': 60},
+        'diagnostics': {'visible_state_bytes': 1640, 'settings_state_bytes': 1060,
+                        'menu_state_bytes': 64, 'repel_dialog_bytes': 68},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
-                   'recorded overlay 1/2 changes only', 'audited native flash allocation',
+                   'recorded overlay 1/2/15 changes only', 'audited native flash allocation',
                    'other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
         'runtime_gameplay_tested': False,
-        'limitations': ['The enhancement menu currently exposes only the three integrated gameplay options.',
+        'limitations': ['The enhancement menu currently exposes four integrated gameplay options.',
                        'Full in-game TM teaching and evolution/cancellation flows still need verification.',
                        'Bag TM quantity labels retain their original presentation.',
                        'Visible encounters are an experimental grass integration; full acceptance cases remain pending.',

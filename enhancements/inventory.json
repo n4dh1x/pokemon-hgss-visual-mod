@@ -197,7 +197,8 @@
         "native_repel_use_and_unsolicited_contact_both_games": "passed",
         "deliberate_contact_under_repel_heartgold": "passed",
         "connected_route29_newbark_cleanup_both_games": "passed",
-        "returned_grass_repel_filter_and_simulated_expiry_respawn_heartgold": "passed"
+        "returned_grass_repel_filter_and_simulated_expiry_respawn_heartgold": "passed",
+        "early_native_a_map_mode_context_guards": "passed_compiled_arm"
       }
     },
     {
@@ -227,12 +228,23 @@
       "category": "donor",
       "base_heartgold": "Wear-off message without this option.",
       "visual_plus": "Not added.",
-      "required_work": "Adapt hg-engine repel prompt: its current code prioritizes Max/Super/normal instead of Emerald's same-last-type behavior; exact parity needs that change.",
+      "required_work": "Same-last-type native prompt and saved On/Off option integrated. Both games pass native save/cold reload and natural 200-step Super Repel expiry, Yes/No and saved Off; all three durations and no substitution are checked. Finish special-area restrictions and broader save/context acceptance.",
       "evidence": [
         "patches/pokeemerald/0016-repel-prompt.patch",
-        "local_data/reference/hg-engine/src/repel.c"
+        "local_data/reference/hg-engine/src/repel.c",
+        "native/repel.c",
+        "gameplay/repel.py",
+        "tests/test_repel_prompt.py",
+        "docs/repel-prompt.md",
+        "enhancements/milestone-06-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "compiled_arm_and_guard_tests": "passed",
+        "native_save_reload_natural_200_step_expiry_both_games": "passed",
+        "same_type_yes_no_and_saved_off": "passed",
+        "special_area_restrictions": "pending"
+      }
     },
     {
       "id": "infinite_tms",

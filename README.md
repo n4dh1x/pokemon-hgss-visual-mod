@@ -4,15 +4,16 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 05.**
+**Current stage: experimental gameplay milestone 06.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
 checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
-settings. Off removes wilds; Some supports four and Many six in the tested grass
+settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. Sixty-one tests pass.
+connected-map changes remove old-map wilds. Seventy-five tests pass. The fourth saved option offers another Repel of the
+same last-used type; both games pass native save/reload and full 200-step expiry.
 Cave/water encounters, full capacity and transition
 coverage, other enhancements and final gameplay validation remain.
 These candidates are not the final release.
@@ -25,6 +26,7 @@ These candidates are not the final release.
 - [Visible encounters and roaming verification](docs/visible-encounters.md)
 - [Enhancement menu and durable settings](docs/enhancement-settings.md)
 - [Repel and connected-map verification](docs/encounter-refinements.md)
+- [Same-type repeat Repel and verification](docs/repel-prompt.md)
 
 Verify the inventory:
 

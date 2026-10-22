@@ -98,3 +98,9 @@ busy maps, long play, further connected-map crossings/warps and party/Repel edge
 shiny sparkle, spawn/despawn effects, capture and additional script/fade cases
 still require implementation or verification. The original full encounter
 specification in [emerald-parity.md](emerald-parity.md) remains authoritative.
+
+Milestone 06 adds a central eligibility check before native early A contact can
+launch a wild battle: current map, mode/capacity and regular field context must
+still match. Four compiled ARM regressions cover map change, Off and special
+contexts. The complete project suite now passes 75 tests; broad acceptance above
+remains pending.

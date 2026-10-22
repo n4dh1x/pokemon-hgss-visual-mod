@@ -3,8 +3,9 @@
 Press SELECT while normal field input is available. The native DS window offers
 Visible wilds (Off/Few/Some/Many), Trade evolution and Reusable TMs. Use Up/Down
 to choose, Left/Right or A to change a value, and A on Save and close to apply.
-B or Cancel discards staged changes. This menu currently exposes three integrated
-options; the rest of the audited enhancement list remains in scope.
+B or Cancel discards staged changes. Milestone 06 adds the fourth option, Repel
+prompt (On/Off); see [repel-prompt.md](repel-prompt.md). The rest of the audited
+enhancement list remains in scope.
 
 The menu uses HGSS's field task, window, font and input routines. NPC movement
 pauses while it is open, and prior NPC pause flags are restored on exit. The
@@ -23,11 +24,13 @@ in the original 512 KiB save. Native save blocks, checksums and chunk sizes are
 unchanged. The game's full save-erasure operation erases these pages too.
 
 Records contain magic, version, sequence, full trainer ID, 48 value slots,
-reserved words and CRC-32 over the first 252 bytes. Only the first three values
-are active; unused value slots do not constitute implemented enhancements.
+reserved words and CRC-32 over the first 252 bytes. Milestone 06 activates value
+3 for Repel prompt and reserved word 0 bit 0 to distinguish an explicit Off from
+legacy zero padding. Legacy records default the new option On. Unused value slots
+do not constitute implemented enhancements.
 The newest valid record belonging to the current trainer is loaded. Defaults
 without a valid owned record are On trade evolutions, On reusable TMs and Few
-visible wilds.
+visible wilds, with Repel prompt On.
 
 Writes alternate pages, read back and compare the result before updating runtime
 options. A failed or partial write leaves the previous valid page available.
@@ -40,7 +43,8 @@ compatibility has not been established.
 
 ## Verified scope
 
-Fifty-three project tests pass. Native ARM settings tests exercise CRC damage,
+Milestone 04 passed 53 tests; milestone 06 passes 75. The observations below
+record the original milestone 04 scope. Native ARM settings tests exercise CRC damage,
 ownership/version rejection, sequence wrap, alternating writes, zero/FF blank
 pages, interrupted writes, cancellation, NPC flag restoration and deferred Apply.
 The actual native teaching function executes through the runtime wrapper with
