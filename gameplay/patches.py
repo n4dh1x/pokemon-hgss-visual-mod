@@ -26,7 +26,7 @@ TAKE_TM_CALL = bytes.fromhex('f5f73eff')
 THUMB_NOP_PAIR = bytes.fromhex('c046c046')
 
 
-def reusable_tms(arm9: bytearray, ram_address: int) -> PatchResult:
+def reusable_tms(arm9: bytearray, ram_address: int, destination: int | None = None) -> PatchResult:
     """Keep TMs while retaining move/PP initialization, friendship and mood.
 
     Audited independently in the USA HeartGold and SoulSilver Visual+ full
@@ -34,8 +34,9 @@ def reusable_tms(arm9: bytearray, ram_address: int) -> PatchResult:
     when an item is supplied and the move is not an HM. The common teaching
     paths, including replacing an existing move, use this function.
 
-    This milestone enables reusable TMs at build time. Runtime settings and
-    hiding the remaining bag quantity label are separate integration work.
+    With a destination, call the resident runtime option wrapper. Omitting it
+    retains the original static milestone patch for regression comparisons.
+    Hiding the remaining bag quantity label is separate integration work.
     """
     function_offset = LEARN_MOVE_ADDRESS - ram_address
     patch_offset = TAKE_TM_ADDRESS - ram_address
@@ -46,6 +47,13 @@ def reusable_tms(arm9: bytearray, ram_address: int) -> PatchResult:
         raise PatchMismatch('PartyMenu_LearnMoveToSlot differs from the audited USA code.')
     if arm9[patch_offset:patch_offset + 4] != TAKE_TM_CALL:
         raise PatchMismatch('Expected Bag_TakeItem call is not present.')
-    arm9[patch_offset:patch_offset + 4] = THUMB_NOP_PAIR
+    if destination is None:
+        replacement = THUMB_NOP_PAIR
+        behavior = 'TMs retained after teaching; build-time enabled'
+    else:
+        from .field import thumb_call
+        replacement = thumb_call(TAKE_TM_ADDRESS, destination)
+        behavior = 'TM consumption follows the saved reusable-TM option'
+    arm9[patch_offset:patch_offset + 4] = replacement
     return PatchResult('infinite_tms', TAKE_TM_ADDRESS, TAKE_TM_CALL.hex(),
-                       THUMB_NOP_PAIR.hex(), 'TMs retained after teaching; build-time enabled')
+                       replacement.hex(), behavior)

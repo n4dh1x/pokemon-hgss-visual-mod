@@ -19,6 +19,11 @@ volatile struct EnhancedOptions gEnhancedOptions = {
     0x48534745u, 1, 1, 1, 1, {0, 0, 0}
 };
 
+extern int Bag_TakeItem(void *bag, u16 item, u16 quantity, int heap);
+int EnhancedTakeTm(void *bag, u16 item, u16 quantity, int heap) {
+    return gEnhancedOptions.reusable_tms ? 1 : Bag_TakeItem(bag, item, quantity, heap);
+}
+
 enum {
     MON_SPECIES = 5, MON_HELD_ITEM = 6, MON_IS_EGG = 76, MON_LEVEL = 161,
     EVO_LEVEL_CONTEXT = 0, EVO_TRADE = 5, EVO_TRADE_ITEM = 6,

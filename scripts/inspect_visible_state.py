@@ -45,6 +45,25 @@ def inspect_run(run: Path, report_path: Path) -> dict:
               'manager': hex(header[0]), 'capture_active': bool(header[1]),
               'tick': header[3], 'generated': header[4], 'launched': header[5],
               'save_filtered': header[6], 'allocation_failures': header[7], 'slots': []}
+    def resident_words(name, count):
+        offset = base + symbols[name] - payload_address
+        if offset < base or offset + count * 4 > base + report['resident_payload']['size']:
+            raise ValueError(f'{name} lies outside the recorded resident section.')
+        return struct.unpack_from(f'<{count}I', state, offset)
+
+    if 'gSettingsState' in symbols:
+        settings = resident_words('gSettingsState', 9)
+        result['settings'] = {'loaded': bool(settings[2]), 'sequence': settings[3],
+            'last_slot': settings[4] if settings[4] < 2 else -1,
+            'writable_slots': [bool(v) for v in settings[5:7]],
+            'successful_writes': settings[7], 'status': settings[8],
+            'trade_evolutions': struct.unpack_from('<I', state, base + 8)[0],
+            'reusable_tms': struct.unpack_from('<I', state, base + 12)[0]}
+    if 'gEnhancedMenu' in symbols:
+        menu = resident_words('gEnhancedMenu', 15)
+        result['enhancement_menu'] = {'active': bool(menu[6]), 'phase': menu[7],
+            'row': menu[8], 'staged_trade': menu[9], 'staged_tms': menu[10],
+            'staged_visible': menu[11], 'error': menu[12]}
     retained = []
     for index in range(6):
         offset = start + 32 + 260 * index
@@ -64,9 +83,10 @@ def inspect_run(run: Path, report_path: Path) -> dict:
             entry['movement'] = list(struct.unpack('<2I', read(address + 0xA4, 8)))
         result['slots'].append(entry)
     if 'EnhancedFieldControl' in symbols:
-        if start + 1624 > base + report['resident_payload']['size']:
+        if start + 1632 > base + report['resident_payload']['size']:
             raise ValueError('Roaming state lies outside the resident payload.')
         result['walk_commands'], result['paused_mask'] = struct.unpack_from('<2I', state, start + 1616)
+        result['discarded_ordinary'] = struct.unpack_from('<I', state, start + 1628)[0]
     # Audited USA sFieldSysPtr. The field task chain identifies an actual native
     # battle setup, avoiding a broad memory-pattern match as identity evidence.
     field = word(0x021D4158)

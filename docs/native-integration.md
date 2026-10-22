@@ -42,11 +42,14 @@ flow still needs full emulator verification.
 
 ## Options and build
 
-The first 32 payload bytes hold a versioned development configuration. Trade
-evolutions can be disabled in resident memory; reusable TMs currently use a
-separate static teaching patch. Visible encounters also have a development config word (Off/Few/Some/Many),
-currently defaulting to Few. No player-facing runtime options menu or save
-persistence is implemented yet. Defaults in these candidates are experimental.
+The first 32 payload bytes hold a versioned runtime configuration. Milestone 04
+adds a SELECT field menu for trade evolutions, reusable TMs and visible encounters
+(Off/Few/Some/Many). The teaching call now goes through a resident wrapper: On
+retains TMs; Off calls the original Bag_TakeItem with its original arguments.
+The older static patch remains available for regression comparisons only.
+Defaults without a valid owned settings journal are On/On/Few. See
+[enhancement-settings.md](enhancement-settings.md) for the audited flash layout,
+CRC journal, recovery behavior and bounded emulator verification.
 
 Build with ARM-targeting clang and LLD, plus `requirements-dev.txt`. Set
 `HGSS_CLANG` or `HGSS_LLD` if automatic discovery cannot find the tools. The
@@ -74,3 +77,11 @@ unchanged, and the SDK arena advances beyond this larger payload. New field
 hooks replace five recorded ARM9 sites and six calls in overlays 1/2. Full
 component verification rejects any other file, descriptor or ARM9 mutation.
 See [visible-encounters.md](visible-encounters.md).
+
+## Milestone 04 settings and field menu
+
+The payload is 7,648 bytes, ending at `0x01FFADE0`. It now includes a native
+window/task menu, runtime TM wrapper and two-copy settings journal state. It
+uses the existing field hooks; the TM teaching BL targets the new wrapper.
+The build guards the native flash allocation table and size/access routines
+before enabling journal writes. Original ITCM/DTCM content remains unchanged.

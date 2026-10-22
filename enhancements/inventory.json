@@ -115,14 +115,18 @@
       "category": "custom",
       "base_heartgold": "Trade requirements remain.",
       "visual_plus": "Not added.",
-      "required_work": "Milestone 02 adds a level-up alternative at level >=40 in both games, retaining normal trades and native held-item completion. ARM tests and melonDS startup pass. Full in-game evolution/cancellation, runtime controls and persistence remain.",
+      "required_work": "Milestone 02 adds level >=40 alternatives with native held-item completion. Milestone 04 adds the saved runtime toggle. ARM tests pass; full in-game evolution/cancellation remains pending.",
       "evidence": [
         "patches/pokeemerald/0012-trade-evolutions.patch",
         "local_data/reference/hg-engine/src/individual/GetMonEvolutionInternal.c",
         "native/evolution.c",
         "gameplay/native.py",
         "tests/test_trade_evolutions.py",
-        "enhancements/milestone-02-verification.json"
+        "enhancements/milestone-02-verification.json",
+        "native/settings.c",
+        "native/menu.c",
+        "tests/test_settings.py",
+        "enhancements/milestone-04-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
@@ -130,7 +134,7 @@
         "rom_patch_roundtrip": "passed",
         "resident_payload_startup": "passed",
         "evolution_and_cancellation_in_melonds": "pending",
-        "runtime_toggle_and_persistence": "pending"
+        "runtime_toggle_and_persistence": "passed"
       }
     },
     {
@@ -161,7 +165,7 @@
       "category": "custom",
       "base_heartgold": "Random grass/cave/water encounters plus specific scripted overworld Pokemon; no general roaming-spawn system.",
       "visual_plus": "Not added.",
-      "required_work": "Milestone 03 integrates roaming grass wilds using native follower model walking animations, native HGSS generation and retained Pokemon identity. Few-mode spawning/contact works in both games; HeartGold menu pause, save and cold reload pass. Finish cave/water support, runtime settings, all mode/capacity/transition/Repel cases, shiny sparkle and spawn effects.",
+      "required_work": "Native follower models walk and turn as grass wilds retain native-generated Pokemon into contact battles. Milestone 04 adds saved Off/Few/Some/Many controls, with four/six-object grass runs and Off removal. Finish cave/water support, all mode/capacity/transition/Repel cases, shiny sparkle and spawn effects.",
       "evidence": [
         "patches/pokeemerald/0014-visible-wild.patch",
         "patches/pokeemerald/0056-follower-pokemon.patch",
@@ -170,7 +174,11 @@
         "native/field.c",
         "gameplay/field.py",
         "tests/test_visible_field.py",
-        "enhancements/milestone-03-verification.json"
+        "enhancements/milestone-03-verification.json",
+        "native/settings.c",
+        "native/menu.c",
+        "tests/test_settings.py",
+        "enhancements/milestone-04-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
@@ -182,7 +190,8 @@
         "menu_freeze_resume_heartgold": "passed",
         "transient_save_exclusion_and_cold_reload_heartgold": "passed",
         "caves_water_all_modes_capacity_transitions_repels": "pending",
-        "runtime_ui_and_persistence": "pending"
+        "runtime_ui_and_persistence": "passed",
+        "short_grass_capacity_some_ss_many_both_off_hg": "passed"
       }
     },
     {
@@ -229,14 +238,18 @@
       "category": "donor",
       "base_heartgold": "TMs consumed; HMs reusable.",
       "visual_plus": "Not added.",
-      "required_work": "Milestone 01 patches the teaching-consumption call in both USA Visual+ full builds; ARM instruction tests pass. Full teaching-flow validation, bag count presentation and runtime toggle remain.",
+      "required_work": "Milestone 04 routes native teaching through the saved reusable-TM toggle in both USA games. ARM instruction tests cover On/Off, HMs and itemless teaching. Full teaching-flow validation and bag count presentation remain.",
       "evidence": [
         "patches/pokeemerald/0017-infinite-tms.patch",
         "local_data/reference/hg-engine/src/party_menu.c",
         "local_data/reference/hg-engine/src/bag.c",
         "local_data/reference/hg-engine/include/config.h",
         "gameplay/patches.py",
-        "tests/test_reusable_tms.py"
+        "tests/test_reusable_tms.py",
+        "native/settings.c",
+        "native/menu.c",
+        "tests/test_settings.py",
+        "enhancements/milestone-04-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
@@ -244,7 +257,7 @@
         "rom_patch_roundtrip": "passed",
         "opening_smoke": "passed",
         "teaching_flow_in_melonds": "pending",
-        "runtime_toggle": "pending"
+        "runtime_toggle": "passed"
       }
     },
     {
@@ -853,14 +866,24 @@
       "category": "custom",
       "base_heartgold": "Native options save only the original settings.",
       "visual_plus": "Build-time variants, no enhancement menu.",
-      "required_work": "Add optional settings UI and versioned persistence. Decide between audited save expansion and flashcart/emulator sidecar; do not assume arbitrary save bytes are unused.",
+      "required_work": "Milestone 04 adds a native SELECT menu for three integrated options and a versioned, trainer-owned, CRC-protected alternating journal in audited unused flash pages. Both games apply/load settings; HeartGold Cancel, native Save preservation and damaged-newer-copy fallback pass. Add remaining settings pages and broader compatibility/transition verification.",
       "evidence": [
         "3ds_port/src/3ds_extras.c",
         "3ds_port/src/3ds_settings.c",
         "local_data/reference/pokeheartgold/src/options.c",
-        "local_data/reference/pokeheartgold/src/options_app.c"
+        "local_data/reference/pokeheartgold/src/options_app.c",
+        "native/settings.c",
+        "native/menu.c",
+        "tests/test_settings.py",
+        "enhancements/milestone-04-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "three_option_ui_and_persistence_both_games": "passed",
+        "cancel_and_native_save_preservation_heartgold": "passed",
+        "damaged_newer_journal_fallback_heartgold": "passed",
+        "remaining_options_and_older_save_compatibility": "pending"
+      }
     },
     {
       "id": "follower_interactions",

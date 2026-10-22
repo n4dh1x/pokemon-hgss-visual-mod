@@ -1,4 +1,5 @@
 #include "config.h"
+#include "settings.h"
 
 /* USA ABI offsets are checked against both pinned Visual+ images. Use native
  * Pokemon APIs and copy the whole encrypted 236-byte Pokemon, never rebuild it. */
@@ -123,6 +124,7 @@ static void pause_wilds(int paused) {
 }
 
 void EnhancedFieldControl(void *field) {
+    EnhancedSettingsEnsure(field);
     pause_wilds(!FieldMovementAllowed(field));
     OriginalFieldControl(field);
     pause_wilds(!FieldMovementAllowed(field));
@@ -363,6 +365,8 @@ int EnhancedFieldInput(void *input, void *field) {
     int result = OriginalFieldInput(input, field);
     if (result)
         return result;
+    if ((*(u16 *)((u8 *)input + 6) & 4) && EnhancedMenuOpen(field))
+        return 1;
     void *player = ptr(ptr(field, 0x40), 0x30);
     int px = word(player, 0x64), pz = word(player, 0x6C);
     u32 mode = gEnhancedOptions.visible_encounters;

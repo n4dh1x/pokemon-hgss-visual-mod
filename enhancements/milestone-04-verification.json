@@ -1,0 +1,2423 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 4,
+  "verified_on": "2026-10-22",
+  "final_release": false,
+  "scope": "Native three-option SELECT menu, journal persistence/recovery, runtime TM hook and short grass capacity runs.",
+  "tests": {
+    "command": ".venv/bin/python -B -m unittest discover -s tests -v",
+    "passed": 53,
+    "skipped": 0,
+    "log_sha256": "a2df2c36ab9d771ae10838314da078944e97f3d79abebc1f416744aca3e4096c"
+  },
+  "inventory": {
+    "feature_rows": 58,
+    "emerald_option_keys": 41,
+    "pinned_source_coverage": "passed"
+  },
+  "candidates": {
+    "heartgold": {
+      "source_rom_sha256": "65f02a56842b75aa92d775d56d657a56fe3fa993550b04dc20704ab82d760105",
+      "baseline_sha256": "eb0aaed35ba445f26a3fdfdc00c86ab8e1abac72b2191984f57290b383fb8379",
+      "output_sha256": "9bcbe5eb220deb8e1034822e14b4bf0e19d2d51cc684ba708831aa39e31f0288",
+      "patch_sha256": "85800a312d554fdda91b1a65a920a6ff01c5712f800734db74ecb11b5e6139eb",
+      "settings_storage": {
+        "bank_size": 262144,
+        "native_main_limit": 143360,
+        "native_extra_spans": [
+          [
+            143360,
+            154304
+          ],
+          [
+            155648,
+            158640
+          ],
+          [
+            159744,
+            167264
+          ],
+          [
+            167936,
+            175456
+          ],
+          [
+            176128,
+            183648
+          ],
+          [
+            184320,
+            191840
+          ]
+        ],
+        "native_data_end_per_bank": 191840,
+        "journal_offsets": [
+          258048,
+          520192
+        ],
+        "journal_record_bytes": 256,
+        "journal_version": 1,
+        "checksum": "CRC-32",
+        "ownership": "native full trainer ID"
+      },
+      "resident_payload": {
+        "address": 33525760,
+        "size": 7648,
+        "sha256": "80c381bb7b53ba0a1f9797ab51cc4913e3d519202bbe520abcef0b4b10d3ab15",
+        "symbols": {
+          "EnhancedTakeTm": 33525825,
+          "gEnhancedOptions": 33525760,
+          "EnhancedEvolution": 33525849,
+          "OriginalEvolution": 33525793,
+          "EnhancedFieldControl": 33526053,
+          "EnhancedSettingsEnsure": 33528697,
+          "gVisibleState": 33530656,
+          "EnhancedManagerDelete": 33526229,
+          "EnhancedSaveIterator": 33526317,
+          "EnhancedEncounterRoll": 33526473,
+          "EnhancedRoamerCheck": 33526497,
+          "EnhancedCaptureEncounter": 33526521,
+          "EnhancedStepEncounter": 33526573,
+          "EnhancedStartScript": 33526867,
+          "EnhancedFieldInput": 33527017,
+          "EnhancedMenuOpen": 33530017,
+          "EnhancedSettingsCRC": 33528509,
+          "EnhancedSettingsValid": 33528577,
+          "gSettingsState": 33532288,
+          "EnhancedSettingsStore": 33528945,
+          "EnhancedMenuTask": 33529381,
+          "gEnhancedMenu": 33533348,
+          "__enhanced_end": 33533408
+        },
+        "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+        "linker": "LLD 22.1.6 (https://github.com/rust-lang/llvm-project.git dcc3606807c989700e0ac1cac18c31741bcd40d9) (compatible with GNU linkers)"
+      },
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2 changes only",
+        "audited native flash allocation",
+        "other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ],
+      "local_rom": "build/candidates/heartgold-visual-plus-gameplay-milestone-04.nds"
+    },
+    "soulsilver": {
+      "source_rom_sha256": "51d0f94a16af7d77c067b4cb7d821ba890a13203a2e2c76049623332c0582e20",
+      "baseline_sha256": "5b3a377d20b2aa45fa1b9e6fbab842aaddc75e4fef38c38624662c9f5e48bf8e",
+      "output_sha256": "ee7f50186dcab832449d972ea961672984638f811160f1c1a9f84cd98a944d7a",
+      "patch_sha256": "482b95ee8c191eea8d55e6864d34f0721b9ed801a56a4a830a5227fb89b640a8",
+      "settings_storage": {
+        "bank_size": 262144,
+        "native_main_limit": 143360,
+        "native_extra_spans": [
+          [
+            143360,
+            154304
+          ],
+          [
+            155648,
+            158640
+          ],
+          [
+            159744,
+            167264
+          ],
+          [
+            167936,
+            175456
+          ],
+          [
+            176128,
+            183648
+          ],
+          [
+            184320,
+            191840
+          ]
+        ],
+        "native_data_end_per_bank": 191840,
+        "journal_offsets": [
+          258048,
+          520192
+        ],
+        "journal_record_bytes": 256,
+        "journal_version": 1,
+        "checksum": "CRC-32",
+        "ownership": "native full trainer ID"
+      },
+      "resident_payload": {
+        "address": 33525760,
+        "size": 7648,
+        "sha256": "80c381bb7b53ba0a1f9797ab51cc4913e3d519202bbe520abcef0b4b10d3ab15",
+        "symbols": {
+          "EnhancedTakeTm": 33525825,
+          "gEnhancedOptions": 33525760,
+          "EnhancedEvolution": 33525849,
+          "OriginalEvolution": 33525793,
+          "EnhancedFieldControl": 33526053,
+          "EnhancedSettingsEnsure": 33528697,
+          "gVisibleState": 33530656,
+          "EnhancedManagerDelete": 33526229,
+          "EnhancedSaveIterator": 33526317,
+          "EnhancedEncounterRoll": 33526473,
+          "EnhancedRoamerCheck": 33526497,
+          "EnhancedCaptureEncounter": 33526521,
+          "EnhancedStepEncounter": 33526573,
+          "EnhancedStartScript": 33526867,
+          "EnhancedFieldInput": 33527017,
+          "EnhancedMenuOpen": 33530017,
+          "EnhancedSettingsCRC": 33528509,
+          "EnhancedSettingsValid": 33528577,
+          "gSettingsState": 33532288,
+          "EnhancedSettingsStore": 33528945,
+          "EnhancedMenuTask": 33529381,
+          "gEnhancedMenu": 33533348,
+          "__enhanced_end": 33533408
+        },
+        "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+        "linker": "LLD 22.1.6 (https://github.com/rust-lang/llvm-project.git dcc3606807c989700e0ac1cac18c31741bcd40d9) (compatible with GNU linkers)"
+      },
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2 changes only",
+        "audited native flash allocation",
+        "other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ],
+      "local_rom": "build/candidates/soulsilver-visual-plus-gameplay-milestone-04.nds"
+    }
+  },
+  "runs": {
+    "hg04b-apply-many": {
+      "game": "heartgold",
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "frames": 4300,
+      "audio_samples": 2352360,
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            2800,
+            2804
+          ],
+          [
+            "RIGHT",
+            3010,
+            3014
+          ],
+          [
+            "RIGHT",
+            3040,
+            3044
+          ],
+          [
+            "DOWN",
+            3070,
+            3074
+          ],
+          [
+            "RIGHT",
+            3100,
+            3104
+          ],
+          [
+            "DOWN",
+            3130,
+            3134
+          ],
+          [
+            "RIGHT",
+            3160,
+            3164
+          ],
+          [
+            "DOWN",
+            3190,
+            3194
+          ],
+          [
+            "A",
+            3220,
+            3224
+          ]
+        ],
+        "touches": []
+      },
+      "save_import_sha256": "3ef7d1140a2781014d0e7f78d22cf07d6b5180ea8c39f4d931b4fb6a2e478460",
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "997decce0d2fdaa2035e0758eb660824a04cc6901af94992f089ad77a335de80"
+      },
+      "state_sha256": "c72f01130e9a93b3e3a6807f54f44a388ca349db0cbc052ca3d480f3d37001e0",
+      "main_ram_sha256": "f6711ec01f33113938db5fce1857ef3d234a49fb17ddd55d618a499006faf9ab",
+      "screenshots": {
+        "frame-003000.png": "a5b2be765eef0f20b4e22aefe3ff99aae81fc0649e5e764def198a084e0fb238",
+        "frame-003200.png": "38a51005441f125a1271cdc4f9b1f9e171f43ceebed57897af6c345ee4644d3c",
+        "frame-003400.png": "59291e19bcde62e5a39d4010c110ebca23274cdfa57143b7eee84d6264d0ab3e",
+        "frame-004300.png": "80e4507c2c0a331babc928e9c68f6e9c5ea7287181c0cb41be592134aebb7451"
+      },
+      "diagnostics": {
+        "candidate_sha256": "9bcbe5eb220deb8e1034822e14b4bf0e19d2d51cc684ba708831aa39e31f0288",
+        "visible_mode": 3,
+        "manager": "0x22a1e6c",
+        "capture_active": false,
+        "tick": 19,
+        "generated": 6,
+        "launched": 0,
+        "save_filtered": 0,
+        "allocation_failures": 0,
+        "slots": [
+          {
+            "index": 0,
+            "object": "0x22a2b70",
+            "id": 224,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1183569715,
+            "pokemon_sha256": "b8842b537e82b822bb0c5e0fd2d49eae5347cf3691a5d1d04a91b645e1454314",
+            "owned_active": true,
+            "flags": "0x20106411",
+            "position": [
+              655,
+              2,
+              406
+            ],
+            "vector": [
+              42958848,
+              65536,
+              26615808
+            ],
+            "movement": [
+              13,
+              1
+            ]
+          },
+          {
+            "index": 1,
+            "object": "0x22a2c9c",
+            "id": 225,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 368060091,
+            "pokemon_sha256": "270adba805c8c6820a1a45eed79715f3137aa788292492e0b13977f0dccb61ae",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              661,
+              2,
+              405
+            ],
+            "vector": [
+              43352064,
+              65536,
+              26574848
+            ],
+            "movement": [
+              15,
+              2
+            ]
+          },
+          {
+            "index": 2,
+            "object": "0x22a2dc8",
+            "id": 226,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 3712177091,
+            "pokemon_sha256": "16f5684cc2e88ae87aca14fada17b8f7643986c932013b63af18bfcfc9208042",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              657,
+              2,
+              404
+            ],
+            "vector": [
+              43089920,
+              65536,
+              26509312
+            ],
+            "movement": [
+              13,
+              2
+            ]
+          },
+          {
+            "index": 3,
+            "object": "0x22a2ef4",
+            "id": 227,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 1497573616,
+            "pokemon_sha256": "9646dde8c2e7f2a45f85f18aa52bbea43f5158146bac9050cfdd1df3497d4ed4",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              656,
+              2,
+              400
+            ],
+            "vector": [
+              43024384,
+              65536,
+              26247168
+            ],
+            "movement": [
+              12,
+              2
+            ]
+          },
+          {
+            "index": 4,
+            "object": "0x22a3020",
+            "id": 228,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1887567191,
+            "pokemon_sha256": "e6cc122accfc75cfa60684c162dce1bb10ca06c5efae09267b600c7fc254afff",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              656,
+              2,
+              405
+            ],
+            "vector": [
+              43024384,
+              65536,
+              26574848
+            ],
+            "movement": [
+              14,
+              2
+            ]
+          },
+          {
+            "index": 5,
+            "object": "0x22a314c",
+            "id": 229,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 3745625185,
+            "pokemon_sha256": "2f66db1f83760d3089b34c8b018a1da774eadf8eb4a22e1b2ef9ad177f610882",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              655,
+              2,
+              402
+            ],
+            "vector": [
+              42958848,
+              65536,
+              26378240
+            ],
+            "movement": [
+              14,
+              2
+            ]
+          }
+        ],
+        "settings": {
+          "loaded": true,
+          "sequence": 1,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 2,
+          "row": 3,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 3,
+          "error": 0
+        },
+        "walk_commands": 22,
+        "paused_mask": 0,
+        "discarded_ordinary": 0,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "journal_records": [
+        {
+          "offset": 258048,
+          "sha256": "7e1581a8a3b91b66a94e64c4dec052fe9677b89381c812b71c0d928c9d0f2119",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 1,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            3
+          ],
+          "crc_valid": true
+        },
+        {
+          "offset": 520192,
+          "sha256": "5341e6b2646979a70e57653007a1f310169421ec9bdd9f1a5648f75ade005af1",
+          "recognized_magic": false,
+          "version": 0,
+          "sequence": 0,
+          "owner_matches": false,
+          "value_count": 0,
+          "first_three_values": [
+            0,
+            0,
+            0
+          ],
+          "crc_valid": false
+        }
+      ]
+    },
+    "hg04b-cancel-only": {
+      "game": "heartgold",
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "frames": 300,
+      "audio_samples": 164118,
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            10,
+            14
+          ],
+          [
+            "LEFT",
+            60,
+            64
+          ],
+          [
+            "B",
+            100,
+            104
+          ],
+          [
+            "SELECT",
+            150,
+            154
+          ]
+        ],
+        "touches": []
+      },
+      "save_import_sha256": null,
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "997decce0d2fdaa2035e0758eb660824a04cc6901af94992f089ad77a335de80"
+      },
+      "state_sha256": "1388bc7d83d0695f56c82f894782714819a6c0f8c820285803358ca3249f87cc",
+      "main_ram_sha256": "8f903182c3623e8016783d4af2a5473c6da682aa734a6d8028889d9ca4d3093a",
+      "screenshots": {
+        "frame-000090.png": "74c885280a5a99968c33ff4f6659a14ea76127064b741f4a9e13eecf2dab98eb",
+        "frame-000300.png": "4910aeb084403829d8c09eb5c9d35ed8219bcdfde01568b9c87e4a9cf06f544d"
+      },
+      "diagnostics": {
+        "candidate_sha256": "9bcbe5eb220deb8e1034822e14b4bf0e19d2d51cc684ba708831aa39e31f0288",
+        "visible_mode": 3,
+        "manager": "0x22a1e6c",
+        "capture_active": false,
+        "tick": 47,
+        "generated": 6,
+        "launched": 0,
+        "save_filtered": 0,
+        "allocation_failures": 0,
+        "slots": [
+          {
+            "index": 0,
+            "object": "0x22a2b70",
+            "id": 224,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1183569715,
+            "pokemon_sha256": "b8842b537e82b822bb0c5e0fd2d49eae5347cf3691a5d1d04a91b645e1454314",
+            "owned_active": true,
+            "flags": "0x20106443",
+            "position": [
+              655,
+              2,
+              406
+            ],
+            "vector": [
+              42958848,
+              65536,
+              26640384
+            ],
+            "movement": [
+              13,
+              2
+            ]
+          },
+          {
+            "index": 1,
+            "object": "0x22a2c9c",
+            "id": 225,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 368060091,
+            "pokemon_sha256": "270adba805c8c6820a1a45eed79715f3137aa788292492e0b13977f0dccb61ae",
+            "owned_active": true,
+            "flags": "0x20106443",
+            "position": [
+              661,
+              2,
+              405
+            ],
+            "vector": [
+              43352064,
+              65536,
+              26574848
+            ],
+            "movement": [
+              15,
+              2
+            ]
+          },
+          {
+            "index": 2,
+            "object": "0x22a2dc8",
+            "id": 226,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 3712177091,
+            "pokemon_sha256": "16f5684cc2e88ae87aca14fada17b8f7643986c932013b63af18bfcfc9208042",
+            "owned_active": true,
+            "flags": "0x20106443",
+            "position": [
+              657,
+              2,
+              404
+            ],
+            "vector": [
+              43089920,
+              65536,
+              26509312
+            ],
+            "movement": [
+              13,
+              2
+            ]
+          },
+          {
+            "index": 3,
+            "object": "0x22a2ef4",
+            "id": 227,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 1497573616,
+            "pokemon_sha256": "9646dde8c2e7f2a45f85f18aa52bbea43f5158146bac9050cfdd1df3497d4ed4",
+            "owned_active": true,
+            "flags": "0x20106443",
+            "position": [
+              656,
+              2,
+              400
+            ],
+            "vector": [
+              43024384,
+              65536,
+              26247168
+            ],
+            "movement": [
+              12,
+              2
+            ]
+          },
+          {
+            "index": 4,
+            "object": "0x22a3020",
+            "id": 228,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1887567191,
+            "pokemon_sha256": "e6cc122accfc75cfa60684c162dce1bb10ca06c5efae09267b600c7fc254afff",
+            "owned_active": true,
+            "flags": "0x20106443",
+            "position": [
+              656,
+              2,
+              405
+            ],
+            "vector": [
+              43024384,
+              65536,
+              26574848
+            ],
+            "movement": [
+              14,
+              2
+            ]
+          },
+          {
+            "index": 5,
+            "object": "0x22a314c",
+            "id": 229,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 3745625185,
+            "pokemon_sha256": "2f66db1f83760d3089b34c8b018a1da774eadf8eb4a22e1b2ef9ad177f610882",
+            "owned_active": true,
+            "flags": "0x20106443",
+            "position": [
+              655,
+              2,
+              402
+            ],
+            "vector": [
+              42958848,
+              65536,
+              26378240
+            ],
+            "movement": [
+              14,
+              2
+            ]
+          }
+        ],
+        "settings": {
+          "loaded": true,
+          "sequence": 1,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 3,
+          "error": 0
+        },
+        "walk_commands": 22,
+        "paused_mask": 63,
+        "discarded_ordinary": 0,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "journal_records": [
+        {
+          "offset": 258048,
+          "sha256": "7e1581a8a3b91b66a94e64c4dec052fe9677b89381c812b71c0d928c9d0f2119",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 1,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            3
+          ],
+          "crc_valid": true
+        },
+        {
+          "offset": 520192,
+          "sha256": "5341e6b2646979a70e57653007a1f310169421ec9bdd9f1a5648f75ade005af1",
+          "recognized_magic": false,
+          "version": 0,
+          "sequence": 0,
+          "owner_matches": false,
+          "value_count": 0,
+          "first_three_values": [
+            0,
+            0,
+            0
+          ],
+          "crc_valid": false
+        }
+      ]
+    },
+    "hg04b-reload-cancel-off": {
+      "game": "heartgold",
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "frames": 4500,
+      "audio_samples": 2461772,
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            2800,
+            2804
+          ],
+          [
+            "LEFT",
+            3010,
+            3014
+          ],
+          [
+            "B",
+            3050,
+            3054
+          ],
+          [
+            "SELECT",
+            3400,
+            3404
+          ],
+          [
+            "RIGHT",
+            3510,
+            3514
+          ],
+          [
+            "DOWN",
+            3540,
+            3544
+          ],
+          [
+            "RIGHT",
+            3570,
+            3574
+          ],
+          [
+            "DOWN",
+            3600,
+            3604
+          ],
+          [
+            "RIGHT",
+            3630,
+            3634
+          ],
+          [
+            "DOWN",
+            3660,
+            3664
+          ],
+          [
+            "A",
+            3700,
+            3704
+          ]
+        ],
+        "touches": []
+      },
+      "save_import_sha256": "997decce0d2fdaa2035e0758eb660824a04cc6901af94992f089ad77a335de80",
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "97db552ec61f0d9f75858f2f1e07d86ceda4a29f9418a24b122fb5ab71475b3b"
+      },
+      "state_sha256": "0d1c82587db768d733b65b9a5a1b9b118f392f556825f736828ab69aa7adaa5d",
+      "main_ram_sha256": "3c5946d183ff7f724457a98c0a62a85530afcd41b78ab4a71317ea06587e148d",
+      "screenshots": {
+        "frame-003000.png": "11042142dc59595b60e53793d6cfb73a7c276e7baa76c09de36f8a22227ce32e",
+        "frame-003030.png": "3a37cbc7dcc8721ff8f43f7690786f9e2e92aec35df874d532dc02a00e2a71e3",
+        "frame-003300.png": "d181711d7ae96fc57fd0bab0d026bda3835a98b64b1b0a1ae9d7dcbcf8213204",
+        "frame-003500.png": "11042142dc59595b60e53793d6cfb73a7c276e7baa76c09de36f8a22227ce32e",
+        "frame-004000.png": "fe14887908174c17d1026c8f42d10b92cccf2159aa0fee981fa494437dd857ac",
+        "frame-004500.png": "9a1524afecbe8f2017da39e943f5edea44171ed2c1a0a970bb5512f1e0245b69"
+      },
+      "diagnostics": {
+        "candidate_sha256": "9bcbe5eb220deb8e1034822e14b4bf0e19d2d51cc684ba708831aa39e31f0288",
+        "visible_mode": 0,
+        "manager": "0x22a1ee0",
+        "capture_active": false,
+        "tick": 18,
+        "generated": 4,
+        "launched": 0,
+        "save_filtered": 0,
+        "allocation_failures": 0,
+        "slots": [
+          {
+            "index": 0,
+            "object": "0x0",
+            "id": 224,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 2248549472,
+            "pokemon_sha256": "7305f1a3a097279241d0b4e060001c53415c0a2c534b34918ac93c472e4ac275",
+            "owned_active": false
+          },
+          {
+            "index": 1,
+            "object": "0x0",
+            "id": 225,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 3364344936,
+            "pokemon_sha256": "c8042749dc01c15d5afcc25d58b143f6c182c241aa52c69ca9999b04e6201de9",
+            "owned_active": false
+          },
+          {
+            "index": 2,
+            "object": "0x0",
+            "id": 226,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 2843119428,
+            "pokemon_sha256": "dbb6df1d5fd1a4ce0dcf5b1f8d4c7d98b600cfed8e37793199a6a2a7baa60533",
+            "owned_active": false
+          },
+          {
+            "index": 3,
+            "object": "0x0",
+            "id": 227,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 3183511403,
+            "pokemon_sha256": "08721bf6ea160f84e2c658f68714a097a3bca8235f4a5e64750a47b22c6c5676",
+            "owned_active": false
+          },
+          {
+            "index": 4,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 5,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          }
+        ],
+        "settings": {
+          "loaded": true,
+          "sequence": 2,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 1,
+          "reusable_tms": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 2,
+          "row": 3,
+          "staged_trade": 1,
+          "staged_tms": 1,
+          "staged_visible": 0,
+          "error": 0
+        },
+        "walk_commands": 4,
+        "paused_mask": 0,
+        "discarded_ordinary": 0,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "journal_records": [
+        {
+          "offset": 258048,
+          "sha256": "7e1581a8a3b91b66a94e64c4dec052fe9677b89381c812b71c0d928c9d0f2119",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 1,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            3
+          ],
+          "crc_valid": true
+        },
+        {
+          "offset": 520192,
+          "sha256": "c9b5d8f2363c04ec5f18a229a1199b25e221ab3914efb9d179895a260328143b",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 2,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            1,
+            1,
+            0
+          ],
+          "crc_valid": true
+        }
+      ]
+    },
+    "hg04b-native-save": {
+      "game": "heartgold",
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "frames": 6000,
+      "audio_samples": 3282363,
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            2800,
+            2804
+          ],
+          [
+            "B",
+            3100,
+            3104
+          ],
+          [
+            "A",
+            3600,
+            3604
+          ]
+        ],
+        "touches": [
+          [
+            127,
+            75,
+            3400,
+            3408
+          ],
+          [
+            231,
+            96,
+            3900,
+            3908
+          ]
+        ]
+      },
+      "save_import_sha256": "97db552ec61f0d9f75858f2f1e07d86ceda4a29f9418a24b122fb5ab71475b3b",
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "d9bd40707bd496926175df98160549524909428f7b534da6aa1026c029b77f0e"
+      },
+      "state_sha256": "0e98474ec4ad2e9ed66e691bad8cc274b32b3ce8ccfce9fd286d8512ffbc2cf4",
+      "main_ram_sha256": "bf7b5d1ec84045209ec592b97c8e62c2de5fa12e40b6e884387eccb39d5f74f5",
+      "screenshots": {
+        "frame-003000.png": "880bf9b8567da930c367a6cc1ae3a507245a7cfdb7e9e55c3f1005efc384dc23",
+        "frame-003800.png": "bf89b991cf01355e14ab8aaca382e364841a72d18b292067c59f4eeb0dc59e40",
+        "frame-004500.png": "c73391d0012e578f57087896a6293c9c4996b0ad96f6f5598eb890fed3919f7a",
+        "frame-006000.png": "aab4e91c35935cfc0de95a1e2a9e3ac6a5c6792204a5c695d23120c4ce56963b"
+      },
+      "diagnostics": {
+        "candidate_sha256": "9bcbe5eb220deb8e1034822e14b4bf0e19d2d51cc684ba708831aa39e31f0288",
+        "visible_mode": 0,
+        "manager": "0x22a1ee8",
+        "capture_active": false,
+        "tick": 0,
+        "generated": 0,
+        "launched": 0,
+        "save_filtered": 0,
+        "allocation_failures": 0,
+        "slots": [
+          {
+            "index": 0,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 1,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 2,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 3,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 4,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 5,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          }
+        ],
+        "settings": {
+          "loaded": true,
+          "sequence": 2,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 1,
+          "reusable_tms": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 1,
+          "staged_tms": 1,
+          "staged_visible": 0,
+          "error": 0
+        },
+        "walk_commands": 0,
+        "paused_mask": 0,
+        "discarded_ordinary": 0,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "journal_records": [
+        {
+          "offset": 258048,
+          "sha256": "7e1581a8a3b91b66a94e64c4dec052fe9677b89381c812b71c0d928c9d0f2119",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 1,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            3
+          ],
+          "crc_valid": true
+        },
+        {
+          "offset": 520192,
+          "sha256": "c9b5d8f2363c04ec5f18a229a1199b25e221ab3914efb9d179895a260328143b",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 2,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            1,
+            1,
+            0
+          ],
+          "crc_valid": true
+        }
+      ]
+    },
+    "hg04b-after-native-save": {
+      "game": "heartgold",
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "frames": 3200,
+      "audio_samples": 1750593,
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            2800,
+            2804
+          ]
+        ],
+        "touches": []
+      },
+      "save_import_sha256": "d9bd40707bd496926175df98160549524909428f7b534da6aa1026c029b77f0e",
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "d9bd40707bd496926175df98160549524909428f7b534da6aa1026c029b77f0e"
+      },
+      "state_sha256": "a756f84fee6a1deb85078511cde9328ac9b3bc3f7f7127a7dddcf720804b0fd3",
+      "main_ram_sha256": "4846468e361df83059d0ec1a3c6a501ad04f702870e44a6955461ab08a9bfd51",
+      "screenshots": {
+        "frame-003200.png": "880bf9b8567da930c367a6cc1ae3a507245a7cfdb7e9e55c3f1005efc384dc23"
+      },
+      "diagnostics": {
+        "candidate_sha256": "9bcbe5eb220deb8e1034822e14b4bf0e19d2d51cc684ba708831aa39e31f0288",
+        "visible_mode": 0,
+        "manager": "0x22a1e98",
+        "capture_active": false,
+        "tick": 0,
+        "generated": 0,
+        "launched": 0,
+        "save_filtered": 0,
+        "allocation_failures": 0,
+        "slots": [
+          {
+            "index": 0,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 1,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 2,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 3,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 4,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 5,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          }
+        ],
+        "settings": {
+          "loaded": true,
+          "sequence": 2,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 1,
+          "reusable_tms": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 1,
+          "staged_tms": 1,
+          "staged_visible": 0,
+          "error": 0
+        },
+        "walk_commands": 0,
+        "paused_mask": 0,
+        "discarded_ordinary": 0,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "journal_records": [
+        {
+          "offset": 258048,
+          "sha256": "7e1581a8a3b91b66a94e64c4dec052fe9677b89381c812b71c0d928c9d0f2119",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 1,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            3
+          ],
+          "crc_valid": true
+        },
+        {
+          "offset": 520192,
+          "sha256": "c9b5d8f2363c04ec5f18a229a1199b25e221ab3914efb9d179895a260328143b",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 2,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            1,
+            1,
+            0
+          ],
+          "crc_valid": true
+        }
+      ]
+    },
+    "hg04b-corrupt-fallback": {
+      "game": "heartgold",
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "frames": 3200,
+      "audio_samples": 1750593,
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            2800,
+            2804
+          ]
+        ],
+        "touches": []
+      },
+      "save_import_sha256": "130916ee3ade2c6e429b5c7351b08c3e2cf1a0c2363592f5968f31dcc041983c",
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "130916ee3ade2c6e429b5c7351b08c3e2cf1a0c2363592f5968f31dcc041983c"
+      },
+      "state_sha256": "72a25229a72aee859f1fa19487fc093f88d9e88888485f61f2c4e29bb5c4498c",
+      "main_ram_sha256": "fd1eb5cf308722cee14069452269773d24454d9df53b8e6964df402aea62f3a0",
+      "screenshots": {
+        "frame-003200.png": "11042142dc59595b60e53793d6cfb73a7c276e7baa76c09de36f8a22227ce32e"
+      },
+      "diagnostics": {
+        "candidate_sha256": "9bcbe5eb220deb8e1034822e14b4bf0e19d2d51cc684ba708831aa39e31f0288",
+        "visible_mode": 3,
+        "manager": "0x22a1e78",
+        "capture_active": false,
+        "tick": 27,
+        "generated": 1,
+        "launched": 0,
+        "save_filtered": 0,
+        "allocation_failures": 0,
+        "slots": [
+          {
+            "index": 0,
+            "object": "0x22a2b7c",
+            "id": 224,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1779026069,
+            "pokemon_sha256": "894e09d5af6321048e5d9ac710fd2784d45e10db56d49b494ed97b37f3cd795e",
+            "owned_active": true,
+            "flags": "0x20106463",
+            "position": [
+              657,
+              2,
+              404
+            ],
+            "vector": [
+              43089920,
+              65536,
+              26509312
+            ],
+            "movement": [
+              255,
+              0
+            ]
+          },
+          {
+            "index": 1,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 2,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 3,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 4,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 5,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          }
+        ],
+        "settings": {
+          "loaded": true,
+          "sequence": 1,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 3,
+          "error": 0
+        },
+        "walk_commands": 0,
+        "paused_mask": 1,
+        "discarded_ordinary": 0,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "journal_records": [
+        {
+          "offset": 258048,
+          "sha256": "7e1581a8a3b91b66a94e64c4dec052fe9677b89381c812b71c0d928c9d0f2119",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 1,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            3
+          ],
+          "crc_valid": true
+        },
+        {
+          "offset": 520192,
+          "sha256": "0ff76e0baffe8756c28f62e961bd680add9b68f15b93dd104d440ba52efd29b5",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 2,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            1,
+            1,
+            0
+          ],
+          "crc_valid": false
+        }
+      ]
+    },
+    "ss04b-reload-many": {
+      "game": "soulsilver",
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "frames": 3300,
+      "audio_samples": 1805299,
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "save_import_sha256": "997decce0d2fdaa2035e0758eb660824a04cc6901af94992f089ad77a335de80",
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "997decce0d2fdaa2035e0758eb660824a04cc6901af94992f089ad77a335de80"
+      },
+      "state_sha256": "b3f7d0c790cc1b786a99161fb385e1d435c5ed29c0ec14dc964c8896dad1ed3f",
+      "main_ram_sha256": "653191485f14dba6a7d3dbd38bef4259acc5decb31b2a0cab1eb66c1eb2fc854",
+      "screenshots": {
+        "frame-002900.png": "ed7f95e2310a9bd5c9167c19f929416fd1ff87d43920b95d12e8870916383668",
+        "frame-003300.png": "38059589345a31a55e519ce6981910968a817bf07a13c9e9b362a263242537e8"
+      },
+      "diagnostics": {
+        "candidate_sha256": "ee7f50186dcab832449d972ea961672984638f811160f1c1a9f84cd98a944d7a",
+        "visible_mode": 3,
+        "manager": "0x22a1e58",
+        "capture_active": false,
+        "tick": 4,
+        "generated": 3,
+        "launched": 0,
+        "save_filtered": 0,
+        "allocation_failures": 0,
+        "slots": [
+          {
+            "index": 0,
+            "object": "0x22a2b5c",
+            "id": 224,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1159944842,
+            "pokemon_sha256": "2ac94ad9f0a89f1133d9493e9b7a6dacfe847aaa98cf9997436de296fe456743",
+            "owned_active": true,
+            "flags": "0x20106473",
+            "position": [
+              656,
+              2,
+              406
+            ],
+            "vector": [
+              43024384,
+              65536,
+              26640384
+            ],
+            "movement": [
+              13,
+              2
+            ]
+          },
+          {
+            "index": 1,
+            "object": "0x22a2c88",
+            "id": 225,
+            "map": 33,
+            "species": 19,
+            "level": 2,
+            "personality": 721717625,
+            "pokemon_sha256": "ab2dc1da2948ac8553838fe08f3e5894320a4ada430392114e11b9c3ed009f20",
+            "owned_active": true,
+            "flags": "0x20106443",
+            "position": [
+              656,
+              2,
+              402
+            ],
+            "vector": [
+              43024384,
+              65536,
+              26378240
+            ],
+            "movement": [
+              13,
+              2
+            ]
+          },
+          {
+            "index": 2,
+            "object": "0x22a2db4",
+            "id": 226,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1232473055,
+            "pokemon_sha256": "b2f9f86b7d67e7d63b37f76e437f98818e903b40aa878834fbd5d227e5f59b7b",
+            "owned_active": true,
+            "flags": "0x20106463",
+            "position": [
+              656,
+              2,
+              404
+            ],
+            "vector": [
+              43024384,
+              65536,
+              26509312
+            ],
+            "movement": [
+              255,
+              0
+            ]
+          },
+          {
+            "index": 3,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 4,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 5,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          }
+        ],
+        "settings": {
+          "loaded": true,
+          "sequence": 1,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 3,
+          "error": 0
+        },
+        "walk_commands": 3,
+        "paused_mask": 7,
+        "discarded_ordinary": 0,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "journal_records": [
+        {
+          "offset": 258048,
+          "sha256": "7e1581a8a3b91b66a94e64c4dec052fe9677b89381c812b71c0d928c9d0f2119",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 1,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            3
+          ],
+          "crc_valid": true
+        },
+        {
+          "offset": 520192,
+          "sha256": "5341e6b2646979a70e57653007a1f310169421ec9bdd9f1a5648f75ade005af1",
+          "recognized_magic": false,
+          "version": 0,
+          "sequence": 0,
+          "owner_matches": false,
+          "value_count": 0,
+          "first_three_values": [
+            0,
+            0,
+            0
+          ],
+          "crc_valid": false
+        }
+      ]
+    },
+    "ss04b-apply-some": {
+      "game": "soulsilver",
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "frames": 600,
+      "audio_samples": 328237,
+      "inputs": {
+        "buttons": [
+          [
+            "LEFT",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            40,
+            44
+          ],
+          [
+            "DOWN",
+            70,
+            74
+          ],
+          [
+            "DOWN",
+            100,
+            104
+          ],
+          [
+            "A",
+            140,
+            144
+          ]
+        ],
+        "touches": []
+      },
+      "save_import_sha256": null,
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "9a6ea72669a8386d3d618bb26a949bfeeae8e6cdbd2bea6bceed20e0205ebe88"
+      },
+      "state_sha256": "f2ef7ddcaa0853f1bd1de1a2229ecb2ba91c1389327366a2a6db4a33d8d8fdb3",
+      "main_ram_sha256": "5d6d5a56dec54b23b3c62b2cd01d8b772bc9de528bef83fe7d65a249afcf0c92",
+      "screenshots": {
+        "frame-000130.png": "ea3c35f9d9f752c20ec9b2994d1dd2e0d2b03f0163eb77d601546c6d19b50e7c",
+        "frame-000300.png": "7dbc2dfa793cc8cf4a65c03a4835941cb62e764316b1f6e7fb1fdfce5a868461",
+        "frame-000600.png": "e312b91e6ba0d66365910b39569a62680953d266e43db71eaa5c397ac413debe"
+      },
+      "diagnostics": {
+        "candidate_sha256": "ee7f50186dcab832449d972ea961672984638f811160f1c1a9f84cd98a944d7a",
+        "visible_mode": 2,
+        "manager": "0x22a1e58",
+        "capture_active": false,
+        "tick": 50,
+        "generated": 4,
+        "launched": 0,
+        "save_filtered": 0,
+        "allocation_failures": 0,
+        "slots": [
+          {
+            "index": 0,
+            "object": "0x22a2b5c",
+            "id": 224,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1159944842,
+            "pokemon_sha256": "2ac94ad9f0a89f1133d9493e9b7a6dacfe847aaa98cf9997436de296fe456743",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              655,
+              2,
+              405
+            ],
+            "vector": [
+              42958848,
+              65536,
+              26574848
+            ],
+            "movement": [
+              12,
+              2
+            ]
+          },
+          {
+            "index": 1,
+            "object": "0x22a2c88",
+            "id": 225,
+            "map": 33,
+            "species": 19,
+            "level": 2,
+            "personality": 721717625,
+            "pokemon_sha256": "ab2dc1da2948ac8553838fe08f3e5894320a4ada430392114e11b9c3ed009f20",
+            "owned_active": true,
+            "flags": "0x20106411",
+            "position": [
+              654,
+              2,
+              403
+            ],
+            "vector": [
+              42934272,
+              65536,
+              26443776
+            ],
+            "movement": [
+              14,
+              1
+            ]
+          },
+          {
+            "index": 2,
+            "object": "0x22a2db4",
+            "id": 226,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1232473055,
+            "pokemon_sha256": "b2f9f86b7d67e7d63b37f76e437f98818e903b40aa878834fbd5d227e5f59b7b",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              657,
+              2,
+              405
+            ],
+            "vector": [
+              43089920,
+              65536,
+              26574848
+            ],
+            "movement": [
+              13,
+              2
+            ]
+          },
+          {
+            "index": 3,
+            "object": "0x22a2ee0",
+            "id": 227,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 3578623006,
+            "pokemon_sha256": "e48ac743a517f571493b32bdfd3ad7ae703a814dfdc438ec88ca6857affdf022",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              659,
+              2,
+              405
+            ],
+            "vector": [
+              43220992,
+              65536,
+              26574848
+            ],
+            "movement": [
+              13,
+              2
+            ]
+          },
+          {
+            "index": 4,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          },
+          {
+            "index": 5,
+            "object": "0x0",
+            "id": 0,
+            "map": 0,
+            "species": 0,
+            "level": 0,
+            "personality": 0,
+            "pokemon_sha256": "207917dc40abfe615add0b459890d82014421c5255629382e2063e11391e5290",
+            "owned_active": false
+          }
+        ],
+        "settings": {
+          "loaded": true,
+          "sequence": 2,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 2,
+          "row": 3,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 2,
+          "error": 0
+        },
+        "walk_commands": 11,
+        "paused_mask": 0,
+        "discarded_ordinary": 0,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "journal_records": [
+        {
+          "offset": 258048,
+          "sha256": "7e1581a8a3b91b66a94e64c4dec052fe9677b89381c812b71c0d928c9d0f2119",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 1,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            3
+          ],
+          "crc_valid": true
+        },
+        {
+          "offset": 520192,
+          "sha256": "9ddb68db41a3f1d3cc6402593ab91b0430904743007603182a7f0f51e6924c5e",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 2,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            2
+          ],
+          "crc_valid": true
+        }
+      ]
+    },
+    "ss04b-apply-many": {
+      "game": "soulsilver",
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "frames": 600,
+      "audio_samples": 328236,
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            10,
+            14
+          ],
+          [
+            "RIGHT",
+            60,
+            64
+          ],
+          [
+            "DOWN",
+            100,
+            104
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "DOWN",
+            160,
+            164
+          ],
+          [
+            "A",
+            200,
+            204
+          ]
+        ],
+        "touches": []
+      },
+      "save_import_sha256": null,
+      "save_export": {
+        "bytes": 524288,
+        "sha256": "2468bcfe6c17260616a9b9c6b25e3ff00f6ae72483d8e8024197a05eeeeaf5ad"
+      },
+      "state_sha256": "907b72ab1cc2ce584585d5aa0f5c39dac6485c039571f24b5c8dcb202a3f1b34",
+      "main_ram_sha256": "a68965497141b593a2e2a0f6f488ee59e4c8d1c40d77c12a2c20dcd49589ff54",
+      "screenshots": {
+        "frame-000190.png": "38a51005441f125a1271cdc4f9b1f9e171f43ceebed57897af6c345ee4644d3c",
+        "frame-000600.png": "e10eb8b1a4f668e3bad1db99cd08aba4422efcc153362abb3ec91e9f8ef0040b"
+      },
+      "diagnostics": {
+        "candidate_sha256": "ee7f50186dcab832449d972ea961672984638f811160f1c1a9f84cd98a944d7a",
+        "visible_mode": 3,
+        "manager": "0x22a1e58",
+        "capture_active": false,
+        "tick": 10,
+        "generated": 6,
+        "launched": 0,
+        "save_filtered": 0,
+        "allocation_failures": 0,
+        "slots": [
+          {
+            "index": 0,
+            "object": "0x22a2b5c",
+            "id": 224,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1159944842,
+            "pokemon_sha256": "2ac94ad9f0a89f1133d9493e9b7a6dacfe847aaa98cf9997436de296fe456743",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              655,
+              2,
+              405
+            ],
+            "vector": [
+              42958848,
+              65536,
+              26574848
+            ],
+            "movement": [
+              14,
+              2
+            ]
+          },
+          {
+            "index": 1,
+            "object": "0x22a2c88",
+            "id": 225,
+            "map": 33,
+            "species": 19,
+            "level": 2,
+            "personality": 721717625,
+            "pokemon_sha256": "ab2dc1da2948ac8553838fe08f3e5894320a4ada430392114e11b9c3ed009f20",
+            "owned_active": true,
+            "flags": "0x20106431",
+            "position": [
+              655,
+              2,
+              402
+            ],
+            "vector": [
+              42958848,
+              65536,
+              26378240
+            ],
+            "movement": [
+              15,
+              2
+            ]
+          },
+          {
+            "index": 2,
+            "object": "0x22a2db4",
+            "id": 226,
+            "map": 33,
+            "species": 163,
+            "level": 2,
+            "personality": 1232473055,
+            "pokemon_sha256": "b2f9f86b7d67e7d63b37f76e437f98818e903b40aa878834fbd5d227e5f59b7b",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              658,
+              2,
+              406
+            ],
+            "vector": [
+              43155456,
+              65536,
+              26640384
+            ],
+            "movement": [
+              13,
+              2
+            ]
+          },
+          {
+            "index": 3,
+            "object": "0x22a2ee0",
+            "id": 227,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 3578623006,
+            "pokemon_sha256": "e48ac743a517f571493b32bdfd3ad7ae703a814dfdc438ec88ca6857affdf022",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              659,
+              2,
+              405
+            ],
+            "vector": [
+              43220992,
+              65536,
+              26574848
+            ],
+            "movement": [
+              12,
+              2
+            ]
+          },
+          {
+            "index": 4,
+            "object": "0x22a300c",
+            "id": 228,
+            "map": 33,
+            "species": 163,
+            "level": 3,
+            "personality": 2459003955,
+            "pokemon_sha256": "ab8db8a365b99333af96f1602426b6fbf8f64ecd49d106c5149a713cd64abc74",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              654,
+              2,
+              403
+            ],
+            "vector": [
+              42893312,
+              65536,
+              26443776
+            ],
+            "movement": [
+              14,
+              2
+            ]
+          },
+          {
+            "index": 5,
+            "object": "0x22a3138",
+            "id": 229,
+            "map": 33,
+            "species": 19,
+            "level": 2,
+            "personality": 4227601731,
+            "pokemon_sha256": "050718f22e344e65ee503b33e1b767fdccba1425947f4536998c38dfb42e4f6b",
+            "owned_active": true,
+            "flags": "0x20106401",
+            "position": [
+              662,
+              2,
+              406
+            ],
+            "vector": [
+              43417600,
+              65536,
+              26640384
+            ],
+            "movement": [
+              13,
+              2
+            ]
+          }
+        ],
+        "settings": {
+          "loaded": true,
+          "sequence": 3,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 2,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 2,
+          "row": 3,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 3,
+          "error": 0
+        },
+        "walk_commands": 22,
+        "paused_mask": 0,
+        "discarded_ordinary": 0,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "journal_records": [
+        {
+          "offset": 258048,
+          "sha256": "569618582d01c9789f7477b65d41d79786370282a57d667bc70de257f1711893",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 3,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            3
+          ],
+          "crc_valid": true
+        },
+        {
+          "offset": 520192,
+          "sha256": "9ddb68db41a3f1d3cc6402593ab91b0430904743007603182a7f0f51e6924c5e",
+          "recognized_magic": true,
+          "version": 1,
+          "sequence": 2,
+          "owner_matches": true,
+          "value_count": 48,
+          "first_three_values": [
+            0,
+            0,
+            2
+          ],
+          "crc_valid": true
+        }
+      ]
+    }
+  },
+  "comparisons": {
+    "hg_first_apply": {
+      "changed_bytes": 16,
+      "first": 258048,
+      "last": 258303,
+      "only_journal_pages": true
+    },
+    "hg_cancel_save_identical": true,
+    "hg_second_apply": {
+      "changed_bytes": 16,
+      "first": 520192,
+      "last": 520447,
+      "only_journal_pages": true
+    },
+    "hg_native_save": {
+      "changed_bytes": 447,
+      "first": 40,
+      "last": 137728,
+      "only_journal_pages": false
+    },
+    "hg_native_save_preserves_both_journals": true,
+    "ss04b-reload-many to ss04b-apply-some": {
+      "changed_bytes": 16,
+      "first": 520192,
+      "last": 520447,
+      "only_journal_pages": true
+    },
+    "ss04b-apply-some to ss04b-apply-many": {
+      "changed_bytes": 5,
+      "first": 258056,
+      "last": 258303,
+      "only_journal_pages": true
+    }
+  },
+  "limitations": [
+    "Only three enhancement options are exposed; other audited features remain pending.",
+    "Full in-game TM teaching and evolution/cancellation flows are not yet verified.",
+    "Cave/water support, post-spawn Repel changes, effects, map/warp/long-session and full capacity coverage remain pending.",
+    "These Route 29 runs do not test six distinct simultaneous species or all busy maps.",
+    "Both games use isolated copies of the project-created HeartGold fixture, not an existing user save or a fresh SoulSilver story run.",
+    "No DS hardware verification or universal older-save compatibility claim."
+  ]
+}

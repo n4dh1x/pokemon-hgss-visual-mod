@@ -24,6 +24,7 @@ sys.path.insert(0, str(ROOT))
 from gameplay.patches import reusable_tms
 from gameplay.native import build_payload, inject_evolution, verify_arm9_changes, PAYLOAD_BASE
 from gameplay.field import install_field, verify_field_files
+from gameplay.settings import audit_save_layout
 from build_baseline import build_baseline, read_rom, sha256
 
 
@@ -44,8 +45,9 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     baseline = baseline_dir / info['output']
     original = ndspy.rom.NintendoDSRom.fromFile(baseline)
     arm9 = bytearray(original.arm9)
-    results = [reusable_tms(arm9, original.arm9RamAddress)]
+    settings_storage = audit_save_layout(original)
     payload = build_payload()
+    results = [reusable_tms(arm9, original.arm9RamAddress, payload.symbols['EnhancedTakeTm'])]
     patched = ndspy.rom.NintendoDSRom.fromFile(baseline)
     patched.arm9 = bytes(arm9)
     field_changes, overlay_changes = install_field(patched, payload)
@@ -54,7 +56,7 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-03'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-04'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -86,21 +88,25 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'features': [dataclasses.asdict(r) for r in results if r.feature != 'resident_code_reservation'],
         'code_changes': [dataclasses.asdict(r) for r in results],
         'overlay_changes': [dataclasses.asdict(r) for r in overlay_changes],
+        'settings_storage': settings_storage,
+        'enhancement_menu': {'open_button': 'SELECT',
+            'options': ['visible_wild', 'trade_evo', 'infinite_tms'],
+            'apply': 'Save and close', 'cancel': 'B or Cancel'},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
-                   'recorded overlay 1/2 changes only', 'other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
+                   'recorded overlay 1/2 changes only', 'audited native flash allocation',
+                   'other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
         'runtime_gameplay_tested': False,
-        'limitations': ['Reusable TMs currently enabled at build time; runtime UI pending.',
-                       'Trade evolution option is enabled in resident config; runtime UI pending.',
+        'limitations': ['The enhancement menu currently exposes only the three integrated gameplay options.',
                        'Full in-game TM teaching and evolution/cancellation flows still need verification.',
                        'Bag TM quantity labels retain their original presentation.',
                        'Visible encounters are an experimental grass integration; full acceptance cases remain pending.',
-                       'Visible mode defaults to Few; runtime settings UI and persistence remain pending.',
+                       'Visible mode defaults to Few when no valid owned settings journal exists.',
                        'Cave/water encounters, spawn effects, sparkle and full transition/capacity verification remain pending.',
                        'Other new Emerald enhancements remain pending.'],
     }

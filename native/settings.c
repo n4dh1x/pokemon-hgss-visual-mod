@@ -1,0 +1,141 @@
+#include "settings.h"
+
+extern int FlashLoadChunk(u32 offset, void *data, u32 size);
+extern int FlashWriteChunk(u32 offset, void *data, u32 size);
+extern void *Save_PlayerData_GetProfile(void *save);
+extern u32 PlayerProfile_GetTrainerID(void *profile);
+extern void Sys_SetSleepDisableFlag(u32 flag);
+extern void Sys_ClearSleepDisableFlag(u32 flag);
+
+/* Both USA save-layout tables and all six extra-chunk size routines are
+ * checked by the builder. Native main/extra data ends before these pages. */
+static const u32 journal_offsets[2] = {0x3F000, 0x7F000};
+struct SettingsState {
+    void *save;
+    u32 owner, loaded, sequence;
+    s32 last_slot;
+    u32 writable[2], saves, status;
+    struct EnhancedJournal pages[2];
+    struct EnhancedJournal pending, verify;
+};
+struct SettingsState gSettingsState;
+_Static_assert(sizeof(struct SettingsState) == 1060, "Settings diagnostic ABI");
+
+u32 EnhancedSettingsCRC(const void *data, u32 size) {
+    const u8 *bytes = data;
+    u32 crc = ~0u;
+    for (u32 i = 0; i < size; ++i) {
+        crc ^= bytes[i];
+        for (int bit = 0; bit < 8; ++bit)
+            crc = (crc >> 1) ^ (0xEDB88320u & (0u - (crc & 1u)));
+    }
+    return ~crc;
+}
+
+static int valid_format(const struct EnhancedJournal *r) {
+    return r->magic == ENHANCED_JOURNAL_MAGIC && r->version == ENHANCED_JOURNAL_VERSION &&
+        r->count == ENHANCED_SETTINGS_COUNT && r->values[0] <= 1 &&
+        r->values[1] <= 1 && r->values[2] <= 3 &&
+        r->checksum == EnhancedSettingsCRC(r, 252);
+}
+int EnhancedSettingsValid(const struct EnhancedJournal *r, u32 owner) {
+    return r->owner == owner && valid_format(r);
+}
+static int erased(const struct EnhancedJournal *r) {
+    const u32 *words = (const u32 *)r;
+    /* Backup devices use erased FF; some emulator saves initialize unused
+     * space to zero. Only a uniform page is considered unoccupied. */
+    u32 fill = words[0];
+    if (fill != 0 && fill != ~0u) return 0;
+    for (int i = 0; i < 64; ++i)
+        if (words[i] != fill)
+            return 0;
+    return 1;
+}
+
+void EnhancedSettingsEnsure(void *field) {
+    void *save = *(void **)((u8 *)field + 12);
+    u32 owner = PlayerProfile_GetTrainerID(Save_PlayerData_GetProfile(save));
+    if (gSettingsState.loaded && gSettingsState.save == save && gSettingsState.owner == owner)
+        return;
+    gSettingsState.save = save;
+    gSettingsState.owner = owner;
+    gSettingsState.loaded = 1;
+    gSettingsState.sequence = 0;
+    gSettingsState.last_slot = -1;
+    gSettingsState.status = 0;
+    gEnhancedOptions.trade_evolutions = 1;
+    gEnhancedOptions.reusable_tms = 1;
+    gEnhancedOptions.visible_encounters = 1;
+    for (int i = 0; i < 2; ++i) {
+        struct EnhancedJournal *r = &gSettingsState.pages[i];
+        int read = FlashLoadChunk(journal_offsets[i], r, sizeof(*r));
+        /* Unknown occupied pages, including future format versions, are never
+         * overwritten. A damaged current-format page can be repaired. */
+        gSettingsState.writable[i] = read && (erased(r) ||
+            (r->magic == ENHANCED_JOURNAL_MAGIC && r->version == ENHANCED_JOURNAL_VERSION));
+        if (read && EnhancedSettingsValid(r, owner) &&
+            (gSettingsState.last_slot < 0 || (s32)(r->sequence - gSettingsState.sequence) > 0)) {
+            gSettingsState.last_slot = i;
+            gSettingsState.sequence = r->sequence;
+            gEnhancedOptions.trade_evolutions = r->values[0];
+            gEnhancedOptions.reusable_tms = r->values[1];
+            gEnhancedOptions.visible_encounters = r->values[2];
+        }
+    }
+}
+
+int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible) {
+    if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3)
+        return 0;
+    int target = gSettingsState.last_slot < 0 ? 0 : 1 - gSettingsState.last_slot;
+    if (gSettingsState.last_slot < 0 && !gSettingsState.writable[target])
+        target = 1;
+    if (!gSettingsState.writable[target]) {
+        gSettingsState.status = 2;
+        return 0;
+    }
+    struct EnhancedJournal *r = &gSettingsState.pending;
+    u32 *words = (u32 *)r;
+    for (int i = 0; i < 64; ++i)
+        words[i] = 0;
+    r->magic = ENHANCED_JOURNAL_MAGIC;
+    r->version = ENHANCED_JOURNAL_VERSION;
+    r->sequence = gSettingsState.sequence + 1;
+    r->owner = gSettingsState.owner;
+    r->count = ENHANCED_SETTINGS_COUNT;
+    if (gSettingsState.last_slot >= 0)
+        for (int i = 0; i < ENHANCED_SETTINGS_COUNT; ++i)
+            r->values[i] = gSettingsState.pages[gSettingsState.last_slot].values[i];
+    r->values[0] = trade;
+    r->values[1] = tms;
+    r->values[2] = visible;
+    r->checksum = EnhancedSettingsCRC(r, 252);
+    Sys_SetSleepDisableFlag(1);
+    int result = FlashWriteChunk(journal_offsets[target], r, sizeof(*r));
+    if (result)
+        result = FlashLoadChunk(journal_offsets[target], &gSettingsState.verify, sizeof(*r));
+    Sys_ClearSleepDisableFlag(1);
+    if (result) {
+        const u32 *a = (const u32 *)r;
+        const u32 *b = (const u32 *)&gSettingsState.verify;
+        for (int i = 0; i < 64; ++i)
+            if (a[i] != b[i])
+                result = 0;
+    }
+    if (!result) {
+        gSettingsState.status = 3;
+        return 0;
+    }
+    u32 *dst = (u32 *)&gSettingsState.pages[target];
+    for (int i = 0; i < 64; ++i)
+        dst[i] = words[i];
+    gSettingsState.last_slot = target;
+    gSettingsState.sequence = r->sequence;
+    ++gSettingsState.saves;
+    gSettingsState.status = 1;
+    gEnhancedOptions.trade_evolutions = trade;
+    gEnhancedOptions.reusable_tms = tms;
+    gEnhancedOptions.visible_encounters = visible;
+    return 1;
+}

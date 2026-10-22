@@ -35,6 +35,10 @@ class TestVisibleField(unittest.TestCase):
         self.avatar, self.location, self.save = 0x02218000, 0x02219000, 0x0221A000
         self.party, self.mon, self.setup, self.enemy_party = 0x0221B000, 0x0221C000, 0x0221D000, 0x0221E000
         self.input = 0x0221F000
+        settings = self.payload.symbols['gSettingsState']
+        self.put(settings, self.save)
+        self.put(settings + 4, 0x1234)
+        self.put(settings + 8, 1)
         self.player = self.objects
         self.created = self.objects + 0x12C
         for offset, value in ((0xC, self.save), (0x20, self.location), (0x3C, self.manager), (0x40, self.avatar)):
@@ -81,6 +85,10 @@ class TestVisibleField(unittest.TestCase):
             result = int(self.allowed)
         elif address == 0x0203E15C:
             result = 0
+        elif address == 0x02028E9C:
+            result = self.save + 0x100
+        elif address == 0x02028F84:
+            result = 0x1234
         elif address == 0x0203B324:
             result = int(self.map_wild)
         elif address == 0x020503D0:

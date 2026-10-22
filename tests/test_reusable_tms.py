@@ -16,6 +16,7 @@ from gameplay.patches import reusable_tms, PatchMismatch, LEARN_MOVE_ADDRESS, TA
 
 try:
     import ndspy.rom
+    from gameplay.native import build_payload, PAYLOAD_BASE
     from unicorn import Uc, UC_ARCH_ARM, UC_MODE_THUMB, UC_HOOK_CODE
     from unicorn.arm_const import UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_R2, UC_ARM_REG_R3, UC_ARM_REG_PC, UC_ARM_REG_LR, UC_ARM_REG_SP
     HAS_ARM_TOOLS = True
@@ -25,10 +26,14 @@ except ImportError:
 
 @unittest.skipUnless(HAS_ARM_TOOLS, 'Install requirements-dev.txt for ARM instruction tests.')
 class TestReusableTMs(unittest.TestCase):
-    def run_teaching(self, code, item, move, slot=2):
+    def run_teaching(self, code, item, move, slot=2, payload=None, enabled=1):
         emu = Uc(UC_ARCH_ARM, UC_MODE_THUMB)
         emu.mem_map(0x02000000, 0x400000)
         emu.mem_write(0x02000000, bytes(code))
+        if payload is not None:
+            emu.mem_map(0x01FF8000, 0x8000)
+            emu.mem_write(PAYLOAD_BASE, payload.data)
+            emu.mem_write(PAYLOAD_BASE + 12, struct.pack('<I', enabled))
         menu, args, mon, bag = 0x02180000, 0x02181000, 0x02182000, 0x02183000
         stop = 0x02300000
         emu.mem_write(menu + 0x654, struct.pack('<I', args))
@@ -103,6 +108,20 @@ class TestReusableTMs(unittest.TestCase):
                 with self.subTest(game=game, item=item, move=move):
                     self.assertEqual(self.run_teaching(original, item, move),
                                      self.run_teaching(patched, item, move))
+
+    def test_runtime_hook_executes_native_teaching_and_obeys_both_settings(self):
+        payload = build_payload()
+        for game in ('heartgold', 'soulsilver'):
+            original = self.get_arm9(game)
+            patched = bytearray(original)
+            reusable_tms(patched, 0x02000000, payload.symbols['EnhancedTakeTm'])
+            for item, move in ((328, 264), (420, 15), (0, 264)):
+                before = self.run_teaching(original, item, move)
+                for enabled in (0, 1):
+                    with self.subTest(game=game, item=item, enabled=enabled):
+                        after = self.run_teaching(patched, item, move, payload=payload, enabled=enabled)
+                        expected = [e for e in before if e[0] != 'take_item'] if enabled else before
+                        self.assertEqual(after, expected)
 
     def test_different_code_rejected_without_mutation(self):
         code = self.get_arm9('heartgold')

@@ -1,4 +1,4 @@
-# Native moving grass encounters — milestone 03
+# Native moving grass encounters
 
 Wild Pokemon now appear and roam in Route 29 grass in both USA games over Visual+.
 They use HGSS's native following-Pokemon species/form/gender models and normal
@@ -7,8 +7,10 @@ working grass integration, not complete Emerald feature parity.
 
 ## Current behavior
 
-- Development config selects Off/Few/Some/Many as 0/2/4/6 slots; Few is enabled
-  by default. A player-facing options menu and persistence remain pending.
+- Press SELECT in the field for Off/Few/Some/Many (0/2/4/6 slots).
+  Save and close applies and stores the choice; B or Cancel discards changes.
+  Few is the default without valid owned settings. See
+  [enhancement-settings.md](enhancement-settings.md).
 - Generation reuses native HGSS land encounters: route/time data, radio/swarm
   substitutions, abilities, Repel checks and the actual Pokemon generation path.
   The full encrypted 236-byte Pokemon is retained. Its species, level, PID, IVs,
@@ -32,7 +34,7 @@ working grass integration, not complete Emerald feature parity.
 
 ## Verified evidence
 
-Forty tests pass. Field tests execute compiled ARM code for identity copying,
+Fifty-three tests pass across the project. Field tests execute compiled ARM code for identity copying,
 contact from either direction, ordinary encounter fallback, special contexts,
 save exclusion, cleanup, native walking selection, collision constraints and
 freeze/resume. Both baselines independently accept the exact guarded hook bytes;
@@ -70,8 +72,13 @@ treating an arbitrary memory-pattern match as identity proof.
 
 ## Remaining acceptance work
 
-Do not mark the overall feature verified yet. Cave/water support, mode UI and
-persistence, all Few/Some/Many/off capacity cases, six-species texture/heap limits,
+Milestone 04 adds a native settings menu and persistent modes. HeartGold shows
+six active moving wilds in Many; SoulSilver shows four in Some and six in Many.
+HeartGold Off removes all owned wilds. Both games read saved values on cold boot;
+the test area includes Hoothoot and Rattata, not six distinct simultaneous species.
+
+Do not mark the overall feature verified yet. Cave/water support,
+all Few/Some/Many/off capacity cases, six-species texture/heap limits,
 busy maps, long play, connected-map crossings/warps, Repel changes after spawn,
 shiny sparkle, spawn/despawn effects, capture and additional script/fade cases
 still require implementation or verification. The original full encounter
