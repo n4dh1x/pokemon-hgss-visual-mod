@@ -23,12 +23,20 @@ class TestRepelPrompt(unittest.TestCase):
                     return
                 api = {0x0202D9C4,0x0202DB04,0x0202DB08,0x0207879C,0x020784B0,0x02078434,
                        0x02077D88,0x0200604C,0x0203FE74,0x020504F0,
-                       0x021F992C,0x021F993C,0x0200BBA0}
+                       0x021F992C,0x021F993C,0x0200BBA0,
+                       0x020503D0,0x02066860,0x02066870,0x020668A0,0x02067584,0x0203BE60,
+                       0x02066974,0x0206695C,0x02066980,0x02066968,0x0203B5D8}
                 if address not in api:
                     return super().hook(uc,address,size,context)
                 a,b,c,d = [uc.reg_read(r) for r in (test_settings.UC_ARM_REG_R0,test_settings.UC_ARM_REG_R1,test_settings.UC_ARM_REG_R2,test_settings.UC_ARM_REG_R3)]
                 f.calls.append((address,a,b,c,d)); result=0
-                if address in (0x0202D9C4,0x021F992C): result=f.roamers
+                if address==0x020503D0:result=f.save+0x100
+                elif address in (0x02066860,0x02066870,0x020668A0,0x02067584):result=int(address in f.restrictions)
+                elif address==0x0203BE60:result=f.menu_inhibit
+                elif address==0x02066980:result=int(f.bag_unlocked)
+                elif address==0x0203B5D8:result=int(f.amity)
+                elif address in (0x02066974,0x0206695C,0x02066968):result=1
+                elif address in (0x0202D9C4,0x021F992C): result=f.roamers
                 elif address==0x0202DB04: result=f.roamers+0x65
                 elif address==0x0202DB08: result=int(bytes(uc.mem_read(f.roamers+0x65,1))==b'\x00')
                 elif address==0x0207879C: result=f.bag
@@ -52,6 +60,8 @@ class TestRepelPrompt(unittest.TestCase):
         self.f.roamers,self.f.bag=0x02230000,0x02231000
         self.f.quantities,self.f.fallback={},[]
         self.f.native_ranges=[]
+        self.f.restrictions=set();self.f.menu_inhibit=0
+        self.f.bag_unlocked=True;self.f.amity=False
         self.f.reload()
         self.dialog=self.payload.symbols['gEnhancedRepelDialog']
 
@@ -112,6 +122,35 @@ class TestRepelPrompt(unittest.TestCase):
         self.begin();self.f.quantities[79]=0;self.keys(1)
         self.assertEqual(self.f.get(self.dialog+60),1)
         self.assertEqual(bytes(self.f.uc.mem_read(self.f.roamers+0x65,1)),b'\x00')
+
+    def test_special_area_and_locked_bag_fall_back_without_consumption(self):
+        for restrictions,inhibit,allowed in (({0x02066870},0,False),({0x020668A0},0,False),
+                ({0x02067584},0,False),(set(),4,False),(set(),0x90,True),
+                ({0x02066860},4,True)):
+            self.setUp();f=self.f;f.restrictions=restrictions;f.menu_inhibit=inhibit
+            f.uc.mem_write(f.roamers+0x66,b'\x4f');f.quantities={79:2}
+            f.execute('EnhancedRepelWoreOff',f.field,2022,0)
+            self.assertEqual(bool(f.get(self.dialog+24)),allowed)
+            self.assertEqual(len(f.fallback),int(not allowed));self.assertEqual(f.quantities,{79:2})
+
+    def test_context_rechecked_before_accepting(self):
+        self.begin();self.f.restrictions={0x02066870};self.keys(1)
+        self.assertEqual(self.f.quantities,{79:2})
+        self.assertEqual(self.f.get(self.dialog+60),1)
+        self.assertEqual(bytes(self.f.uc.mem_read(self.f.roamers+0x65,1)),b'\x00')
+
+    def test_both_native_normal_bag_and_tower_restrictions(self):
+        for game in ('heartgold','soulsilver'):
+            self.setUp();f=self.f;r=self.rom(game);f.uc.mem_write(0x02000000,bytes(r.arm9))
+            f.native_ranges=[(0x0203BE60,0x0203BECA),(0x02067584,0x0206759C)]
+            location=0x02233000;f.put(f.field+0x20,location);f.put(location,33)
+            self.assertEqual(f.execute('EnhancedRepelCanUse',f.field),1)
+            f.bag_unlocked=False
+            self.assertEqual(f.execute('EnhancedRepelCanUse',f.field),0)
+            f.bag_unlocked=True;f.amity=True
+            self.assertEqual(f.execute('EnhancedRepelCanUse',f.field),0)
+            f.amity=False;f.put(location,struct.unpack_from('<I',r.arm9,0x67598)[0])
+            self.assertEqual(f.execute('EnhancedRepelCanUse',f.field),0)
 
     def rom(self,game):
         path=ROOT/f'build/baseline/{game}-visual-plus-full-baseline.nds'

@@ -112,3 +112,14 @@ preserved and fall back to the native wear-off message. The independent options
 journal keeps its v1 layout; reserved word 0 bit 0 marks value 3 as present, allowing
 legacy records to default On while preserving explicit Off and future reserved
 words. See [repel-prompt.md](repel-prompt.md) for verification and limitations.
+
+## Milestone 07 bag permissions
+
+The prompt follows the native start-menu precedence in the pinned source, using
+existing Safari/contest/Pal Park flag checks, native Tower partner-room detection
+at `0x02067584`, and normal menu inhibition at `0x0203BE60` (bag bit 2). Additional
+fingerprints guard both helpers and the special-area flag routines before patching.
+Permission is checked both when offering and accepting. Safari retains its native
+bag access. Config, save layouts and diagnostic sizes remain as in milestone 06.
+
+The milestone 07 payload is 9,512 bytes, ending at `0x01FFB528`.

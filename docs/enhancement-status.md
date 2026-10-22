@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 58 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- Seventy-five tests pass, including compiled ARM field logic and independently checked
+- Seventy-eight tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 9,372-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 9,512-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -164,7 +164,7 @@ of compatibility between every future build and every older save.
 See [visible-encounters.md](visible-encounters.md) for behavior, hooks, bounded
 verification and remaining acceptance cases. Source and detailed evidence are
 recorded in [milestone-03-verification.json](../enhancements/milestone-03-verification.json).
-The normal build command now produces milestone 06 candidates for both games.
+The normal build command now produces milestone 07 candidates for both games.
 Previous experimental revisions remain local under ignored `build/experiments`.
 
 ## Milestone 04: native settings menu and durable controls
@@ -194,3 +194,16 @@ fallback are also checked. Early native A interaction now checks map/mode/contex
 eligibility before a wild battle. Seventy-five tests pass. Special-area restrictions
 and the broader inventory remain pending. See [repel-prompt.md](repel-prompt.md) and
 [milestone-06-verification.json](../enhancements/milestone-06-verification.json).
+
+## Milestone 07: native bag restrictions for repeat Repel
+
+The prompt now follows native bag inhibition: Safari permits bag use; the
+Bug-Catching Contest, Pal Park and Battle Tower partner room do not. Normal
+bag unlock and map inhibition come from the guarded native helper. Acceptance
+rechecks permission and shows a clear refusal without consuming an item if it
+changed. All 78 tests pass, including actual USA normal-menu/Tower instructions.
+Both games pass full 200-step saved expiry again. Matched isolated bag-locked
+states show the native wear-off message; normal states offer and consume only
+Super Repel. HeartGold also refuses after access is revoked during the prompt.
+Full visits through each special-area story flow remain pending. See
+[milestone-07-verification.json](../enhancements/milestone-07-verification.json).

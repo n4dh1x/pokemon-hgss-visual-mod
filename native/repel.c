@@ -8,6 +8,12 @@ extern int Bag_TakeItem(void *bag, u16 item, u16 count, int heap);
 extern u32 GetItemAttr(u16 item, int attribute, int heap);
 extern void OriginalStartScript(void *field, u16 script, void *object);
 extern void PlaySE(u16 sequence);
+extern void *Save_VarsFlags_Get(void *save);
+extern int CheckSafari(void *flags);
+extern int CheckContest(void *flags);
+extern int CheckPalPark(void *flags);
+extern int FieldSystem_MapIsBattleTowerMultiPartnerSelectRoom(void *field);
+extern u32 NativeNormalMenuInhibitFlags(void *field);
 
 struct RepelDialog {
     void *field;
@@ -21,6 +27,17 @@ struct RepelDialog gEnhancedRepelDialog;
 _Static_assert(sizeof(struct RepelDialog) == 68, "Repel dialog diagnostic ABI");
 static void *ptr(void *p, unsigned offset) { return *(void **)((u8 *)p + offset); }
 static int valid_item(u32 item) { return item == 76 || item == 77 || item == 79; }
+
+int EnhancedRepelCanUse(void *field) {
+    void *flags = Save_VarsFlags_Get(ptr(field, 12));
+    /* Match StartMenu_Init's precedence and bag inhibition. Safari permits the
+     * bag; contest, Pal Park and Tower partner selection do not. The native
+     * normal helper also enforces bag unlock and the map restriction. */
+    if (CheckSafari(flags)) return 1;
+    if (CheckContest(flags) || CheckPalPark(flags) ||
+        FieldSystem_MapIsBattleTowerMultiPartnerSelectRoom(field)) return 0;
+    return !(NativeNormalMenuInhibitFlags(field) & 4);
+}
 
 u32 EnhancedRepelGetSteps(u16 item, int attribute, int heap) {
     u32 steps = GetItemAttr(item, attribute, heap);
@@ -56,7 +73,8 @@ static void render(void) {
         if (gEnhancedRepelDialog.phase == 2)
             print(gEnhancedRepelDialog.item == 76 ? "You used Super Repel." :
                   gEnhancedRepelDialog.item == 77 ? "You used Max Repel." : "You used Repel.", 8, 46);
-        else print("No matching Repel left.", 8, 46);
+        else print(gEnhancedRepelDialog.phase == 4 ? "Repel cannot be used here." :
+                   "No matching Repel left.", 8, 46);
         print("A/B close", 8, 100);
     }
     CopyWindowToVram(&gEnhancedRepelDialog.window);
@@ -87,7 +105,9 @@ int EnhancedRepelPromptTask(void *task) {
         u32 item = gEnhancedRepelDialog.item;
         void *bag = Save_Bag_Get(save);
         /* Check again at acceptance. Never substitute a different Repel type. */
-        if (Bag_HasItem(bag, (u16)item, 1, 11) && Bag_TakeItem(bag, (u16)item, 1, 11)) {
+        int allowed = EnhancedRepelCanUse(gEnhancedRepelDialog.field);
+        if (allowed &&
+            Bag_HasItem(bag, (u16)item, 1, 11) && Bag_TakeItem(bag, (u16)item, 1, 11)) {
             u8 *roamers = Save_Roamers_Get(save);
             roamers[0x65] = (u8)GetItemAttr((u16)item, 2, 11);
             ++gEnhancedRepelDialog.accepted;
@@ -95,7 +115,7 @@ int EnhancedRepelPromptTask(void *task) {
             PlaySE(1535);
         } else {
             ++gEnhancedRepelDialog.failures;
-            gEnhancedRepelDialog.phase = 3;
+            gEnhancedRepelDialog.phase = allowed ? 3 : 4;
         }
         render();
     } else if (keys & 0xF0) {
@@ -109,7 +129,7 @@ void EnhancedRepelWoreOff(void *field, u16 script, void *object) {
     u8 *roamers = Save_Roamers_Get(save);
     u16 item = roamers[0x66];
     if (script != 2022 || !gEnhancedOptions.repel_prompt || !valid_item(item) ||
-        !Bag_HasItem(Save_Bag_Get(save), item, 1, 11) ||
+        !EnhancedRepelCanUse(field) || !Bag_HasItem(Save_Bag_Get(save), item, 1, 11) ||
         gEnhancedRepelDialog.active || ptr(field, 0x10)) {
         OriginalStartScript(field, script, object);
         return;

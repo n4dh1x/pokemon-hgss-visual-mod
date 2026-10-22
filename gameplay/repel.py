@@ -8,6 +8,9 @@ from .field import OverlayPatch, fingerprint, replace, thumb_call
 
 def install_repel(rom, payload):
     arm, base = bytes(rom.arm9), rom.arm9RamAddress
+    fingerprint(arm, base, 0x0203BE60, 108, '01963235000bfc1f4d6335710f19371f6eb737d5bccc199ea3c92984fd3e3d42')
+    fingerprint(arm, base, 0x02067584, 24, '115ff6a1e4290537c1927454f1fb2b16745a39c209b9354b4858427d7c827e1f')
+    fingerprint(arm, base, 0x02066860, 80, 'd4fd6001ba8341768e5d3ad2a53c5c4825b86137ae217e875a70daca19b5a8fe')
     fingerprint(arm, base, 0x0202D968, 0x1D0, 'a151f809088a85ee2658965f03be1d008b3fe63135a1547d067b32dadef5e9d6')
     fingerprint(arm, base, 0x02078434, 144, '5981cc0c9f3602f243f69062b35afa3dddff822f5b9c9b852d1d536cb89d250f')
     fingerprint(arm, base, 0x0207879C, 12, '2c3a66435ca1a6b52f5ed6f5f3cc32b67436f1e94b09a09c5b0076f6be1743ae')

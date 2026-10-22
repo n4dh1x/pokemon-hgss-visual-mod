@@ -52,8 +52,17 @@ and hashes are in [milestone-06-verification.json](../enhancements/milestone-06-
 
 ## Remaining acceptance
 
-Special areas with restricted or alternate bags, including Safari/contest contexts,
-need their own restriction audit and verification. Broad older-save compatibility,
+Milestone 07 implements the audited native bag restrictions. Safari permits the
+bag; Bug-Catching Contest, Pal Park and Tower partner selection suppress the
+prompt. Normal bag unlock/map restrictions also apply. Acceptance rechecks access.
+All 78 tests pass, including native USA normal-menu and Tower instructions. Both
+games pass natural saved expiry again and matched isolated bag-locked expiry
+falls back to the native message. HeartGold also refuses without consumption
+when bag permission is revoked during the prompt. Full story visits to every
+special area remain pending; these controlled branches do not replace them. See
+[milestone-07-verification.json](../enhancements/milestone-07-verification.json).
+
+Broad older-save compatibility,
 hardware, fresh SoulSilver story progression and every map/script context are not
 established. The inventory therefore remains `integrated_untested` for complete
 acceptance. This is an experimental milestone within the full enhancement goal.

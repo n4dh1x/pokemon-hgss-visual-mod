@@ -228,7 +228,7 @@
       "category": "donor",
       "base_heartgold": "Wear-off message without this option.",
       "visual_plus": "Not added.",
-      "required_work": "Same-last-type native prompt and saved On/Off option integrated. Both games pass native save/cold reload and natural 200-step Super Repel expiry, Yes/No and saved Off; all three durations and no substitution are checked. Finish special-area restrictions and broader save/context acceptance.",
+      "required_work": "Same-last-type native prompt and saved On/Off option integrated. Both games pass native save/cold reload and natural 200-step Super Repel expiry, Yes/No and saved Off; all three durations and no substitution are checked. Native bag restrictions and acceptance rechecking are integrated, with compiled ARM and matched bag-locked emulator controls. Finish full special-area story visits and broader save/context acceptance.",
       "evidence": [
         "patches/pokeemerald/0016-repel-prompt.patch",
         "local_data/reference/hg-engine/src/repel.c",
@@ -236,14 +236,18 @@
         "gameplay/repel.py",
         "tests/test_repel_prompt.py",
         "docs/repel-prompt.md",
-        "enhancements/milestone-06-verification.json"
+        "enhancements/milestone-06-verification.json",
+        "enhancements/milestone-07-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
         "compiled_arm_and_guard_tests": "passed",
         "native_save_reload_natural_200_step_expiry_both_games": "passed",
         "same_type_yes_no_and_saved_off": "passed",
-        "special_area_restrictions": "pending"
+        "special_area_restrictions": "passed_source_and_compiled_arm",
+        "native_bag_locked_expiry_both_games": "passed_isolated_control",
+        "permission_revoked_at_acceptance_heartgold": "passed_isolated_control",
+        "full_special_area_story_visits": "pending"
       }
     },
     {

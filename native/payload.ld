@@ -81,3 +81,5 @@ RoamerSave_RepelNotInUse = 0x0202DB09;
 Save_Bag_Get = 0x0207879D;
 Bag_HasItem = 0x020784B1;
 PlaySE = 0x0200604D;
+FieldSystem_MapIsBattleTowerMultiPartnerSelectRoom = 0x02067585;
+NativeNormalMenuInhibitFlags = 0x0203BE61;

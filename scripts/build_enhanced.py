@@ -59,7 +59,7 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-06'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-07'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')

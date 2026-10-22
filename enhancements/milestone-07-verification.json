@@ -1,0 +1,1367 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 7,
+  "verified_on": "2026-10-22",
+  "final_release": false,
+  "scope": "Native bag permissions for repeat Repel, rechecked at offer and acceptance.",
+  "tests": {
+    "command": ".venv/bin/python -B -m unittest discover -s tests -v",
+    "passed": 78,
+    "skipped": 0,
+    "log_sha256": "c65cf6d0b323eef01f6544fe30ed61997a89b0f9d9bc577a1e6505f4effff535"
+  },
+  "inventory": {
+    "feature_rows": 58,
+    "emerald_option_keys": 41,
+    "pinned_source_coverage": "passed"
+  },
+  "native_rule": {
+    "safari": "Bag permitted, matching native precedence",
+    "bug_contest": "Bag prohibited",
+    "pal_park": "Bag prohibited",
+    "tower_partner_room": "Bag prohibited",
+    "normal": "Native normal-menu inhibit helper; bag bit 2, including bag unlock and map restriction"
+  },
+  "candidates": {
+    "heartgold": {
+      "source_rom_sha256": "65f02a56842b75aa92d775d56d657a56fe3fa993550b04dc20704ab82d760105",
+      "baseline_sha256": "eb0aaed35ba445f26a3fdfdc00c86ab8e1abac72b2191984f57290b383fb8379",
+      "output_sha256": "293c8e63883856697d3b28266b1c8cce7a08e8f7ffa636c277f20b2d329e7d13",
+      "patch_sha256": "fcb9344c8f9afff868c66f00e0ef303282d309c833d386af337668c435424ccd",
+      "resident_payload": {
+        "address": 33525760,
+        "size": 9512,
+        "sha256": "c1dc9f1bd2d0f59d17064667a9ce6b7bfa7bea5330c6974c1da4dd82105fdfba",
+        "symbols": {
+          "EnhancedTakeTm": 33525825,
+          "gEnhancedOptions": 33525760,
+          "EnhancedEvolution": 33525849,
+          "OriginalEvolution": 33525793,
+          "EnhancedFieldControl": 33526053,
+          "EnhancedSettingsEnsure": 33529049,
+          "gVisibleState": 33532440,
+          "EnhancedManagerDelete": 33526229,
+          "EnhancedSaveIterator": 33526317,
+          "EnhancedEncounterRoll": 33526485,
+          "EnhancedRoamerCheck": 33526509,
+          "EnhancedCaptureEncounter": 33526533,
+          "EnhancedStepEncounter": 33526585,
+          "EnhancedStartScript": 33526879,
+          "EnhancedFieldInput": 33527105,
+          "EnhancedMenuOpen": 33531013,
+          "EnhancedSettingsCRC": 33528841,
+          "EnhancedSettingsValid": 33528909,
+          "gSettingsState": 33534080,
+          "EnhancedSettingsSaveData": 33529317,
+          "EnhancedSettingsStore": 33529333,
+          "EnhancedDrawText": 33529853,
+          "EnhancedWindowOpen": 33530065,
+          "EnhancedWindowClose": 33530177,
+          "EnhancedNpcPause": 33530203,
+          "EnhancedMenuTask": 33530345,
+          "gEnhancedMenu": 33535140,
+          "EnhancedRepelCanUse": 33531113,
+          "EnhancedRepelGetSteps": 33531185,
+          "gEnhancedRepelDialog": 33535204,
+          "EnhancedRepelPromptTask": 33531277,
+          "EnhancedRepelWoreOff": 33531825,
+          "__enhanced_end": 33535272
+        },
+        "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+        "linker": "LLD 22.1.6 (https://github.com/rust-lang/llvm-project.git dcc3606807c989700e0ac1cac18c31741bcd40d9) (compatible with GNU linkers)"
+      },
+      "diagnostics": {
+        "visible_state_bytes": 1640,
+        "settings_state_bytes": 1060,
+        "menu_state_bytes": 64,
+        "repel_dialog_bytes": 68
+      },
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/15 changes only",
+        "audited native flash allocation",
+        "other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ],
+      "local_rom": "build/candidates/heartgold-visual-plus-gameplay-milestone-07.nds"
+    },
+    "soulsilver": {
+      "source_rom_sha256": "51d0f94a16af7d77c067b4cb7d821ba890a13203a2e2c76049623332c0582e20",
+      "baseline_sha256": "5b3a377d20b2aa45fa1b9e6fbab842aaddc75e4fef38c38624662c9f5e48bf8e",
+      "output_sha256": "6b2c2cfc6eb2970af5ae3c3df00ffe79189581c69364b3fe07a09aedc41c0cdf",
+      "patch_sha256": "bf901df5891d55a677f4c7df569a77fcb363cc04745df1ad97d2962fd43be1af",
+      "resident_payload": {
+        "address": 33525760,
+        "size": 9512,
+        "sha256": "c1dc9f1bd2d0f59d17064667a9ce6b7bfa7bea5330c6974c1da4dd82105fdfba",
+        "symbols": {
+          "EnhancedTakeTm": 33525825,
+          "gEnhancedOptions": 33525760,
+          "EnhancedEvolution": 33525849,
+          "OriginalEvolution": 33525793,
+          "EnhancedFieldControl": 33526053,
+          "EnhancedSettingsEnsure": 33529049,
+          "gVisibleState": 33532440,
+          "EnhancedManagerDelete": 33526229,
+          "EnhancedSaveIterator": 33526317,
+          "EnhancedEncounterRoll": 33526485,
+          "EnhancedRoamerCheck": 33526509,
+          "EnhancedCaptureEncounter": 33526533,
+          "EnhancedStepEncounter": 33526585,
+          "EnhancedStartScript": 33526879,
+          "EnhancedFieldInput": 33527105,
+          "EnhancedMenuOpen": 33531013,
+          "EnhancedSettingsCRC": 33528841,
+          "EnhancedSettingsValid": 33528909,
+          "gSettingsState": 33534080,
+          "EnhancedSettingsSaveData": 33529317,
+          "EnhancedSettingsStore": 33529333,
+          "EnhancedDrawText": 33529853,
+          "EnhancedWindowOpen": 33530065,
+          "EnhancedWindowClose": 33530177,
+          "EnhancedNpcPause": 33530203,
+          "EnhancedMenuTask": 33530345,
+          "gEnhancedMenu": 33535140,
+          "EnhancedRepelCanUse": 33531113,
+          "EnhancedRepelGetSteps": 33531185,
+          "gEnhancedRepelDialog": 33535204,
+          "EnhancedRepelPromptTask": 33531277,
+          "EnhancedRepelWoreOff": 33531825,
+          "__enhanced_end": 33535272
+        },
+        "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+        "linker": "LLD 22.1.6 (https://github.com/rust-lang/llvm-project.git dcc3606807c989700e0ac1cac18c31741bcd40d9) (compatible with GNU linkers)"
+      },
+      "diagnostics": {
+        "visible_state_bytes": 1640,
+        "settings_state_bytes": 1060,
+        "menu_state_bytes": 64,
+        "repel_dialog_bytes": 68
+      },
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/15 changes only",
+        "audited native flash allocation",
+        "other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ],
+      "local_rom": "build/candidates/soulsilver-visual-plus-gameplay-milestone-07.nds"
+    }
+  },
+  "runs": {
+    "hg07a-full-duration": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": true,
+        "phase": 1,
+        "choice": 1,
+        "item": 76,
+        "offered": 1,
+        "accepted": 0,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 60,
+      "player_position": [
+        674,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 0,
+        "last_type": 76
+      },
+      "native_bag_unlocked": true,
+      "bag_first_three_slots": [
+        79,
+        2,
+        76,
+        1,
+        77,
+        2
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "RIGHT",
+            50,
+            420
+          ],
+          [
+            "LEFT",
+            450,
+            820
+          ],
+          [
+            "RIGHT",
+            850,
+            1220
+          ],
+          [
+            "LEFT",
+            1250,
+            1620
+          ],
+          [
+            "RIGHT",
+            1650,
+            2020
+          ],
+          [
+            "LEFT",
+            2050,
+            2420
+          ],
+          [
+            "RIGHT",
+            2450,
+            2820
+          ],
+          [
+            "LEFT",
+            2850,
+            3220
+          ],
+          [
+            "RIGHT",
+            3250,
+            3620
+          ],
+          [
+            "LEFT",
+            3650,
+            4020
+          ],
+          [
+            "RIGHT",
+            4050,
+            4420
+          ],
+          [
+            "LEFT",
+            4450,
+            4820
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 5000,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "smoke-report.json": "4093553dbe7741531ccfd4ac8607830dfb9feaff309ead13eed1381d5317b90a",
+        "state.bin": "620b632e7bc7fe918ad13826aa465db470135bf7032332c40493b6616819ca0d",
+        "main-ram.bin": "cd94f6b8d994c0a514b371a4b46627adf9e3a4daaecf8b6d3a3a1f899113a659",
+        "cartridge.sav": "d299af8437775d26b8f7cad26d0143e90ec558e40231340d0f1bf818d474ba7f"
+      },
+      "screenshots": {
+        "frame-005000.png": "d267adc1f6ffa428dc2cda6db1f400f3ebb6955bed536228306ea176a63e3894"
+      }
+    },
+    "hg07a-locked-expiry": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": false,
+        "phase": 0,
+        "choice": 0,
+        "item": 0,
+        "offered": 0,
+        "accepted": 0,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 33,
+      "player_position": [
+        659,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 0,
+        "last_type": 76
+      },
+      "native_bag_unlocked": false,
+      "bag_first_three_slots": [
+        79,
+        2,
+        76,
+        1,
+        77,
+        2
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "RIGHT",
+            50,
+            65
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 400,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "f8205a15cd8c4b6c4eeb914d866ec79c73b98b908157961dc40355c507fe4c4b",
+        "source_ram_sha256": "ad12554e7bf9c9df8b15ee49d3fe772d0a565343be90d209900b19662cd63c29",
+        "applied_ram_sha256": "ca63d084b000132a2825627729e146c19686ac3ffb648bd67e74849b77af6e9d",
+        "changes": [
+          {
+            "address": 36186905,
+            "before": "c8",
+            "after": "01",
+            "reason": "Shorten only the isolated native countdown for matched permission branches."
+          },
+          {
+            "address": 36164343,
+            "before": "78",
+            "after": "70",
+            "reason": "Clear only native FLAG_GOT_BAG in an isolated permission-control checkpoint; original save and state remain unchanged."
+          }
+        ]
+      },
+      "artifacts": {
+        "smoke-report.json": "1e1652bf0d03aae2e27b4dbdb08a866b19ec991d08fe158b5f987fc9ca25c078",
+        "state.bin": "d3bbb8cee6cf5d80574b2e1df08618949d67cf7a9ff1b7fcfcdc610e6371e849",
+        "main-ram.bin": "cd6fe32c1b7e82492c3c316edc9dfc879b99ac412732fb9af0f16205def22e1c",
+        "cartridge.sav": "d299af8437775d26b8f7cad26d0143e90ec558e40231340d0f1bf818d474ba7f"
+      },
+      "screenshots": {
+        "frame-000400.png": "b6fdb3c307af8a0c3044f25be5d2d9d999ff3680c6ba3fbf70f34fa872820426"
+      }
+    },
+    "hg07a-prompt": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": true,
+        "phase": 1,
+        "choice": 0,
+        "item": 76,
+        "offered": 1,
+        "accepted": 0,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 33,
+      "player_position": [
+        659,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 0,
+        "last_type": 76
+      },
+      "native_bag_unlocked": true,
+      "bag_first_three_slots": [
+        79,
+        2,
+        76,
+        1,
+        77,
+        2
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "RIGHT",
+            50,
+            65
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 400,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "91c37c2f9f23b78fad47eb6a0c5904ca25c0cde55b4cee9a0ccf6153f76b6829",
+        "source_ram_sha256": "ad12554e7bf9c9df8b15ee49d3fe772d0a565343be90d209900b19662cd63c29",
+        "applied_ram_sha256": "d74adeb4d2fab09248bcd4fb73094cd933daab79db6eb3b5b8a484fe4bcbe70a",
+        "changes": [
+          {
+            "address": 36186905,
+            "before": "c8",
+            "after": "01",
+            "reason": "Shorten only the isolated native countdown for matched permission branches."
+          }
+        ]
+      },
+      "artifacts": {
+        "smoke-report.json": "22fcffafc0eb4f8a1090159b8a5001b2d0a4f69a9a5d557039ef3e26a69b18a7",
+        "state.bin": "d222bf52d823cc8d3038210fcaa1d4058d27a37ac500be80af6ffa321aa45809",
+        "main-ram.bin": "9b7630f18549bcada4ada048693f482a0569574153efe3b1e142bd1a9213c813",
+        "cartridge.sav": "d299af8437775d26b8f7cad26d0143e90ec558e40231340d0f1bf818d474ba7f"
+      },
+      "screenshots": {
+        "frame-000400.png": "45808574b7099777577a252a3e5591c62eb31a526241eae2563156741bf30b72"
+      }
+    },
+    "hg07a-reload": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": false,
+        "phase": 0,
+        "choice": 0,
+        "item": 0,
+        "offered": 0,
+        "accepted": 0,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 33,
+      "player_position": [
+        658,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 200,
+        "last_type": 76
+      },
+      "native_bag_unlocked": true,
+      "bag_first_three_slots": [
+        79,
+        2,
+        76,
+        1,
+        77,
+        2
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 3300,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "smoke-report.json": "058380d19d06c7a6be3d9683917c1f0e6eefd4a2d7667ead0a4c673f479d91ca",
+        "state.bin": "89a7f27342a8843c6055b8e1b170dc636f32be342f9ff30098929480dc337055",
+        "main-ram.bin": "ad12554e7bf9c9df8b15ee49d3fe772d0a565343be90d209900b19662cd63c29",
+        "cartridge.sav": "d299af8437775d26b8f7cad26d0143e90ec558e40231340d0f1bf818d474ba7f"
+      },
+      "screenshots": {
+        "frame-003300.png": "4d96e1a7acc34740306418e9a9b20ab52c13183a9656e19e827042947733a96c"
+      }
+    },
+    "hg07a-revoked": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": true,
+        "phase": 4,
+        "choice": 0,
+        "item": 76,
+        "offered": 1,
+        "accepted": 0,
+        "declined": 0,
+        "failures": 1,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 33,
+      "player_position": [
+        659,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 0,
+        "last_type": 76
+      },
+      "native_bag_unlocked": false,
+      "bag_first_three_slots": [
+        79,
+        2,
+        76,
+        1,
+        77,
+        2
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 400,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "74c52316cd886e75d8535ae0f59534af91891f15ea70a232242559e004cf1bbf",
+        "source_ram_sha256": "9b7630f18549bcada4ada048693f482a0569574153efe3b1e142bd1a9213c813",
+        "applied_ram_sha256": "d16db9afc170c8daa16df9d775de2293faba94cc171ea5c5caf494b6690731e3",
+        "changes": [
+          {
+            "address": 36164343,
+            "before": "78",
+            "after": "70",
+            "reason": "Revoke native bag access only in an isolated active prompt to check acceptance revalidation."
+          }
+        ]
+      },
+      "artifacts": {
+        "smoke-report.json": "631fb23d673e4fe2ee58f37e7dbcebf798d0b914ec8a98e254f1721be0131287",
+        "state.bin": "6e2b031dd6c3c3b25ad7422886f702a16a849c127d37a5890ca728870cb7166e",
+        "main-ram.bin": "69238116c31d13a184d00b22294289835dd03146a4e2275bd3220d21f0d0e684",
+        "cartridge.sav": "d299af8437775d26b8f7cad26d0143e90ec558e40231340d0f1bf818d474ba7f"
+      },
+      "screenshots": {
+        "frame-000400.png": "9ce59bf921b4060996c4255d72a37fe673e213cc8762be00efe7ae641b9790df"
+      }
+    },
+    "hg07a-yes": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": false,
+        "phase": 2,
+        "choice": 0,
+        "item": 76,
+        "offered": 1,
+        "accepted": 1,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 33,
+      "player_position": [
+        659,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 200,
+        "last_type": 76
+      },
+      "native_bag_unlocked": true,
+      "bag_first_three_slots": [
+        79,
+        2,
+        77,
+        2,
+        0,
+        0
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            10,
+            14
+          ],
+          [
+            "A",
+            200,
+            204
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 400,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "smoke-report.json": "20a3250a9db1f121991952ed22496c71d3a3b4cfd054e5ca8026ccfda52050aa",
+        "state.bin": "162d0a4305b4c68dc9267117ecea176b211a92ef6f67556e354c3006b0829fc8",
+        "main-ram.bin": "12e475d55eac7ac6007a4014528dc932eb14e86701713e8017b21e3a677c1c90",
+        "cartridge.sav": "d299af8437775d26b8f7cad26d0143e90ec558e40231340d0f1bf818d474ba7f"
+      },
+      "screenshots": {
+        "frame-000400.png": "af9e613212b5030cc57331ae6f1d7455a98021348bfe3e65ec4951b5092f171b",
+        "frame-000150.png": "ee03c8300e8bb71274d4b51cb05282f2b2b2e734177d6b483240969092fc0089"
+      }
+    },
+    "ss07a-full-duration": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": true,
+        "phase": 1,
+        "choice": 1,
+        "item": 76,
+        "offered": 1,
+        "accepted": 0,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 60,
+      "player_position": [
+        674,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 0,
+        "last_type": 76
+      },
+      "native_bag_unlocked": true,
+      "bag_first_three_slots": [
+        79,
+        2,
+        76,
+        1,
+        77,
+        2
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "RIGHT",
+            50,
+            420
+          ],
+          [
+            "LEFT",
+            450,
+            820
+          ],
+          [
+            "RIGHT",
+            850,
+            1220
+          ],
+          [
+            "LEFT",
+            1250,
+            1620
+          ],
+          [
+            "RIGHT",
+            1650,
+            2020
+          ],
+          [
+            "LEFT",
+            2050,
+            2420
+          ],
+          [
+            "RIGHT",
+            2450,
+            2820
+          ],
+          [
+            "LEFT",
+            2850,
+            3220
+          ],
+          [
+            "RIGHT",
+            3250,
+            3620
+          ],
+          [
+            "LEFT",
+            3650,
+            4020
+          ],
+          [
+            "RIGHT",
+            4050,
+            4420
+          ],
+          [
+            "LEFT",
+            4450,
+            4820
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 5000,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "smoke-report.json": "181b3bd31394df794dc35052ce57e2ed7bfbaf3abf167405eed48b900020a8ad",
+        "state.bin": "a5ff9627dacad2b70fef55b79e6d30120b5280c070197053d560842b974263f6",
+        "main-ram.bin": "38f6dfd04346af0ab2a218d6bbd4308a0fa3b2e66aa166aa0f4c15b90ba1c89c",
+        "cartridge.sav": "9123e8e66994b01c14ca74113cbd6c00db00f7edae75efe21300c912df76ac3d"
+      },
+      "screenshots": {
+        "frame-005000.png": "d267adc1f6ffa428dc2cda6db1f400f3ebb6955bed536228306ea176a63e3894"
+      }
+    },
+    "ss07a-locked-expiry": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": false,
+        "phase": 0,
+        "choice": 0,
+        "item": 0,
+        "offered": 0,
+        "accepted": 0,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 33,
+      "player_position": [
+        659,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 0,
+        "last_type": 76
+      },
+      "native_bag_unlocked": false,
+      "bag_first_three_slots": [
+        79,
+        2,
+        76,
+        1,
+        77,
+        2
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "RIGHT",
+            50,
+            65
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 400,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "dbbcf4606d4b7e92e68f67b9fafac95401cb623ee94e4a3de34fa6f7ecb93f76",
+        "source_ram_sha256": "66764a3572798e48b05f96ec6f4640e541d61b74856d2161dbd12914a46961bf",
+        "applied_ram_sha256": "46418bbe22069c977c2b0adfadd2d9db72801a1264a1156e0c58bd40d1a7055d",
+        "changes": [
+          {
+            "address": 36186961,
+            "before": "c8",
+            "after": "01",
+            "reason": "Shorten only the isolated native countdown for matched permission branches."
+          },
+          {
+            "address": 36164399,
+            "before": "78",
+            "after": "70",
+            "reason": "Clear only native FLAG_GOT_BAG in an isolated permission-control checkpoint; original save and state remain unchanged."
+          }
+        ]
+      },
+      "artifacts": {
+        "smoke-report.json": "b476a74dfa998bb4e4217403bb15457c2a1b74ec0b1a51a3c091856a320dea46",
+        "state.bin": "d63eab4a76931d97f302d12581a9583023fa976a3a0447b7c9aa8268ca3dcf38",
+        "main-ram.bin": "2fac36a5ad332b89ec8f29ec0acb02cf540b05295a931308fca27d04192fd204",
+        "cartridge.sav": "9123e8e66994b01c14ca74113cbd6c00db00f7edae75efe21300c912df76ac3d"
+      },
+      "screenshots": {
+        "frame-000400.png": "b6fdb3c307af8a0c3044f25be5d2d9d999ff3680c6ba3fbf70f34fa872820426"
+      }
+    },
+    "ss07a-prompt": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": true,
+        "phase": 1,
+        "choice": 0,
+        "item": 76,
+        "offered": 1,
+        "accepted": 0,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 33,
+      "player_position": [
+        659,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 0,
+        "last_type": 76
+      },
+      "native_bag_unlocked": true,
+      "bag_first_three_slots": [
+        79,
+        2,
+        76,
+        1,
+        77,
+        2
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "RIGHT",
+            50,
+            65
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 400,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "0fd832dce69003c87b9cd147071e6e721411a7e878e52022a28a76a09b94c1c3",
+        "source_ram_sha256": "66764a3572798e48b05f96ec6f4640e541d61b74856d2161dbd12914a46961bf",
+        "applied_ram_sha256": "0d6a2b332a1ce254b2dad6bde73b75171f8a9a29ba29423523cdc0ab8c2b1c86",
+        "changes": [
+          {
+            "address": 36186961,
+            "before": "c8",
+            "after": "01",
+            "reason": "Shorten only the isolated native countdown for matched permission branches."
+          }
+        ]
+      },
+      "artifacts": {
+        "smoke-report.json": "45c2f2c12bf558175f64c2cef4fc4dda0339f40c53479ba22bac87d43dc5b82d",
+        "state.bin": "306298eabd88bb318172063324c5bb686ed7bb2ab788aee80276de6645227462",
+        "main-ram.bin": "b4779e487b1b9092f1429092e30eb7aad595f43f3d54ad429f95708d3ef7c73d",
+        "cartridge.sav": "9123e8e66994b01c14ca74113cbd6c00db00f7edae75efe21300c912df76ac3d"
+      },
+      "screenshots": {
+        "frame-000400.png": "45808574b7099777577a252a3e5591c62eb31a526241eae2563156741bf30b72"
+      }
+    },
+    "ss07a-reload": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": false,
+        "phase": 0,
+        "choice": 0,
+        "item": 0,
+        "offered": 0,
+        "accepted": 0,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 33,
+      "player_position": [
+        658,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 200,
+        "last_type": 76
+      },
+      "native_bag_unlocked": true,
+      "bag_first_three_slots": [
+        79,
+        2,
+        76,
+        1,
+        77,
+        2
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 3300,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "smoke-report.json": "b06a9bb43b01f3fd677815d6a532f7a1f2d49cc04f583fce924912ad037b67ba",
+        "state.bin": "77e89802f562248751418e3d8eb8fa8a6d258a805fcc8dd9120cfbb71b7e35cc",
+        "main-ram.bin": "66764a3572798e48b05f96ec6f4640e541d61b74856d2161dbd12914a46961bf",
+        "cartridge.sav": "9123e8e66994b01c14ca74113cbd6c00db00f7edae75efe21300c912df76ac3d"
+      },
+      "screenshots": {
+        "frame-003300.png": "4d96e1a7acc34740306418e9a9b20ab52c13183a9656e19e827042947733a96c"
+      }
+    },
+    "ss07a-yes": {
+      "visible_mode": 3,
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1
+      },
+      "repel_dialog": {
+        "active": false,
+        "phase": 2,
+        "choice": 0,
+        "item": 76,
+        "offered": 1,
+        "accepted": 1,
+        "declined": 0,
+        "failures": 0,
+        "remembered": 0
+      },
+      "paused_mask": 0,
+      "current_map": 33,
+      "player_position": [
+        659,
+        2,
+        401
+      ],
+      "native_repel": {
+        "steps": 200,
+        "last_type": 76
+      },
+      "native_bag_unlocked": true,
+      "bag_first_three_slots": [
+        79,
+        2,
+        77,
+        2,
+        0,
+        0
+      ],
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            10,
+            14
+          ],
+          [
+            "A",
+            200,
+            204
+          ]
+        ],
+        "touches": []
+      },
+      "frames": 400,
+      "core": {
+        "name": "melonDS DS",
+        "version": "1.3.1",
+        "renderer": "software",
+        "jit": "disabled",
+        "network": "disabled"
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "smoke-report.json": "18b8d6390b74ae50235ffb51889c0f83dadbb7820b1c4b083b6d8c130fcb4c10",
+        "state.bin": "baca2b81419c8fd829e02925b25561026f0203365c507afed901d37809e2a4e2",
+        "main-ram.bin": "14a9a866cc0d30b00d04ab9a73e3735b0853add471c9467040f6ab1d65c2360d",
+        "cartridge.sav": "9123e8e66994b01c14ca74113cbd6c00db00f7edae75efe21300c912df76ac3d"
+      },
+      "screenshots": {
+        "frame-000400.png": "af9e613212b5030cc57331ae6f1d7455a98021348bfe3e65ec4951b5092f171b",
+        "frame-000150.png": "ee03c8300e8bb71274d4b51cb05282f2b2b2e734177d6b483240969092fc0089"
+      }
+    }
+  },
+  "limitations": [
+    "All audited enhancements remain in scope and incomplete.",
+    "Full special-area story visits, older-save compatibility and hardware remain pending.",
+    "Both games use isolated copies of the project-created HeartGold save.",
+    "Matched developer fixtures shorten the native countdown and optionally clear FLAG_GOT_BAG; they do not represent visiting a special area. Full-duration runs use no countdown fixture."
+  ]
+}
