@@ -219,3 +219,15 @@ and has actual capture controls. All 85 tests pass. Level-up, move-learning,
 evolution, failed balls, held-item and full double/roamer flows remain pending.
 See [capture-experience.md](capture-experience.md) and
 [milestone-08-verification.json](../enhancements/milestone-08-verification.json).
+
+## Milestone 09: capture level-up, moves and native save persistence
+
+This expands verification of the unchanged milestone 08 ROMs. HG earns 135→151→
+167→183 EXP over three captures; SS earns 135→159→191 over two. Both reach level 6,
+show native stat screens and learn Razor Leaf into an empty slot with 25 PP.
+Normal game saving and a cold restart preserve the complete captured party,
+EXP, EVs, HP, level, moves and PP. Native saving preserves both options journal
+pages. The read-only native party inspector now reports moves/PP. Full movesets,
+evolution, held-item, failed-throw and wider capture cases remain pending. See
+[capture-progress.md](capture-progress.md) and
+[milestone-09-verification.json](../enhancements/milestone-09-verification.json).

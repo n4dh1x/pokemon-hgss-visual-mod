@@ -17,7 +17,9 @@ same last-used type; both games pass native save/reload and full 200-step expiry
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
 pass successful capture, Pokédex registration, nickname decline and field return.
-Level-up, move-learning, evolution and wider capture cases still need verification.
+Both games also pass level-6 stat screens, Razor Leaf learning into an empty slot,
+and native save/cold reload of rewards. Evolution, full movesets and wider capture
+cases remain pending.
 Cave/water encounters, full capacity and transition
 coverage, other enhancements and final gameplay validation remain.
 These candidates are not the final release.

@@ -80,7 +80,7 @@
       "category": "donor",
       "base_heartgold": "Not present.",
       "visual_plus": "Not added.",
-      "required_work": "Native capture EXP/EV task and fifth saved On/Off option integrated. Both games pass capture, Dex registration, nickname decline, field return and saved-Off controls. Finish level-up, move-learning, evolution, failed balls, held-item and full double/roamer capture verification.",
+      "required_work": "Native capture EXP/EV task and fifth saved On/Off option integrated. Both games pass capture, Dex registration, nickname decline, field return, saved-Off controls, level-6 stat screens, Razor Leaf learning into an empty slot and native save/cold reload of rewards. Finish full movesets/forgetting, evolution/cancellation, failed balls, held-item and full double/roamer capture verification.",
       "evidence": [
         "patches/pokeemerald/0010-exp-for-catching.patch",
         "local_data/reference/hg-engine/src/battle/battle_script_commands.c",
@@ -89,14 +89,18 @@
         "gameplay/capture.py",
         "tests/test_capture_exp.py",
         "docs/capture-experience.md",
-        "enhancements/milestone-08-verification.json"
+        "enhancements/milestone-08-verification.json",
+        "docs/capture-progress.md",
+        "enhancements/milestone-09-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
         "native_arm_task_ownership_and_completion_both_games": "passed",
         "basic_capture_exp_ev_and_storage_both_games": "passed",
         "saved_off_cold_reload_and_capture_controls_both_games": "passed",
-        "level_up_moves_evolution_and_extended_capture_cases": "pending"
+        "level_6_native_stat_screens_and_empty_slot_razor_leaf_both_games": "passed",
+        "native_game_save_cold_reload_rewards_moves_pp_and_caught_party_both_games": "passed",
+        "full_movesets_evolution_and_extended_capture_cases": "pending"
       }
     },
     {

@@ -25,8 +25,8 @@ def inspect_party(run: Path, report_path: Path, rom_path: Path) -> list[dict]:
         raise ValueError('Candidate ROM differs from the verified run report.')
     rom = ndspy.rom.NintendoDSRom(raw)
     ram = (run / 'main-ram.bin').read_bytes()
-    # All executed main ARM9 code must match this exact candidate. Exclude the
-    # loader's writable/BSS region by comparing the narrow getter entry points.
+    # Compare the native getter entry points with the exact candidate before
+    # executing them on the private RAM copy.
     for address, size in ((0x0206E540, 32), (0x02074904, 12),
                           (0x02074640, 4), (0x02074644, 20)):
         offset = address - 0x02000000
@@ -62,7 +62,9 @@ def inspect_party(run: Path, report_path: Path, rom_path: Path) -> list[dict]:
         entry = {'slot':index}
         for code, label in ((5,'species'),(8,'experience'),(161,'level'),(163,'hp'),
                 (13,'hp_ev'),(14,'attack_ev'),(15,'defense_ev'),(16,'speed_ev'),
-                (17,'spatk_ev'),(18,'spdef_ev')):
+                (17,'spatk_ev'),(18,'spdef_ev'),
+                (54,'move1'),(55,'move2'),(56,'move3'),(57,'move4'),
+                (58,'move1_pp'),(59,'move2_pp'),(60,'move3_pp'),(61,'move4_pp')):
             entry[label] = call(0x0206E541,mon,code)
         result.append(entry)
     return result

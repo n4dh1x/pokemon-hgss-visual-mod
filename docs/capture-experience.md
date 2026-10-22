@@ -52,7 +52,10 @@ inputs are in [milestone-08-verification.json](../enhancements/milestone-08-veri
 
 ## Remaining acceptance
 
-Native code reuse does not establish every flow. Level-up, new moves/forgetting,
+Milestone 09 verifies level-6 stat screens, learning Razor Leaf into an empty
+slot, repeated captures and native save/cold reload in both games. See
+[capture-progress.md](capture-progress.md). Native code reuse does not establish
+every flow. Further level-up distributions, full movesets/forgetting,
 evolution/cancellation, failed throws, held EXP Share/Lucky Egg, level 100, full
 party/PC storage, double/roamer capture, special-area story flows and save/reload
 after these rewards remain pending. Battle presentation and long sessions need
