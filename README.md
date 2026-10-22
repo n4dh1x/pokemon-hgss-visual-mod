@@ -4,10 +4,11 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: complete inventory and reproducible Visual+ baselines.**
-The new Emerald gameplay enhancements, including visible wild encounters, are
-not integrated into the game yet. The baseline ROMs are unchanged upstream
-Visual+ outputs and must not be described as the completed enhanced game.
+**Current stage: first experimental gameplay milestone.**
+Reusable TM teaching is patched and ARM-tested in both games; runtime controls,
+bag quantity presentation and full teaching-flow verification remain. Visible
+wild encounters and the remaining enhancements are still pending. Baseline ROMs
+remain unchanged upstream Visual+ references; candidate builds are not final.
 
 - [Complete 58-row feature inventory](docs/emerald-parity.md)
 - [Machine-readable inventory and implementation states](enhancements/inventory.json)
@@ -32,6 +33,20 @@ Outputs stay under ignored `build/baseline/`; originals remain unchanged. This
 workflow uses the existing USA release patches and does not need Korean ROMs.
 Rebuilding Visual+'s original port from Korean donor assets uses the upstream
 workflow below. No ROMs, saves or locally extracted assets are committed.
+
+Experimental gameplay builds (after installing `requirements-dev.txt`):
+
+```sh
+.venv/bin/python scripts/build_enhanced.py --rom /path/to/HeartGold.zip
+.venv/bin/python scripts/build_enhanced.py --rom /path/to/SoulSilver.zip
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+Each candidate records its exact enabled changes and limitations in a JSON report,
+and produces a locally verified xdelta patch. `scripts/smoke_libretro.py` can run
+an installed melonDS DS core with isolated test directories and capture video,
+audio counts, RAM and ROM-matched savestates. It is a development test host;
+booting alone does not prove gameplay correctness.
 
 ---
 

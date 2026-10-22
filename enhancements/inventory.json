@@ -203,14 +203,23 @@
       "category": "donor",
       "base_heartgold": "TMs consumed; HMs reusable.",
       "visual_plus": "Not added.",
-      "required_work": "Integrate REUSABLE_TMS, bag counts and party teaching logic; expose runtime toggle if matching Emerald options.",
+      "required_work": "Milestone 01 patches the teaching-consumption call in both USA Visual+ full builds; ARM instruction tests pass. Full teaching-flow validation, bag count presentation and runtime toggle remain.",
       "evidence": [
         "patches/pokeemerald/0017-infinite-tms.patch",
         "local_data/reference/hg-engine/src/party_menu.c",
         "local_data/reference/hg-engine/src/bag.c",
-        "local_data/reference/hg-engine/include/config.h"
+        "local_data/reference/hg-engine/include/config.h",
+        "gameplay/patches.py",
+        "tests/test_reusable_tms.py"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "arm_instruction_tests": "passed",
+        "rom_patch_roundtrip": "passed",
+        "opening_smoke": "passed",
+        "teaching_flow_in_melonds": "pending",
+        "runtime_toggle": "pending"
+      }
     },
     {
       "id": "run_indoors",

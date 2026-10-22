@@ -1,0 +1,4 @@
+ndspy==4.1.0
+capstone==5.0.7
+unicorn==2.1.4
+pyelftools==0.33
