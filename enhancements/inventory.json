@@ -1,0 +1,998 @@
+{
+  "baseline": "Emerald 3DS v0.4.0",
+  "target": "USA HeartGold first; USA SoulSilver separately validated",
+  "audited_on": "2026-10-22",
+  "categories": {
+    "base": "Already in base HGSS",
+    "visual": "Already in Visual+",
+    "partial": "Partly present / adaptation needed",
+    "donor": "Available donor code; not integrated",
+    "custom": "Needs custom implementation",
+    "emulator": "Emulator/platform equivalent",
+    "platform": "3DS-specific; no direct NDS equivalent"
+  },
+  "sources": {
+    "emerald": {
+      "repository": "https://github.com/ZallaxDev/emerald-3ds",
+      "ref": "v0.4.0",
+      "files": {
+        "3ds_port/src/3ds_extras.c": "5f4b2a103b3ff29d5e3b588c8547543b17abb9da8ae4f24996711fb5ab853af1",
+        "3ds_port/src/3ds_settings.c": "2aa86901faf8f49ce9b5c78e2b689f86d7ef5759bd6d500ecb2f02b5ea79f365",
+        "3ds_port/src/3ds_bottom_ui.c": "354c45adc56d9f6dd1b7a2430f08e21c8826ba538b905938001a1daabcbcb797"
+      }
+    },
+    "visual_plus": {
+      "repository": "https://github.com/DosukaSOL/pokemon-hgss-visual-mod",
+      "commit": "0f045bdffeca5cf270636a92e61d5f310b793977"
+    },
+    "pokeheartgold": {
+      "repository": "https://github.com/pret/pokeheartgold",
+      "commit": "6988158691eb6178cff697cda0428045ddcba5fb"
+    },
+    "hg-engine": {
+      "repository": "https://github.com/BluRosie/hg-engine",
+      "commit": "f4fca05a63dc7c694b72c89f178fb3030ba6f5ad"
+    }
+  },
+  "features": [
+    {
+      "id": "speed",
+      "group": "Enhancements",
+      "name": "Game speed: 1x / 1.5x / 2x / 3x / 4x",
+      "emerald_keys": [
+        "speed"
+      ],
+      "category": "emulator",
+      "base_heartgold": "Normal DS timing.",
+      "visual_plus": "No speed setting.",
+      "required_work": "Use melonDS fast-forward initially; a matching in-game speed menu is separate work, with DS hardware limits.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c",
+        "3ds_port/src/3ds_settings.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "real_time_pacing",
+      "group": "Enhancements",
+      "name": "Real-time pacing",
+      "emerald_keys": [
+        "audio_clock"
+      ],
+      "category": "emulator",
+      "base_heartgold": "Native DS audio/timing, not the Emerald 3DS DSP-clock implementation.",
+      "visual_plus": "Unchanged.",
+      "required_work": "Use emulator audio/timing controls; do not transplant the 3DS-specific pacing code into DS.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c",
+        "3ds_port/src/3ds_platform.c",
+        "3ds_port/src/3ds_audio.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "capture_exp",
+      "group": "Enhancements",
+      "name": "EXP for catching",
+      "emerald_keys": [
+        "exp_catch"
+      ],
+      "category": "donor",
+      "base_heartgold": "Not present.",
+      "visual_plus": "Not added.",
+      "required_work": "Integrate hg-engine capture EXP; validate capture, level-up, evolution and double-battle paths.",
+      "evidence": [
+        "patches/pokeemerald/0010-exp-for-catching.patch",
+        "local_data/reference/hg-engine/src/battle/battle_script_commands.c",
+        "local_data/reference/hg-engine/include/config.h"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "party_exp",
+      "group": "Enhancements",
+      "name": "Party-wide EXP Share",
+      "emerald_keys": [
+        "exp_share"
+      ],
+      "category": "custom",
+      "base_heartgold": "Held-item EXP Share only; not party-wide.",
+      "visual_plus": "Not added.",
+      "required_work": "Add optional full EXP for participants, half for other eligible party members; skip eggs/fainted/empty slots; prevent held-item double rewards.",
+      "evidence": [
+        "patches/pokeemerald/0011-modern-exp-share.patch",
+        "local_data/reference/pokeheartgold/asm/overlay_12_battle_command.s"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "trade_evolution",
+      "group": "Enhancements",
+      "name": "Trade evolutions at level 40",
+      "emerald_keys": [
+        "trade_evo"
+      ],
+      "category": "custom",
+      "base_heartgold": "Trade requirements remain.",
+      "visual_plus": "Not added.",
+      "required_work": "Add level-up alternative at level >=40; held trade items still required and consumed only after successful evolution. Retain normal trades.",
+      "evidence": [
+        "patches/pokeemerald/0012-trade-evolutions.patch",
+        "local_data/reference/hg-engine/src/individual/GetMonEvolutionInternal.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "field_hms",
+      "group": "Enhancements",
+      "name": "Field moves without learning the move",
+      "emerald_keys": [
+        "field_hms"
+      ],
+      "category": "custom",
+      "base_heartgold": "Party must know the field move.",
+      "visual_plus": "Not added.",
+      "required_work": "Preserve badges/story checks; adapt to HGSS Cut, Fly, Surf, Strength, Whirlpool, Rock Smash, Waterfall and Rock Climb. Flash is a TM in HGSS; Dive is not an HGSS field HM.",
+      "evidence": [
+        "patches/pokeemerald/0013-field-hms.patch",
+        "patches/pokeemerald/0019-field-hms-from-bag.patch",
+        "local_data/reference/pokeheartgold/src/scrcmd_party.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "visible_wild",
+      "group": "Enhancements",
+      "name": "Visible wild Pokemon: Off / Few / Some / Many",
+      "emerald_keys": [
+        "visible_wild"
+      ],
+      "category": "custom",
+      "base_heartgold": "Random grass/cave/water encounters plus specific scripted overworld Pokemon; no general roaming-spawn system.",
+      "visual_plus": "Not added.",
+      "required_work": "Priority 1: dynamic visible encounters, 0/2/4/6 slots, grass first then cave/water; only Many replaces ordinary step encounters. See encounter specification.",
+      "evidence": [
+        "patches/pokeemerald/0014-visible-wild.patch",
+        "patches/pokeemerald/0056-follower-pokemon.patch",
+        "local_data/reference/pokeheartgold/src/field/encounter_check.c",
+        "local_data/reference/pokeheartgold/include/map_object.h"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "iv_ev_viewer",
+      "group": "Enhancements",
+      "name": "IV / EV summary viewer",
+      "emerald_keys": [
+        "ivs_evs"
+      ],
+      "category": "donor",
+      "base_heartgold": "Stats shown; exact IVs/EVs not exposed as a summary page.",
+      "visual_plus": "Not added.",
+      "required_work": "Integrate hg-engine summary viewer and optional enable/disable control.",
+      "evidence": [
+        "patches/pokeemerald/0015-ivs-evs.patch",
+        "local_data/reference/hg-engine/include/config.h"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "repel_prompt",
+      "group": "Enhancements",
+      "name": "Use another Repel prompt",
+      "emerald_keys": [
+        "repel_prompt"
+      ],
+      "category": "donor",
+      "base_heartgold": "Wear-off message without this option.",
+      "visual_plus": "Not added.",
+      "required_work": "Adapt hg-engine repel prompt: its current code prioritizes Max/Super/normal instead of Emerald's same-last-type behavior; exact parity needs that change.",
+      "evidence": [
+        "patches/pokeemerald/0016-repel-prompt.patch",
+        "local_data/reference/hg-engine/src/repel.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "infinite_tms",
+      "group": "Enhancements",
+      "name": "Reusable TMs",
+      "emerald_keys": [
+        "infinite_tms"
+      ],
+      "category": "donor",
+      "base_heartgold": "TMs consumed; HMs reusable.",
+      "visual_plus": "Not added.",
+      "required_work": "Integrate REUSABLE_TMS, bag counts and party teaching logic; expose runtime toggle if matching Emerald options.",
+      "evidence": [
+        "patches/pokeemerald/0017-infinite-tms.patch",
+        "local_data/reference/hg-engine/src/party_menu.c",
+        "local_data/reference/hg-engine/src/bag.c",
+        "local_data/reference/hg-engine/include/config.h"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "run_indoors",
+      "group": "Enhancements",
+      "name": "Running indoors",
+      "emerald_keys": [
+        "run_indoors"
+      ],
+      "category": "base",
+      "base_heartgold": "Indoor running is native; map-header runningAllowed is unused. Scripted movement restrictions still apply.",
+      "visual_plus": "Retained.",
+      "required_work": "Retain HGSS behavior; do not bypass cutscene or movement locks to imitate the Emerald switch.",
+      "evidence": [
+        "patches/pokeemerald/0018-run-indoors.patch",
+        "local_data/reference/pokeheartgold/include/map_header.h",
+        "local_data/reference/pokeheartgold/src/player_avatar.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "physical_special",
+      "group": "Enhancements",
+      "name": "Physical / special move split",
+      "emerald_keys": [
+        "move_split"
+      ],
+      "category": "base",
+      "base_heartgold": "Native Gen IV mechanic, with move categories.",
+      "visual_plus": "Retained.",
+      "required_work": "Keep HGSS mechanics; no conversion needed. Emerald's optional Gen III fallback is not needed for baseline HGSS.",
+      "evidence": [
+        "patches/pokeemerald/0046-physical-special-split.patch",
+        "local_data/reference/pokeheartgold/include/constants/battle.h"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "day_night",
+      "group": "Enhancements",
+      "name": "Day / night outdoor lighting",
+      "emerald_keys": [
+        "day_night"
+      ],
+      "category": "base",
+      "base_heartgold": "Native time-of-day lighting and windows; its artwork differs from Emerald's lighting.",
+      "visual_plus": "Retained.",
+      "required_work": "Keep HGSS native lighting. An Off/Auto override and exact Emerald-style extra lighting would be new optional work.",
+      "evidence": [
+        "3ds_port/src/3ds_daynight.c",
+        "local_data/reference/pokeheartgold/src/field_system_rtc_weather.c",
+        "local_data/reference/pokeheartgold/src/gf_rtc.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "clock_speed",
+      "group": "Enhancements",
+      "name": "World clock: 1x / 6x / 12x / 24x / 60x / 120x",
+      "emerald_keys": [
+        "clock_speed"
+      ],
+      "category": "custom",
+      "base_heartgold": "Uses real RTC; no independent accelerated world clock.",
+      "visual_plus": "Not added.",
+      "required_work": "Add separate clock with save-safe persistence. Specify effects on lighting, encounter tables and Berry Pots without triggering RTC tamper penalties or fast-forwarding daily events.",
+      "evidence": [
+        "3ds_port/src/3ds_daynight.c",
+        "patches/pokeemerald/0053-accelerated-berry-clock.patch",
+        "local_data/reference/pokeheartgold/src/gf_rtc.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "timed_encounters",
+      "group": "Enhancements",
+      "name": "Morning / day / night wild encounter tables",
+      "emerald_keys": [
+        "timed_encounters"
+      ],
+      "category": "base",
+      "base_heartgold": "Native time-dependent HGSS encounters.",
+      "visual_plus": "Retained.",
+      "required_work": "Preserve Johto/Kanto tables and modifiers; do not copy Hoenn species tables. Off/Timed override would be additional UI.",
+      "evidence": [
+        "patches/pokeemerald/0052-timed-wild-encounters.patch",
+        "local_data/reference/pokeheartgold/src/field/encounter_check.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "clock_hud",
+      "group": "Enhancements",
+      "name": "Show clock on map / bottom-screen HUD",
+      "emerald_keys": [
+        "show_clock"
+      ],
+      "category": "partial",
+      "base_heartgold": "Clock exists in Pokegear; not Emerald's always-visible map clock.",
+      "visual_plus": "Not added.",
+      "required_work": "Add optional field/map HUD clock and speed indication; retain Pokegear clock.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c",
+        "local_data/reference/pokeheartgold/src/application/pokegear"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "follower",
+      "group": "Enhancements",
+      "name": "Lead Pokemon follower",
+      "emerald_keys": [
+        "follower"
+      ],
+      "category": "partial",
+      "base_heartgold": "Native follower, interaction, cries, animations and held leaves/accessory-related behavior.",
+      "visual_plus": "Retained.",
+      "required_work": "Retain native system; optional Off/On menu and any Emerald-specific item-finding rules need separate adaptation.",
+      "evidence": [
+        "patches/pokeemerald/0056-follower-pokemon.patch",
+        "local_data/reference/pokeheartgold/src/follow_mon.c",
+        "local_data/reference/pokeheartgold/src/save_follow_mon.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "encounter_rate",
+      "group": "Cheats",
+      "name": "Encounter rate: Normal / Off / quarter / half / double",
+      "emerald_keys": [
+        "encounter_rate"
+      ],
+      "category": "custom",
+      "base_heartgold": "Normal game encounter-rate modifiers only.",
+      "visual_plus": "Not added.",
+      "required_work": "Optional rate control must cover random encounter chance and visible spawn cadence; Off removes visible spawns too. Keep fishing, scripted and legendary paths separate.",
+      "evidence": [
+        "patches/pokeemerald/0021-encounter-rate.patch",
+        "patches/pokeemerald/0029-visible-wild-encounter-rate.patch"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "shiny_odds",
+      "group": "Cheats",
+      "name": "Shiny odds: 1/8192, 1/4096, 1/1024, 1/256, 1/64, always",
+      "emerald_keys": [
+        "shiny_odds"
+      ],
+      "category": "custom",
+      "base_heartgold": "Original odds and fixed scripted exceptions.",
+      "visual_plus": "Not added.",
+      "required_work": "Runtime selection for new eligible player Pokemon; roll once at visible spawn and preserve PID/shininess into battle. hg-engine SHINY_ODDS is only a compile-time starting point.",
+      "evidence": [
+        "patches/pokeemerald/0022-shiny-odds.patch",
+        "patches/pokeemerald/0028-visible-wild-shiny-odds.patch",
+        "local_data/reference/hg-engine/include/config.h"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "always_catch",
+      "group": "Cheats",
+      "name": "Always catch",
+      "emerald_keys": [
+        "always_catch"
+      ],
+      "category": "custom",
+      "base_heartgold": "Normal catch calculations.",
+      "visual_plus": "Not added.",
+      "required_work": "Optional guaranteed catch restricted to eligible wild battles; never steal trainer Pokemon or bypass special battle rules.",
+      "evidence": [
+        "patches/pokeemerald/0023-always-catch.patch"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "instant_victory",
+      "group": "Cheats",
+      "name": "Instant victory",
+      "emerald_keys": [
+        "instant_victory"
+      ],
+      "category": "custom",
+      "base_heartgold": "Normal battle flow.",
+      "visual_plus": "Not added.",
+      "required_work": "Optional instant fainting via normal battle bookkeeping; exclude link/facility/tutorial battles and preserve rewards/scripts.",
+      "evidence": [
+        "patches/pokeemerald/0024-instant-victory.patch"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "fast_eggs",
+      "group": "Cheats",
+      "name": "Fast egg hatching",
+      "emerald_keys": [
+        "fast_eggs"
+      ],
+      "category": "custom",
+      "base_heartgold": "Original egg cycles and ability effects.",
+      "visual_plus": "Not added.",
+      "required_work": "Optional one-cycle/fast-hatch behavior through native daycare and hatch queue, without modifying non-eggs.",
+      "evidence": [
+        "patches/pokeemerald/0026-fast-eggs.patch"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "infinite_money",
+      "group": "Cheats",
+      "name": "Infinite money",
+      "emerald_keys": [
+        "infinite_money"
+      ],
+      "category": "custom",
+      "base_heartgold": "Normal balance.",
+      "visual_plus": "Not added.",
+      "required_work": "Optional full balance through native capped money API; do not alter casino coins/Battle Points.",
+      "evidence": [
+        "patches/pokeemerald/0027-infinite-money.patch"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "regional_dex",
+      "group": "Cheats",
+      "name": "Complete regional Pokedex",
+      "emerald_keys": [
+        "dex_hoenn"
+      ],
+      "category": "custom",
+      "base_heartgold": "Normal Johto Pokedex progression.",
+      "visual_plus": "Not added.",
+      "required_work": "Adapt Hoenn action to Johto seen/caught entries using native form/dex bookkeeping; label it Johto, not Hoenn.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c",
+        "local_data/reference/pokeheartgold/src/pokedex.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "unlock_national",
+      "group": "Cheats",
+      "name": "Unlock National Pokedex",
+      "emerald_keys": [
+        "dex_national_on"
+      ],
+      "category": "custom",
+      "base_heartgold": "Normal story unlock.",
+      "visual_plus": "Not added.",
+      "required_work": "Optional action using HGSS dex upgrade API; avoid altering story completion flags.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c",
+        "local_data/reference/pokeheartgold/src/pokedex.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "national_dex",
+      "group": "Cheats",
+      "name": "Complete National Pokedex",
+      "emerald_keys": [
+        "dex_national"
+      ],
+      "category": "custom",
+      "base_heartgold": "Normal progression.",
+      "visual_plus": "Not added.",
+      "required_work": "Optional native seen/caught operation for HGSS species; no automatic expansion beyond the base dex.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c",
+        "local_data/reference/pokeheartgold/src/pokedex.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "give_items",
+      "group": "Cheats",
+      "name": "Item giver: pocket, item, quantity, give",
+      "emerald_keys": [
+        "give_open",
+        "give_back",
+        "give_pocket",
+        "give_item",
+        "give_count",
+        "give_now"
+      ],
+      "category": "custom",
+      "base_heartgold": "Normal bag acquisition.",
+      "visual_plus": "Not added.",
+      "required_work": "Add field-only item UI, valid item filtering, capacities and unique key-item checks; adapt all HGSS pockets. Quantities 1/5/10/50/99.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c",
+        "local_data/reference/pokeheartgold/src/bag.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "native_world",
+      "group": "Settings",
+      "name": "3D overworld / voxel toggle",
+      "emerald_keys": [
+        "voxel"
+      ],
+      "category": "partial",
+      "base_heartgold": "Already uses 3D environment geometry and 2D character sprites.",
+      "visual_plus": "Camera changes expose more existing geometry.",
+      "required_work": "Keep native HGSS maps. An exact voxel replacement and classic/voxel toggle would require a separate renderer and asset pipeline.",
+      "evidence": [
+        "3ds_port/src/3ds_settings.c",
+        "3ds_port/src/voxel/ctr_voxel.c",
+        "scripts/port.py"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "camera_angle",
+      "group": "Settings",
+      "name": "Adjustable 3D camera angle",
+      "emerald_keys": [
+        "voxel_pitch"
+      ],
+      "category": "partial",
+      "base_heartgold": "Native camera.",
+      "visual_plus": "Full or 50%-blended camera table chosen at build time.",
+      "required_work": "Preserve Visual+ camera; runtime angle selector and map-specific corrections are additional work.",
+      "evidence": [
+        "3ds_port/src/3ds_settings.c",
+        "scripts/port.py"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "camera_zoom",
+      "group": "Settings",
+      "name": "Adjustable 3D camera zoom",
+      "emerald_keys": [
+        "voxel_zoom"
+      ],
+      "category": "custom",
+      "base_heartgold": "Native fixed/game-controlled distances.",
+      "visual_plus": "No independent zoom setting.",
+      "required_work": "Add bounded camera distances and field-menu control; test culling and map transitions.",
+      "evidence": [
+        "3ds_port/src/3ds_settings.c",
+        "scripts/port.py"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "tilt_shift",
+      "group": "Settings",
+      "name": "3D tilt-shift blur: Off / 10-100%",
+      "emerald_keys": [
+        "voxel_blur"
+      ],
+      "category": "custom",
+      "base_heartgold": "No equivalent user-selectable postprocess.",
+      "visual_plus": "Not added.",
+      "required_work": "Requires new DS rendering effect or emulator shader; DS VRAM/fill-rate feasibility must be measured.",
+      "evidence": [
+        "3ds_port/src/3ds_settings.c",
+        "3ds_port/src/3ds_video.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "world_battles",
+      "group": "Settings",
+      "name": "Battles over the rendered overworld",
+      "emerald_keys": [
+        "voxel_battle"
+      ],
+      "category": "custom",
+      "base_heartgold": "Separate battle scenes with Pokemon sprites, not battles in the live field map.",
+      "visual_plus": "Redrawn backgrounds only.",
+      "required_work": "Major rendering/camera integration; Visual+ backgrounds do not implement this. Pokemon remain sprites in Emerald too.",
+      "evidence": [
+        "3ds_port/src/3ds_settings.c",
+        "3ds_port/src/3ds_video.c",
+        "scripts/port.py"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "stereoscopic_world",
+      "group": "Settings",
+      "name": "Stereoscopic world: Auto / On / Off",
+      "emerald_keys": [
+        "voxel_stereo"
+      ],
+      "category": "platform",
+      "base_heartgold": "DS screens are not stereoscopic.",
+      "visual_plus": "Not available.",
+      "required_work": "Cannot provide native 3DS stereoscopy in an NDS ROM. Would require a different platform/renderer, not a DS patch.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "stereoscopic_depth",
+      "group": "Settings",
+      "name": "Stereoscopic depth: 25-200%",
+      "emerald_keys": [
+        "voxel_depth"
+      ],
+      "category": "platform",
+      "base_heartgold": "No stereoscopic depth slider.",
+      "visual_plus": "Not available.",
+      "required_work": "Not applicable to native NDS hardware; emulator-specific stereo would be a separate project.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "fps",
+      "group": "Settings",
+      "name": "Show FPS",
+      "emerald_keys": [
+        "fps"
+      ],
+      "category": "emulator",
+      "base_heartgold": "No player-facing FPS counter.",
+      "visual_plus": "Not added.",
+      "required_work": "Use melonDS FPS display; an in-game counter would be separate instrumentation.",
+      "evidence": [
+        "3ds_port/src/3ds_settings.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "run_toggle",
+      "group": "Settings",
+      "name": "Run without holding B",
+      "emerald_keys": [
+        "run"
+      ],
+      "category": "base",
+      "base_heartgold": "Native touchscreen running-shoes lock.",
+      "visual_plus": "Retained.",
+      "required_work": "Retain native running toggle.",
+      "evidence": [
+        "3ds_port/src/3ds_settings.c",
+        "local_data/reference/pokeheartgold/src/player_avatar.c",
+        "local_data/reference/pokeheartgold/src/field/field_control.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "quick_ball",
+      "group": "Interface and platform",
+      "name": "Quick ball throw, remembered ball and cycling",
+      "emerald_keys": [],
+      "category": "custom",
+      "base_heartgold": "Bag/battle item interface, not Emerald's R-button + dedicated cycling plate.",
+      "visual_plus": "Not added.",
+      "required_work": "Add optional one-button throw and ball selection; single eligible wild battles only; retain last choice, validate bag stock and storage.",
+      "evidence": [
+        "patches/pokeemerald/0006-quick-ball.patch"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "bottom_menus",
+      "group": "Interface and platform",
+      "name": "Touchscreen field menus: party, bag, save, options, dex",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native dual-screen touch menus for those functions.",
+      "visual_plus": "Retained.",
+      "required_work": "Keep HGSS interface rather than replace it with Hoenn-specific layouts.",
+      "evidence": [
+        "local_data/reference/pokeheartgold/src/start_menu.c",
+        "local_data/reference/pokeheartgold/src/bag_view.c",
+        "3ds_port/src/3ds_bottom_ui.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "battle_touch",
+      "group": "Interface and platform",
+      "name": "Touch battle commands and move details",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native touch battle menu and move categories/details.",
+      "visual_plus": "Retained.",
+      "required_work": "Keep native battle UI; exact Emerald move-button typography/graphics would be new UI work.",
+      "evidence": [
+        "local_data/reference/pokeheartgold/src/battle/battle_controller_player.c",
+        "3ds_port/src/3ds_bottom_ui.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "touch_shops",
+      "group": "Interface and platform",
+      "name": "Touchscreen shop / bag quantity controls",
+      "emerald_keys": [],
+      "category": "partial",
+      "base_heartgold": "Native DS shop/bag interfaces.",
+      "visual_plus": "Retained, not redesigned.",
+      "required_work": "Functional shopping is present; Emerald's particular touch-drag quantity interaction would need a UI rewrite.",
+      "evidence": [
+        "local_data/reference/pokeheartgold/src/overlay_03/shop_menu.c",
+        "3ds_port/src/3ds_bottom_ui.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "save_panel",
+      "group": "Interface and platform",
+      "name": "Trainer / badges / party save overview",
+      "emerald_keys": [],
+      "category": "partial",
+      "base_heartgold": "Native save confirmation and trainer/party screens.",
+      "visual_plus": "Retained.",
+      "required_work": "Exact combined Emerald save card would be a new optional UI.",
+      "evidence": [
+        "local_data/reference/pokeheartgold/src/touch_save_app.c",
+        "3ds_port/src/3ds_bottom_ui.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "map_dex",
+      "group": "Interface and platform",
+      "name": "Touchscreen map, Pokedex and regional units",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Pokegear map, native Pokedex and region-specific presentation.",
+      "visual_plus": "Retained.",
+      "required_work": "Keep HGSS equivalents; no Hoenn-specific table or translation fixes needed.",
+      "evidence": [
+        "local_data/reference/pokeheartgold/src/application/pokegear",
+        "local_data/reference/pokeheartgold/src/pokedex.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "hd_battle_ui",
+      "group": "Interface and platform",
+      "name": "HD battle information / text boxes",
+      "emerald_keys": [],
+      "category": "platform",
+      "base_heartgold": "DS native screens are 256x192 each; Emerald 3DS top screen is 400x240.",
+      "visual_plus": "Background artwork changes only.",
+      "required_work": "Cannot obtain 400x240 native UI from DS hardware. Emulator upscaling improves rendered 3D but does not automatically redraw 2D text.",
+      "evidence": [
+        "3ds_port/src/3ds_bottom_ui.c",
+        "scripts/port.py"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "widescreen",
+      "group": "Interface and platform",
+      "name": "400-pixel field, effects, transitions and cutscenes",
+      "emerald_keys": [],
+      "category": "platform",
+      "base_heartgold": "DS native aspect and resolution.",
+      "visual_plus": "No widescreen conversion.",
+      "required_work": "Use a separately validated emulator widescreen hack if desired; Emerald's per-scene widening code is not applicable.",
+      "evidence": [
+        "3ds_port/src/3ds_video.c",
+        "patches/pokeemerald/0048-move-backgrounds-widescreen.patch"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "wireless",
+      "group": "Interface and platform",
+      "name": "Local trading / battling / multiplayer activities",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native DS local wireless, Union Room and game-specific minigames/facilities.",
+      "visual_plus": "Retained.",
+      "required_work": "Retain DS protocols and activities; test emulator networking separately. Hoenn-only Berry Blender/contests are not HGSS content.",
+      "evidence": [
+        "patches/pokeemerald/0055-local-wireless.patch",
+        "local_data/reference/pokeheartgold/src/overlay_03/communication_club.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "soft_reset",
+      "group": "Interface and platform",
+      "name": "Soft reset",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native DS soft reset.",
+      "visual_plus": "Retained.",
+      "required_work": "Retain existing reset path and release transient encounter state on reset.",
+      "evidence": [
+        "patches/pokeemerald/0037-soft-reset.patch",
+        "local_data/reference/pokeheartgold/src/main.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "persistent_options",
+      "group": "Interface and platform",
+      "name": "Persistent enhancement / cheat settings pages",
+      "emerald_keys": [],
+      "category": "custom",
+      "base_heartgold": "Native options save only the original settings.",
+      "visual_plus": "Build-time variants, no enhancement menu.",
+      "required_work": "Add optional settings UI and versioned persistence. Decide between audited save expansion and flashcart/emulator sidecar; do not assume arbitrary save bytes are unused.",
+      "evidence": [
+        "3ds_port/src/3ds_extras.c",
+        "3ds_port/src/3ds_settings.c",
+        "local_data/reference/pokeheartgold/src/options.c",
+        "local_data/reference/pokeheartgold/src/options_app.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "follower_interactions",
+      "group": "Interface and platform",
+      "name": "Follower talk / cries / animations / item finding",
+      "emerald_keys": [],
+      "category": "partial",
+      "base_heartgold": "Native follower interaction system is richer in some areas but has different item rules.",
+      "visual_plus": "Retained.",
+      "required_work": "Keep native interactions, shiny/forms and transitions; audit item-finding differences before adding any Emerald-specific behavior.",
+      "evidence": [
+        "patches/pokeemerald/0056-follower-pokemon.patch",
+        "local_data/reference/pokeheartgold/src/follow_mon.c"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "languages",
+      "group": "Interface and platform",
+      "name": "English / Spanish / French / Italian build variants",
+      "emerald_keys": [],
+      "category": "partial",
+      "base_heartgold": "We have clean USA English HG and SS; official other-language HGSS ROMs are separate.",
+      "visual_plus": "English port of a Korean visual mod, not translation of the entire game.",
+      "required_work": "English target is already native. Additional languages need their own ROMs, hooks and validation; do not apply USA offsets across regions.",
+      "evidence": [
+        "README.md",
+        "scripts/port.py",
+        "docs/compatibility.md"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "pack_builder",
+      "group": "Interface and platform",
+      "name": "Build game data locally from the user ROM",
+      "emerald_keys": [],
+      "category": "partial",
+      "base_heartgold": "NDS ROM embeds its data, unlike Emerald's 3DSX + pack.",
+      "visual_plus": "xdelta patches use the clean USA ROM.",
+      "required_work": "Keep local ROM-to-patched-NDS workflow, checksum verification and original ROM preservation; no Emerald PAK needed.",
+      "evidence": [
+        "builder/README.md",
+        "scripts/port.py",
+        "scripts/profiles.py"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "save_compatibility",
+      "group": "Interface and platform",
+      "name": "Preserve existing saves",
+      "emerald_keys": [],
+      "category": "partial",
+      "base_heartgold": "HGSS has its own DS save format.",
+      "visual_plus": "Upstream states Visual+ preserves it.",
+      "required_work": "Prove compatibility for every new setting and feature; do not claim Emerald .sav or GBA save compatibility with HGSS.",
+      "evidence": [
+        "docs/faq.md",
+        "local_data/reference/hg-engine/include/config.h"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "home_shortcut",
+      "group": "Interface and platform",
+      "name": "3DS Home Menu forwarder / Homebrew Launcher",
+      "emerald_keys": [],
+      "category": "platform",
+      "base_heartgold": "NDS application, not a native 3DSX.",
+      "visual_plus": "Outputs a patched NDS ROM.",
+      "required_work": "Use melonDS on Mac or an appropriate DS loader on hardware; Emerald's CIA/Luma launcher and DSP firmware instructions do not apply.",
+      "evidence": [
+        "docs/INSTALLATION.md",
+        "docs/setup-macos-linux.md"
+      ],
+      "implementation": "not_integrated"
+    },
+    {
+      "id": "text_speed",
+      "group": "Original options",
+      "name": "Text speed",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native text speed option.",
+      "visual_plus": "Retained.",
+      "required_work": "No enhancement implementation needed.",
+      "evidence": [
+        "3ds_port/src/3ds_bottom_ui.c",
+        "local_data/reference/pokeheartgold/src/options.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "battle_scene",
+      "group": "Original options",
+      "name": "Battle animations",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native battle-scene option.",
+      "visual_plus": "Retained.",
+      "required_work": "No enhancement implementation needed.",
+      "evidence": [
+        "3ds_port/src/3ds_bottom_ui.c",
+        "local_data/reference/pokeheartgold/src/options.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "battle_style",
+      "group": "Original options",
+      "name": "Battle style: Shift / Set",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native battle-style option.",
+      "visual_plus": "Retained.",
+      "required_work": "No enhancement implementation needed.",
+      "evidence": [
+        "3ds_port/src/3ds_bottom_ui.c",
+        "local_data/reference/pokeheartgold/src/options.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "sound",
+      "group": "Original options",
+      "name": "Sound: mono / stereo",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native sound option.",
+      "visual_plus": "Retained.",
+      "required_work": "No enhancement implementation needed.",
+      "evidence": [
+        "3ds_port/src/3ds_bottom_ui.c",
+        "local_data/reference/pokeheartgold/src/options.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "button_mode",
+      "group": "Original options",
+      "name": "Button mode / L=A",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native button-mode option; control mappings differ by platform.",
+      "visual_plus": "Retained.",
+      "required_work": "No enhancement implementation needed.",
+      "evidence": [
+        "3ds_port/src/3ds_bottom_ui.c",
+        "local_data/reference/pokeheartgold/src/options.c"
+      ],
+      "implementation": "existing"
+    },
+    {
+      "id": "frame",
+      "group": "Original options",
+      "name": "Message window frame",
+      "emerald_keys": [],
+      "category": "base",
+      "base_heartgold": "Native frame selection; artwork differs by game.",
+      "visual_plus": "Retained.",
+      "required_work": "No enhancement implementation needed.",
+      "evidence": [
+        "3ds_port/src/3ds_bottom_ui.c",
+        "local_data/reference/pokeheartgold/src/options.c"
+      ],
+      "implementation": "existing"
+    }
+  ]
+}

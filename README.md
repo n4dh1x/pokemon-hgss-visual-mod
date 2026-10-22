@@ -1,3 +1,40 @@
+# HGSS Enhanced — Emerald feature parity work
+
+Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilver's
+native mechanics and Visual+ presentation while adding the missing Emerald 3DS
+v0.4.0 enhancements.
+
+**Current stage: complete inventory and reproducible Visual+ baselines.**
+The new Emerald gameplay enhancements, including visible wild encounters, are
+not integrated into the game yet. The baseline ROMs are unchanged upstream
+Visual+ outputs and must not be described as the completed enhanced game.
+
+- [Complete 58-row feature inventory](docs/emerald-parity.md)
+- [Machine-readable inventory and implementation states](enhancements/inventory.json)
+- [Pinned source revisions](enhancements/sources.lock.json)
+- [Current validation and next integration work](docs/enhancement-status.md)
+
+Verify the inventory:
+
+```sh
+python3 scripts/audit_enhancements.py --emerald-source /path/to/emerald-3ds-0.4.0
+python3 -m unittest discover -s tests -v
+```
+
+Build a reference directly from a clean USA NDS or ZIP and the included patch:
+
+```sh
+python3 scripts/build_baseline.py --rom /path/to/HeartGold.zip --variant full --xdelta /path/to/xdelta3
+python3 scripts/build_baseline.py --rom /path/to/SoulSilver.zip --variant full --xdelta /path/to/xdelta3
+```
+
+Outputs stay under ignored `build/baseline/`; originals remain unchanged. This
+workflow uses the existing USA release patches and does not need Korean ROMs.
+Rebuilding Visual+'s original port from Korean donor assets uses the upstream
+workflow below. No ROMs, saves or locally extracted assets are committed.
+
+---
+
 # Pokémon HG/SS Visual Mod — Visual+ English Port
 
 English (USA) port of **Pokémon Visual+ v1.0.0**, a Korean visual enhancement

@@ -1,0 +1,23 @@
+{
+  "emerald": {
+    "repository": "https://github.com/ZallaxDev/emerald-3ds",
+    "ref": "v0.4.0",
+    "files": {
+      "3ds_port/src/3ds_extras.c": "5f4b2a103b3ff29d5e3b588c8547543b17abb9da8ae4f24996711fb5ab853af1",
+      "3ds_port/src/3ds_settings.c": "2aa86901faf8f49ce9b5c78e2b689f86d7ef5759bd6d500ecb2f02b5ea79f365",
+      "3ds_port/src/3ds_bottom_ui.c": "354c45adc56d9f6dd1b7a2430f08e21c8826ba538b905938001a1daabcbcb797"
+    }
+  },
+  "visual_plus": {
+    "repository": "https://github.com/DosukaSOL/pokemon-hgss-visual-mod",
+    "commit": "0f045bdffeca5cf270636a92e61d5f310b793977"
+  },
+  "pokeheartgold": {
+    "repository": "https://github.com/pret/pokeheartgold",
+    "commit": "6988158691eb6178cff697cda0428045ddcba5fb"
+  },
+  "hg-engine": {
+    "repository": "https://github.com/BluRosie/hg-engine",
+    "commit": "f4fca05a63dc7c694b72c89f178fb3030ba6f5ad"
+  }
+}
