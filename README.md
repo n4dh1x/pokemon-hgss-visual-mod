@@ -4,19 +4,21 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 02.**
-Reusable TMs and level-40 trade-evolution alternatives are integrated and
-ARM-tested in both games. Both candidates reach new-game help in melonDS, with
-the resident payload loaded and its memory reserved. Runtime controls,
-persistence and full in-game teaching/evolution verification remain pending.
-Visible wild encounters and the rest of the full enhancement list remain in
-scope. Baselines are unchanged Visual+ references; candidates are not final.
+**Current stage: experimental gameplay milestone 03.**
+Both games now have native roaming grass encounters, using following-Pokemon
+models and walking animations. Wilds retain their generated Pokemon into contact
+battles. HeartGold also passes menu freeze/resume and transient-object save/reload
+checks. Reusable TMs and level-40 trade alternatives remain integrated.
+Forty tests pass. Runtime controls/persistence, cave/water encounters, full mode
+and transition coverage, other enhancements and final gameplay validation remain.
+These candidates are not the final release.
 
 - [Complete 58-row feature inventory](docs/emerald-parity.md)
 - [Machine-readable inventory and implementation states](enhancements/inventory.json)
 - [Pinned source revisions](enhancements/sources.lock.json)
 - [Current validation and next integration work](docs/enhancement-status.md)
 - [Native loader and memory integration](docs/native-integration.md)
+- [Visible encounters and roaming verification](docs/visible-encounters.md)
 
 Verify the inventory:
 

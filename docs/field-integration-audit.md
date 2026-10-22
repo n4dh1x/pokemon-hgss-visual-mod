@@ -1,8 +1,9 @@
 # Field integration audit
 
-These are candidate hook sites for visible encounters, checked independently
-against both USA Visual+ full baselines. They are not yet installed by the
-gameplay builder, and visible encounters remain unimplemented in candidates.
+These contexts were checked independently against both USA Visual+ full
+baselines. Milestone 03 now installs guarded calls within them, plus the normal
+field-control dispatch at `0x0203E0D0`. Full implementation and verification
+limits are in [visible-encounters.md](visible-encounters.md).
 
 | Routine/site | Image | Address | Checked bytes | SHA-256 |
 |---|---|---|---|---|

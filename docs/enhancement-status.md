@@ -10,18 +10,22 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 58 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- Twenty-eight tests pass: inventory/release checks, reusable-TM ARM tests,
-  resident loader/ABI checks and trade-evolution ARM tests for both games.
-- Both milestone 02 candidates pass xdelta round-trip verification. Changes to
-  ARM9 are limited to recorded hooks, loader metadata and an added resident
-  section. Original ITCM/DTCM sections, NitroFS, overlays, ARM7 and banner match.
-- Both candidates reach new-game help in 2,400-frame melonDS DS 1.3.1 smoke
-  runs with video/audio. Serialized state contains the exact compiled payload;
-  the SDK ITCM arena begins at its end, `0x01FF910C`.
-- Reusable TMs remain build-time enabled. Trade evolution is enabled in resident
-  config. Runtime UI, persistence, bag labels and full in-game teaching,
-  evolution and cancellation verification remain pending.
-- All other new enhancements remain pending; none are silently dropped.
+- Forty tests pass, including compiled ARM field logic and independently checked
+  field hooks for both games, plus the prior TM/evolution/loader tests.
+- Milestone 03 adds native grass spawns that roam with follower model animations.
+  Both games reach visible contact battles with the exact stored 236-byte Pokemon
+  in the native enemy party. In HeartGold, a wild contacted a stationary player.
+- The final 4,336-byte resident payload, recorded ARM9/overlay changes and xdelta
+  round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
+- HeartGold wild positions and movement phases stay identical across 600 frames
+  in the party menu and resume afterward. Native saving filters the two transient
+  objects; a cold reload recreates wilds without saved NPC ghosts.
+- Cave/water support, all mode/capacity/transition/Repel cases, sparkle/spawn
+  effects and runtime settings UI/persistence remain pending. Few is the current
+  development default. No complete visible-encounter parity claim is made.
+- Reusable TMs and trade evolution remain enabled; full teaching and evolution/
+  cancellation flows, runtime controls and bag quantity labels remain pending.
+- All remaining new enhancements are still included in the persistent goal.
 - No hardware test has been performed. Mac melonDS/RetroArch is the priority.
 - The persistent goal covers the full audited scope, not only easy features.
 
@@ -144,3 +148,11 @@ matching core memory size; savestates still require an exact ROM hash.
 top-bottom layout. The fixture save was created for this project; no existing
 player save was supplied or modified. A gameplay fixture is not a guarantee
 of compatibility between every future build and every older save.
+
+## Milestone 03: moving native grass encounters
+
+See [visible-encounters.md](visible-encounters.md) for behavior, hooks, bounded
+verification and remaining acceptance cases. Source and detailed evidence are
+recorded in [milestone-03-verification.json](../enhancements/milestone-03-verification.json).
+The normal build command now produces milestone 03 candidates for both games.
+Previous experimental revisions remain local under ignored `build/experiments`.

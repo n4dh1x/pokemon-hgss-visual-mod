@@ -44,7 +44,8 @@ flow still needs full emulator verification.
 
 The first 32 payload bytes hold a versioned development configuration. Trade
 evolutions can be disabled in resident memory; reusable TMs currently use a
-separate static teaching patch. No player-facing runtime options menu or save
+separate static teaching patch. Visible encounters also have a development config word (Off/Few/Some/Many),
+currently defaulting to Few. No player-facing runtime options menu or save
 persistence is implemented yet. Defaults in these candidates are experimental.
 
 Build with ARM-targeting clang and LLD, plus `requirements-dev.txt`. Set
@@ -64,3 +65,12 @@ tests require locally built baselines and skip if unavailable; a ROM-free test
 run alone must not be reported as complete gameplay verification. Full teaching,
 evolution, cancellation, save/reload and later gameplay integration remain
 required before a final release.
+
+## Milestone 03 field code
+
+The resident payload is now 4,336 bytes, ending at `0x01FFA0F0`. It includes
+session-only wild slots and movement state. The original ITCM/DTCM contents stay
+unchanged, and the SDK arena advances beyond this larger payload. New field
+hooks replace five recorded ARM9 sites and six calls in overlays 1/2. Full
+component verification rejects any other file, descriptor or ARM9 mutation.
+See [visible-encounters.md](visible-encounters.md).

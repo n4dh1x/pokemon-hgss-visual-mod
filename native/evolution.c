@@ -16,7 +16,7 @@ extern void LoadMonEvolutionTable(u16 species, struct Evolution *table);
 
 __attribute__((section(".enhanced_config"), used))
 volatile struct EnhancedOptions gEnhancedOptions = {
-    0x48534745u, 1, 1, 1, {0, 0, 0, 0}
+    0x48534745u, 1, 1, 1, 1, {0, 0, 0}
 };
 
 enum {

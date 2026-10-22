@@ -161,14 +161,29 @@
       "category": "custom",
       "base_heartgold": "Random grass/cave/water encounters plus specific scripted overworld Pokemon; no general roaming-spawn system.",
       "visual_plus": "Not added.",
-      "required_work": "Priority 1: dynamic visible encounters, 0/2/4/6 slots, grass first then cave/water; only Many replaces ordinary step encounters. See encounter specification.",
+      "required_work": "Milestone 03 integrates roaming grass wilds using native follower model walking animations, native HGSS generation and retained Pokemon identity. Few-mode spawning/contact works in both games; HeartGold menu pause, save and cold reload pass. Finish cave/water support, runtime settings, all mode/capacity/transition/Repel cases, shiny sparkle and spawn effects.",
       "evidence": [
         "patches/pokeemerald/0014-visible-wild.patch",
         "patches/pokeemerald/0056-follower-pokemon.patch",
         "local_data/reference/pokeheartgold/src/field/encounter_check.c",
-        "local_data/reference/pokeheartgold/include/map_object.h"
+        "local_data/reference/pokeheartgold/include/map_object.h",
+        "native/field.c",
+        "gameplay/field.py",
+        "tests/test_visible_field.py",
+        "enhancements/milestone-03-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "arm_and_hook_tests": "passed",
+        "few_grass_in_both_emulators": "passed",
+        "native_follower_model_walking": "passed",
+        "retained_enemy_identity_in_both_games": "passed",
+        "wild_contacting_stationary_player_heartgold": "passed",
+        "menu_freeze_resume_heartgold": "passed",
+        "transient_save_exclusion_and_cold_reload_heartgold": "passed",
+        "caves_water_all_modes_capacity_transitions_repels": "pending",
+        "runtime_ui_and_persistence": "pending"
+      }
     },
     {
       "id": "iv_ev_viewer",

@@ -23,17 +23,19 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from gameplay.patches import reusable_tms
 from gameplay.native import build_payload, inject_evolution, verify_arm9_changes, PAYLOAD_BASE
+from gameplay.field import install_field, verify_field_files
 from build_baseline import build_baseline, read_rom, sha256
 
 
-def verify_unchanged_data(original, patched) -> None:
+def verify_unchanged_data(original, patched, overlay_changes) -> None:
     for name in ('name', 'idCode', 'arm9RamAddress', 'arm9EntryAddress',
                  'arm7', 'arm7RamAddress', 'arm7EntryAddress',
-                 'arm9OverlayTable', 'arm7OverlayTable', 'iconBanner'):
+                 'arm7OverlayTable', 'iconBanner'):
         if getattr(original, name) != getattr(patched, name):
             raise ValueError(f'Unexpected change outside gameplay code: {name}')
-    if original.files != patched.files or ndspy.fnt.save(original.filenames) != ndspy.fnt.save(patched.filenames):
-        raise ValueError('Unexpected NitroFS file or filename change.')
+    if ndspy.fnt.save(original.filenames) != ndspy.fnt.save(patched.filenames):
+        raise ValueError('Unexpected NitroFS filename change.')
+    verify_field_files(original, patched, overlay_changes)
 
 
 def build(source: Path, decoder: str, output_dir: Path) -> dict:
@@ -44,18 +46,21 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     arm9 = bytearray(original.arm9)
     results = [reusable_tms(arm9, original.arm9RamAddress)]
     payload = build_payload()
-    injection = inject_evolution(bytes(arm9), original.arm9RamAddress, payload)
-    results.extend(injection.changes)
     patched = ndspy.rom.NintendoDSRom.fromFile(baseline)
+    patched.arm9 = bytes(arm9)
+    field_changes, overlay_changes = install_field(patched, payload)
+    results.extend(field_changes)
+    injection = inject_evolution(patched.arm9, original.arm9RamAddress, payload)
+    results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-02'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-03'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
     encoded = patched.save()
     parsed = ndspy.rom.NintendoDSRom(encoded)
-    verify_unchanged_data(original, parsed)
+    verify_unchanged_data(original, parsed, overlay_changes)
     verify_arm9_changes(original.arm9, parsed.arm9, original.arm9RamAddress, results, payload)
     with tempfile.TemporaryDirectory(prefix='.gameplay-', dir=output_dir) as workdir:
         work = Path(workdir)
@@ -80,20 +85,24 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'patch_sha256': sha256(patch_output.read_bytes()),
         'features': [dataclasses.asdict(r) for r in results if r.feature != 'resident_code_reservation'],
         'code_changes': [dataclasses.asdict(r) for r in results],
+        'overlay_changes': [dataclasses.asdict(r) for r in overlay_changes],
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name in ('EnhancedEvolution', 'OriginalEvolution', 'gEnhancedOptions', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
-                   'NitroFS/overlays/ARM7/banner unchanged', 'xdelta round-trip'],
+                   'recorded overlay 1/2 changes only', 'other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
         'runtime_gameplay_tested': False,
         'limitations': ['Reusable TMs currently enabled at build time; runtime UI pending.',
                        'Trade evolution option is enabled in resident config; runtime UI pending.',
                        'Full in-game TM teaching and evolution/cancellation flows still need verification.',
                        'Bag TM quantity labels retain their original presentation.',
-                       'All other new Emerald enhancements remain pending.'],
+                       'Visible encounters are an experimental grass integration; full acceptance cases remain pending.',
+                       'Visible mode defaults to Few; runtime settings UI and persistence remain pending.',
+                       'Cave/water encounters, spawn effects, sparkle and full transition/capacity verification remain pending.',
+                       'Other new Emerald enhancements remain pending.'],
     }
     report_output.write_text(json.dumps(report, indent=2) + '\n')
     return report

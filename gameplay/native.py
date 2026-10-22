@@ -71,7 +71,7 @@ def build_payload() -> Payload:
     with tempfile.TemporaryDirectory(prefix='.compile-', dir=output) as temporary:
         temp = Path(temporary)
         objects = []
-        for filename in ('evolution.c', 'evolution_trampoline.S'):
+        for filename in ('evolution.c', 'evolution_trampoline.S', 'field.c'):
             target = temp / (filename + '.o')
             args = [clang, *flags]
             if filename.endswith('.c'):
