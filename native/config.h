@@ -14,7 +14,8 @@ struct EnhancedOptions {
     u32 reusable_tms;
     u32 visible_encounters; /* 0 Off, 1 Few, 2 Some, 3 Many */
     u32 repel_prompt;
-    u32 reserved[2];
+    u32 capture_exp;
+    u32 reserved[1];
 };
 
 extern volatile struct EnhancedOptions gEnhancedOptions;

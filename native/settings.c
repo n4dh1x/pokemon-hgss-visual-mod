@@ -37,6 +37,7 @@ static int valid_format(const struct EnhancedJournal *r) {
         r->count == ENHANCED_SETTINGS_COUNT && r->values[0] <= 1 &&
         r->values[1] <= 1 && r->values[2] <= 3 &&
         (!(r->reserved[0] & 1) || r->values[3] <= 1) &&
+        (!(r->reserved[0] & 2) || r->values[4] <= 1) &&
         r->checksum == EnhancedSettingsCRC(r, 252);
 }
 int EnhancedSettingsValid(const struct EnhancedJournal *r, u32 owner) {
@@ -69,6 +70,7 @@ void EnhancedSettingsEnsure(void *field) {
     gEnhancedOptions.reusable_tms = 1;
     gEnhancedOptions.visible_encounters = 1;
     gEnhancedOptions.repel_prompt = 1;
+    gEnhancedOptions.capture_exp = 1;
     for (int i = 0; i < 2; ++i) {
         struct EnhancedJournal *r = &gSettingsState.pages[i];
         int read = FlashLoadChunk(journal_offsets[i], r, sizeof(*r));
@@ -85,6 +87,7 @@ void EnhancedSettingsEnsure(void *field) {
             gEnhancedOptions.visible_encounters = r->values[2];
             /* The presence bit distinguishes legacy padding from explicit Off. */
             gEnhancedOptions.repel_prompt = (r->reserved[0] & 1) ? r->values[3] : 1;
+            gEnhancedOptions.capture_exp = (r->reserved[0] & 2) ? r->values[4] : 1;
         }
     }
 }
@@ -93,8 +96,8 @@ void *EnhancedSettingsSaveData(void) {
     return gSettingsState.loaded ? gSettingsState.save : 0;
 }
 
-int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel) {
-    if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3 || repel > 1)
+int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel, u32 capture) {
+    if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3 || repel > 1 || capture > 1)
         return 0;
     int target = gSettingsState.last_slot < 0 ? 0 : 1 - gSettingsState.last_slot;
     if (gSettingsState.last_slot < 0 && !gSettingsState.writable[target])
@@ -122,7 +125,8 @@ int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel) {
     r->values[1] = tms;
     r->values[2] = visible;
     r->values[3] = repel;
-    r->reserved[0] |= 1;
+    r->values[4] = capture;
+    r->reserved[0] |= 3;
     r->checksum = EnhancedSettingsCRC(r, 252);
     Sys_SetSleepDisableFlag(1);
     int result = FlashWriteChunk(journal_offsets[target], r, sizeof(*r));
@@ -151,5 +155,6 @@ int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel) {
     gEnhancedOptions.reusable_tms = tms;
     gEnhancedOptions.visible_encounters = visible;
     gEnhancedOptions.repel_prompt = repel;
+    gEnhancedOptions.capture_exp = capture;
     return 1;
 }

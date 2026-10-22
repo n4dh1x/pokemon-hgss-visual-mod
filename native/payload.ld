@@ -83,3 +83,13 @@ Bag_HasItem = 0x020784B1;
 PlaySE = 0x0200604D;
 FieldSystem_MapIsBattleTowerMultiPartnerSelectRoom = 0x02067585;
 NativeNormalMenuInhibitFlags = 0x0203BE61;
+
+NativeCaptureTask = 0x022465A9;
+NativeExperienceTask = 0x02245899;
+NativeCalcExperience = 0x0223E6A1;
+BattleSystem_GetBattleType = 0x0223A7E1;
+BattleSystem_GetParty = 0x0223A7F5;
+Heap_Alloc = 0x0201AA8D;
+Heap_Free = 0x0201AB0D;
+SysTask_CreateOnMainQueue = 0x0200E321;
+NativeBallAnimationActive = 0x02232F61;

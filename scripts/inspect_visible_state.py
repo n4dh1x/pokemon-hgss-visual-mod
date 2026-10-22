@@ -60,14 +60,20 @@ def inspect_run(run: Path, report_path: Path) -> dict:
             'trade_evolutions': struct.unpack_from('<I', state, base + 8)[0],
             'reusable_tms': struct.unpack_from('<I', state, base + 12)[0]}
     if 'gEnhancedMenu' in symbols:
-        extended_menu = report.get('diagnostics', {}).get('menu_state_bytes') == 64
-        menu = resident_words('gEnhancedMenu', 16 if extended_menu else 15)
+        menu_size = report.get('diagnostics', {}).get('menu_state_bytes', 60)
+        extended_menu = menu_size >= 64
+        menu = resident_words('gEnhancedMenu', menu_size // 4)
         result['enhancement_menu'] = {'active': bool(menu[6]), 'phase': menu[7],
             'row': menu[8], 'staged_trade': menu[9], 'staged_tms': menu[10],
-            'staged_visible': menu[11], 'error': menu[13] if extended_menu else menu[12]}
+            'staged_visible': menu[11], 'error': menu[(menu_size // 4) - 3]}
         if extended_menu:
             result['enhancement_menu']['staged_repel_prompt'] = menu[12]
             result['settings']['repel_prompt'] = struct.unpack_from('<I', state, base + 20)[0]
+    if 'gCaptureExperience' in symbols:
+        result['enhancement_menu']['staged_capture_exp'] = menu[13]
+        result['settings']['capture_exp'] = struct.unpack_from('<I', state, base + 24)[0]
+        capture = resident_words('gCaptureExperience', 14)
+        result['capture_exp'] = dict(zip(('parent','context','phase','completed_once','saved_fainted','saved_gained','saved_shared','saved_earn0','saved_earn1','started','completed','failures','skipped','last_enemy'), capture))
     if 'gEnhancedRepelDialog' in symbols:
         dialog = resident_words('gEnhancedRepelDialog', 17)
         result['repel_dialog'] = {'active': bool(dialog[6]), 'phase': dialog[7],

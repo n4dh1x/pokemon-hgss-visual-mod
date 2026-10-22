@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 58 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- Seventy-eight tests pass, including compiled ARM field logic and independently checked
+- Eighty-five tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 9,512-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 10,248-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -84,7 +84,8 @@ Then add cave/water encounters and all remaining edge cases in the inventory.
 ## Later phases
 
 The complete ordered plan and per-feature differences are in
-[emerald-parity.md](emerald-parity.md). Capture EXP and IV/EV display have donor code and remain unmerged.
+[emerald-parity.md](emerald-parity.md). IV/EV display has donor code and remains unmerged. Capture EXP is now integrated
+with bounded verification in milestone 08.
 The repeat-Repel prompt is integrated with bounded verification in milestone 06. Reusable TMs and trade evolutions are integrated as described below. No estimate is
 claimed for full parity, and DS/3DS hardware differences are explicitly recorded.
 
@@ -164,7 +165,7 @@ of compatibility between every future build and every older save.
 See [visible-encounters.md](visible-encounters.md) for behavior, hooks, bounded
 verification and remaining acceptance cases. Source and detailed evidence are
 recorded in [milestone-03-verification.json](../enhancements/milestone-03-verification.json).
-The normal build command now produces milestone 07 candidates for both games.
+The normal build command now produces milestone 08 candidates for both games.
 Previous experimental revisions remain local under ignored `build/experiments`.
 
 ## Milestone 04: native settings menu and durable controls
@@ -207,3 +208,14 @@ states show the native wear-off message; normal states offer and consume only
 Super Repel. HeartGold also refuses after access is revoked during the prompt.
 Full visits through each special-area story flow remain pending. See
 [milestone-07-verification.json](../enhancements/milestone-07-verification.json).
+
+## Milestone 08: native capture EXP
+
+The fifth saved option defaults On and adds native EXP and EV rewards after a
+confirmed capture, before Dex/nickname/storage. A separate native EXP task keeps
+the capture parent alive, then restores its context. Both games complete capture
+and field return with the expected EXP/EV values; saved Off survives a cold boot
+and has actual capture controls. All 85 tests pass. Level-up, move-learning,
+evolution, failed balls, held-item and full double/roamer flows remain pending.
+See [capture-experience.md](capture-experience.md) and
+[milestone-08-verification.json](../enhancements/milestone-08-verification.json).

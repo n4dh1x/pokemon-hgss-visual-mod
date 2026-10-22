@@ -80,13 +80,24 @@
       "category": "donor",
       "base_heartgold": "Not present.",
       "visual_plus": "Not added.",
-      "required_work": "Integrate hg-engine capture EXP; validate capture, level-up, evolution and double-battle paths.",
+      "required_work": "Native capture EXP/EV task and fifth saved On/Off option integrated. Both games pass capture, Dex registration, nickname decline, field return and saved-Off controls. Finish level-up, move-learning, evolution, failed balls, held-item and full double/roamer capture verification.",
       "evidence": [
         "patches/pokeemerald/0010-exp-for-catching.patch",
         "local_data/reference/hg-engine/src/battle/battle_script_commands.c",
-        "local_data/reference/hg-engine/include/config.h"
+        "local_data/reference/hg-engine/include/config.h",
+        "native/capture.c",
+        "gameplay/capture.py",
+        "tests/test_capture_exp.py",
+        "docs/capture-experience.md",
+        "enhancements/milestone-08-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "native_arm_task_ownership_and_completion_both_games": "passed",
+        "basic_capture_exp_ev_and_storage_both_games": "passed",
+        "saved_off_cold_reload_and_capture_controls_both_games": "passed",
+        "level_up_moves_evolution_and_extended_capture_cases": "pending"
+      }
     },
     {
       "id": "party_exp",

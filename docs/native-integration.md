@@ -123,3 +123,21 @@ Permission is checked both when offering and accepting. Safari retains its nativ
 bag access. Config, save layouts and diagnostic sizes remain as in milestone 06.
 
 The milestone 07 payload is 9,512 bytes, ending at `0x01FFB528`.
+
+## Milestone 08 native capture task
+
+The 10,248-byte payload ends at `0x01FFB808`. A fingerprinted callback literal at
+overlay 12 `0x0223EBE0` targets the capture wrapper. Original USA EXP calculation,
+capture and EXP tasks remain intact; their exact function hashes are guarded for
+both games, including the game-specific capture task bytes. A separate native
+SysTask and 0x58-byte GetterWork allocation run EXP while the original catch task
+waits. Native completion frees only the child allocation/task, then restores the
+catch getter pointer, fainted battler, EXP scratch values and participation masks.
+The original capture task resumes before Dex/nickname/storage. No EXP formula,
+Pokemon encryption, EV routine or level/move UI is reimplemented.
+
+Config word 6 adds capture EXP; journal value 4 uses reserved word 0 bit 1 as its
+presence marker. Legacy records default On. Config/journal/settings/visible sizes
+remain 32/256/1,060/1,640 bytes. Menu diagnostics grow to 68 bytes; capture diagnostics
+are 56 bytes. All nine overlay edits are recorded in overlays 1/2/12/15. See
+[capture-experience.md](capture-experience.md) for bounded verification.

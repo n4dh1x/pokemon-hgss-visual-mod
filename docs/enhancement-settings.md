@@ -73,3 +73,9 @@ ROM/state hashes, input sequences and bounded memory diagnostics are recorded in
 Source/save/ROM/state/screenshot artifacts remain local and ignored. SoulSilver
 tests use a copy of the project-created HeartGold fixture; they do not establish
 a fresh SoulSilver story playthrough or universal save interchangeability.
+
+Milestone 08 adds the fifth setting, EXP for catching. It defaults On for legacy
+records and persists explicit Off using value 4 and reserved word 0 bit 1. The
+native menu grows to seven rows including Save/Cancel and fits the DS screen.
+The journal version, page size and flash offsets remain unchanged. The current
+suite passes 85 tests. See [capture-experience.md](capture-experience.md).

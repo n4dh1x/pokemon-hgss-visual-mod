@@ -124,6 +124,7 @@ class TestSettings(unittest.TestCase):
     def execute(self, symbol, *args):
         for r, value in zip((UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_R2, UC_ARM_REG_R3), (*args, 0, 0, 0, 0)):
             self.uc.reg_write(r, value)
+        self.uc.mem_write(0x023FF000, struct.pack("<8I", *args[4:], *([0] * (8 - len(args[4:])))))
         self.uc.reg_write(UC_ARM_REG_SP, 0x023FF000)
         self.uc.reg_write(UC_ARM_REG_LR, 0x02300001)
         self.uc.emu_start(self.payload.symbols[symbol], 0x02300000, count=200000)
@@ -239,7 +240,7 @@ class TestSettings(unittest.TestCase):
         self.execute('EnhancedMenuOpen', self.field)
         self.execute('EnhancedMenuTask', 0)
         self.put(self.menu + 44, 3)
-        self.put(self.menu + 32, 4)
+        self.put(self.menu + 32, 5)
         self.put(0x021D1154, 1)
         self.assertEqual(self.execute('EnhancedMenuTask', 0), 0)
         self.assertEqual(self.writes, [])
@@ -258,6 +259,19 @@ class TestSettings(unittest.TestCase):
         self.assertEqual(self.values(), (0, 1, 3))
         self.assertEqual(self.get(PAYLOAD_BASE + 20), 0)
         self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 2), 0)
+
+    def test_legacy_capture_option_defaults_on_and_saves_explicit_off(self):
+        self.install(0, record(self.owner, 8, (0, 1, 3)))
+        self.reload()
+        self.assertEqual(self.get(PAYLOAD_BASE + 24), 1)
+        self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 1, 0), 1)
+        self.reload()
+        self.assertEqual(self.get(PAYLOAD_BASE + 24), 0)
+        self.assertEqual(self.get(PAYLOAD_BASE + 20), 1)
+        self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 1, 1), 1)
+        self.reload()
+        self.assertEqual(self.get(PAYLOAD_BASE + 24), 1)
+        self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 1, 2), 0)
 
 
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for save layout audit.')
