@@ -19,6 +19,7 @@ int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel, u32 captur
 int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
     u32 capture, u32 party, const struct EnhancedExtraOptions *extra);
 void *EnhancedSettingsSaveData(void);
+int EnhancedSettingsOwner(u32 *owner);
 int EnhancedMenuOpen(void *field);
 u32 EnhancedSettingsCRC(const void *data, u32 size);
 int EnhancedSettingsValid(const struct EnhancedJournal *record, u32 owner);

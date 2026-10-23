@@ -31,6 +31,7 @@ from gameplay.party_exp import install_party_exp
 from gameplay.field_hms import install_field_hms
 from gameplay.field_hm_bag import install_field_hm_bag
 from gameplay.summary_viewer import install_summary_viewer
+from gameplay.shiny import install_shiny
 from build_baseline import build_baseline, read_rom, sha256
 
 
@@ -71,11 +72,12 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     results.extend(bag_main)
     overlay_changes.extend(bag_overlays)
     results.extend(install_summary_viewer(patched, payload))
+    results.extend(install_shiny(patched, payload))
     injection = inject_evolution(patched.arm9, original.arm9RamAddress, payload)
     results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-15'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-16'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -112,28 +114,32 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'settings_storage': settings_storage,
         'repel_storage': repel_storage,
         'enhancement_menu': {'open_button': 'SELECT',
-            'options': ['visible_wild', 'trade_evo', 'infinite_tms', 'repel_prompt', 'capture_exp', 'party_exp', 'field_hms', 'roaming_only_grass', 'ivs_evs', 'encounter_rate'],
+            'options': ['visible_wild', 'trade_evo', 'infinite_tms', 'repel_prompt', 'capture_exp', 'party_exp', 'field_hms', 'roaming_only_grass', 'ivs_evs', 'encounter_rate', 'shiny_odds'],
             'apply': 'Save and close', 'cancel': 'B or Cancel', 'page': 'X or L/R'},
         'summary_viewer': {'default': 'On', 'page': 'Skills', 'controls': {'Y':'Cycle stats/IVs/EVs','L':'EVs','R':'IVs','SELECT':'Normal stats'},
                            'data': 'Native party/raw/PC-box getters; no Pokemon or cached-stat mutation'},
+        'shiny_odds': {'choices': ['1/8192', '1/4096', '1/1024', '1/256', '1/64', 'Always'], 'default': '1/8192',
+                       'rolls': [1, 2, 8, 32, 128, 0], 'scope': 'New eligible wild/starters/gifts; eggs/trades/fixed personalities and existing Pokemon unchanged'},
         'encounter_rate': {'choices': ['Normal', 'Off', '1/4', '1/2', '2x'], 'default': 'Normal',
                            'scope': 'Ordinary walking/surfing and visible spawn cadence; native legendary roamer decisions, fishing, scripted and special-area encounters retained',
                            'visible_spawn_interval_field_updates': [60, 0, 240, 120, 30]},
         'grass_battles': {'choices': ['Normal', 'Roaming only'], 'default': 'Normal',
                           'scope': 'Regular grass while visible wilds are enabled; other contexts remain native'},
         'diagnostics': {'visible_state_bytes': 1644, 'settings_state_bytes': 1060,
-                        'menu_state_bytes': 92, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 16, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
+                        'menu_state_bytes': 96, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 20, 'shiny_state_bytes': 40, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
                    'recorded overlay 1/2/12/15 changes only', 'audited native flash allocation',
                    'one guarded appended battle message; other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
         'runtime_gameplay_tested': False,
-        'limitations': ['The enhancement menu currently exposes ten integrated gameplay options across two pages.',
+        'limitations': ['Shiny odds cover new wild/nature/gender callers, starters and script gifts; preset/fixed/egg/trade and stored roamer identities stay native. Full gift/starter/roamer acceptance remains pending.',
+                       'Native shiny state and battle colors are verified separately; overworld shiny palette selection and sparkle remain pending.',
+                       'The enhancement menu currently exposes eleven integrated gameplay options across two pages.',
                        'Field HMs include contextual fallback and native Bag Use Now actions for HM02/TM70; full per-move acceptance remains pending.',
                        'Roaming only suppresses hidden grass roamer battles too; native legendary roamers are not yet rendered as visible spawns. Use Normal for their native path.',
                        'Full in-game TM teaching and evolution/cancellation flows still need verification.',

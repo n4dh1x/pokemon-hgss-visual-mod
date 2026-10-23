@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 147 tests pass, including compiled ARM field logic and independently checked
+- 159 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 15,440-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 16,600-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -358,3 +358,36 @@ match the tested ROMs. See [encounter-rate.md](encounter-rate.md) and
 Full Surf/cave/special-area and actual legendary gameplay acceptance remain
 pending; instruction tests and Route 29 checks are bounded evidence. All other
 unfinished enhancement inventory work remains in the active goal.
+
+
+## Milestone 16: saved shiny odds on new eligible Pokemon
+
+The eleventh option adds native odds, 1/4096, 1/1024, 1/256, 1/64 and Always on
+page 2. Labels follow Emerald's nominal odds; boosted choices use 2/8/32/128 total
+PID rolls and stop on the first shiny. Nature is retained; the forced-gender
+caller also keeps gender and explicit Unown-letter constraints. Always uses a
+finite enumeration of shiny PIDs from a randomized start, retaining constraints.
+The unmodified native shiny rule remains XOR<8. No existing Pokemon is rewritten.
+
+Four exact guarded ARM9 creation calls cover wild nature/gender paths, starters
+and script gifts. Native initialization runs once, after choosing a PID; IVs,
+moves, stats, encryption and abilities are initialized by the original game.
+Other creation calls remain byte-identical, including eggs, trades, trainer teams,
+fixed personalities and native roamer paths. Full starter/gift and new-roamer
+adaptation/gameplay acceptance remain pending.
+
+159 tests pass. Both games cold-load native, 1/64 and Always, render all six
+labels, retain old shiny spawns after selecting native odds, and preserve entire
+saves on Cancel. Original native getters prove actual shiny visible records
+match battle enemies byte-for-byte. Both captured shinies keep PID/IVs and the
+native shiny flag in party storage and after native saving/cold reload.
+Capture EXP and level-up screens complete normally. The isolated capture supply
+is an explicitly declared four-byte Poke Ball slot fixture applied before
+battle setup; no Pokemon/HP/EXP/story values are edited. Earlier empty-bag and
+late-supply attempts are diagnostics, not capture acceptance.
+
+Overworld palette selection is not yet correct in the observed wild sprites;
+the native object shiny bit and data/battle shininess do not prove field color.
+Palette correction and shiny sparkle remain in the full active goal alongside
+all other unfinished inventory work. See [shiny-odds.md](shiny-odds.md) and
+[milestone-16-verification.json](../enhancements/milestone-16-verification.json).

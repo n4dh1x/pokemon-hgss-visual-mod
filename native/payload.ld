@@ -136,3 +136,7 @@ NativeSummaryMon = 0x0208A521;
 NativeSummaryNumber = 0x0208C87D;
 NativeSummaryPrint = 0x0208C779;
 GetBoxMonData = 0x0206E641;
+
+NativeCreateMon = 0x0206DE39;
+NativeNatureFromPid = 0x0206FE2D;
+NativeMonBaseStat = 0x0206FBE9;

@@ -139,3 +139,19 @@ preserve an existing explicit rate. Version, owner, page size and CRC are unchan
 The auxiliary runtime structure is 16 bytes, the menu is 92 bytes, and the loader
 header remains 32 bytes. Both games save all choices, cold-load Off and 2x, and
 Cancel preserves the whole cartridge save. See [encounter-rate.md](encounter-rate.md).
+
+
+## Milestone 16 extension
+
+Page 2 adds Shiny odds as its fifth row. Left/Right cycle six choices and A
+advances; the page skips its one blank row before Save/Cancel. Slot 10 and
+reserved word 0 presence bit 7 (128) store an explicit choice 0..5. Legacy padding
+without that bit defaults to native odds. Unknown slots 11..47 and future bits
+survive; old six-argument callers preserve the saved shiny option. Invalid values
+are rejected and failed writes do not apply staged odds.
+
+The auxiliary structure is 20 bytes and the menu 96 bytes. The fixed loader header,
+256-byte journal, count/version/owner/CRC and native save layout remain unchanged.
+The owner getter validates the current trainer against the loaded journal before
+applying extra rolls; unavailable or changed ownership uses native creation.
+See [shiny-odds.md](shiny-odds.md).

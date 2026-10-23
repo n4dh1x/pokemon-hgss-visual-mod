@@ -19,3 +19,7 @@ decompilation as a native interface reference. The summary-viewer approach was
 informed by [hg-engine](https://github.com/BluRosie/hg-engine), whose summary work
 credits LheaRachel and Bubble. Exact audited revisions are in
 [sources.lock.json](../enhancements/sources.lock.json).
+
+Shiny odds follow Emerald 3DS patches 0022/0028's nominal roll choices. The HGSS
+adaptation targets new native creation calls and retains the native shiny rule;
+it does not transplant hg-engine's global compile-time shiny threshold.

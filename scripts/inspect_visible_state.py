@@ -96,6 +96,10 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['settings']['encounter_rate'] = extra[3]
         result['enhancement_menu']['staged_encounter_rate'] = menu[18]
         result['encounter_rate'] = dict(zip(('field','roamer','cached','native_rolls','scaled_rolls','roamer_preserved','off_blocks'), resident_words('gEncounterRateState', 7)))
+    if 'gShinyState' in symbols:
+        result['settings']['shiny_odds'] = extra[4]
+        result['enhancement_menu']['staged_shiny_odds'] = menu[19]
+        result['shiny'] = dict(zip(('calls','rolls','candidates','changes','failures','original_pid','selected_pid','owner','species','kind'), resident_words('gShinyState', 10)))
     if 'gSummaryViewState' in symbols:
         summary = resident_words('gSummaryViewState', 13)
         result['summary_view'] = dict(zip(('summary','pokemon','mode','draws','switches','data_type','reads'), summary[:7]))

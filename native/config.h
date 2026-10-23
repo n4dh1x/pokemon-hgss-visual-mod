@@ -26,6 +26,7 @@ struct EnhancedExtraOptions {
     u32 roaming_only_grass; /* Optional sprite-contact-only grass; default Off. */
     u32 iv_ev_viewer;
     u32 encounter_rate; /* Normal, Off, quarter, half, double. */
+    u32 shiny_odds; /* Native, 2/8/32/128 rolls, always. */
 };
 extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 

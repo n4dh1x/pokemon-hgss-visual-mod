@@ -226,7 +226,7 @@
       "category": "custom",
       "base_heartgold": "Random grass/cave/water encounters plus specific scripted overworld Pokemon; no general roaming-spawn system.",
       "visual_plus": "Not added.",
-      "required_work": "Native follower models walk as grass wilds retain their generated Pokemon into contact battles. Saved Off/Few/Some/Many controls are integrated. Milestone 05 adds current native Repel checks on unsolicited contact and map-aware cleanup; both games pass protected/control contact runs and Route 29 to New Bark transitions. Finish cave/water support, full mode/capacity/map/party/Repel coverage, shiny sparkle and spawn effects. Milestone 12 makes Normal grass battles the default for every density and adds a separate optional Roaming only setting.",
+      "required_work": "Native follower models walk as grass wilds retain their generated Pokemon into contact battles. Saved Off/Few/Some/Many controls are integrated. Milestone 05 adds current native Repel checks on unsolicited contact and map-aware cleanup; both games pass protected/control contact runs and Route 29 to New Bark transitions. Finish cave/water support, full mode/capacity/map/party/Repel coverage, shiny sparkle and spawn effects. Milestone 12 makes Normal grass battles the default for every density and adds a separate optional Roaming only setting. Milestone 16 verifies retained shiny data/battle/capture identities; observed overworld palettes still need correction, plus sparkle.",
       "evidence": [
         "patches/pokeemerald/0014-visible-wild.patch",
         "patches/pokeemerald/0056-follower-pokemon.patch",
@@ -551,13 +551,31 @@
       "category": "custom",
       "base_heartgold": "Original odds and fixed scripted exceptions.",
       "visual_plus": "Not added.",
-      "required_work": "Runtime selection for new eligible player Pokemon; roll once at visible spawn and preserve PID/shininess into battle. hg-engine SHINY_ODDS is only a compile-time starting point.",
+      "required_work": "Milestone 16 adds saved nominal odds with 1/2/8/32/128 rolls and constrained Always for new wilds/starters/script gifts. Existing/fixed/egg/trade/preset paths remain native. Both games retain shiny PID/IVs into actual contact, capture, native save and cold reload. Finish field palettes/sparkle, new-roamer adaptation and full starter/gift/egg/trade/species/form acceptance.",
       "evidence": [
         "patches/pokeemerald/0022-shiny-odds.patch",
         "patches/pokeemerald/0028-visible-wild-shiny-odds.patch",
-        "local_data/reference/hg-engine/include/config.h"
+        "local_data/reference/hg-engine/include/config.h",
+        "native/shiny.c",
+        "gameplay/shiny.py",
+        "native/settings.c",
+        "native/menu.c",
+        "tests/test_shiny.py",
+        "tests/test_settings.py",
+        "scripts/inspect_wild_shiny_state.py",
+        "docs/shiny-odds.md",
+        "enhancements/milestone-16-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "native_creation_callers_and_constraints_both_games": "passed_compiled_arm",
+        "settings_legacy_all_choices_unknown_atomicity": "passed_compiled_arm",
+        "native_boosted_always_cold_reload_and_cancel_both_mac": "passed",
+        "retained_enemy_byte_identity_and_native_shininess_both_mac": "passed",
+        "capture_party_native_save_cold_pid_ivs_shiny_both_mac": "passed_declared_4_byte_ball_supply_fixture",
+        "overworld_palette_and_sparkle": "pending; observed field palette still ordinary despite native shiny parameter",
+        "full_starter_gift_egg_trade_species_forms_new_roamers": "pending"
+      }
     },
     {
       "id": "always_catch",
