@@ -5,8 +5,9 @@ Visible wilds (Off/Few/Some/Many), Trade evolution and Reusable TMs. Use Up/Down
 to choose, Left/Right or A to change a value, and A on Save and close to apply.
 B or Cancel discards staged changes. Milestone 06 adds the fourth option, Repel
 prompt (On/Off); see [repel-prompt.md](repel-prompt.md). Milestone 08 adds EXP for catching; milestone 10 adds Party EXP Share. Both are
-saved On/Off options and default On for legacy records. The six-option menu uses
-16-pixel row spacing. The rest of the audited enhancement list remains in scope.
+saved On/Off options and default On for legacy records. Milestone 12 adds Field HMs and Grass battles on a second page; L/R switches
+pages, retaining staged values. Save and close applies both pages atomically.
+The eight-option menu uses 16-pixel row spacing. The rest of the audited enhancement list remains in scope.
 
 The menu uses HGSS's field task, window, font and input routines. NPC movement
 pauses while it is open, and prior NPC pause flags are restored on exit. The
@@ -89,3 +90,19 @@ without changing the journal version, length, ownership or CRC. Unknown values
 and reserved bits survive writes. Both games show the six options, cold-reload
 Off and On, and retain rewards after native game saving. The regression suite
 passes 95 tests. See [party-experience.md](party-experience.md).
+
+
+## Milestone 12 extension
+
+Page 2 has Field HMs (On/Off, default On) and Grass battles (Normal/Roaming only,
+default Normal). The short page skips empty rows when moving to Save/Cancel.
+Cancel on either page discards all staged values. Roaming only applies when
+visible wilds are enabled in regular grass. Turning visible wilds Off restores
+native random encounters even if Roaming only remains selected.
+
+Journal values 6 and 7, with reserved word 0 presence bits 3 and 4, store these
+options. Legacy records get defaults; unknown values and bits survive writes.
+The fixed loader configuration remains 32 bytes; the extra runtime options use
+separate resident storage. Journal version, page size, ownership and CRC are
+unchanged. Both games render page 2 and cold-reload Roaming only. Native ARM tests
+cover cross-page staging/cancel, write failures and legacy/unknown preservation.

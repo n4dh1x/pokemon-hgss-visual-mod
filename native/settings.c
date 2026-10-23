@@ -19,6 +19,7 @@ struct SettingsState {
     struct EnhancedJournal pending, verify;
 };
 struct SettingsState gSettingsState;
+volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 _Static_assert(sizeof(struct SettingsState) == 1060, "Settings diagnostic ABI");
 
 u32 EnhancedSettingsCRC(const void *data, u32 size) {
@@ -39,6 +40,8 @@ static int valid_format(const struct EnhancedJournal *r) {
         (!(r->reserved[0] & 1) || r->values[3] <= 1) &&
         (!(r->reserved[0] & 2) || r->values[4] <= 1) &&
         (!(r->reserved[0] & 4) || r->values[5] <= 1) &&
+        (!(r->reserved[0] & 8) || r->values[6] <= 1) &&
+        (!(r->reserved[0] & 16) || r->values[7] <= 1) &&
         r->checksum == EnhancedSettingsCRC(r, 252);
 }
 int EnhancedSettingsValid(const struct EnhancedJournal *r, u32 owner) {
@@ -73,6 +76,8 @@ void EnhancedSettingsEnsure(void *field) {
     gEnhancedOptions.repel_prompt = 1;
     gEnhancedOptions.capture_exp = 1;
     gEnhancedOptions.party_exp = 1;
+    gEnhancedExtraOptions.field_hms = 1;
+    gEnhancedExtraOptions.roaming_only_grass = 0;
     for (int i = 0; i < 2; ++i) {
         struct EnhancedJournal *r = &gSettingsState.pages[i];
         int read = FlashLoadChunk(journal_offsets[i], r, sizeof(*r));
@@ -91,6 +96,8 @@ void EnhancedSettingsEnsure(void *field) {
             gEnhancedOptions.repel_prompt = (r->reserved[0] & 1) ? r->values[3] : 1;
             gEnhancedOptions.capture_exp = (r->reserved[0] & 2) ? r->values[4] : 1;
             gEnhancedOptions.party_exp = (r->reserved[0] & 4) ? r->values[5] : 1;
+            gEnhancedExtraOptions.field_hms = (r->reserved[0] & 8) ? r->values[6] : 1;
+            gEnhancedExtraOptions.roaming_only_grass = (r->reserved[0] & 16) ? r->values[7] : 0;
         }
     }
 }
@@ -100,8 +107,15 @@ void *EnhancedSettingsSaveData(void) {
 }
 
 int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel, u32 capture, u32 party) {
+    /* Old callers preserve auxiliary and unknown journal fields. */
+    return EnhancedSettingsStoreAll(trade, tms, visible, repel, capture, party, 0);
+}
+
+int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
+        u32 capture, u32 party, const struct EnhancedExtraOptions *extra) {
     if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3 || repel > 1 || capture > 1 || party > 1)
         return 0;
+    if (extra && (extra->field_hms > 1 || extra->roaming_only_grass > 1)) return 0;
     int target = gSettingsState.last_slot < 0 ? 0 : 1 - gSettingsState.last_slot;
     if (gSettingsState.last_slot < 0 && !gSettingsState.writable[target])
         target = 1;
@@ -131,6 +145,11 @@ int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel, u32 captur
     r->values[4] = capture;
     r->values[5] = party;
     r->reserved[0] |= 7;
+    if (extra) {
+        r->values[6] = extra->field_hms;
+        r->values[7] = extra->roaming_only_grass;
+        r->reserved[0] |= 24;
+    }
     r->checksum = EnhancedSettingsCRC(r, 252);
     Sys_SetSleepDisableFlag(1);
     int result = FlashWriteChunk(journal_offsets[target], r, sizeof(*r));
@@ -161,5 +180,9 @@ int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel, u32 captur
     gEnhancedOptions.repel_prompt = repel;
     gEnhancedOptions.capture_exp = capture;
     gEnhancedOptions.party_exp = party;
+    if (extra) {
+        gEnhancedExtraOptions.field_hms = extra->field_hms;
+        gEnhancedExtraOptions.roaming_only_grass = extra->roaming_only_grass;
+    }
     return 1;
 }

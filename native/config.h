@@ -20,4 +20,11 @@ struct EnhancedOptions {
 
 extern volatile struct EnhancedOptions gEnhancedOptions;
 
+/* Keep the fixed loader header/trampoline ABI while extending runtime options. */
+struct EnhancedExtraOptions {
+    u32 field_hms;
+    u32 roaming_only_grass; /* Optional sprite-contact-only grass; default Off. */
+};
+extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
+
 #endif

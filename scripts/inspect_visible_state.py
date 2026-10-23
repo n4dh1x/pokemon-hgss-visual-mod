@@ -79,6 +79,14 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['settings']['party_exp'] = struct.unpack_from('<I', state, base + 28)[0]
         party = resident_words('gPartyExperience', 17)
         result['party_exp'] = dict(zip(('work','context','active','participants','full','half','side','slot','bench','shown','printer','started','completed','groups','suppressed','recipients','calculations'), party))
+    if 'gEnhancedExtraOptions' in symbols:
+        result['settings']['field_hms'] = resident_words('gEnhancedExtraOptions', 2)[0]
+        result['settings']['roaming_only_grass'] = resident_words('gEnhancedExtraOptions', 2)[1]
+        result['enhancement_menu']['staged_field_hms'] = menu[15]
+        result['enhancement_menu']['staged_roaming_only_grass'] = menu[16]
+        result['enhancement_menu']['page'] = menu[17]
+        hm = resident_words('gFieldHmState', 9)
+        result['field_hms'] = dict(zip(('scripts','checks','fallbacks','no_user','last_move','last_slot','compatible','disabled','cache_hits'), hm))
     if 'gEnhancedRepelDialog' in symbols:
         dialog = resident_words('gEnhancedRepelDialog', 17)
         result['repel_dialog'] = {'active': bool(dialog[6]), 'phase': dialog[7],
@@ -109,10 +117,14 @@ def inspect_run(run: Path, report_path: Path) -> dict:
             raise ValueError('Roaming state lies outside the resident payload.')
         result['walk_commands'], result['paused_mask'] = struct.unpack_from('<2I', state, start + 1616)
         result['discarded_ordinary'] = struct.unpack_from('<I', state, start + 1628)[0]
-    if report.get('diagnostics', {}).get('visible_state_bytes') == 1640:
+    if report.get('diagnostics', {}).get('visible_state_bytes') >= 1640:
         if start + 1640 > base + report['resident_payload']['size']:
             raise ValueError('Contact diagnostics lie outside the resident payload.')
         result['repelled_contacts'], result['map_releases'] = struct.unpack_from('<2I', state, start + 1632)
+    if report.get('diagnostics', {}).get('visible_state_bytes', 0) >= 1644:
+        if start + 1644 > base + report['resident_payload']['size']:
+            raise ValueError('Grass diagnostics lie outside the resident payload.')
+        result['blocked_grass_steps'] = struct.unpack_from('<I', state, start + 1640)[0]
     # Audited USA sFieldSysPtr. The field task chain identifies an actual native
     # battle setup, avoiding a broad memory-pattern match as identity evidence.
     field = word(0x021D4158)

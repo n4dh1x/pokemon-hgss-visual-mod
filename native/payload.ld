@@ -100,3 +100,10 @@ NativeScriptReadWord = 0x022454E9;
 NativeScriptIncrement = 0x02245509;
 NativePrintBattleMessage = 0x0223C495;
 NativeUnsignedDivide = 0x020F2BA4;
+
+NativePartySlotWithMove = 0x0204D3CD;
+NativeFirstPartyMove = 0x020542E9;
+ScriptReadHalfword = 0x0203FE2D;
+GetVarPointer = 0x02040375;
+FieldSystem_VarGet = 0x020403AD;
+GetMonTMHMCompat = 0x0207224D;

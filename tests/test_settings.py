@@ -290,6 +290,89 @@ class TestSettings(unittest.TestCase):
         self.assertEqual(self.get(PAYLOAD_BASE + 28), 1)
 
 
+    def test_extra_legacy_defaults_atomic_roundtrip_and_unknown_fields(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions'];at=0x02220000
+        self.install(0,record(self.owner,10,(0,1,3,1,1,1,99,77,0x12345678)))
+        self.reload()
+        self.assertEqual((self.get(extra),self.get(extra+4)),(1,0))
+        self.put(at,0);self.put(at+4,1)
+        self.assertEqual(self.execute('EnhancedSettingsStoreAll',0,1,3,1,1,1,at),1)
+        self.reload();self.assertEqual((self.get(extra),self.get(extra+4)),(0,1))
+        data=self.writes[-1][1]
+        self.assertEqual(struct.unpack_from('<I',data,20+8*4)[0],0x12345678)
+        self.assertEqual(struct.unpack_from('<I',data,212)[0]&31,31)
+        self.assertEqual(self.execute('EnhancedSettingsStore',1,0,2,0,0,0),1)
+        self.reload();self.assertEqual((self.get(extra),self.get(extra+4)),(0,1))
+        before=len(self.writes);self.put(at+4,2)
+        self.assertEqual(self.execute('EnhancedSettingsStoreAll',0,1,3,1,1,1,at),0)
+        self.assertEqual(len(self.writes),before)
+
+    def test_old_settings_call_preserves_unactivated_extra_padding(self):
+        self.install(0,record(self.owner,10,(1,1,1,0,0,0,99,77,0x12345678)))
+        self.reload();self.assertEqual(self.execute('EnhancedSettingsStore',0,1,2,1,1,1),1)
+        data=self.writes[-1][1]
+        self.assertEqual(struct.unpack_from('<3I',data,20+6*4),(99,77,0x12345678))
+        self.assertEqual(struct.unpack_from('<I',data,212)[0]&24,0)
+
+    def test_extra_presence_validation_and_future_reserved_bits(self):
+        data=bytearray(record(self.owner,10,(1,1,1,1,1,1,1,0)))
+        struct.pack_into('<I',data,212,0x80000018)
+        struct.pack_into('<I',data,252,zlib.crc32(data[:252])&0xFFFFFFFF)
+        self.install(0,bytes(data));self.reload()
+        self.assertEqual(self.execute('EnhancedSettingsStore',0,1,3,1,1,1),1)
+        self.assertEqual(struct.unpack_from('<I',self.writes[-1][1],212)[0],0x8000001F)
+        for slot in (6,7):
+            bad=bytearray(data);struct.pack_into('<I',bad,20+slot*4,2)
+            struct.pack_into('<I',bad,252,zlib.crc32(bad[:252])&0xFFFFFFFF)
+            self.uc.mem_write(0x02220000,bytes(bad))
+            self.assertEqual(self.execute('EnhancedSettingsValid',0x02220000,self.owner),0)
+
+    def test_page_changes_preserve_staging_and_cancel_discards_every_page(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions']
+        self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
+        self.assertEqual(self.get(self.menu+44),2)
+        self.put(0x021D1154,0x100);self.execute('EnhancedMenuTask',0)
+        self.assertEqual(self.get(self.menu+68),1)
+        self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
+        self.assertEqual((self.get(self.menu+60),self.get(self.menu+64)),(0,1))
+        self.put(0x021D1154,0x200);self.execute('EnhancedMenuTask',0)
+        self.assertEqual(self.get(self.menu+44),2)
+        self.put(0x021D1154,2);self.assertEqual(self.execute('EnhancedMenuTask',0),1)
+        self.assertEqual(self.get(PAYLOAD_BASE+16),1)
+        self.assertEqual((self.get(extra),self.get(extra+4)),(1,0));self.assertEqual(self.writes,[])
+
+    def test_short_page_skips_blank_rows_and_saves_all_pages_atomically(self):
+        self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0x100);self.execute('EnhancedMenuTask',0)
+        for key,row in ((0x80,1),(0x80,6),(0x40,1),(0x80,6),(0x80,7),(0x80,0)):
+            self.put(0x021D1154,key);self.execute('EnhancedMenuTask',0)
+            self.assertEqual(self.get(self.menu+32),row)
+        self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0);self.assertEqual(self.writes,[])
+        self.put(0x021D1154,0);self.assertEqual(self.execute('EnhancedMenuTask',0),1)
+        self.reload();extra=self.payload.symbols['gEnhancedExtraOptions']
+        self.assertEqual((self.get(extra),self.get(extra+4)),(0,1))
+        self.assertEqual(len(self.writes),1)
+
+    def test_failed_paged_save_keeps_both_runtime_options_and_retries(self):
+        self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
+        self.put(self.menu+60,0);self.put(self.menu+64,1);self.put(self.menu+32,6)
+        self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0)
+        self.fail_write=True;self.put(0x021D1154,0);self.execute('EnhancedMenuTask',0)
+        extra=self.payload.symbols['gEnhancedExtraOptions']
+        self.assertEqual((self.get(extra),self.get(extra+4)),(1,0))
+        self.assertEqual(self.get(self.menu+24),1);self.assertEqual(self.get(self.menu+72),1)
+        self.fail_write=False;self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0);self.assertEqual(self.execute('EnhancedMenuTask',0),1)
+        self.assertEqual((self.get(extra),self.get(extra+4)),(0,1))
+
+
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for save layout audit.')
 class TestSaveLayout(unittest.TestCase):
     def test_both_native_layouts_reserve_journal_pages_and_reject_table_edits(self):

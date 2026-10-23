@@ -8,14 +8,14 @@
   Visual+ source SHA-256 checksums and NDS game codes (IPKE and IPGE).
 - Both `full` Visual+ reference builds match the upstream output SHA-256 exactly.
 - All eight upstream patch binaries match their recorded checksums.
-- Inventory contains 58 feature rows and covers all 41 distinct Emerald option
+- Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- Ninety-five tests pass, including compiled ARM field logic and independently checked
+- 111 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 11,120-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 12,260-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -254,3 +254,24 @@ all rewards, stats, moves and PP, preserving both option journal pages. No new
 RAM/Pokemon/EXP/item fixture edits are used. Full bench move/evolution and wider
 battle acceptance remain pending. See [party-progress.md](party-progress.md) and
 [milestone-11-verification.json](../enhancements/milestone-11-verification.json).
+
+
+## Milestone 12: optional contact-only grass and contextual HMs
+
+The eight saved settings use two pages (L/R changes page). Grass battles defaults
+to Normal at all visible densities. Roaming only blocks regular grass walking
+battles while native generation, walking and retained contact encounters continue.
+Visible Off restores native encounters. Both games save and cold-reload the new
+option. Native legendary roamers still need visible support; their hidden grass
+branch is suppressed when this option applies. Water/caves/special contexts keep
+their native behavior. See [visible-encounters.md](visible-encounters.md).
+
+Field HMs defaults On, allowing contextual HM-user fallback without editing moves.
+The script command and Surf/Waterfall input checks are integrated; native badge
+and story scripts are retained. Instruction tests cover both ROMs and real personal
+compatibility data. Live checks execute on Mac; complete field-use animations and
+Fly/Flash menu access remain pending. See [field-hms.md](field-hms.md).
+
+111 tests pass. Exact build hashes, bounded Mac runs and limitations are recorded
+in [milestone-12-verification.json](../enhancements/milestone-12-verification.json).
+The full enhancement goal remains active; these are experimental candidates.

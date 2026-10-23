@@ -184,13 +184,24 @@
       "category": "custom",
       "base_heartgold": "Party must know the field move.",
       "visual_plus": "Not added.",
-      "required_work": "Preserve badges/story checks; adapt to HGSS Cut, Fly, Surf, Strength, Whirlpool, Rock Smash, Waterfall and Rock Climb. Flash is a TM in HGSS; Dive is not an HGSS field HM.",
+      "required_work": "Milestone 12 adds saved Field HMs On/Off and contextual HM-user fallback without teaching moves, retaining native badge/story scripts. Prefer an actual learned user, then a compatible non-egg species, then the first non-egg party member. Surf/Waterfall input checks share the fallback. Fly/Flash Bag/menu access and full native HM-use/animation acceptance remain pending; Flash is a TM and Dive is absent in HGSS.",
       "evidence": [
         "patches/pokeemerald/0013-field-hms.patch",
         "patches/pokeemerald/0019-field-hms-from-bag.patch",
-        "local_data/reference/pokeheartgold/src/scrcmd_party.c"
+        "local_data/reference/pokeheartgold/src/scrcmd_party.c",
+        "native/field_hms.c",
+        "gameplay/field_hms.py",
+        "tests/test_field_hms.py",
+        "docs/field-hms.md",
+        "enhancements/milestone-12-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "compiled_arm_both_native_commands_and_personal_data": "passed",
+        "guarded_installer_both_games": "passed",
+        "saved_ui_defaults_and_live_eligibility_checks_both_games": "passed",
+        "native_use_badge_story_animation_fly_flash": "pending"
+      }
     },
     {
       "id": "visible_wild",
@@ -202,7 +213,7 @@
       "category": "custom",
       "base_heartgold": "Random grass/cave/water encounters plus specific scripted overworld Pokemon; no general roaming-spawn system.",
       "visual_plus": "Not added.",
-      "required_work": "Native follower models walk as grass wilds retain their generated Pokemon into contact battles. Saved Off/Few/Some/Many controls are integrated. Milestone 05 adds current native Repel checks on unsolicited contact and map-aware cleanup; both games pass protected/control contact runs and Route 29 to New Bark transitions. Finish cave/water support, full mode/capacity/map/party/Repel coverage, shiny sparkle and spawn effects.",
+      "required_work": "Native follower models walk as grass wilds retain their generated Pokemon into contact battles. Saved Off/Few/Some/Many controls are integrated. Milestone 05 adds current native Repel checks on unsolicited contact and map-aware cleanup; both games pass protected/control contact runs and Route 29 to New Bark transitions. Finish cave/water support, full mode/capacity/map/party/Repel coverage, shiny sparkle and spawn effects. Milestone 12 makes Normal grass battles the default for every density and adds a separate optional Roaming only setting.",
       "evidence": [
         "patches/pokeemerald/0014-visible-wild.patch",
         "patches/pokeemerald/0056-follower-pokemon.patch",
@@ -236,6 +247,32 @@
         "connected_route29_newbark_cleanup_both_games": "passed",
         "returned_grass_repel_filter_and_simulated_expiry_respawn_heartgold": "passed",
         "early_native_a_map_mode_context_guards": "passed_compiled_arm"
+      }
+    },
+    {
+      "id": "roaming_only_grass",
+      "group": "Enhancements",
+      "name": "Grass battles: Normal / Roaming only (user addition)",
+      "emerald_keys": [],
+      "category": "custom",
+      "base_heartgold": "Ordinary step-triggered grass battles.",
+      "visual_plus": "Unchanged.",
+      "required_work": "Saved optional contact-only mode for regular grass when visible wilds are Few/Some/Many; Normal is default at every density. Off restores native random encounters. Water, caves and special contexts retain native behavior. Native legendary roamers are not yet visible and cannot use their hidden grass-step branch while this option is active. Finish their explicit visible integration and wider map acceptance.",
+      "evidence": [
+        "native/field.c",
+        "native/menu.c",
+        "native/settings.c",
+        "tests/test_visible_field.py",
+        "tests/test_settings.py",
+        "enhancements/milestone-12-verification.json"
+      ],
+      "implementation": "integrated_untested",
+      "verification": {
+        "normal_default_all_densities_compiled_arm": "passed",
+        "contact_only_skips_native_grass_step_branch": "passed",
+        "saved_cold_reload_both_games": "passed",
+        "retained_contact_and_walking_mac": "passed",
+        "native_legendary_roamer_sprites": "pending"
       }
     },
     {

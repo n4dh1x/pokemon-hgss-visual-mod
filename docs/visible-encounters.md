@@ -27,9 +27,15 @@ working grass integration, not complete Emerald feature parity.
   are unchanged. If Repel is used after spawning, lower-level wilds remain visible
   but cannot initiate a battle by walking into the player. Deliberate player
   contact remains allowed, matching Emerald's visible-encounter behavior.
-- Few/Some keep ordinary random encounters. Many intercepts only ordinary grass
-  step-generated battles; the separate native roamer launch remains intact.
+- Grass battles is a separate saved option on page 2 (L/R). Normal is the
+  default for Few, Some and Many and keeps native random encounters. Roaming only
+  removes walking-triggered regular grass battles; collision/interaction with a
+  moving visible wild starts its retained battle. Visible Off restores native
+  random encounters. Water, caves and special contexts keep native behavior.
   Safari, contest, Pal Park and partner contexts are excluded from spawning.
+- Native legendary roamers do not yet have visible sprites. Their hidden grass
+  step-battle branch is also suppressed while Roaming only applies. Use Normal
+  for their native encounters until explicit visible-roamer support is added.
 - Owned wilds freeze, including in-progress native movement, while field control
   is locked. Closing both a party screen and its parent field menu resumes them.
 - Only owned temporary objects are skipped by the native saved-object iterator.
@@ -104,3 +110,16 @@ launch a wild battle: current map, mode/capacity and regular field context must
 still match. Four compiled ARM regressions cover map change, Off and special
 contexts. The complete project suite now passes 75 tests; broad acceptance above
 remains pending.
+
+
+## Milestone 12 optional grass policy
+
+This replaces the earlier implicit Many-only suppression with an explicit user
+choice. Every density defaults to Normal. Both games save Roaming only and load
+it after a full core restart. HeartGold records seven blocked grass-step checks
+and five walking commands without a battle in the bounded walk. Both games
+also start contact battles with byte-identical retained spawns while the option
+is active. Compiled ARM tests also cover Normal at all densities, visible Off,
+special contexts, cave/water fallback, Repel after spawning and exact contact
+identity. These bounded checks do not establish all-map or all-species acceptance.
+See [milestone-12-verification.json](../enhancements/milestone-12-verification.json).

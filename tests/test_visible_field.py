@@ -230,22 +230,35 @@ class TestVisibleField(unittest.TestCase):
         self.assertEqual(actual, [self.player, other])
         self.assertEqual(self.get(self.state + 24), 1)
 
-    def test_many_suppresses_only_regular_grass_step_encounters(self):
-        for mode in (0, 1, 2, 3):
-            self.put(PAYLOAD_BASE + 16, mode)
-            self.assertEqual(self.execute('EnhancedStepEncounter', self.field), 0 if mode == 3 else 1)
-        self.special = True
-        self.assertEqual(self.execute('EnhancedStepEncounter', self.field), 1)
-        self.special = False
-        self.tile = 16
-        self.assertEqual(self.execute('EnhancedStepEncounter', self.field), 1)
-        self.tile = 2
-        self.hp = 0
-        self.assertEqual(self.execute('EnhancedStepEncounter', self.field), 1)
-        self.hp = 12
-        self.roamer_result = True
-        self.assertEqual(self.execute('EnhancedStepEncounter', self.field), 1,
-                         'Many mode must retain the native roamer path.')
+    def test_grass_contact_only_is_optional_and_applies_to_every_visible_mode(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions']
+        for mode in (0,1,2,3):
+            self.put(PAYLOAD_BASE+16,mode)
+            self.assertEqual(self.execute('EnhancedStepEncounter',self.field),1)
+        self.put(extra+4,1)
+        for mode in (0,1,2,3):
+            self.put(PAYLOAD_BASE+16,mode);self.calls=[]
+            self.assertEqual(self.execute('EnhancedStepEncounter',self.field),1 if mode==0 else 0)
+            self.assertEqual(any(c[0]==0x02246C8C for c in self.calls),mode==0)
+        self.roamer_result=True;self.calls=[]
+        self.assertEqual(self.execute('EnhancedStepEncounter',self.field),0)
+        self.assertFalse(any(c[0]==0x02246C8C for c in self.calls),
+                         'No hidden native roamer branch may start a grass battle in contact-only mode.')
+
+    def test_contact_only_keeps_water_caves_special_contexts_and_no_live_party_native(self):
+        self.put(self.payload.symbols['gEnhancedExtraOptions']+4,1)
+        for tile in (0,16):
+            self.tile=tile;self.assertEqual(self.execute('EnhancedStepEncounter',self.field),1)
+        self.tile=2;self.special=True;self.assertEqual(self.execute('EnhancedStepEncounter',self.field),1)
+        self.special=False;self.hp=0;self.assertEqual(self.execute('EnhancedStepEncounter',self.field),1)
+
+    def test_contact_only_still_generates_and_launches_the_exact_roaming_pokemon(self):
+        self.put(self.payload.symbols['gEnhancedExtraOptions']+4,1)
+        self.assertEqual(self.execute('EnhancedStepEncounter',self.field),0)
+        self.make_spawn();self.position_for_unsolicited_contact()
+        self.assertEqual(self.execute('EnhancedFieldInput',self.input,self.field),1)
+        self.assertEqual(self.battle_mon,self.native_mon)
+        self.assertEqual(self.get(self.state+1640),1)
 
     def test_scripts_and_ineligible_fields_never_generate(self):
         self.put(self.state, self.manager)
@@ -317,12 +330,11 @@ class TestVisibleField(unittest.TestCase):
         self.assertEqual(self.battle_mon, self.native_mon)
         self.assertEqual(self.moves, [])
 
-    def test_many_discards_ordinary_setup_without_launching_it(self):
-        self.put(self.state + 1624, 1)
-        self.execute('EnhancedCaptureEncounter', self.field, self.setup)
-        self.assertEqual(self.get(self.state + 1628), 1)
-        self.assertEqual(self.freed, [self.setup])
-        self.assertFalse(any(c[0] == 0x02050B08 for c in self.calls))
+    def test_normal_mode_launches_ordinary_setup_without_discarding_it(self):
+        self.put(self.state+1624,1)  # Obsolete implicit-Many flag must not leak.
+        self.execute('EnhancedCaptureEncounter',self.field,self.setup)
+        self.assertEqual(self.freed,[])
+        self.assertTrue(any(c[0]==0x02050B08 for c in self.calls))
 
     def position_for_unsolicited_contact(self):
         self.put(self.player + 0x64, self.get(self.created + 0x64))
@@ -330,6 +342,7 @@ class TestVisibleField(unittest.TestCase):
         self.put(self.state + 1592, 0)
 
     def test_repel_used_after_spawn_blocks_wild_contact_until_it_expires(self):
+        self.put(self.payload.symbols['gEnhancedExtraOptions']+4,1)
         self.make_spawn()
         self.put(self.mon + 8, 10)
         self.repel = True

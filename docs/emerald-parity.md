@@ -2,7 +2,7 @@
 
 Audited 22 October 2026. Scope: every user-facing option in Emerald v0.4.0's SETTINGS, ENHANCEMENTS and CHEATS pages, plus its published interface/platform features. Historical bug fixes, tooling internals and Hoenn story content are not new HGSS gameplay enhancements. All 41 distinct serialized option keys are covered; item-giver subcontrols are grouped into one feature.
 
-The fork contains upstream Visual+, this audit, native roaming grass encounters, reusable TMs, trade alternatives, repeat Repel, capture EXP, party-wide EXP Share and a six-option saved settings menu. **The final enhancement set is not complete.** Donor availability does not mean a feature is installed; the machine-readable inventory tracks integration and verification separately. Native HGSS equivalents are retained; differences in runtime toggles and presentation are called out.
+The fork contains upstream Visual+, this audit, native roaming grass encounters, reusable TMs, trade alternatives, repeat Repel, capture EXP, party-wide EXP Share and an eight-option saved settings menu over two pages. **The final enhancement set is not complete.** Donor availability does not mean a feature is installed; the machine-readable inventory tracks integration and verification separately. Native HGSS equivalents are retained; differences in runtime toggles and presentation are called out.
 
 Baseline: [Emerald v0.4.0](https://github.com/ZallaxDev/emerald-3ds/tree/v0.4.0), [Visual+](https://github.com/DosukaSOL/pokemon-hgss-visual-mod), [HGSS source](https://github.com/pret/pokeheartgold), [hg-engine](https://github.com/BluRosie/hg-engine). Exact audited revisions and source fingerprints are in [sources.lock.json](../enhancements/sources.lock.json).
 
@@ -12,7 +12,7 @@ Baseline: [Emerald v0.4.0](https://github.com/ZallaxDev/emerald-3ds/tree/v0.4.0)
 - **Already in Visual+:** 0 feature rows.
 - **Partly present / adaptation needed:** 10 feature rows.
 - **Available donor code; not integrated:** 4 feature rows.
-- **Needs custom implementation:** 20 feature rows.
+- **Needs custom implementation:** 21 feature rows (including the user-added grass policy).
 - **Emulator/platform equivalent:** 3 feature rows.
 - **3DS-specific; no direct NDS equivalent:** 5 feature rows.
 
@@ -25,8 +25,9 @@ Baseline: [Emerald v0.4.0](https://github.com/ZallaxDev/emerald-3ds/tree/v0.4.0)
 | EXP for catching | Not present. | Not added. | **Available donor code; not integrated**. Native capture EXP/EV task and fifth saved On/Off option integrated. Both games pass capture, Dex registration, nickname decline, field return, saved-Off controls, level-6 stat screens, Razor Leaf learning into an empty slot and native save/cold reload of rewards. Finish full movesets/forgetting, evolution/cancellation, failed balls, held-item and full double/roamer capture verification. |
 | Party-wide EXP Share | Held-item EXP Share only; not party-wide. | Not added. | **Needs custom implementation**. Milestone 10 integrates the sixth saved option, full EXP for healthy participants, half for healthy bench Pokemon and one group message. Native held-item/trainer/trade bonuses are retained without double sharing. Both games pass ordinary victories, actual Off controls and native save/cold reload; SoulSilver also passes combined capture EXP. Milestone 11 passes native bench level-3 stat screens and game-save/cold-reload persistence in both games, plus full rewards for two actual HG participants. Bench move/evolution, actual multi-participant SS and wider emulator acceptance remain pending. |
 | Trade evolutions at level 40 | Trade requirements remain. | Not added. | **Needs custom implementation**. Milestone 02 adds level >=40 alternatives with native held-item completion. Milestone 04 adds the saved runtime toggle. ARM tests pass; full in-game evolution/cancellation remains pending. |
-| Field moves without learning the move | Party must know the field move. | Not added. | **Needs custom implementation**. Preserve badges/story checks; adapt to HGSS Cut, Fly, Surf, Strength, Whirlpool, Rock Smash, Waterfall and Rock Climb. Flash is a TM in HGSS; Dive is not an HGSS field HM. |
+| Field moves without learning the move | Party must know the field move. | Not added. | **Needs custom implementation**. Contextual fallback and saved control integrated in milestone 12; native badge/story scripts retained. Fly/Flash menu access and complete native-use acceptance remain pending. See [field-hms.md](field-hms.md). |
 | Visible wild Pokemon: Off / Few / Some / Many | Random grass/cave/water encounters plus specific scripted overworld Pokemon; no general roaming-spawn system. | Not added. | **Needs custom implementation**. Native follower models walk as grass wilds retain their generated Pokemon into contact battles. Saved Off/Few/Some/Many controls are integrated. Milestone 05 adds current native Repel checks on unsolicited contact and map-aware cleanup; both games pass protected/control contact runs and Route 29 to New Bark transitions. Finish cave/water support, full mode/capacity/map/party/Repel coverage, shiny sparkle and spawn effects. |
+| Grass battles: Normal / Roaming only (user addition) | Native random grass encounters. | Unchanged. | **Needs custom implementation**. Optional saved contact-only regular grass mode integrated; Normal remains default. Moving wilds retain exact battle identity. Native legendary-roamer sprites and wider acceptance remain pending. |
 | IV / EV summary viewer | Stats shown; exact IVs/EVs not exposed as a summary page. | Not added. | **Available donor code; not integrated**. Integrate hg-engine summary viewer and optional enable/disable control. |
 | Use another Repel prompt | Wear-off message without this option. | Not added. | **Integrated; acceptance incomplete**. Same-last-type native prompt and saved On/Off option integrated. Both games pass native save/cold reload and natural 200-step Super Repel expiry, Yes/No and saved Off; all three durations and no substitution are checked. Native bag restrictions and acceptance rechecking are integrated, with compiled ARM and matched bag-locked emulator controls. Finish full special-area story visits and broader save/context acceptance. |
 | Reusable TMs | TMs consumed; HMs reusable. | Not added. | **Available donor code; not integrated**. Milestone 04 routes native teaching through the saved reusable-TM toggle in both USA games. ARM instruction tests cover On/Off, HMs and itemless teaching. Full teaching-flow validation and bag count presentation remain. |
@@ -105,7 +106,7 @@ These are additions of Visual+ itself, not extra Emerald enhancement settings: r
 
 ## Exact visible-encounter parity requirements
 
-1. Off/Few/Some/Many map to 0/2/4/6 active wild slots. Few/Some add visible encounters alongside classic random encounters; Many replaces ordinary walking/surfing encounters.
+1. Off/Few/Some/Many map to 0/2/4/6 active wild slots. User-requested adaptation: all densities default to Normal grass battles. A separate optional Roaming only setting removes regular grass step encounters when visible wilds are enabled. Water/cave policy remains native until those visible encounters are implemented.
 2. Grass first, followed by caves and surfable water; use HGSS route tables, levels, morning/day/night, swarms/radio/ability modifiers where appropriate. Never import Hoenn encounter data.
 3. Roll the actual Pokemon at spawn: species, level, personality, IVs, form, gender and shiny result must survive into battle. A shiny sprite is not a promise if battle generation rerolls the Pokemon.
 4. Display native species/form sprites and shiny palettes, idle/walk direction and shiny sparkle. Wilds must roam using the native follower-model walking animations, with collision/terrain checks and script/menu pauses. Grass rustle/water ripple and spawn fade/grow effects need a native implementation.
@@ -113,7 +114,7 @@ These are additions of Visual+ itself, not extra Emerald enhancement settings: r
 6. Repels and encounter-rate controls apply consistently. No spawning without an eligible non-egg party member; no inaccessible/occupied tiles.
 7. Keep unconsumed spawns through menus, unrelated battles and connected-map crossings; remove the consumed spawn, and clear appropriately on warps/reset. Session-only objects must not leak into the saved NPC object list.
 8. Freeze during scripts, fades, menus and battle startup; avoid duplicate launches. Exclude Safari Zone, Bug-Catching Contest, scripted legendaries/roamers and link/facility contexts initially, then add explicit support where compatible.
-9. Keep special encounter mechanics, event scripts, fishing, Headbutt and Rock Smash intact. Do not suppress them just because Many replaces ordinary step encounters.
+9. Keep special encounter mechanics, event scripts, fishing, Headbutt and Rock Smash intact. The optional grass policy must not suppress these separate interactions. Native legendary roamers need explicit visible support; their hidden grass-step branch is suppressed only when Roaming only applies.
 10. Measure DS object/texture/heap limits with six wilds plus follower and busy NPC maps; test transitions, battle return, save/load and long play.
 
 ## Implementation order

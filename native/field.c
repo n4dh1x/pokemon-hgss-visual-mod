@@ -81,11 +81,12 @@ struct VisibleState {
     u32 roam_delay[6], walk_commands, paused_mask;
     u32 suppress_ordinary, discarded_ordinary;
     u32 repelled_contacts, map_releases;
+    u32 blocked_grass_steps;
 };
 /* Counters aid emulator verification. They are session-only, not save data. */
 struct VisibleState gVisibleState;
 _Static_assert(sizeof(struct VisibleSlot) == 260, "Visible slot diagnostic ABI");
-_Static_assert(sizeof(struct VisibleState) == 1640, "Visible state diagnostic ABI");
+_Static_assert(sizeof(struct VisibleState) == 1644, "Visible state diagnostic ABI");
 
 static int owned(void *object) {
     if (!object || !gVisibleState.manager || !(word(object, 0) & 1) ||
@@ -199,25 +200,20 @@ int EnhancedRoamerCheck(void *field, void **roamer) {
 void EnhancedCaptureEncounter(void *field, void *setup) {
     if (gVisibleState.capture)
         gVisibleState.captured = setup;
-    else if (gVisibleState.suppress_ordinary) {
-        /* The roamer branch calls the original battle launcher separately.
-         * Discard only an ordinary step-generated enemy in Many mode. */
-        BattleSetup_Delete(setup);
-        gVisibleState.discarded_ordinary = 1;
-    }
     else
         OriginalStartEncounter(field, setup);
 }
 int EnhancedStepEncounter(void *field) {
     void *player = ptr(ptr(field, 0x40), 0x30);
-    if (gEnhancedOptions.visible_encounters == 3 && regular(field) && alive(field) &&
-        grass(GetMetatileBehavior(field, word(player, 0x64), word(player, 0x6C))))
-    {
-        gVisibleState.suppress_ordinary = 1;
-        gVisibleState.discarded_ordinary = 0;
-        int result = OriginalStepEncounter(field);
-        gVisibleState.suppress_ordinary = 0;
-        return gVisibleState.discarded_ordinary ? 0 : result;
+    u32 mode = gEnhancedOptions.visible_encounters;
+    if (gEnhancedExtraOptions.roaming_only_grass && mode >= 1 && mode <= 3 &&
+        regular(field) && alive(field) &&
+        grass(GetMetatileBehavior(field, word(player, 0x64), word(player, 0x6C)))) {
+        /* Explicit contact-only mode must not start ANY hidden grass battle,
+         * including the native rare-roamer branch. Sprite generation calls
+         * OriginalStepEncounter directly and remains enabled. */
+        ++gVisibleState.blocked_grass_steps;
+        return 0;
     }
     return OriginalStepEncounter(field);
 }
