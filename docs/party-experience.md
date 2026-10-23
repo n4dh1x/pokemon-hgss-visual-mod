@@ -71,9 +71,8 @@ contain temporarily unsettled party data and is excluded from reward evidence.
 
 ## Remaining acceptance
 
-This is an integrated candidate, with acceptance incomplete. Bench level-up/stat
-screens and full move/evolution flows, multiple participating Pokemon in a real
-battle, held-item cases in the emulator, repeated/double/roamer/special-area
+This is an integrated candidate, with acceptance incomplete. Full bench move/evolution flows, multiple participating Pokemon in SoulSilver,
+held-item cases in the emulator, repeated/double/roamer/special-area
 battles, fainting/eggs in the emulator, and hardware remain pending. The combined
 capture case is verified in SoulSilver; HeartGold's combined emulator case remains
 pending. Prior capture-presentation and broader capture acceptance items remain.
@@ -83,3 +82,12 @@ The full Emerald enhancement set is not complete.
 
 Bounded inputs, ROM/save/state/RAM/screenshot hashes and native party values are in
 [milestone-10-verification.json](../enhancements/milestone-10-verification.json).
+
+## Milestone 11 follow-up
+
+Native bench level-3 stat screens and game-save/cold-reload persistence pass in
+both games. HeartGold additionally switches participants during battle and awards
+full 16 EXP to both, while each bench member receives 8. SoulSilver awards 8 to
+all three bench members and advances each to level 3. The ROM code is unchanged;
+see [party-progress.md](party-progress.md) and
+[milestone-11-verification.json](../enhancements/milestone-11-verification.json).

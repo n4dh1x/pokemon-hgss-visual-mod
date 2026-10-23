@@ -23,7 +23,9 @@ cases remain pending.
 A sixth saved option adds party-wide EXP Share: full EXP for participants, half
 for healthy bench Pokemon, with one collective message. Both games pass ordinary
 victories, saved Off controls and native save/cold reload of rewards; SoulSilver
-also passes combined party/capture EXP. Extended acceptance remains pending.
+also passes combined party/capture EXP. Follow-up verification passes native bench
+level-3 stat screens in both games and full EXP for two actual HG participants.
+Full bench move/evolution and extended battle acceptance remain pending.
 Cave/water encounters, full capacity and transition
 coverage, other enhancements and final gameplay validation remain.
 These candidates are not the final release.
@@ -39,6 +41,7 @@ These candidates are not the final release.
 - [Same-type repeat Repel and verification](docs/repel-prompt.md)
 - [Capture EXP integration and verification](docs/capture-experience.md)
 - [Party-wide EXP Share and verification](docs/party-experience.md)
+- [Bench leveling and multiple participants](docs/party-progress.md)
 
 Verify the inventory:
 

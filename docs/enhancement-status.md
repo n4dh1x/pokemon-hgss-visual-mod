@@ -243,3 +243,14 @@ capture EXP through nickname/storage. All 95 tests pass. Extended bench progress
 multiple-participant, held-item emulator and battle-format cases remain pending.
 See [party-experience.md](party-experience.md) and
 [milestone-10-verification.json](../enhancements/milestone-10-verification.json).
+
+## Milestone 11: bench levels and multiple participants
+
+On unchanged milestone-10 ROMs, bench members reach level 3 through native
+individual stat screens. HeartGold switches to Rattata: both participants gain
+full 16 EXP, and the two Hoothoot gain half 8. SoulSilver's isolated shared fixture
+advances all three bench members with 8 each. Both native game saves cold-reload
+all rewards, stats, moves and PP, preserving both option journal pages. No new
+RAM/Pokemon/EXP/item fixture edits are used. Full bench move/evolution and wider
+battle acceptance remain pending. See [party-progress.md](party-progress.md) and
+[milestone-11-verification.json](../enhancements/milestone-11-verification.json).
