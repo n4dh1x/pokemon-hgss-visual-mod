@@ -2,7 +2,8 @@
 
 extern void NativeCaptureTask(void *task, void *data);
 extern void NativeExperienceTask(void *task, void *data);
-extern int NativeCalcExperience(void *battle, void *ctx);
+extern int EnhancedCalcExperience(void *battle, void *ctx);
+extern void EnhancedPartyExperienceTask(void *task, void *data);
 extern u32 BattleSystem_GetBattleType(void *battle);
 extern void *BattleSystem_GetParty(void *battle, int battler);
 extern void *Heap_Alloc(int heap, u32 bytes);
@@ -36,7 +37,7 @@ static void restore_context(void) {
 void EnhancedCaptureExperienceChild(void *task, void *data) {
     /* This is a real separate native task and allocation. The native completion
      * path owns their destruction; never let it destroy the capture parent. */
-    NativeExperienceTask(task, data);
+    EnhancedPartyExperienceTask(task, data);
     if (!ptr(gCaptureExperience.ctx, 0x178)) {
         restore_context();
         gCaptureExperience.phase = 2;
@@ -89,7 +90,7 @@ void EnhancedCaptureTask(void *task, void *data) {
                 put(ctx, 0x74, enemy);
                 u32 script = word(ctx, 0xB4);
                 put(ctx, 0xB4, 0);
-                NativeCalcExperience(battle, ctx);
+                EnhancedCalcExperience(battle, ctx);
                 put(ctx, 0xB4, script);
                 *(void **)((u8 *)ctx + 0x178) = work;
                 if (SysTask_CreateOnMainQueue(EnhancedCaptureExperienceChild, work, 0)) {

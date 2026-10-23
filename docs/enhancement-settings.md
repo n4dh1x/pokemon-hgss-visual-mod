@@ -4,8 +4,9 @@ Press SELECT while normal field input is available. The native DS window offers
 Visible wilds (Off/Few/Some/Many), Trade evolution and Reusable TMs. Use Up/Down
 to choose, Left/Right or A to change a value, and A on Save and close to apply.
 B or Cancel discards staged changes. Milestone 06 adds the fourth option, Repel
-prompt (On/Off); see [repel-prompt.md](repel-prompt.md). The rest of the audited
-enhancement list remains in scope.
+prompt (On/Off); see [repel-prompt.md](repel-prompt.md). Milestone 08 adds EXP for catching; milestone 10 adds Party EXP Share. Both are
+saved On/Off options and default On for legacy records. The six-option menu uses
+16-pixel row spacing. The rest of the audited enhancement list remains in scope.
 
 The menu uses HGSS's field task, window, font and input routines. NPC movement
 pauses while it is open, and prior NPC pause flags are restored on exit. The
@@ -79,3 +80,12 @@ records and persists explicit Off using value 4 and reserved word 0 bit 1. The
 native menu grows to seven rows including Save/Cancel and fits the DS screen.
 The journal version, page size and flash offsets remain unchanged. The current
 suite passes 85 tests. See [capture-experience.md](capture-experience.md).
+
+## Milestone 10 storage extension
+
+Journal value 4/reserved word 0 bit 1 stores capture EXP; value 5/bit 2 stores
+party EXP. All three presence bits preserve legacy defaults and explicit Off
+without changing the journal version, length, ownership or CRC. Unknown values
+and reserved bits survive writes. Both games show the six options, cold-reload
+Off and On, and retain rewards after native game saving. The regression suite
+passes 95 tests. See [party-experience.md](party-experience.md).

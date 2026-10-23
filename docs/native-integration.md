@@ -141,3 +141,20 @@ presence marker. Legacy records default On. Config/journal/settings/visible size
 remain 32/256/1,060/1,640 bytes. Menu diagnostics grow to 68 bytes; capture diagnostics
 are 56 bytes. All nine overlay edits are recorded in overlays 1/2/12/15. See
 [capture-experience.md](capture-experience.md) for bounded verification.
+
+## Milestone 10: party EXP and appended message
+
+The payload grows to 11,120 bytes, ending at `0x01FFBB70`. Original ITCM/DTCM
+sections remain intact. Config word 7 now stores party EXP; the header stays
+32 bytes. Journal value 5 and reserved word 0 bit 2 add its presence marker.
+The menu and party EXP diagnostics are 72 and 68 bytes respectively.
+
+Overlay 12 hooks the guarded EXP calculation command table entry, normal task
+callback and gained-EXP message call. The capture child uses the same wrapper.
+A Thumb veneer explicitly interworks with ARM SDK unsigned division at
+`0x020F2BA4`; execution tests cover the original divider and native HG/SS rewards.
+One owned message is appended to the checksum-guarded native English battle bank.
+Existing encrypted message bodies and other banks are unchanged. The component
+validator now permits only explicitly recorded, checksum-verified data edits.
+The original configuration size is fully occupied; later switches require new
+runtime storage and menu pagination. See [party-experience.md](party-experience.md).

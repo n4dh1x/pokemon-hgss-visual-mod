@@ -4,7 +4,10 @@ The fifth SELECT setting controls capture EXP and defaults On for older option
 records. A confirmed normal wild capture runs HGSS's EXP task before Pokédex,
 nickname and storage handling. It uses native participation/held EXP Share rules,
 formulas, item bonuses, EV calculation, EXP bar, level-up and move-learning code.
-Party-wide EXP Share remains separate work. Off preserves native capture behavior.
+Milestone 10 adds the separate saved Party EXP Share option and routes this child
+through its shared native EXP wrapper; see [party-experience.md](party-experience.md).
+With party sharing Off, the original participant/held-item distribution remains.
+With capture EXP Off, captures retain native behavior.
 
 The capture wrapper waits at the native confirmed-catch delay. It creates a
 separate native SysTask and 0x58-byte GetterWork allocation while the catch parent
@@ -16,8 +19,8 @@ participant is required before native EXP division. Failed balls never reach the
 confirmed-catch point. Broad double/roamer and failure flows still need emulator
 verification.
 
-Original EXP, EV and Pokemon crypto routines are retained. The only new overlay 12
-edit is its guarded capture callback pointer. Config word 6, journal value 4 and
+Original EXP, EV and Pokemon crypto routines are retained. At milestone 08 the only new overlay 12
+edit is its guarded capture callback pointer; milestone 10 adds the party EXP hooks. Config word 6, journal value 4 and
 reserved word 0 bit 1 add a durable option while preserving legacy defaults and
 explicit Off. Unknown future journal fields remain preserved.
 

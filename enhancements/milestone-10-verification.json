@@ -1,0 +1,4931 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 10,
+  "verified_on": "2026-10-23",
+  "final_release": false,
+  "scope": "Party-wide EXP distribution, one collective message, native victory/capture rewards, saved On/Off controls and native save/cold reload. Extended acceptance remains pending.",
+  "regression": {
+    "passed": 95,
+    "skipped": 0,
+    "log_sha256": "9ea17820815d63299e2a085da86233ae020bc7350e7cf32254f08dd265d331ae"
+  },
+  "inventory": {
+    "feature_rows": 58,
+    "emerald_option_keys": 41,
+    "pinned_source_coverage": "passed"
+  },
+  "candidates": {
+    "heartgold": {
+      "local_rom": "build/candidates/heartgold-visual-plus-gameplay-milestone-10.nds",
+      "output_sha256": "553508d3155f83fd891d94c5a56bef15d7ee8ba1474b446ad1487c08878ec8a2",
+      "patch_sha256": "8359f127856a79b2d84b53c41f918dfd4947301d408d738b9a3ffa7c96b673c7",
+      "build_report_sha256": "cc015d7fd65d103161b831e4aeaa6f20435d2ebaf4691641e5aeb7bd13821147",
+      "payload_bytes": 11120,
+      "payload_end": "0x1ffbb70"
+    },
+    "soulsilver": {
+      "local_rom": "build/candidates/soulsilver-visual-plus-gameplay-milestone-10.nds",
+      "output_sha256": "f333577bf03e3a68db99cd5e89187c5720c4ec6298d5a65447b34588dd65c688",
+      "patch_sha256": "a584270463d0cde49d2ca50c64ae3d91a2fea4534f2acce25c88e6e411151e8e",
+      "build_report_sha256": "955cfe562824409b8a5c657fddb2f8292073e192a883245021d87c7355b31e60",
+      "payload_bytes": 11120,
+      "payload_end": "0x1ffbb70"
+    }
+  },
+  "runs": {
+    "hg10b-menu": {
+      "source_artifact": "local_data/verification/hg09a-reload/cartridge.sav",
+      "source_sha256": "97da91640bd527fde449d06cb2d8c564ab4f69d557cf9c2c9086cc9bf05cfbfd",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "97da91640bd527fde449d06cb2d8c564ab4f69d557cf9c2c9086cc9bf05cfbfd",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "13bd74e388bc444f6860e32b23b32716439dec11e03cea9b2482c2003c12f40d",
+        "main-ram.bin": "107760123bc4841140a452f0787ab639b99ea7f37741ffaf819d3442cba5fc7f",
+        "smoke-report.json": "fd2e2ce78b87234e477ae2aa5aead597f53adb576153a034c7f9e701f2b6bcfe",
+        "state.bin": "0e45f58f3a90a8d75f3633af6f0f381409b70b5bcc2a65313d27e04cff198f39",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 183,
+          "level": 6,
+          "hp": 22,
+          "hp_ev": 2,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 25,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 19,
+          "experience": 8,
+          "level": 2,
+          "hp": 13,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 0,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 163,
+          "experience": 8,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 3,
+          "species": 163,
+          "experience": 8,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "hg10b-encounter": {
+      "source_artifact": "local_data/verification/hg10b-menu/state.bin",
+      "source_sha256": "0e45f58f3a90a8d75f3633af6f0f381409b70b5bcc2a65313d27e04cff198f39",
+      "frames": 9000,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "97da91640bd527fde449d06cb2d8c564ab4f69d557cf9c2c9086cc9bf05cfbfd",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-004500.png": "ccfe6d99edb6a3ec83d4f71513145bc0a22570fd4e1eb9776392ccb34b38061f",
+        "frame-009000.png": "e86f71b6ec814743f2aec9092306990560b225d326a8ceceebba6bc66a757ab4",
+        "main-ram.bin": "19339ea46a10b5bc34ff10a60c4507d190af79b028bd82ccafb87961a58f0096",
+        "smoke-report.json": "cac783d0e8aa44134229162ba3e01060866015258df6aeabdc3c1c851047bbde",
+        "state.bin": "3178cb4574e58e7b2186e2e7cf036aa4106bba63ae81dd1485bcb8eb7c662097",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6be8",
+        "enemy_party": "0x22a77f8",
+        "pokemon_sha256": "a2e10753679a7510b2de90501f32e03c4af2f49b894530cda67856016972004a",
+        "identical_retained_slots": [
+          1
+        ]
+      }
+    },
+    "hg10b-fight": {
+      "source_artifact": "local_data/verification/hg10b-encounter/state.bin",
+      "source_sha256": "3178cb4574e58e7b2186e2e7cf036aa4106bba63ae81dd1485bcb8eb7c662097",
+      "frames": 300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "97da91640bd527fde449d06cb2d8c564ab4f69d557cf9c2c9086cc9bf05cfbfd",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000300.png": "9fa800a939d4978fbfacc9c78f15360da00aa68905698dd8a77d8c1823da4de7",
+        "main-ram.bin": "1409526e56a825ca2451e4a31a8dbf1f652f4f7b8a842fadeae3b9cacaa5cca8",
+        "smoke-report.json": "0b639e16872e0ac8e41338f62fcbc88726e352960fc6f95b8cf81ee9ff7ef778",
+        "state.bin": "78d2331277ad08889c6758d119c89efc4d522495e822e92d5eba3e01ce01c072",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6be8",
+        "enemy_party": "0x22a77f8",
+        "pokemon_sha256": "a2e10753679a7510b2de90501f32e03c4af2f49b894530cda67856016972004a",
+        "identical_retained_slots": [
+          1
+        ]
+      }
+    },
+    "hg10b-attack": {
+      "source_artifact": "local_data/verification/hg10b-fight/state.bin",
+      "source_sha256": "78d2331277ad08889c6758d119c89efc4d522495e822e92d5eba3e01ce01c072",
+      "frames": 2200,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            55,
+            115,
+            10,
+            14
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "97da91640bd527fde449d06cb2d8c564ab4f69d557cf9c2c9086cc9bf05cfbfd",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "7d64cfd85a3a0b5d7dad04a182ff0cf27a3d037d054c4ab0f47ac9b43f1cd1d1",
+        "frame-001200.png": "8f2a9d062f62099bc69a483265237e888f0bbaafd67ad728bc807950a902fced",
+        "frame-001500.png": "85ec216578c15572e01140be89a08f5478f38f36f47d8b1aa4e8aba5fcb60ad6",
+        "frame-001800.png": "171e5b78d88eb5c98b795a89191a57d3eab772591f77583685e5599f73ccc62c",
+        "frame-002200.png": "b2e7eb69282f9db33a43151ccf2b65380cb1ac83c9d9765f30926ca195788837",
+        "main-ram.bin": "4793fcb710ebb54f7cee518e1e94d6b2844fe12d8c937d94339f1e6f6c2efdff",
+        "smoke-report.json": "c735a486cff36beb5c75029303c1a7859bc1927095c9bcb169045be4e23877ea",
+        "state.bin": "dce366af97fa1e46793c0418e6ac8c0163ec9492974bb6d840e7ee8f92d6b7f2",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6be8",
+        "enemy_party": "0x22a77f8",
+        "pokemon_sha256": "a2e10753679a7510b2de90501f32e03c4af2f49b894530cda67856016972004a",
+        "identical_retained_slots": [
+          1
+        ]
+      }
+    },
+    "hg10b-knockout": {
+      "source_artifact": "local_data/verification/hg10b-attack/state.bin",
+      "source_sha256": "dce366af97fa1e46793c0418e6ac8c0163ec9492974bb6d840e7ee8f92d6b7f2",
+      "frames": 2500,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            45,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "97da91640bd527fde449d06cb2d8c564ab4f69d557cf9c2c9086cc9bf05cfbfd",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "4cac35da1372ba603f34e44510f3cc31eaae8b6fa21dd5b7579cd11755f18974",
+        "frame-001300.png": "4cac35da1372ba603f34e44510f3cc31eaae8b6fa21dd5b7579cd11755f18974",
+        "frame-001700.png": "7e7208d357ea0cba7096d99c9ab0b1786489f762df72c3b6b81251035098e21c",
+        "frame-002500.png": "4cac35da1372ba603f34e44510f3cc31eaae8b6fa21dd5b7579cd11755f18974",
+        "main-ram.bin": "ddf257ee9e2b5f170527cc868b9a915d6fb9ecf76ae2f6a661a2c38951db432c",
+        "smoke-report.json": "b31f0da97a1cb61882050ac501db2abc7bd96b06ee51d72f595cba8b4b73c18f",
+        "state.bin": "b0682634988959da60c33713e74a3def11793276ab4aff8feb6f28e13ede7f31",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6be8",
+        "enemy_party": "0x22a77f8",
+        "pokemon_sha256": "a2e10753679a7510b2de90501f32e03c4af2f49b894530cda67856016972004a",
+        "identical_retained_slots": [
+          1
+        ]
+      }
+    },
+    "hg10b-rewards": {
+      "source_artifact": "local_data/verification/hg10b-knockout/state.bin",
+      "source_sha256": "b0682634988959da60c33713e74a3def11793276ab4aff8feb6f28e13ede7f31",
+      "frames": 2500,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            45,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "97da91640bd527fde449d06cb2d8c564ab4f69d557cf9c2c9086cc9bf05cfbfd",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "b258c16f4328313ca223504302e1b48031ec25e981be3d15efd61be1638db490",
+        "frame-001100.png": "a56a7cb68926656d90e86bbb83ea942745da4c3e49b0f995d1d8cf2de4e8ec88",
+        "frame-001300.png": "6d704bb4f9039e8c3374ec5675ff84549516229b7bf7ddb7fb6da81b8febb803",
+        "frame-001500.png": "6d704bb4f9039e8c3374ec5675ff84549516229b7bf7ddb7fb6da81b8febb803",
+        "frame-001700.png": "a56a7cb68926656d90e86bbb83ea942745da4c3e49b0f995d1d8cf2de4e8ec88",
+        "frame-001900.png": "885b7886441450dcfc927e5ab71ced7dfc370fecb106053a2e4c0db68fb75714",
+        "frame-002100.png": "a81f67bf954d892ea19576db3ff045d55b7c7d7da7bcfaa9c39f8f806866a2aa",
+        "frame-002500.png": "73135c55572895c9c099be2a26c78286261d10a1248cf17a446bb8288b3ff2b8",
+        "main-ram.bin": "5e19b112dde31a7336f8d87af9d05edcd697cd3ed74bac7a4a7c84e6e59e47e8",
+        "smoke-report.json": "bc7aba9ff743f0ec2dbe6bb83fdbcb6c0d6430d024a86018859776e4dc8f199d",
+        "state.bin": "dcffb8d97b0a363b48319a52b9ad6b55fdc686525380b92f5703ef465ece41b4",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6be8",
+        "enemy_party": "0x22a77f8",
+        "pokemon_sha256": "a2e10753679a7510b2de90501f32e03c4af2f49b894530cda67856016972004a",
+        "identical_retained_slots": [
+          1
+        ]
+      }
+    },
+    "hg10b-off-save": {
+      "source_artifact": "local_data/verification/hg10b-menu/state.bin",
+      "source_sha256": "0e45f58f3a90a8d75f3633af6f0f381409b70b5bcc2a65313d27e04cff198f39",
+      "frames": 600,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            40,
+            44
+          ],
+          [
+            "DOWN",
+            70,
+            74
+          ],
+          [
+            "DOWN",
+            100,
+            104
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "RIGHT",
+            170,
+            174
+          ],
+          [
+            "DOWN",
+            210,
+            214
+          ],
+          [
+            "A",
+            250,
+            254
+          ],
+          [
+            "SELECT",
+            450,
+            454
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "8496d42b5ffb4021a3379c1e73e6a84530191e1e65ca9b90aa292901ee72bd24",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000600.png": "b5c0c025135fca8d45fbae882cca3d0286e69d18d62dfb7254767b0ab6cae3e1",
+        "main-ram.bin": "ce30e63a4ec0fe42882535edc773d43dadd8106ed0f74d1a83ffce4e0d67e7fa",
+        "smoke-report.json": "1e2ca273e1c1fa9a352eb3ddb6190af0222f298511ebff27f72b5e3b390e77fb",
+        "state.bin": "845c2dd8084cfae5da89b7b40b54a53f7dfa556ae62b9c17d176304bb7a36f35",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 1,
+        "status": 1,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3
+    },
+    "hg10b-off-reload": {
+      "source_artifact": "local_data/verification/hg10b-off-save/cartridge.sav",
+      "source_sha256": "8496d42b5ffb4021a3379c1e73e6a84530191e1e65ca9b90aa292901ee72bd24",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "8496d42b5ffb4021a3379c1e73e6a84530191e1e65ca9b90aa292901ee72bd24",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "b5c0c025135fca8d45fbae882cca3d0286e69d18d62dfb7254767b0ab6cae3e1",
+        "main-ram.bin": "c08d79185413f9cbfabcbd03c4a897cfb91cc1c8b0a83a32ff21ce01a065cea1",
+        "smoke-report.json": "7f61240a619262c5998176c9d273c76bd905f7c631c3a38df084cf11959a758e",
+        "state.bin": "d008584d385ba93aca71aa1098675354277ff0d6de13c0bf41e9e20a2c6f5ecf",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 183,
+          "level": 6,
+          "hp": 22,
+          "hp_ev": 2,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 25,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 19,
+          "experience": 8,
+          "level": 2,
+          "hp": 13,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 0,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 163,
+          "experience": 8,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 3,
+          "species": 163,
+          "experience": 8,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "hg10b-off-encounter": {
+      "source_artifact": "local_data/verification/hg10b-off-reload/state.bin",
+      "source_sha256": "d008584d385ba93aca71aa1098675354277ff0d6de13c0bf41e9e20a2c6f5ecf",
+      "frames": 9000,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "8496d42b5ffb4021a3379c1e73e6a84530191e1e65ca9b90aa292901ee72bd24",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-009000.png": "fcdfb88bb0afe1f5d0f133b24432b829c2f01a751ef79d9ce8186ab66ad9e131",
+        "main-ram.bin": "85e8315b82a51180a140e1f628205f9e7db99fe5dff4353a26f6cfc6512d432d",
+        "smoke-report.json": "2dfa00e7f15091a6add7256cf61728822c3481af8e05fd014b5c6e0b5d7b3869",
+        "state.bin": "7f09a88e4ad7bd5677c81ffd802b7c02f94a46e7819debc72592ff736c846e4d",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6b78",
+        "enemy_party": "0x22a7788",
+        "pokemon_sha256": "57e1d6cb0f2af42fcdd0c57a28c765a1f99057e61e68e52f147f793f348908b9",
+        "identical_retained_slots": [
+          3
+        ]
+      }
+    },
+    "hg10b-off-attack1": {
+      "source_artifact": "local_data/verification/hg10b-off-encounter/state.bin",
+      "source_sha256": "7f09a88e4ad7bd5677c81ffd802b7c02f94a46e7819debc72592ff736c846e4d",
+      "frames": 1800,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            115,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "8496d42b5ffb4021a3379c1e73e6a84530191e1e65ca9b90aa292901ee72bd24",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001800.png": "7bc880cd301a5b408c167dc750d039078916c7cbce470b3160b9c5d9ebff8357",
+        "main-ram.bin": "b38bc193cd68afef495b58a81547492bd573899e66c4197668b7084aeef9875d",
+        "smoke-report.json": "6e75da642550656f54127fcd01f0edef8736cbd475b519133688fd1c9243b3c5",
+        "state.bin": "4354dcfc6e84793e74db2e8d71e5ba6200185c21ae08afc350cdceb59ec19391",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6b78",
+        "enemy_party": "0x22a7788",
+        "pokemon_sha256": "57e1d6cb0f2af42fcdd0c57a28c765a1f99057e61e68e52f147f793f348908b9",
+        "identical_retained_slots": [
+          3
+        ]
+      }
+    },
+    "hg10b-off-attack2": {
+      "source_artifact": "local_data/verification/hg10b-off-attack1/state.bin",
+      "source_sha256": "4354dcfc6e84793e74db2e8d71e5ba6200185c21ae08afc350cdceb59ec19391",
+      "frames": 1800,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            115,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "8496d42b5ffb4021a3379c1e73e6a84530191e1e65ca9b90aa292901ee72bd24",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001800.png": "f23e34ead49d4e8671aff8c170420a9e8d28be7b66b546b3666924017305a3b6",
+        "main-ram.bin": "eff180eb48a888c383e8460bb3904aacc76db7db4e8ed7267e1658b795ad9ab3",
+        "smoke-report.json": "b006a394762cb0530923ae716811e78d280869abf86f77907d2f57acc5ab6ed3",
+        "state.bin": "b3c5ae0897da95a8db6924008300d042fdf3bc5a38b0ae1512237351307910b4",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6b78",
+        "enemy_party": "0x22a7788",
+        "pokemon_sha256": "57e1d6cb0f2af42fcdd0c57a28c765a1f99057e61e68e52f147f793f348908b9",
+        "identical_retained_slots": [
+          3
+        ]
+      }
+    },
+    "hg10b-on-reload": {
+      "source_artifact": "local_data/verification/hg10b-on-save/cartridge.sav",
+      "source_sha256": "eb229c8a969dc69831a4375957e82651e8bc7748d796cc072a9b49f4f748ca20",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "eb229c8a969dc69831a4375957e82651e8bc7748d796cc072a9b49f4f748ca20",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "246c04601ad3e715baeaf00bf4842a51f8256a4e0f1b9ef259bd827c3f824f3f",
+        "main-ram.bin": "297273b3513f3a28faf0d1ca867349d83e849721b86f8e09e3e8ef4f33bf26bc",
+        "smoke-report.json": "6920a1f0b9809c469290881641bca8750d5f84f1ac323e8e10f5f99bc688fbe4",
+        "state.bin": "ffa8301fce54e5d4b55cd3932d9bb65649ce7e88c8bd7c35721df8de0f9b4112",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 0,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 0,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 207,
+          "level": 6,
+          "hp": 19,
+          "hp_ev": 3,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 32,
+          "move2_pp": 40,
+          "move3_pp": 23,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 19,
+          "experience": 20,
+          "level": 2,
+          "hp": 13,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 0,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 163,
+          "experience": 20,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 3,
+          "species": 163,
+          "experience": 20,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "ss10b-menu": {
+      "source_artifact": "local_data/verification/ss09a-reload/cartridge.sav",
+      "source_sha256": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "13bd74e388bc444f6860e32b23b32716439dec11e03cea9b2482c2003c12f40d",
+        "main-ram.bin": "3d7a16eaabf1bdcc37cc7997bae55255329cd7deb0bbb2874b955030039e60f7",
+        "smoke-report.json": "ad28ea6e0220af153bd8f9de4c4242c798b6b0ad46f5e5f568f90ac0f13b0d4e",
+        "state.bin": "3505a47197a965b53cb115abdd2a40c2292da2efb07ee82c0a176f93433c5313",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 191,
+          "level": 6,
+          "hp": 22,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 25,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 163,
+          "experience": 27,
+          "level": 3,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 19,
+          "experience": 64,
+          "level": 4,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 98,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 30,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "ss10b-encounter": {
+      "source_artifact": "local_data/verification/ss10b-menu/state.bin",
+      "source_sha256": "3505a47197a965b53cb115abdd2a40c2292da2efb07ee82c0a176f93433c5313",
+      "frames": 9000,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-004500.png": "9721b4a856f43d2022aeba213279d2231482addb62d9d6c093186456b7ef1f1e",
+        "frame-009000.png": "2e5cd805c6d451c38d29552a0273a5b38baf54e558812d3364ca8cea73bc65b7",
+        "main-ram.bin": "ee3e0d54e97c1cabaeaae256432d85341899b7a58210777d0038cae9b9ea4b69",
+        "smoke-report.json": "ba38333f6d1537b7dc3b690c737deb1415fef29d80e150034cf945167f1c6b7f",
+        "state.bin": "43769e610895f80ffd2cc7ba3cc0d889c3eb1edf7b4e78cdf3fa3a8b7ef16186",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6c10",
+        "enemy_party": "0x22a7820",
+        "pokemon_sha256": "b046d2a9ab5d4c4fb68d7398bb3b7ffcf6cdf532ce88f6864061ad971ecd03c2",
+        "identical_retained_slots": [
+          5
+        ]
+      }
+    },
+    "ss10b-fight": {
+      "source_artifact": "local_data/verification/ss10b-encounter/state.bin",
+      "source_sha256": "43769e610895f80ffd2cc7ba3cc0d889c3eb1edf7b4e78cdf3fa3a8b7ef16186",
+      "frames": 300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000300.png": "ee5575a90e4552f5f47a8475ec9c8dacec198c40983edf036c53c566cdedfc78",
+        "main-ram.bin": "995adcda69f617cb148a15364007ff6cf71fa77f8e8613b3f1f334a3f8d4ec41",
+        "smoke-report.json": "b7535a46c5b064d52d68c1ea0b7cd665a4437e406b760d3e8add43ce7341f46f",
+        "state.bin": "78a111c0da556912e8d8e045f94479569cab88e266e40acabaa9d4ac3a6c2dcf",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6c10",
+        "enemy_party": "0x22a7820",
+        "pokemon_sha256": "b046d2a9ab5d4c4fb68d7398bb3b7ffcf6cdf532ce88f6864061ad971ecd03c2",
+        "identical_retained_slots": [
+          5
+        ]
+      }
+    },
+    "ss10b-attack": {
+      "source_artifact": "local_data/verification/ss10b-fight/state.bin",
+      "source_sha256": "78a111c0da556912e8d8e045f94479569cab88e266e40acabaa9d4ac3a6c2dcf",
+      "frames": 2200,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            55,
+            115,
+            10,
+            14
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "9214330934c0caab6665d279499523e04aba707b8100a7dfd7f6e8c69326a286",
+        "frame-001200.png": "639d0d883327fe02db9fc90e3c475d1daa947ceada88a4190116f5eb79f62e1c",
+        "frame-001500.png": "d4faaaaf804cc9c6b4904eeb88f93313f9a54e09d3a313a4b7a5daae34a5b682",
+        "frame-001800.png": "a0304191f9fdf47e91a1effe8d426c10a2f6f1d809bcbd17f97a7f458467fdfd",
+        "frame-002200.png": "34d12fee8bf596ec4529c2856ba9a855a5fbbd522627be5fa6e5b4258518a72b",
+        "main-ram.bin": "800c773d94aac89d1f47eabd4c3b82985e27621567f123514e6b17e3bf62487f",
+        "smoke-report.json": "90c09dede17ace8c82d1252e1005ad8a43f96f820dd1186c6ae9028cf815341f",
+        "state.bin": "5b4bd389ff15ff7c58b975bf78f42ca22c916e61a1f92a25d6fd2e0224f8aa91",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6c10",
+        "enemy_party": "0x22a7820",
+        "pokemon_sha256": "b046d2a9ab5d4c4fb68d7398bb3b7ffcf6cdf532ce88f6864061ad971ecd03c2",
+        "identical_retained_slots": [
+          5
+        ]
+      }
+    },
+    "ss10b-knockout": {
+      "source_artifact": "local_data/verification/ss10b-attack/state.bin",
+      "source_sha256": "5b4bd389ff15ff7c58b975bf78f42ca22c916e61a1f92a25d6fd2e0224f8aa91",
+      "frames": 2500,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            45,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "9c169d5f4fffb4faab1828f648c1f706b4dc01e3623bad60a8242aefdf8cd359",
+        "frame-001300.png": "77d04e1b6e60d4dc1c03247a45b827bff65bee9857252d848f5e8bda4acf4078",
+        "frame-001700.png": "71139ba23fdaf7dd4dd0b1fd461e2630be80d6270d687f55bcec85d7502c6d12",
+        "frame-002500.png": "115ea2e8c91b2e4f05ea5e39375ba8c44c614a1f79b8c8d450e88735dc032c6b",
+        "main-ram.bin": "a81fa78a48a1f6f279dca898ed05e48aa79076a2e03ca54ec949e8633aa28fa3",
+        "smoke-report.json": "609e146149124f5f014a299e9fda829c16ec5742b66347327072558cf810ccd3",
+        "state.bin": "b08c3c8419b8a25e106d7bc8cdf4e7c55ff09e73fd696b138c4f619337ded228",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6c10",
+        "enemy_party": "0x22a7820",
+        "pokemon_sha256": "b046d2a9ab5d4c4fb68d7398bb3b7ffcf6cdf532ce88f6864061ad971ecd03c2",
+        "identical_retained_slots": [
+          5
+        ]
+      }
+    },
+    "ss10b-rewards": {
+      "source_artifact": "local_data/verification/ss10b-knockout/state.bin",
+      "source_sha256": "b08c3c8419b8a25e106d7bc8cdf4e7c55ff09e73fd696b138c4f619337ded228",
+      "frames": 2500,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            45,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "a67e29588dcbc360fd840ef9c107d1bc6a685739fd93c1f8644eb94b03d42c7d",
+        "frame-001100.png": "94868b2aa54e54440787bb1711d979638c34310c916919783cc7264aa2da1735",
+        "frame-001300.png": "622706f1247458d721a1d48e6f132b8150a8ced0ab9b88d3cf1a26a1b1544406",
+        "frame-001500.png": "5c467f9c94d502a3dce57bc10cf3faea9c5faf6c555fcb28e60c8df88ff886e6",
+        "frame-001700.png": "744bff1dff539dc6f2ad13d95206548291701be3b30d0a5943bade5f696b8b37",
+        "frame-001900.png": "41f5116fe2ec551b4e5fd2614caf2c7581cd18f1827f4ed2ee0090f2741e2ec9",
+        "frame-002100.png": "2f363b26592a3951986901f5d2fa29fef1fc754b966c4004e83565162ad0f14c",
+        "frame-002500.png": "fac8b68deea28c19cff93d6ae5edb828f1b4330ceefb33c633bd77eda5d5b767",
+        "main-ram.bin": "4a73f2f2a7fc40321a2df45db70c083ae7a6bf075f7e36d20a916ef816850e48",
+        "smoke-report.json": "41cbd78f4e334c226c66baf3551f6a434a5c1bb5115140a00e6878319b65d487",
+        "state.bin": "35a3e9608d22ee29729f2d17b8efab27a66c9b9a576457f42fa8683ee7b3bfff",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 36684632,
+        "context": 36451228,
+        "active": 0,
+        "participants": 1,
+        "full": 16,
+        "half": 8,
+        "side": 0,
+        "slot": 3,
+        "bench": 0,
+        "shown": 1,
+        "printer": 0,
+        "started": 1,
+        "completed": 1,
+        "groups": 1,
+        "suppressed": 1,
+        "recipients": 3,
+        "calculations": 1
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3
+    },
+    "ss10b-off-save": {
+      "source_artifact": "local_data/verification/ss10b-menu/state.bin",
+      "source_sha256": "3505a47197a965b53cb115abdd2a40c2292da2efb07ee82c0a176f93433c5313",
+      "frames": 600,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            40,
+            44
+          ],
+          [
+            "DOWN",
+            70,
+            74
+          ],
+          [
+            "DOWN",
+            100,
+            104
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "RIGHT",
+            170,
+            174
+          ],
+          [
+            "DOWN",
+            210,
+            214
+          ],
+          [
+            "A",
+            250,
+            254
+          ],
+          [
+            "SELECT",
+            450,
+            454
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "b41fbc6802b15e713396d322506748293b69fde1f0eb070aa6a687fd8f7c5a29",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000600.png": "b5c0c025135fca8d45fbae882cca3d0286e69d18d62dfb7254767b0ab6cae3e1",
+        "main-ram.bin": "dfb1bb42fddd733de29559807908e85e7c0db388b168a00a0efd756da2f68290",
+        "smoke-report.json": "ffe4ff798fef68730c3245ee4c371074327e594c3edbbe8ffc2d489b4668800e",
+        "state.bin": "30c2be7d0a4ba4de59a6bffc4a7428cb71c5abe5f1acca8928077fc4341f31af",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 1,
+        "status": 1,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3
+    },
+    "ss10b-off-reload": {
+      "source_artifact": "local_data/verification/ss10b-off-save/cartridge.sav",
+      "source_sha256": "b41fbc6802b15e713396d322506748293b69fde1f0eb070aa6a687fd8f7c5a29",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "b41fbc6802b15e713396d322506748293b69fde1f0eb070aa6a687fd8f7c5a29",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "b5c0c025135fca8d45fbae882cca3d0286e69d18d62dfb7254767b0ab6cae3e1",
+        "main-ram.bin": "9777491f73f434b546c4ee740d2d0869dfe76159a3eb1547547435fbd0fd934a",
+        "smoke-report.json": "87c0707d6b8115c2c22a59d1b5f74b3fdd2899293dbfe70fcf10db28ecbbf60b",
+        "state.bin": "271b863ab436050a2598346064ced128a43efd8b8fc9378ab64923081931514c",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 191,
+          "level": 6,
+          "hp": 22,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 25,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 163,
+          "experience": 27,
+          "level": 3,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 19,
+          "experience": 64,
+          "level": 4,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 98,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 30,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "ss10b-off-encounter": {
+      "source_artifact": "local_data/verification/ss10b-off-reload/state.bin",
+      "source_sha256": "271b863ab436050a2598346064ced128a43efd8b8fc9378ab64923081931514c",
+      "frames": 9000,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "b41fbc6802b15e713396d322506748293b69fde1f0eb070aa6a687fd8f7c5a29",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-009000.png": "d4c96948554bece3b1328e3db15db85682c01b4e580e91194f7378b78dc8af2d",
+        "main-ram.bin": "250564c2c8e3b343185aeb32696a02c13b77e59ecb3431dac248abc08d7b5a58",
+        "smoke-report.json": "637db385b2aab3c6d2b4a384532f762c1949111836adfd069d64a830c759c6d7",
+        "state.bin": "847a166483aa54f265fcbeead34929f97d6b2008c9ed571a0be9fa758134edbc",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6b54",
+        "enemy_party": "0x22a7764",
+        "pokemon_sha256": "fd2d792bdc2f506d5b33645e8deff74c331c7562fe1d00fd0920c63ccae99665",
+        "identical_retained_slots": [
+          4
+        ]
+      }
+    },
+    "ss10b-off-attack1": {
+      "source_artifact": "local_data/verification/ss10b-off-encounter/state.bin",
+      "source_sha256": "847a166483aa54f265fcbeead34929f97d6b2008c9ed571a0be9fa758134edbc",
+      "frames": 1800,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            115,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "b41fbc6802b15e713396d322506748293b69fde1f0eb070aa6a687fd8f7c5a29",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001800.png": "35aec97b4f4eb64f59a4d7b979315c85982a9d35801f3c5cc9edf75281fda807",
+        "main-ram.bin": "844930d33a4d4925183abdaa55633a3e0d8d236818bf5c7f09e08bcd8a0fde4d",
+        "smoke-report.json": "21c916457b83580f4250d06a4d9bec65c64cab565deedbf8ac0e0bd33f59c847",
+        "state.bin": "1194ab18a3a2dc3f0b08166dd1a1a6c7c8b09bc876c4f4f54980e359852d2922",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6b54",
+        "enemy_party": "0x22a7764",
+        "pokemon_sha256": "fd2d792bdc2f506d5b33645e8deff74c331c7562fe1d00fd0920c63ccae99665",
+        "identical_retained_slots": [
+          4
+        ]
+      }
+    },
+    "ss10b-off-attack2": {
+      "source_artifact": "local_data/verification/ss10b-off-attack1/state.bin",
+      "source_sha256": "1194ab18a3a2dc3f0b08166dd1a1a6c7c8b09bc876c4f4f54980e359852d2922",
+      "frames": 1800,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            115,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "b41fbc6802b15e713396d322506748293b69fde1f0eb070aa6a687fd8f7c5a29",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001800.png": "9640c55076c04c776d0d7fd607eda0da435988d022de5d1448d3cd5082c0b41f",
+        "main-ram.bin": "6f413e2067c0a790ec653edb6bb2f5bac242c89e43d317b0fcf750d05a492f98",
+        "smoke-report.json": "4734d3a6a7349b9776ab88f8497e0d0ca26813143b39e6352ab3846299f4d5b6",
+        "state.bin": "a2b4694d3f9401d7522ee4c57424f383cb1e8089b8b09ba2440bc04b27076172",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3
+    },
+    "ss10b-on-reload": {
+      "source_artifact": "local_data/verification/ss10b-on-save/cartridge.sav",
+      "source_sha256": "8eba46f8bf40138884206d2dfce809f631a81adabb835beed8d25d07a43669a7",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "8eba46f8bf40138884206d2dfce809f631a81adabb835beed8d25d07a43669a7",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "246c04601ad3e715baeaf00bf4842a51f8256a4e0f1b9ef259bd827c3f824f3f",
+        "main-ram.bin": "d22b0fe3ed9c81ac6fd1e69d7940d6ee3272708d944d3a33690ffac09749d7bc",
+        "smoke-report.json": "c08d6797da241b4d114e1326dbe99e728ec0d02542eb6cdedc79e9b76bb3be29",
+        "state.bin": "ebba4bc6c6767f775b777517a5fb746295d16a6ba93b108fec066054ea9bedc3",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 0,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 0,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 207,
+          "level": 6,
+          "hp": 22,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 2,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 25,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 163,
+          "experience": 35,
+          "level": 3,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 19,
+          "experience": 72,
+          "level": 4,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 98,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 30,
+          "move4_pp": 0
+        },
+        {
+          "slot": 3,
+          "species": 19,
+          "experience": 8,
+          "level": 2,
+          "hp": 13,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 0,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "hg10b-rewards2": {
+      "source_artifact": "local_data/verification/hg10b-rewards/state.bin",
+      "source_sha256": "dcffb8d97b0a363b48319a52b9ad6b55fdc686525380b92f5703ef465ece41b4",
+      "frames": 2500,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            45,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "97da91640bd527fde449d06cb2d8c564ab4f69d557cf9c2c9086cc9bf05cfbfd",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "3c7e1b72e0b32f7202792bd2cf2f7a937eb13f32e56832374bbc55dfd29ae2d0",
+        "frame-001100.png": "06f5478217ccf4c307199571015939a47a0906f567c43b4d8552e74615fd23d1",
+        "frame-001300.png": "dfd84252f9248b9335ba7c00db049be2cbc1dec77ca4ff6c63147994b4ef2a30",
+        "frame-001500.png": "ea983a4f70234cc2e686cffdf4e0aa70dd275d165d864d5c18df664e395cfd2f",
+        "frame-001700.png": "5867392b1418b91813651bda9fe71b08c7619dd7eb5c46c224e071e80307a663",
+        "frame-001900.png": "b2014a4b4e491ce32cf33faf44ad1deeea6d3291a70513b79d1512277ee17db9",
+        "frame-002100.png": "3f195bb03e0e2b1457fa7566d75617c0d875501086b4794b17536e2643428c71",
+        "frame-002500.png": "9b36ef3d5a7dd8d90885a51c7490d7b4f8df0d3362c467cdd73f62b3ae7fab30",
+        "main-ram.bin": "e1669f073e40f63d2dc3be6b3591a6aae3c438d55677aa640f67f90ab38adc97",
+        "smoke-report.json": "f26b90f0471af4cc40593d81726f4e8255df18830f657fd79ccb98fbab6c20be",
+        "state.bin": "7c80d8da38d94f6790e912aa58507b7e58bc0edfb226b13f56075e3be835cbde",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6be8",
+        "enemy_party": "0x22a77f8",
+        "pokemon_sha256": "a2e10753679a7510b2de90501f32e03c4af2f49b894530cda67856016972004a",
+        "identical_retained_slots": [
+          1
+        ]
+      }
+    },
+    "hg10b-rewards3": {
+      "source_artifact": "local_data/verification/hg10b-rewards2/state.bin",
+      "source_sha256": "7c80d8da38d94f6790e912aa58507b7e58bc0edfb226b13f56075e3be835cbde",
+      "frames": 2500,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            1600,
+            1604
+          ],
+          [
+            "SELECT",
+            2000,
+            2004
+          ]
+        ],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            115,
+            300,
+            304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "97da91640bd527fde449d06cb2d8c564ab4f69d557cf9c2c9086cc9bf05cfbfd",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001300.png": "72bfd07a2a9825190e582a55bb20dbda6121084a9770a3ca3dcf6f0713fd7a4c",
+        "frame-001700.png": "11be8083aa986af0d7bbd1e8640dcaad444a65ad07c6883ba87f5dc0957da7ee",
+        "frame-002500.png": "13bd74e388bc444f6860e32b23b32716439dec11e03cea9b2482c2003c12f40d",
+        "main-ram.bin": "6f3820ba5743a942756271dd8615b124920d3288593c85bb6614f230550be009",
+        "smoke-report.json": "078ab901ba76e14b774be86eb63fd621a845493868d7c40fbe14ebf26f270bb5",
+        "state.bin": "a692877cf2e78f7a5458d73a6544d687a5ecd0dbc5fe99513826307a256d17d2",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 36684592,
+        "context": 36451188,
+        "active": 0,
+        "participants": 1,
+        "full": 24,
+        "half": 12,
+        "side": 0,
+        "slot": 4,
+        "bench": 0,
+        "shown": 1,
+        "printer": 0,
+        "started": 1,
+        "completed": 1,
+        "groups": 1,
+        "suppressed": 2,
+        "recipients": 4,
+        "calculations": 1
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 207,
+          "level": 6,
+          "hp": 19,
+          "hp_ev": 3,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 32,
+          "move2_pp": 40,
+          "move3_pp": 23,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 19,
+          "experience": 20,
+          "level": 2,
+          "hp": 13,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 0,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 163,
+          "experience": 20,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 3,
+          "species": 163,
+          "experience": 20,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "hg10b-off-rewards": {
+      "source_artifact": "local_data/verification/hg10b-off-attack2/state.bin",
+      "source_sha256": "b3c5ae0897da95a8db6924008300d042fdf3bc5a38b0ae1512237351307910b4",
+      "frames": 6000,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            1750,
+            1754
+          ],
+          [
+            "SELECT",
+            3750,
+            3754
+          ],
+          [
+            "SELECT",
+            5750,
+            5754
+          ]
+        ],
+        "touches": [
+          [
+            128,
+            80,
+            10,
+            14
+          ],
+          [
+            55,
+            115,
+            300,
+            304
+          ],
+          [
+            128,
+            80,
+            2010,
+            2014
+          ],
+          [
+            55,
+            115,
+            2300,
+            2304
+          ],
+          [
+            128,
+            80,
+            4010,
+            4014
+          ],
+          [
+            55,
+            115,
+            4300,
+            4304
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "8496d42b5ffb4021a3379c1e73e6a84530191e1e65ca9b90aa292901ee72bd24",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001900.png": "b5c0c025135fca8d45fbae882cca3d0286e69d18d62dfb7254767b0ab6cae3e1",
+        "frame-003900.png": "b5c0c025135fca8d45fbae882cca3d0286e69d18d62dfb7254767b0ab6cae3e1",
+        "frame-006000.png": "b5c0c025135fca8d45fbae882cca3d0286e69d18d62dfb7254767b0ab6cae3e1",
+        "main-ram.bin": "f6b7555f58341dceefd9496571e7d3d5b339f054b4c4a78ffffe27d5e7e1548a",
+        "smoke-report.json": "d8b6796815f6aefd3d2d7e9da5cfb273f47f46fdb7ccf5f8b4f9f3a8ac60343c",
+        "state.bin": "7e458858c311eb70ec961993f225604c08da42e67f87d9c168346c5fbd5ff29e",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 207,
+          "level": 6,
+          "hp": 22,
+          "hp_ev": 3,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 22,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 19,
+          "experience": 8,
+          "level": 2,
+          "hp": 13,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 0,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 163,
+          "experience": 8,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 3,
+          "species": 163,
+          "experience": 8,
+          "level": 2,
+          "hp": 14,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "ss10b-off-stored": {
+      "source_artifact": "local_data/verification/ss10b-off-attack2/state.bin",
+      "source_sha256": "a2b4694d3f9401d7522ee4c57424f383cb1e8089b8b09ba2440bc04b27076172",
+      "frames": 300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "b41fbc6802b15e713396d322506748293b69fde1f0eb070aa6a687fd8f7c5a29",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000300.png": "e1523780b3124531f646e101079b168779c7bf6338501993dd5b796cf7593374",
+        "main-ram.bin": "4c9db0cafe8e59f3077d1268df1ec60ef20bc946253b4bb505a6880c444ecd1f",
+        "smoke-report.json": "a3c7eb9e891e659c17f39d91f3599319b157a5e2caa16df05137a11fc12051c4",
+        "state.bin": "f099b988af1c6fda24f758f4b9fd381867e82d442915f78c1881868bc1d6f979",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 0
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 0
+      },
+      "party_exp": {
+        "work": 0,
+        "context": 0,
+        "active": 0,
+        "participants": 0,
+        "full": 0,
+        "half": 0,
+        "side": 0,
+        "slot": 0,
+        "bench": 0,
+        "shown": 0,
+        "printer": 0,
+        "started": 0,
+        "completed": 0,
+        "groups": 0,
+        "suppressed": 0,
+        "recipients": 0,
+        "calculations": 0
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 207,
+          "level": 6,
+          "hp": 22,
+          "hp_ev": 2,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 23,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 163,
+          "experience": 27,
+          "level": 3,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 19,
+          "experience": 64,
+          "level": 4,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 98,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 30,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "ss10b-victory-stored": {
+      "source_artifact": "local_data/verification/ss10b-rewards/state.bin",
+      "source_sha256": "35a3e9608d22ee29729f2d17b8efab27a66c9b9a576457f42fa8683ee7b3bfff",
+      "frames": 300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000300.png": "043ef3340b891f4eef5a7faf2c1517be186cf528df4c78da782317316e70912f",
+        "main-ram.bin": "10cdea07f9a978aa014962eb0a0c110ab5201a40546882cad68eaba484636db8",
+        "smoke-report.json": "b447104af506e65cb887647ceba1c179660605ee2c3fedafa2953c0b1c4af5ab",
+        "state.bin": "22b82aa0742b5692ae796f02a24010a8116281f008db709e79d324bdc2c63ed7",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 36684632,
+        "context": 36451228,
+        "active": 0,
+        "participants": 1,
+        "full": 16,
+        "half": 8,
+        "side": 0,
+        "slot": 3,
+        "bench": 0,
+        "shown": 1,
+        "printer": 0,
+        "started": 1,
+        "completed": 1,
+        "groups": 1,
+        "suppressed": 1,
+        "recipients": 3,
+        "calculations": 1
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 3,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 207,
+          "level": 6,
+          "hp": 20,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 2,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 33,
+          "move2_pp": 40,
+          "move3_pp": 24,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 163,
+          "experience": 35,
+          "level": 3,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 19,
+          "experience": 72,
+          "level": 4,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 98,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 30,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "ss10b-catch": {
+      "source_artifact": "local_data/verification/ss10b-encounter/state.bin",
+      "source_sha256": "43769e610895f80ffd2cc7ba3cc0d889c3eb1edf7b4e78cdf3fa3a8b7ef16186",
+      "frames": 3600,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            800,
+            804
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            170,
+            10,
+            14
+          ],
+          [
+            190,
+            45,
+            400,
+            404
+          ],
+          [
+            50,
+            35,
+            1000,
+            1004
+          ],
+          [
+            100,
+            170,
+            1400,
+            1404
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002000.png": "0fd0a3c618ed4bb171698bf0abea260a45b8d249c87ae4642042f9a56fcdfa15",
+        "frame-002200.png": "e385666104c7146a8b7115a13985e296ca860d555b62d0260cd8fde10c59e6fc",
+        "frame-002400.png": "e385666104c7146a8b7115a13985e296ca860d555b62d0260cd8fde10c59e6fc",
+        "frame-002600.png": "2fa859da1eac5515e6dd6392bc4ea370405df5444f87d26defa9db2bfa750fac",
+        "frame-002800.png": "4bb28595c555059fc46ef4c34af86677be57216c5e36bd07053e1a9c38bd3c79",
+        "frame-003000.png": "2d38f12fbe6d7ceb8ce207ae7823efc1c70577cc16c481a5ab872d114aca0f43",
+        "frame-003600.png": "2a3f1fc92c9f8296fc3e4fa6d135ddb01b3d6208a3c244890a2d8ad63b707c55",
+        "main-ram.bin": "ee30ff28a0a8f581c68e753dc47d240ca8300860c2a70aebf474e26cf671aa46",
+        "smoke-report.json": "142eee6e0c4ae664a8f7fd8bf6ffc5226b5e0647e7fa15490898bb0ff091238d",
+        "state.bin": "accab103d6425c2ba445af3499b50541be4d725b7872500e5ab5b84f5ca8dbc3",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 36692948,
+        "context": 36451228,
+        "active": 0,
+        "participants": 1,
+        "full": 16,
+        "half": 8,
+        "side": 0,
+        "slot": 3,
+        "bench": 0,
+        "shown": 1,
+        "printer": 0,
+        "started": 1,
+        "completed": 1,
+        "groups": 1,
+        "suppressed": 1,
+        "recipients": 3,
+        "calculations": 1
+      },
+      "capture_exp": {
+        "parent": 36501892,
+        "context": 36451228,
+        "phase": 2,
+        "completed_once": 1,
+        "saved_fainted": 255,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 1,
+        "saved_earn1": 0,
+        "started": 1,
+        "completed": 1,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 1
+      },
+      "visible_mode": 3,
+      "native_battle": {
+        "setup": "0x22a6c10",
+        "enemy_party": "0x22a7820",
+        "pokemon_sha256": "b046d2a9ab5d4c4fb68d7398bb3b7ffcf6cdf532ce88f6864061ad971ecd03c2",
+        "identical_retained_slots": [
+          5
+        ]
+      }
+    },
+    "ss10b-catch-stored": {
+      "source_artifact": "local_data/verification/ss10b-catch/state.bin",
+      "source_sha256": "accab103d6425c2ba445af3499b50541be4d725b7872500e5ab5b84f5ca8dbc3",
+      "frames": 1400,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            300,
+            304
+          ],
+          [
+            "SELECT",
+            500,
+            504
+          ],
+          [
+            "SELECT",
+            700,
+            704
+          ],
+          [
+            "SELECT",
+            900,
+            904
+          ],
+          [
+            "SELECT",
+            1100,
+            1104
+          ]
+        ],
+        "touches": [
+          [
+            128,
+            155,
+            10,
+            14
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "29e0f8d0f4f91e4f3f9d3b85138e7502f801d6ed454dc540e83f55db8127deef",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001400.png": "3c056abda84d67d40d4e31ba735c1611cd4567bbb075e5bdc22ea55c0c04d949",
+        "main-ram.bin": "6d5b720f48fa125d41cccc9702029864d4ed8a441d392cf81a7150ab5f9b6fe7",
+        "smoke-report.json": "2dd000a37e58821308ea88406237ab8e95c2660cd4eb38d9edfc2107740fa265",
+        "state.bin": "33ad3e293942359e657ea4e6c1bd12d35932be6058c3257d281917a1a26c7a39",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 1,
+        "last_slot": 0,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 0,
+        "status": 0,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": true,
+        "phase": 1,
+        "row": 0,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 3,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 36692948,
+        "context": 36451228,
+        "active": 0,
+        "participants": 1,
+        "full": 16,
+        "half": 8,
+        "side": 0,
+        "slot": 3,
+        "bench": 0,
+        "shown": 1,
+        "printer": 0,
+        "started": 1,
+        "completed": 1,
+        "groups": 1,
+        "suppressed": 1,
+        "recipients": 3,
+        "calculations": 1
+      },
+      "capture_exp": {
+        "parent": 36501892,
+        "context": 36451228,
+        "phase": 2,
+        "completed_once": 1,
+        "saved_fainted": 255,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 1,
+        "saved_earn1": 0,
+        "started": 1,
+        "completed": 1,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 1
+      },
+      "visible_mode": 3,
+      "native_saved_party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 207,
+          "level": 6,
+          "hp": 22,
+          "hp_ev": 1,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 2,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 25,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 163,
+          "experience": 35,
+          "level": 3,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 19,
+          "experience": 72,
+          "level": 4,
+          "hp": 16,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 98,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 30,
+          "move4_pp": 0
+        },
+        {
+          "slot": 3,
+          "species": 19,
+          "experience": 8,
+          "level": 2,
+          "hp": 13,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 0,
+          "move4_pp": 0
+        }
+      ]
+    },
+    "hg10b-on-presave": {
+      "source_artifact": "local_data/verification/hg10b-rewards3/state.bin",
+      "source_sha256": "a692877cf2e78f7a5458d73a6544d687a5ecd0dbc5fe99513826307a256d17d2",
+      "frames": 350,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "RIGHT",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            40,
+            44
+          ],
+          [
+            "DOWN",
+            70,
+            74
+          ],
+          [
+            "DOWN",
+            100,
+            104
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "DOWN",
+            160,
+            164
+          ],
+          [
+            "DOWN",
+            190,
+            194
+          ],
+          [
+            "A",
+            230,
+            234
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "23f0dc890634bcd45a75ac354af3518883d243ab98b39cee2d20d795a5b2f71a",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000350.png": "4fdf43513feb538b29ee208c00adb727bd8146498882d0c4ee5665526c49421a",
+        "main-ram.bin": "1078237a6587010fe739a7a4091386f98128d39671a756cb91432b92a9494553",
+        "smoke-report.json": "b088b0ba89bec128b3d9f2cf96c8ca7ef1a7c145e638a1db7a7dde3c43f905f2",
+        "state.bin": "b31fa485177d941b070e2c9b4c0a0e2f390b99877e2bcc81a16157874ee3a534",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 1,
+        "status": 1,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 2,
+        "row": 6,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 0,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 36684592,
+        "context": 36451188,
+        "active": 0,
+        "participants": 1,
+        "full": 24,
+        "half": 12,
+        "side": 0,
+        "slot": 4,
+        "bench": 0,
+        "shown": 1,
+        "printer": 0,
+        "started": 1,
+        "completed": 1,
+        "groups": 1,
+        "suppressed": 2,
+        "recipients": 4,
+        "calculations": 1
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 0
+    },
+    "hg10b-on-save": {
+      "source_artifact": "local_data/verification/hg10b-rewards3/state.bin",
+      "source_sha256": "a692877cf2e78f7a5458d73a6544d687a5ecd0dbc5fe99513826307a256d17d2",
+      "frames": 3000,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "RIGHT",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            40,
+            44
+          ],
+          [
+            "DOWN",
+            70,
+            74
+          ],
+          [
+            "DOWN",
+            100,
+            104
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "DOWN",
+            160,
+            164
+          ],
+          [
+            "DOWN",
+            190,
+            194
+          ],
+          [
+            "A",
+            230,
+            234
+          ],
+          [
+            "A",
+            700,
+            704
+          ]
+        ],
+        "touches": [
+          [
+            127,
+            75,
+            500,
+            504
+          ],
+          [
+            231,
+            96,
+            950,
+            954
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "eb229c8a969dc69831a4375957e82651e8bc7748d796cc072a9b49f4f748ca20",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001200.png": "dcd24884ed64e5eb7cf72ef47196b0bf6c435ef1f97cba429fef14abb82ff580",
+        "frame-003000.png": "af52a040ed70cfc3c0fa04baec956e0a60ed91916968351adff2bd6ec70f7fe4",
+        "main-ram.bin": "d50963829910a262f0fbb93edce47e3a7f03ef427d427057a833d65c46f83e41",
+        "smoke-report.json": "f527cc729a0f99c0c9e30bf23747870371d04920d46288f1a7235f9aefecc22c",
+        "state.bin": "633767b4980f9f06aaf7ee134eaf1a0f9880186ae4251c620f434f6981481554",
+        "state.json": "decc94e5719e3405e48a397325e36ea8ef47a5d64379f0ba7703642facca9be1"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 1,
+        "status": 1,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 2,
+        "row": 6,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 0,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 36684592,
+        "context": 36451188,
+        "active": 0,
+        "participants": 1,
+        "full": 24,
+        "half": 12,
+        "side": 0,
+        "slot": 4,
+        "bench": 0,
+        "shown": 1,
+        "printer": 0,
+        "started": 1,
+        "completed": 1,
+        "groups": 1,
+        "suppressed": 2,
+        "recipients": 4,
+        "calculations": 1
+      },
+      "capture_exp": {
+        "parent": 0,
+        "context": 0,
+        "phase": 0,
+        "completed_once": 0,
+        "saved_fainted": 0,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 0,
+        "saved_earn1": 0,
+        "started": 0,
+        "completed": 0,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 0
+      },
+      "visible_mode": 0
+    },
+    "ss10b-on-presave": {
+      "source_artifact": "local_data/verification/ss10b-catch-stored/state.bin",
+      "source_sha256": "33ad3e293942359e657ea4e6c1bd12d35932be6058c3257d281917a1a26c7a39",
+      "frames": 350,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "RIGHT",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            40,
+            44
+          ],
+          [
+            "DOWN",
+            70,
+            74
+          ],
+          [
+            "DOWN",
+            100,
+            104
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "DOWN",
+            160,
+            164
+          ],
+          [
+            "DOWN",
+            190,
+            194
+          ],
+          [
+            "A",
+            230,
+            234
+          ]
+        ],
+        "touches": []
+      },
+      "artifacts": {
+        "cartridge.sav": "13515baab2582616a317587cc106c53d388f1b6e005c4e31e5edda0594086602",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000350.png": "9a1524afecbe8f2017da39e943f5edea44171ed2c1a0a970bb5512f1e0245b69",
+        "main-ram.bin": "5fbf4ad8fc98ddf37a10790f8ff2f7cfcf200a01b55b2a120f302c353d3c39d8",
+        "smoke-report.json": "cb227b04da0fb62bc6846ccbb1f7765c98ca73268a314a9675d2884519995eb9",
+        "state.bin": "f023ff57bca04f500b89372c184d26faeed5d0a4a5679ddac92377bb8a1884b8",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 1,
+        "status": 1,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 2,
+        "row": 6,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 0,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 36692948,
+        "context": 36451228,
+        "active": 0,
+        "participants": 1,
+        "full": 16,
+        "half": 8,
+        "side": 0,
+        "slot": 3,
+        "bench": 0,
+        "shown": 1,
+        "printer": 0,
+        "started": 1,
+        "completed": 1,
+        "groups": 1,
+        "suppressed": 1,
+        "recipients": 3,
+        "calculations": 1
+      },
+      "capture_exp": {
+        "parent": 36501892,
+        "context": 36451228,
+        "phase": 2,
+        "completed_once": 1,
+        "saved_fainted": 255,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 1,
+        "saved_earn1": 0,
+        "started": 1,
+        "completed": 1,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 1
+      },
+      "visible_mode": 0
+    },
+    "ss10b-on-save": {
+      "source_artifact": "local_data/verification/ss10b-catch-stored/state.bin",
+      "source_sha256": "33ad3e293942359e657ea4e6c1bd12d35932be6058c3257d281917a1a26c7a39",
+      "frames": 3000,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "RIGHT",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            40,
+            44
+          ],
+          [
+            "DOWN",
+            70,
+            74
+          ],
+          [
+            "DOWN",
+            100,
+            104
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "DOWN",
+            160,
+            164
+          ],
+          [
+            "DOWN",
+            190,
+            194
+          ],
+          [
+            "A",
+            230,
+            234
+          ],
+          [
+            "A",
+            700,
+            704
+          ]
+        ],
+        "touches": [
+          [
+            127,
+            75,
+            500,
+            504
+          ],
+          [
+            231,
+            96,
+            950,
+            954
+          ]
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "8eba46f8bf40138884206d2dfce809f631a81adabb835beed8d25d07a43669a7",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001200.png": "f8e8a4d440550faeaafeb0b8e0517b2b0f2c7332de23cbd020b89550f3676104",
+        "frame-003000.png": "efe14a0354917e79e7d72751ec8a50559792af6a63ea7d240fd3ecb731c5c403",
+        "main-ram.bin": "6957c09c115b876bf6d0a4628920c54c2ec32c533a81766ca17e852c1cd73698",
+        "smoke-report.json": "9704c0a5d474077ec8d436ac6f582611aa066eecac50b9884f70cff9d542284f",
+        "state.bin": "0c10dbb4f02134e8e0f7f0c4790dc11faa8d2e003cc62aa35409b963d6714727",
+        "state.json": "1fd7babf817f4745c456fe8143f54bb6d763800fe0a7d8c12b87b83ea2d8d358"
+      },
+      "settings": {
+        "loaded": true,
+        "sequence": 2,
+        "last_slot": 1,
+        "writable_slots": [
+          true,
+          true
+        ],
+        "successful_writes": 1,
+        "status": 1,
+        "trade_evolutions": 0,
+        "reusable_tms": 0,
+        "repel_prompt": 1,
+        "capture_exp": 1,
+        "party_exp": 1
+      },
+      "enhancement_menu": {
+        "active": false,
+        "phase": 2,
+        "row": 6,
+        "staged_trade": 0,
+        "staged_tms": 0,
+        "staged_visible": 0,
+        "error": 0,
+        "staged_repel_prompt": 1,
+        "staged_capture_exp": 1,
+        "staged_party_exp": 1
+      },
+      "party_exp": {
+        "work": 36692948,
+        "context": 36451228,
+        "active": 0,
+        "participants": 1,
+        "full": 16,
+        "half": 8,
+        "side": 0,
+        "slot": 3,
+        "bench": 0,
+        "shown": 1,
+        "printer": 0,
+        "started": 1,
+        "completed": 1,
+        "groups": 1,
+        "suppressed": 1,
+        "recipients": 3,
+        "calculations": 1
+      },
+      "capture_exp": {
+        "parent": 36501892,
+        "context": 36451228,
+        "phase": 2,
+        "completed_once": 1,
+        "saved_fainted": 255,
+        "saved_gained": 0,
+        "saved_shared": 0,
+        "saved_earn0": 1,
+        "saved_earn1": 0,
+        "started": 1,
+        "completed": 1,
+        "failures": 0,
+        "skipped": 0,
+        "last_enemy": 1
+      },
+      "visible_mode": 0
+    }
+  },
+  "assertions": {
+    "full_half_exp_both_games": "passed",
+    "bench_native_ev_both_games": "passed",
+    "one_collective_message_both_games": "passed",
+    "off_nonparticipant_control_both_games": "passed",
+    "saved_on_off_cold_boot_both_games": "passed",
+    "native_save_cold_reload_complete_party_both_games": "passed",
+    "native_save_preserves_both_journal_pages_both_games": "passed",
+    "combined_soulsilver_capture_exp_party_exp_and_storage": "passed",
+    "candidate_rebuild_rom_hash_matches_emulator_artifact_both_games": "passed",
+    "xdelta_roundtrip_both_games": "passed"
+  },
+  "remaining": [
+    "Bench level-up/stat, full move and evolution emulator flows",
+    "Multiple participating Pokemon in an actual battle",
+    "Held-item, level-100, egg/fainted and repeated/double/roamer/special-area emulator acceptance",
+    "Combined party/capture EXP on HeartGold in the emulator",
+    "Transient footer redraw immediately after battle return",
+    "Prior capture presentation and extended capture cases",
+    "Remaining audited Emerald enhancements and hardware verification"
+  ],
+  "owned_message_independent_decode": {
+    "result": "passed_both_candidates",
+    "primary_revision": "6988158691eb6178cff697cda0428045ddcba5fb",
+    "primary_source": "tools/msgenc/MessagesConverter.h",
+    "primary_file_sha256": "cbb772e2b227c84d53bdfb566834e4b926dd8b50a74b934386e737341738212c",
+    "method": "Compile the pinned MsgAlloc.decrypt and DecryptU16String definitions; decrypt appended entry 1276 from each final ROM; compare the complete owned character stream including terminator."
+  },
+  "fixture_provenance": {
+    "new_ram_or_pokemon_edits": false,
+    "inputs": "Ordinary controls starting from copies of milestone-09 native saves; the remaining SS Master Ball came from the declared milestone-08 isolated fixture.",
+    "excluded_unsettled_data": "SS victory frame at 2500 had transient lead-party fields; subsequent settled SELECT-frozen and native-save/cold-reloaded checkpoints are authoritative.",
+    "excluded_interrupted_save": "First HG native-save attempt entered another visible-wild battle. Replay disables visible wilds through the normal saved menu before actual saving.",
+    "no_rom_save_or_extracted_assets_committed": true
+  }
+}

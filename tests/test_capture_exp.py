@@ -42,7 +42,7 @@ class TestCaptureExperience(unittest.TestCase):
                 elif address==0x02232F60:result=f.ball_active
                 uc.reg_write(api.UC_ARM_REG_R0,result);uc.reg_write(api.UC_ARM_REG_PC,uc.reg_read(api.UC_ARM_REG_LR))
         Fixture.payload=self.payload;self.f=Fixture(methodName='runTest');f=self.f
-        f.native_ranges=[];f.setUp()
+        f.native_ranges=[];f.setUp();f.put(api.PAYLOAD_BASE+28,0)
         self.work,self.ctx,self.battle,self.party,self.exp,self.child=0x02220000,0x02221000,0x02225000,0x02226000,0x02228000,0x02229000
         f.parent_calls=[];f.freed=[];f.destroyed=[];f.battle_type=0;f.mons=[{5:152,76:0,163:20}]
         f.fail_alloc=f.fail_task=f.ball_active=False

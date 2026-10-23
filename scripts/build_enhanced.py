@@ -27,10 +27,11 @@ from gameplay.field import install_field, verify_field_files
 from gameplay.settings import audit_save_layout
 from gameplay.repel import install_repel
 from gameplay.capture import install_capture
+from gameplay.party_exp import install_party_exp
 from build_baseline import build_baseline, read_rom, sha256
 
 
-def verify_unchanged_data(original, patched, overlay_changes) -> None:
+def verify_unchanged_data(original, patched, overlay_changes, file_changes=()) -> None:
     for name in ('name', 'idCode', 'arm9RamAddress', 'arm9EntryAddress',
                  'arm7', 'arm7RamAddress', 'arm7EntryAddress',
                  'arm7OverlayTable', 'iconBanner'):
@@ -38,7 +39,7 @@ def verify_unchanged_data(original, patched, overlay_changes) -> None:
             raise ValueError(f'Unexpected change outside gameplay code: {name}')
     if ndspy.fnt.save(original.filenames) != ndspy.fnt.save(patched.filenames):
         raise ValueError('Unexpected NitroFS filename change.')
-    verify_field_files(original, patched, overlay_changes)
+    verify_field_files(original, patched, overlay_changes, file_changes)
 
 
 def build(source: Path, decoder: str, output_dir: Path) -> dict:
@@ -58,17 +59,19 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     overlay_changes.extend(repel_changes)
     capture_changes = install_capture(patched, payload)
     overlay_changes.extend(capture_changes)
+    party_changes, file_changes = install_party_exp(patched, payload)
+    overlay_changes.extend(party_changes)
     injection = inject_evolution(patched.arm9, original.arm9RamAddress, payload)
     results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-08'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-10'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
     encoded = patched.save()
     parsed = ndspy.rom.NintendoDSRom(encoded)
-    verify_unchanged_data(original, parsed, overlay_changes)
+    verify_unchanged_data(original, parsed, overlay_changes, file_changes)
     verify_arm9_changes(original.arm9, parsed.arm9, original.arm9RamAddress, results, payload)
     with tempfile.TemporaryDirectory(prefix='.gameplay-', dir=output_dir) as workdir:
         work = Path(workdir)
@@ -92,27 +95,28 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'output_sha256': sha256(encoded),
         'patch_sha256': sha256(patch_output.read_bytes()),
         'features': [dataclasses.asdict(r) for r in results if r.feature != 'resident_code_reservation'] +
-                    [dataclasses.asdict(r.patch) for r in repel_changes + capture_changes],
+                    [dataclasses.asdict(r.patch) for r in repel_changes + capture_changes + party_changes],
         'code_changes': [dataclasses.asdict(r) for r in results],
         'overlay_changes': [dataclasses.asdict(r) for r in overlay_changes],
+        'file_changes': [r.summary() for r in file_changes],
         'settings_storage': settings_storage,
         'repel_storage': repel_storage,
         'enhancement_menu': {'open_button': 'SELECT',
-            'options': ['visible_wild', 'trade_evo', 'infinite_tms', 'repel_prompt', 'capture_exp'],
+            'options': ['visible_wild', 'trade_evo', 'infinite_tms', 'repel_prompt', 'capture_exp', 'party_exp'],
             'apply': 'Save and close', 'cancel': 'B or Cancel'},
         'diagnostics': {'visible_state_bytes': 1640, 'settings_state_bytes': 1060,
-                        'menu_state_bytes': 68, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56},
+                        'menu_state_bytes': 72, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
                    'recorded overlay 1/2/12/15 changes only', 'audited native flash allocation',
-                   'other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
+                   'one guarded appended battle message; other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
         'runtime_gameplay_tested': False,
-        'limitations': ['The enhancement menu currently exposes five integrated gameplay options.',
+        'limitations': ['The enhancement menu currently exposes six integrated gameplay options.',
                        'Full in-game TM teaching and evolution/cancellation flows still need verification.',
                        'Bag TM quantity labels retain their original presentation.',
                        'Visible encounters are an experimental grass integration; full acceptance cases remain pending.',

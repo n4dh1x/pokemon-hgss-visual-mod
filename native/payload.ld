@@ -93,3 +93,10 @@ Heap_Alloc = 0x0201AA8D;
 Heap_Free = 0x0201AB0D;
 SysTask_CreateOnMainQueue = 0x0200E321;
 NativeBallAnimationActive = 0x02232F61;
+
+BattleSystem_GetOpponentData = 0x0223A7E9;
+GetMonBaseStat = 0x0206FBE9;
+NativeScriptReadWord = 0x022454E9;
+NativeScriptIncrement = 0x02245509;
+NativePrintBattleMessage = 0x0223C495;
+NativeUnsignedDivide = 0x020F2BA4;

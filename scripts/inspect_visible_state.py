@@ -74,6 +74,11 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['settings']['capture_exp'] = struct.unpack_from('<I', state, base + 24)[0]
         capture = resident_words('gCaptureExperience', 14)
         result['capture_exp'] = dict(zip(('parent','context','phase','completed_once','saved_fainted','saved_gained','saved_shared','saved_earn0','saved_earn1','started','completed','failures','skipped','last_enemy'), capture))
+    if 'gPartyExperience' in symbols:
+        result['enhancement_menu']['staged_party_exp'] = menu[14]
+        result['settings']['party_exp'] = struct.unpack_from('<I', state, base + 28)[0]
+        party = resident_words('gPartyExperience', 17)
+        result['party_exp'] = dict(zip(('work','context','active','participants','full','half','side','slot','bench','shown','printer','started','completed','groups','suppressed','recipients','calculations'), party))
     if 'gEnhancedRepelDialog' in symbols:
         dialog = resident_words('gEnhancedRepelDialog', 17)
         result['repel_dialog'] = {'active': bool(dialog[6]), 'phase': dialog[7],

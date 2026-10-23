@@ -3,7 +3,7 @@
 
 Requires the exact candidate and its matching state report. No input state/save is
 edited. Native USA getter instructions run in Unicorn; no Pokemon layout or crypto
-is reimplemented here. In-battle party copies are intentionally not interpreted.
+is reimplemented here. Only settled field checkpoints with the enhancement menu open are interpreted.
 """
 import argparse
 import hashlib
@@ -18,7 +18,9 @@ def inspect_party(run: Path, report_path: Path, rom_path: Path) -> list[dict]:
         UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_R2)
     import ndspy.rom
     from inspect_visible_state import inspect_run
-    inspect_run(run, report_path)
+    diagnostics = inspect_run(run, report_path)
+    if diagnostics.get('native_battle') or not diagnostics.get('enhancement_menu', {}).get('active'):
+        raise ValueError('Freeze the settled field with SELECT before inspecting saved-party data.')
     report = json.loads(report_path.read_text())
     raw = rom_path.read_bytes()
     if hashlib.sha256(raw).hexdigest() != report['output_sha256']:
@@ -66,6 +68,9 @@ def inspect_party(run: Path, report_path: Path, rom_path: Path) -> list[dict]:
                 (54,'move1'),(55,'move2'),(56,'move3'),(57,'move4'),
                 (58,'move1_pp'),(59,'move2_pp'),(60,'move3_pp'),(61,'move4_pp')):
             entry[label] = call(0x0206E541,mon,code)
+        if not (1 <= entry['species'] <= 493 and 1 <= entry['level'] <= 100
+                and entry['hp'] <= 999 and entry['experience'] <= 2000000):
+            raise ValueError('Native party data is not settled or contains invalid decoded fields.')
         result.append(entry)
     return result
 

@@ -1,6 +1,6 @@
 # Enhancement implementation status
 
-## Verified on 22 October 2026
+## Verified on 23 October 2026
 
 - Fork: https://github.com/n4dh1x/pokemon-hgss-visual-mod
 - Branch: `emerald-feature-parity`.
@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 58 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- Eighty-five tests pass, including compiled ARM field logic and independently checked
+- Ninety-five tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 10,248-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 11,120-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -231,3 +231,15 @@ pages. The read-only native party inspector now reports moves/PP. Full movesets,
 evolution, held-item, failed-throw and wider capture cases remain pending. See
 [capture-progress.md](capture-progress.md) and
 [milestone-09-verification.json](../enhancements/milestone-09-verification.json).
+
+## Milestone 10: party-wide EXP Share
+
+The sixth saved option adds full EXP for each healthy participant and half for
+healthy bench Pokemon, without double rewards from a held EXP Share. It reuses
+native bonuses, EVs and progression, with one appended owned group message.
+Both games pass normal victories, actual Off controls, saved On/Off cold reload
+and native saving/reloading of rewards. SoulSilver also passes combined party and
+capture EXP through nickname/storage. All 95 tests pass. Extended bench progression,
+multiple-participant, held-item emulator and battle-format cases remain pending.
+See [party-experience.md](party-experience.md) and
+[milestone-10-verification.json](../enhancements/milestone-10-verification.json).

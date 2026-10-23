@@ -16,6 +16,20 @@ class OverlayPatch:
     patch: PatchResult
 
 
+@dataclass(frozen=True)
+class FilePatch:
+    file_id: int
+    feature: str
+    before_sha256: str
+    after_sha256: str
+    data: bytes
+    behavior: str
+
+    def summary(self):
+        return {name: getattr(self, name) for name in
+                ('file_id', 'feature', 'before_sha256', 'after_sha256', 'behavior')}
+
+
 def thumb_call(address: int, destination: int) -> bytes:
     if address & 1 or not destination & 1:
         raise PatchMismatch('Thumb BL requires an aligned site and Thumb destination.')
@@ -98,7 +112,7 @@ def install_field(rom, payload: Payload) -> tuple[list[PatchResult], list[Overla
     return main, records
 
 
-def verify_field_files(original, patched, records: list[OverlayPatch]):
+def verify_field_files(original, patched, records: list[OverlayPatch], file_patches=()):
     ids = {r.overlay for r in records}
     overlays = ndspy.code.loadOverlayTable(original.arm9OverlayTable,
                                            lambda oid, fid: original.files[fid], ids)
@@ -116,5 +130,14 @@ def verify_field_files(original, patched, records: list[OverlayPatch]):
             if struct.unpack_from('<I', expected_table, offset)[0] == oid:
                 expected_table[offset:offset + 32] = ndspy.code.saveOverlayTable({oid: overlay})
                 break
+    seen = {r.file_id for r in records}
+    for record in file_patches:
+        if record.file_id in seen or not 0 <= record.file_id < len(expected_files):
+            raise PatchMismatch('Duplicate or invalid recorded data file ID.')
+        if hashlib.sha256(original.files[record.file_id]).hexdigest() != record.before_sha256 or \
+                hashlib.sha256(record.data).hexdigest() != record.after_sha256:
+            raise PatchMismatch('Recorded data file checksum mismatch.')
+        seen.add(record.file_id)
+        expected_files[record.file_id] = record.data
     if expected_files != patched.files or bytes(expected_table) != patched.arm9OverlayTable:
         raise PatchMismatch('Unrecorded NitroFS or overlay descriptor changes.')

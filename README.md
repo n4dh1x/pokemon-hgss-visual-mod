@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 08.**
+**Current stage: experimental gameplay milestone 10.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -12,7 +12,7 @@ checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
 settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. Eighty-five tests pass. The repeat-Repel option offers another Repel of the
+connected-map changes remove old-map wilds. Ninety-five tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
@@ -20,6 +20,10 @@ pass successful capture, Pokédex registration, nickname decline and field retur
 Both games also pass level-6 stat screens, Razor Leaf learning into an empty slot,
 and native save/cold reload of rewards. Evolution, full movesets and wider capture
 cases remain pending.
+A sixth saved option adds party-wide EXP Share: full EXP for participants, half
+for healthy bench Pokemon, with one collective message. Both games pass ordinary
+victories, saved Off controls and native save/cold reload of rewards; SoulSilver
+also passes combined party/capture EXP. Extended acceptance remains pending.
 Cave/water encounters, full capacity and transition
 coverage, other enhancements and final gameplay validation remain.
 These candidates are not the final release.
@@ -34,6 +38,7 @@ These candidates are not the final release.
 - [Repel and connected-map verification](docs/encounter-refinements.md)
 - [Same-type repeat Repel and verification](docs/repel-prompt.md)
 - [Capture EXP integration and verification](docs/capture-experience.md)
+- [Party-wide EXP Share and verification](docs/party-experience.md)
 
 Verify the inventory:
 

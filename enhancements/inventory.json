@@ -113,12 +113,29 @@
       "category": "custom",
       "base_heartgold": "Held-item EXP Share only; not party-wide.",
       "visual_plus": "Not added.",
-      "required_work": "Add optional full EXP for participants, half for other eligible party members; skip eggs/fainted/empty slots; prevent held-item double rewards.",
+      "required_work": "Sixth saved On/Off option integrates full EXP for healthy participants and half for healthy bench Pokemon through native bonuses/EV/progression, with one owned group message. Both games pass ordinary victories, native save/cold reload and Off controls; SoulSilver also passes combined capture EXP. Complete bench progression, multiple-participant, held-item emulator and special battle acceptance.",
       "evidence": [
         "patches/pokeemerald/0011-modern-exp-share.patch",
-        "local_data/reference/pokeheartgold/asm/overlay_12_battle_command.s"
+        "local_data/reference/pokeheartgold/asm/overlay_12_battle_command.s",
+        "native/party_exp.c",
+        "native/party_exp_divide.S",
+        "gameplay/party_exp.py",
+        "gameplay/messages.py",
+        "tests/test_party_exp.py",
+        "docs/party-experience.md",
+        "enhancements/milestone-10-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "compiled_arm_recipient_masks_lifecycle_messages_and_combined_capture": "passed",
+        "native_reward_instructions_bonuses_level100_both_games": "passed",
+        "native_sdk_unsigned_division_interworking": "passed",
+        "ordinary_victory_exp_ev_both_games": "passed",
+        "saved_on_off_and_actual_disabled_controls_both_games": "passed",
+        "native_game_save_cold_reload_rewards_both_games": "passed",
+        "combined_capture_party_exp_soulsilver": "passed",
+        "bench_progression_and_extended_battle_acceptance": "pending"
+      }
     },
     {
       "id": "trade_evolution",

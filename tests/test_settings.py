@@ -240,7 +240,7 @@ class TestSettings(unittest.TestCase):
         self.execute('EnhancedMenuOpen', self.field)
         self.execute('EnhancedMenuTask', 0)
         self.put(self.menu + 44, 3)
-        self.put(self.menu + 32, 5)
+        self.put(self.menu + 32, 6)
         self.put(0x021D1154, 1)
         self.assertEqual(self.execute('EnhancedMenuTask', 0), 0)
         self.assertEqual(self.writes, [])
@@ -272,6 +272,22 @@ class TestSettings(unittest.TestCase):
         self.reload()
         self.assertEqual(self.get(PAYLOAD_BASE + 24), 1)
         self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 1, 2), 0)
+
+
+    def test_legacy_party_exp_defaults_on_preserves_unknowns_and_roundtrips_off(self):
+        self.install(0, record(self.owner, 8, (0, 1, 3, 1, 1, 99, 0x12345678)))
+        self.reload()
+        self.assertEqual(self.get(PAYLOAD_BASE + 28), 1)
+        self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 1, 1, 0), 1)
+        self.reload()
+        self.assertEqual(self.get(PAYLOAD_BASE + 28), 0)
+        data=self.writes[-1][1]
+        self.assertEqual(struct.unpack_from('<I',data,20+6*4)[0],0x12345678)
+        self.assertEqual(struct.unpack_from('<I',data,212)[0]&7,7)
+        self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 1, 1, 2), 0)
+        self.assertEqual(self.execute('EnhancedSettingsStore', 0, 1, 3, 1, 1, 1), 1)
+        self.reload()
+        self.assertEqual(self.get(PAYLOAD_BASE + 28), 1)
 
 
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for save layout audit.')
