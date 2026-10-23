@@ -11,7 +11,7 @@ struct MenuState {
     u32 paused_before[2];
 };
 struct MenuState gEnhancedMenu;
-_Static_assert(sizeof(struct MenuState) == 84, "Menu diagnostic ABI");
+_Static_assert(sizeof(struct MenuState) == 88, "Menu diagnostic ABI");
 static void *ptr(void *p, unsigned offset) { return *(void **)((u8 *)p + offset); }
 static void print(const char *text, u32 x, u32 y) {
     EnhancedDrawText(&gEnhancedMenu.window, gEnhancedMenu.string, text, x, y);
@@ -38,13 +38,17 @@ static void render(void) {
         print(gEnhancedMenu.extra.field_hms ? "On" : "Off", 172, 28);
         print("Grass battles", 16, 44);
         print(gEnhancedMenu.extra.roaming_only_grass ? "Roaming only" : "Normal", 144, 44);
+        print("IV / EV viewer", 16, 60);
+        print(gEnhancedMenu.extra.iv_ev_viewer ? "On" : "Off", 172, 60);
     }
     print("Save and close", 16, 124);
     print("Cancel", 16, 140);
     print("-", 2, 28 + 16 * gEnhancedMenu.row);
     if (gEnhancedMenu.phase == 2) print("Saving settings", 8, 158);
     else if (gEnhancedMenu.error) print("Settings storage unavailable", 8, 158);
-    else print("Left/Right value  L/R page", 8, 158);
+    else if (gEnhancedMenu.page && gEnhancedMenu.row == 2)
+        print("Summary: Y cycle / L/R", 8, 158);
+    else print("Left/Right value  X page", 8, 158);
     CopyWindowToVram(&gEnhancedMenu.window);
 }
 static int close_menu(void) {
@@ -72,8 +76,8 @@ int EnhancedMenuTask(void *task) {
     u32 keys = *(volatile u32 *)0x021D1154;
     if (keys & 2) return close_menu();
     int redraw = 0;
-    if (keys & 0x300) { gEnhancedMenu.page ^= 1; gEnhancedMenu.row = 0; redraw = 1; }
-    u32 count = gEnhancedMenu.page ? 2 : 6;
+    if (keys & 0x700) { gEnhancedMenu.page ^= 1; gEnhancedMenu.row = 0; redraw = 1; }
+    u32 count = gEnhancedMenu.page ? 3 : 6;
     if (keys & 0x40) {
         gEnhancedMenu.row = gEnhancedMenu.row == 0 ? 7 :
             gEnhancedMenu.row == 6 ? count - 1 : gEnhancedMenu.row - 1;
@@ -88,7 +92,8 @@ int EnhancedMenuTask(void *task) {
         if (gEnhancedMenu.row < count) {
             if (gEnhancedMenu.page) {
                 if (gEnhancedMenu.row == 0) gEnhancedMenu.extra.field_hms ^= 1;
-                else gEnhancedMenu.extra.roaming_only_grass ^= 1;
+                else if (gEnhancedMenu.row == 1) gEnhancedMenu.extra.roaming_only_grass ^= 1;
+                else gEnhancedMenu.extra.iv_ev_viewer ^= 1;
             }
             else if (gEnhancedMenu.row == 0)
                 gEnhancedMenu.visible = (gEnhancedMenu.visible + ((keys & 0x20) ? 3 : 1)) & 3;
@@ -120,6 +125,7 @@ int EnhancedMenuOpen(void *field) {
     gEnhancedMenu.party = gEnhancedOptions.party_exp;
     gEnhancedMenu.extra.field_hms = gEnhancedExtraOptions.field_hms;
     gEnhancedMenu.extra.roaming_only_grass = gEnhancedExtraOptions.roaming_only_grass;
+    gEnhancedMenu.extra.iv_ev_viewer = gEnhancedExtraOptions.iv_ev_viewer;
     EnhancedNpcPause(field, gEnhancedMenu.paused_before, 1);
     FieldSystem_CreateTask(field, EnhancedMenuTask, 0);
     return 1;

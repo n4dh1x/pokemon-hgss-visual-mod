@@ -34,7 +34,7 @@ changes at the handoff fail back to the Bag without teaching or consuming an ite
 
 ## Verification scope
 
-123 regression tests pass. Native ARM tests execute original Fly/Flash checks,
+135 regression tests pass. Native ARM tests execute original Fly/Flash checks,
 the actual native use callbacks and selected-destination Fly return. They cover
 badge/location/companion/costume/Safari/Pal Park/link-room restrictions, Flash's
 darkness/Alph checks, confirmation/cancel, stale intents and cleanup. Both USA
@@ -43,6 +43,17 @@ Real unchanged personal data covers all eight HM indices and TM70 compatibility.
 
 Bounded Mac gameplay evidence and explicitly declared isolated item/badge
 fixtures are in [milestone-13-verification.json](../enhancements/milestone-13-verification.json).
-Complete contextual HM coverage, actual Flash cave/Alph effects and broader
+Milestone 14 additionally verifies actual Flash in Dark Cave in both games: native
+weather changes from 11 to 12 and the illuminated area expands. A native save and
+cold reload preserve weather 12, so another Flash correctly fails there. Leaving
+and re-entering through the real entrance resets weather 11 and allows Flash
+again. The native item quantity remains unchanged and the selected party member
+does not know Flash. See [milestone-14-verification.json](../enhancements/milestone-14-verification.json).
+
+The initial isolated cave checkpoint uses declared temporary native warp-routing
+data, restored before testing. The current candidate cold-loads its native save
+and repeats entrance transitions and Flash without any RAM fixture. Earlier
+TM70/HM02 and Storm Badge fixture provenance remains recorded.
+Complete contextual HM coverage, actual Alph effects and broader
 transitions/save acceptance remain pending. This is an experimental candidate,
 not completion of the full enhancement goal.

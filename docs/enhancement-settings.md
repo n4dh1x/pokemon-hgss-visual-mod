@@ -106,3 +106,21 @@ The fixed loader configuration remains 32 bytes; the extra runtime options use
 separate resident storage. Journal version, page size, ownership and CRC are
 unchanged. Both games render page 2 and cold-reload Roaming only. Native ARM tests
 cover cross-page staging/cancel, write failures and legacy/unknown preservation.
+
+
+## Milestone 14 extension
+
+Page 2 adds IV / EV viewer (On/Off), default On. Highlighting it shows the Skills
+page's Y cycle and L/R controls. X changes menu pages; native L=A input mode
+retains X and Y even though it hides both shoulder buttons. Its saved value is journal slot 8, with reserved word 0 bit 5
+indicating an explicit value. Legacy records default On even if unused slot 8
+contains arbitrary data. The normal six-argument store preserves unactivated
+auxiliary values; the menu's atomic store applies all nine settings. Unknown
+slots 9..47 and future reserved bits remain preserved. Journal version, size,
+ownership, alternating pages and CRC stay unchanged.
+
+The runtime auxiliary structure is now 12 bytes and the menu state is 88 bytes;
+the fixed 32-byte loader header and evolution trampoline stay unchanged. Page 2
+skips its three blank rows before Save/Cancel. Both games cold-reload explicit
+Off and On, and cancelling a staged change preserves the entire cartridge save.
+See [summary-viewer.md](summary-viewer.md).

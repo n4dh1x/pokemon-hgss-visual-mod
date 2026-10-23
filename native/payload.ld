@@ -128,3 +128,11 @@ NativeStartMenuExit = 0x0203C8F1;
 NativeBagReturn = 0x0203CFC1;
 
 NativeFlyReturn = 0x0203D759;
+
+
+NativeSummaryInput = 0x02088B41;
+NativeSummaryDrawStats = 0x0208D179;
+NativeSummaryMon = 0x0208A521;
+NativeSummaryNumber = 0x0208C87D;
+NativeSummaryPrint = 0x0208C779;
+GetBoxMonData = 0x0206E641;

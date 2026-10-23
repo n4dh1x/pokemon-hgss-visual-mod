@@ -6,7 +6,7 @@
     "base": "Already in base HGSS",
     "visual": "Already in Visual+",
     "partial": "Partly present / adaptation needed",
-    "donor": "Available donor code; not integrated",
+    "donor": "Donor implementation available",
     "custom": "Needs custom implementation",
     "emulator": "Emulator/platform equivalent",
     "platform": "3DS-specific; no direct NDS equivalent"
@@ -197,7 +197,8 @@
         "native/field_hm_bag.c",
         "gameplay/field_hm_bag.py",
         "tests/test_field_hm_bag.py",
-        "enhancements/milestone-13-verification.json"
+        "enhancements/milestone-13-verification.json",
+        "enhancements/milestone-14-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
@@ -212,7 +213,7 @@
         "native_tm_teaching_party_entry_cancel_and_saved_off_both_mac": "passed",
         "party_and_tm_hm_quantities_preserved_both_mac": "passed",
         "contextual_cut_no_badge_on_off_historical_milestone12_heartgold": "passed_exact_old_rom; not current all-HM acceptance",
-        "actual_flash_cave_alph_effects": "pending"
+        "actual_flash_cave_alph_effects": "Dark Cave passed both Mac games; Alph effects pending"
       }
     },
     {
@@ -297,12 +298,29 @@
       "category": "donor",
       "base_heartgold": "Stats shown; exact IVs/EVs not exposed as a summary page.",
       "visual_plus": "Not added.",
-      "required_work": "Integrate hg-engine summary viewer and optional enable/disable control.",
+      "required_work": "Milestone 14 integrates a saved optional native Skills viewer: Y cycles stats/IVs/EVs, L EVs, R IVs, SELECT normal stats. X changes menu pages, including under native L=A runtime mode. Native party/raw/PC-box getters preserve data. Party views, native touch/party navigation and saved On/Off controls pass in both Mac games. Finish actual PC storage UI, eggs and additional special-context acceptance.",
       "evidence": [
         "patches/pokeemerald/0015-ivs-evs.patch",
-        "local_data/reference/hg-engine/include/config.h"
+        "local_data/reference/hg-engine/include/config.h",
+        "native/summary_viewer.c",
+        "gameplay/summary_viewer.py",
+        "tests/test_summary_viewer.py",
+        "native/settings.c",
+        "native/menu.c",
+        "scripts/inspect_summary_state.py",
+        "docs/summary-viewer.md",
+        "enhancements/milestone-14-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "native_encrypted_party_raw_and_pc_compatible_accessors": "passed_compiled_arm",
+        "native_hook_guards_both_games": "passed",
+        "party_ui_iv_ev_stats_and_navigation_both_mac": "passed",
+        "touch_refresh_and_party_byte_preservation_both_mac": "passed",
+        "saved_on_off_cancel_and_cold_reload_both_mac": "passed",
+        "actual_pc_storage_ui_eggs_special_contexts": "pending",
+        "runtime_l_equals_a_x_pages_y_cycle_both_mac": "passed_isolated_4_byte_input_mode_fixture; native saved-option UI selection not claimed"
+      }
     },
     {
       "id": "repel_prompt",

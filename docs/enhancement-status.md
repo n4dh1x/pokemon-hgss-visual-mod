@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 123 tests pass, including compiled ARM field logic and independently checked
+- 135 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 13,752-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 14,856-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -84,7 +84,7 @@ Then add cave/water encounters and all remaining edge cases in the inventory.
 ## Later phases
 
 The complete ordered plan and per-feature differences are in
-[emerald-parity.md](emerald-parity.md). IV/EV display has donor code and remains unmerged. Capture EXP is now integrated
+[emerald-parity.md](emerald-parity.md). IV/EV display is integrated in milestone 14, with PC UI and special-context acceptance pending. Capture EXP is now integrated
 with bounded verification in milestone 08.
 The repeat-Repel prompt is integrated with bounded verification in milestone 06. Reusable TMs and trade evolutions are integrated as described below. No estimate is
 claimed for full parity, and DS/3DS hardware differences are explicitly recorded.
@@ -304,3 +304,27 @@ Actual Flash cave/Alph effects, complete contextual HM badge/story/animation and
 transition/save coverage remain pending. The whole enhancement goal remains
 active. See [field-hms.md](field-hms.md) and
 [milestone-13-verification.json](../enhancements/milestone-13-verification.json).
+
+
+## Milestone 14: native IV/EV views and actual Flash lighting
+
+The ninth saved setting enables a Skills-page IV/EV viewer. Y cycles stats/IVs/EVs,
+L selects EVs, R IVs, and SELECT normal stats. X changes enhancement-menu pages;
+X and Y remain usable with native L=A input mode. Native touch and party/page navigation restore normal
+stats before proceeding; a touch-label refresh edge case found in review was
+corrected before delivery. Both games display the native values, restore normal
+stats/ability text, reload explicit On/Off, and preserve the full encrypted party
+data. Real PC-box accessor tests pass; actual PC UI acceptance remains pending.
+
+Actual Dark Cave Flash is now verified in both games. Native weather changes
+11 to 12 with the visual effect, save/cold load preserves 12, and leaving and
+re-entering the cave resets 11 so Flash can be used again. Current-ROM tests use
+native save import and real entrance transitions. Initial developer routing,
+item and badge fixture provenance is explicitly recorded.
+
+135 tests and 32 bounded final-ROM Mac runs pass. The candidate payload is
+14,856 bytes. New source, settings,
+guarded hooks, xdelta reproduction and bounded Mac evidence are recorded in
+[milestone-14-verification.json](../enhancements/milestone-14-verification.json).
+Ruins-of-Alph effects, remaining contextual HM acceptance, PC UI and the rest of
+the audited enhancement inventory remain in the full active goal.

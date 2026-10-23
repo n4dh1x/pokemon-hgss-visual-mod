@@ -1,0 +1,6930 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 14,
+  "verified_on": "2026-10-23",
+  "final_release": false,
+  "scope": "Saved optional native Skills-page IV/EV viewer with touch and L=A-compatible controls; actual native Dark Cave Flash illumination.",
+  "regression": {
+    "passed": 135,
+    "skipped": 0,
+    "log_sha256": "d420c40711bf1c52af56f70054180c9f13a0480ca8410cef88487ef9b2884702"
+  },
+  "inventory": {
+    "feature_rows": 59,
+    "emerald_option_keys": 41,
+    "pinned_source_coverage": "passed"
+  },
+  "candidates": {
+    "heartgold": {
+      "local_rom": "build/candidates/heartgold-visual-plus-gameplay-milestone-14.nds",
+      "output_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "patch_sha256": "5dfc27da7cde116e25e27ea016120cf2ffbce187dce5994079acaea42486af07",
+      "build_report_sha256": "3f04f86e09b8cac21138769bef11c425447416cd5abe02056b057b5cf095a1ad",
+      "payload_bytes": 14856,
+      "payload_end": "0x1ffca08",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    },
+    "soulsilver": {
+      "local_rom": "build/candidates/soulsilver-visual-plus-gameplay-milestone-14.nds",
+      "output_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "patch_sha256": "5ef18808c1808e286bcca9367779228892ef545ff9c157d77eef16f8f953ac36",
+      "build_report_sha256": "4ad6ec0688c54bd7f74a894153137a8ec46888640c72182ecec0b9bacd7300e7",
+      "payload_bytes": 14856,
+      "payload_end": "0x1ffca08",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    }
+  },
+  "runs": {
+    "hg14d-cave-reenter": {
+      "source_artifact": "local_data/verification/hg14d-menu/state.bin",
+      "source_sha256": "af7b7ebc7296541473688faae9ccf28d73886cd249c97a9a9f954962f7e86f3d",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 1300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            60,
+            84
+          ],
+          [
+            "UP",
+            600,
+            624
+          ],
+          [
+            "SELECT",
+            1100,
+            1104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000400.png": "9d6405bac0bf5c3d5d381ac15573d3d4a5dc9176292a20e8a9b7e784a1088122",
+        "frame-001000.png": "cc19661bff22079eb4380986bf7e540909355903d43daf97c5b5887ba0c972c0",
+        "frame-001300.png": "ca7500d54e14029e439381089e1e219ef020858a1acd190a1a8dbe7e0cc728f3",
+        "main-ram.bin": "bbf453f99f25343db99b9a873ca0f3efe9bcc8463fd04f11bde06ca0fca2cc94",
+        "smoke-report.json": "f15a8a70ac2d922ce50e8102a7741316b2fc88123f836cb4a64476dc0700c217",
+        "state.bin": "5b0418d6e0b368165e355f68de13f798412d343b6d44f217d6f75701be78980f",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 482,
+          "fallbacks": 482,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1925
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          26
+        ]
+      }
+    },
+    "hg14d-flash-fresh": {
+      "source_artifact": "local_data/verification/hg14d-cave-reenter/state.bin",
+      "source_sha256": "5b0418d6e0b368165e355f68de13f798412d343b6d44f217d6f75701be78980f",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 4200,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            2100,
+            2104
+          ],
+          [
+            "A",
+            2700,
+            2704
+          ],
+          [
+            "A",
+            3100,
+            3104
+          ],
+          [
+            "SELECT",
+            3700,
+            3704
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            120,
+            60,
+            64
+          ],
+          [
+            112,
+            15,
+            700,
+            704
+          ],
+          [
+            60,
+            50,
+            1100,
+            1104
+          ],
+          [
+            140,
+            145,
+            1500,
+            1504
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001900.png": "ec25b0894e6fdbeba91bf7fea477e25e2acaec486443df59b4bb460858d5102f",
+        "frame-003500.png": "d55be8296e6e4b1874e3da44b8752eb6a553555d96c7df168cae101e8666cfa1",
+        "frame-004200.png": "7ce131989c387515df40bc9328412680c0c1b312a69122a9812c38eea9fc14a2",
+        "main-ram.bin": "eb031ad5f8636404e238a19d6c6c064a874aaf285b9bad33a468926df57b272d",
+        "smoke-report.json": "0b53020d86dbae343b05710a89909e71c3030748cf4bfe901305ca873e02c566",
+        "state.bin": "59ec7611711a0fc54ed8a5ec7e4d539d847c5d4f7cae9cc6c146a1ac3358889b",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 902,
+          "fallbacks": 902,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 3,
+          "disabled": 0,
+          "cache_hits": 3595
+        },
+        "field_bag": {
+          "field": 36307480,
+          "save": 36160048,
+          "item": 397,
+          "active": 0,
+          "slot": 0,
+          "offered": 1,
+          "accepted": 1,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          26
+        ]
+      }
+    },
+    "hg14d-la-menu": {
+      "source_artifact": "local_data/verification/hg14d-menu/state.bin",
+      "source_sha256": "af7b7ebc7296541473688faae9ccf28d73886cd249c97a9a9f954962f7e86f3d",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 200,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "X",
+            10,
+            14
+          ],
+          [
+            "X",
+            50,
+            54
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "7617a1a27badd4d47670938bb045e76f3a1c8ca387def90c7a9cc3bb2783c9d6",
+        "source_ram_sha256": "826c8dd1ac83b9f623f1ccdcf93414db71c4a81ea12f1197f7a308fb65a184a0",
+        "applied_ram_sha256": "4e15a42c470b3b2f04b6395b2b4cfe52f1da1d468022eeb9f38f888aaa7c7c8c",
+        "changes": [
+          {
+            "address": 35459392,
+            "before": "00000000",
+            "after": "03000000",
+            "reason": "Isolated native runtime L=A input mode, no Pokemon or save data changes."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000200.png": "058d6ec572296c38b3cf39c26a5a86fa7de14a721f565e2481f96b2120439167",
+        "main-ram.bin": "e71d3c392389e97bb822f5c7586c3502d8d5889e26b4a9e6e24899b3bf554b71",
+        "smoke-report.json": "7a6839f9913aa2eaa009179a16894a484d28108e603009779f5d7942e31debfa",
+        "state.bin": "8d44a98cfda928de2c97b70ffcbfb5dc32f1b16c7754755d09556e55964c2637",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 197,
+          "fallbacks": 197,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 785
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-la-summary": {
+      "source_artifact": "local_data/verification/hg14d-summary-cycle/state.bin",
+      "source_sha256": "a7e19f5c56d15200724bb6bea736ee9404236c3958bc04178045c4783bbe8a53",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 1800,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "Y",
+            10,
+            14
+          ],
+          [
+            "Y",
+            600,
+            604
+          ],
+          [
+            "Y",
+            1200,
+            1204
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "cd6e0ad2eef50e5063bbdb291ded55b740c52a0b0f9c5cb73ab1ab89570d7824",
+        "source_ram_sha256": "97d3b0405d8563d23788596f0c92123ec3654bdd4e44b326f0adcc6bd6b31ab5",
+        "applied_ram_sha256": "203bd8e62a0967bcfc7420efb730c45d6ebf9835c3f76925fbb8ffca3e8dc9e2",
+        "changes": [
+          {
+            "address": 35459392,
+            "before": "00000000",
+            "after": "03000000",
+            "reason": "Isolated native runtime L=A input mode, no Pokemon or save data changes."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000400.png": "098d3afff359db5812788c1da2a3b6a41bdefd8cb706af3a44d365c0e5602cb0",
+        "frame-001000.png": "e6c174659935c8768097dd8e3295eee5d3a9c012fc3865f6db5bdee84edf3cc5",
+        "frame-001800.png": "2485341996ad2330cf70bef77653100c5d40d20ea500dee2136fc9d7a234830d",
+        "main-ram.bin": "527efb121424afac10f67167304235bf5949c0bae9c9111f85a9371ebfd5c936",
+        "smoke-report.json": "f9c896a8eb1f16b0872454583995a3cd857325c606bb8cdf779a0fe0baccf432",
+        "state.bin": "f06a80d2a735a2818d1b8c57ee7773410f605af34f15aea9c910b0765288bb50",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438816,
+          "pokemon": 36160216,
+          "mode": 2,
+          "draws": 3,
+          "switches": 9,
+          "data_type": 1,
+          "reads": 7,
+          "values": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-menu": {
+      "source_artifact": "local_data/verification/hg14a-cave-save/cartridge.sav",
+      "source_sha256": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ],
+          [
+            "X",
+            3100,
+            3104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "058d6ec572296c38b3cf39c26a5a86fa7de14a721f565e2481f96b2120439167",
+        "main-ram.bin": "826c8dd1ac83b9f623f1ccdcf93414db71c4a81ea12f1197f7a308fb65a184a0",
+        "smoke-report.json": "1d60351be8c6a7d1e8c8b49a2e1cd1fa74cf932368e92e8edf30f0edcbbbdc05",
+        "state.bin": "af7b7ebc7296541473688faae9ccf28d73886cd249c97a9a9f954962f7e86f3d",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 197,
+          "fallbacks": 197,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 785
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-summary-cycle": {
+      "source_artifact": "local_data/verification/hg14d-menu/state.bin",
+      "source_sha256": "af7b7ebc7296541473688faae9ccf28d73886cd249c97a9a9f954962f7e86f3d",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 5600,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            1100,
+            1104
+          ],
+          [
+            "RIGHT",
+            1900,
+            1904
+          ],
+          [
+            "Y",
+            2400,
+            2404
+          ],
+          [
+            "Y",
+            3100,
+            3104
+          ],
+          [
+            "Y",
+            3800,
+            3804
+          ],
+          [
+            "R",
+            4500,
+            4504
+          ],
+          [
+            "L",
+            4900,
+            4904
+          ],
+          [
+            "R",
+            5300,
+            5304
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            75,
+            60,
+            64
+          ],
+          [
+            55,
+            40,
+            800,
+            804
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002800.png": "2485341996ad2330cf70bef77653100c5d40d20ea500dee2136fc9d7a234830d",
+        "frame-003500.png": "098d3afff359db5812788c1da2a3b6a41bdefd8cb706af3a44d365c0e5602cb0",
+        "frame-004200.png": "e6c174659935c8768097dd8e3295eee5d3a9c012fc3865f6db5bdee84edf3cc5",
+        "frame-004800.png": "2485341996ad2330cf70bef77653100c5d40d20ea500dee2136fc9d7a234830d",
+        "frame-005200.png": "098d3afff359db5812788c1da2a3b6a41bdefd8cb706af3a44d365c0e5602cb0",
+        "frame-005600.png": "2485341996ad2330cf70bef77653100c5d40d20ea500dee2136fc9d7a234830d",
+        "main-ram.bin": "97d3b0405d8563d23788596f0c92123ec3654bdd4e44b326f0adcc6bd6b31ab5",
+        "smoke-report.json": "b2105018c1b52fe7648309e145583529053c1bdf30087bb09cc3f85b762439bc",
+        "state.bin": "a7e19f5c56d15200724bb6bea736ee9404236c3958bc04178045c4783bbe8a53",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438816,
+          "pokemon": 36160216,
+          "mode": 2,
+          "draws": 2,
+          "switches": 6,
+          "data_type": 1,
+          "reads": 5,
+          "values": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-summary-ev": {
+      "source_artifact": "local_data/verification/hg14d-summary-cycle/state.bin",
+      "source_sha256": "a7e19f5c56d15200724bb6bea736ee9404236c3958bc04178045c4783bbe8a53",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 400,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "Y",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000400.png": "098d3afff359db5812788c1da2a3b6a41bdefd8cb706af3a44d365c0e5602cb0",
+        "main-ram.bin": "ed580906e29f7323365fc09889502698490d5f49300766d31397bb517c8c2f05",
+        "smoke-report.json": "90aeffae2972ab93a5b2d31ab510a928e7a429e5ef8f15d2b6494659e5386e07",
+        "state.bin": "2e0568c7eb31899168df856c7ec36f3837864263eaf1c659f0feb6423b051de9",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438816,
+          "pokemon": 36160216,
+          "mode": 1,
+          "draws": 2,
+          "switches": 7,
+          "data_type": 1,
+          "reads": 6,
+          "values": [
+            4,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-summary-exit": {
+      "source_artifact": "local_data/verification/hg14d-summary-touch/state.bin",
+      "source_sha256": "8b3bf39356fa1e56796c317c5b2aa10931296834bb1e486ef1bf931f89ec84f4",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 2700,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "B",
+            900,
+            904
+          ],
+          [
+            "B",
+            1600,
+            1604
+          ],
+          [
+            "SELECT",
+            2100,
+            2104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002700.png": "4cc09ce3bc5da4717cb0d4115734c6c1f3cc4d20b503bf5b99933ceecb9857e2",
+        "main-ram.bin": "87a3d116e1763d26b4d9febf38d676e5ae6718d3c368f2c0eff3af5d8826fff3",
+        "smoke-report.json": "7888e5cdb5d6acfddc44457d1e29d7d0f7c764d699c05a05ad8c9546236681ea",
+        "state.bin": "3a0bf77f801ae7cc87f73d1da7f041403c905cdc61691ca18056ceab2800600d",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438816,
+          "pokemon": 36160216,
+          "mode": 0,
+          "draws": 7,
+          "switches": 8,
+          "data_type": 1,
+          "reads": 7,
+          "values": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 472,
+          "fallbacks": 472,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1885
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-summary-off": {
+      "source_artifact": "local_data/verification/hg14d-viewer-off-reload/state.bin",
+      "source_sha256": "b8195686b3fcb148fd7ac6d9f10a80a688273c6b0cd00d5e2d9e9c623c51b52b",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 4300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            1100,
+            1104
+          ],
+          [
+            "RIGHT",
+            1900,
+            1904
+          ],
+          [
+            "Y",
+            2400,
+            2404
+          ],
+          [
+            "R",
+            3100,
+            3104
+          ],
+          [
+            "L",
+            3500,
+            3504
+          ],
+          [
+            "SELECT",
+            3800,
+            3804
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            75,
+            60,
+            64
+          ],
+          [
+            55,
+            40,
+            800,
+            804
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "5ca5f7259393b0456e1848a9dab710c3c17088d27223c5a586761247106fcb28",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-004300.png": "e6c174659935c8768097dd8e3295eee5d3a9c012fc3865f6db5bdee84edf3cc5",
+        "main-ram.bin": "c352e078eac19fde6edd0d05034366796b9c35b014ac6a8f50a58766db2dd804",
+        "smoke-report.json": "5f0ddd64a648aeb4d45db92bfc1781b601acbd9e8170ccf587e5b6437fac591a",
+        "state.bin": "96fb5e2276e92dea69ec67d20aa9bf3d50c9afb874371d43e0a72811b031c2d0",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 0
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 0
+        },
+        "summary_view": {
+          "summary": 36438848,
+          "pokemon": 36160248,
+          "mode": 0,
+          "draws": 1,
+          "switches": 0,
+          "data_type": 1,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-summary-rattata": {
+      "source_artifact": "local_data/verification/hg14d-summary-cycle/state.bin",
+      "source_sha256": "a7e19f5c56d15200724bb6bea736ee9404236c3958bc04178045c4783bbe8a53",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 1400,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "R",
+            800,
+            804
+          ]
+        ],
+        "touches": [
+          [
+            222,
+            55,
+            10,
+            14
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000500.png": "67ede04cc534f08964f98790e0ac288f161ffac4524ce01927bf32d62f99255d",
+        "frame-001400.png": "a5343d9973e974b7146ffce2ff09a237cbfff458fd3db93a1df637931209d450",
+        "main-ram.bin": "1f08c29caff91f620734e967915da876331c4d445126ef1b7de1a7a23228f7dc",
+        "smoke-report.json": "3ea96c839a9b6527ba4f9427cab5873e7f44e465fc0e0ba35b0791af84483d5a",
+        "state.bin": "db05b8ec50a459ee6db39b285edb399126b927fc8ef1eb8928f66f093661ea6e",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438816,
+          "pokemon": 36160452,
+          "mode": 2,
+          "draws": 4,
+          "switches": 7,
+          "data_type": 1,
+          "reads": 6,
+          "values": [
+            14,
+            13,
+            15,
+            23,
+            30,
+            3
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-summary-touch": {
+      "source_artifact": "local_data/verification/hg14d-summary-cycle/state.bin",
+      "source_sha256": "a7e19f5c56d15200724bb6bea736ee9404236c3958bc04178045c4783bbe8a53",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 2800,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "R",
+            800,
+            804
+          ],
+          [
+            "R",
+            2200,
+            2204
+          ]
+        ],
+        "touches": [
+          [
+            222,
+            55,
+            10,
+            14
+          ],
+          [
+            182,
+            55,
+            1500,
+            1504
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000500.png": "67ede04cc534f08964f98790e0ac288f161ffac4524ce01927bf32d62f99255d",
+        "frame-001200.png": "a5343d9973e974b7146ffce2ff09a237cbfff458fd3db93a1df637931209d450",
+        "frame-001900.png": "e6c174659935c8768097dd8e3295eee5d3a9c012fc3865f6db5bdee84edf3cc5",
+        "frame-002800.png": "2485341996ad2330cf70bef77653100c5d40d20ea500dee2136fc9d7a234830d",
+        "main-ram.bin": "292975319db09fdddcf1c975880dd17525855f6cf4fe1ee380a32ebe534cb313",
+        "smoke-report.json": "bd3769bae5103164786aa15ee44dff2e37275357c44abe09e1aab14b883aa406",
+        "state.bin": "8b3bf39356fa1e56796c317c5b2aa10931296834bb1e486ef1bf931f89ec84f4",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438816,
+          "pokemon": 36160216,
+          "mode": 2,
+          "draws": 6,
+          "switches": 8,
+          "data_type": 1,
+          "reads": 7,
+          "values": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-viewer-cancel": {
+      "source_artifact": "local_data/verification/hg14d-viewer-off-reload/state.bin",
+      "source_sha256": "b8195686b3fcb148fd7ac6d9f10a80a688273c6b0cd00d5e2d9e9c623c51b52b",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 900,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            50,
+            54
+          ],
+          [
+            "RIGHT",
+            90,
+            94
+          ],
+          [
+            "B",
+            170,
+            174
+          ],
+          [
+            "SELECT",
+            500,
+            504
+          ],
+          [
+            "X",
+            600,
+            604
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "5ca5f7259393b0456e1848a9dab710c3c17088d27223c5a586761247106fcb28",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "c9c832ceccf3d72fd53c5b8058787b2a5bd1139ee168bba783c488846db581c9",
+        "main-ram.bin": "83192a6254841312be542a2a059ec62c8ba7309987c0358108d3890cddc1e672",
+        "smoke-report.json": "1f5eecbc72e7fa532718f8610e4d74eef8a8239d1a1fa83a8430b1df7cda1269",
+        "state.bin": "df9490fced23d3c2e20be54a3008eb608378f67bb233b6084544d0789b5860ad",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 0
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 0
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 362,
+          "fallbacks": 362,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1445
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-viewer-off-reload": {
+      "source_artifact": "local_data/verification/hg14d-viewer-off-save/cartridge.sav",
+      "source_sha256": "5ca5f7259393b0456e1848a9dab710c3c17088d27223c5a586761247106fcb28",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ],
+          [
+            "X",
+            3100,
+            3104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "5ca5f7259393b0456e1848a9dab710c3c17088d27223c5a586761247106fcb28",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "c9c832ceccf3d72fd53c5b8058787b2a5bd1139ee168bba783c488846db581c9",
+        "main-ram.bin": "dd2f440a5311d86e1aaaee223ad271e92b32c58715d61077a7191dc1427e9e86",
+        "smoke-report.json": "0947b65a98cf202181e02b2fce31b7244f88b0f8228d830a84b65f088f64f0c9",
+        "state.bin": "b8195686b3fcb148fd7ac6d9f10a80a688273c6b0cd00d5e2d9e9c623c51b52b",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 0
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 0
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 197,
+          "fallbacks": 197,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 785
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-viewer-off-save": {
+      "source_artifact": "local_data/verification/hg14d-menu/state.bin",
+      "source_sha256": "af7b7ebc7296541473688faae9ccf28d73886cd249c97a9a9f954962f7e86f3d",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 900,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            50,
+            54
+          ],
+          [
+            "LEFT",
+            90,
+            94
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "A",
+            170,
+            174
+          ],
+          [
+            "SELECT",
+            500,
+            504
+          ],
+          [
+            "X",
+            600,
+            604
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "5ca5f7259393b0456e1848a9dab710c3c17088d27223c5a586761247106fcb28",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "c9c832ceccf3d72fd53c5b8058787b2a5bd1139ee168bba783c488846db581c9",
+        "main-ram.bin": "1dc014bbe558c47aa42b294ca0f63f639eba3aeba6783cc7011d500c6342e591",
+        "smoke-report.json": "317d4996526ded48691111659b47b553828fa3b98294428f51c086091e817270",
+        "state.bin": "4bf2c4223e35cdb3da49865e10f378ed205bb08d4bdbe13ed7e307e856cfd52f",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 0
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 0
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 360,
+          "fallbacks": 360,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1437
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-viewer-on-reload": {
+      "source_artifact": "local_data/verification/hg14d-viewer-on-save/cartridge.sav",
+      "source_sha256": "578416e64b577874a3eb2d37221263ccf8360f336e1656039fe8c3af874f6890",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ],
+          [
+            "X",
+            3100,
+            3104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "578416e64b577874a3eb2d37221263ccf8360f336e1656039fe8c3af874f6890",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "058d6ec572296c38b3cf39c26a5a86fa7de14a721f565e2481f96b2120439167",
+        "main-ram.bin": "43d2287d8fadd34648241b501a1aaaf82af61e9543324614b2118ff62b40f3e7",
+        "smoke-report.json": "9828960354d5c5e6d123ceab656827a0d1ce2d3cabe2fedd4a537bc32cba8ad8",
+        "state.bin": "94ff9c0be3d01fcf9e2945dd8103541562940420c4292827bdae0e6fd88f9071",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 7,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 197,
+          "fallbacks": 197,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 785
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "hg14d-viewer-on-save": {
+      "source_artifact": "local_data/verification/hg14d-viewer-off-reload/state.bin",
+      "source_sha256": "b8195686b3fcb148fd7ac6d9f10a80a688273c6b0cd00d5e2d9e9c623c51b52b",
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "frames": 900,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            50,
+            54
+          ],
+          [
+            "RIGHT",
+            90,
+            94
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "A",
+            170,
+            174
+          ],
+          [
+            "SELECT",
+            500,
+            504
+          ],
+          [
+            "X",
+            600,
+            604
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "578416e64b577874a3eb2d37221263ccf8360f336e1656039fe8c3af874f6890",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "058d6ec572296c38b3cf39c26a5a86fa7de14a721f565e2481f96b2120439167",
+        "main-ram.bin": "f8bca50999e65c2d2e04ba662c3fa495105c0e958881ef3c8c06b2a1fbd7ac32",
+        "smoke-report.json": "adef68d6fd9576ec530d4db202329d957688254fcffa44d001dc1b216ff6bfa1",
+        "state.bin": "a24f2c08a929ad68878e830941cfbc42018a5e3eb590874cfed10a4fa06691d5",
+        "state.json": "bc1997c55a34b0ffdc7a529c98d996fb3255c305be998cbc496603ea20fb843b"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 7,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 360,
+          "fallbacks": 360,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1437
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-cave-reenter": {
+      "source_artifact": "local_data/verification/ss14d-menu/state.bin",
+      "source_sha256": "bb29864927b29d43d960a68d3535bb35df923e60813f58e6eeac2154864b2e68",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 1300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            60,
+            84
+          ],
+          [
+            "UP",
+            600,
+            624
+          ],
+          [
+            "SELECT",
+            1100,
+            1104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000400.png": "524a78a7b38598a3baf28ac875a389bfa4101fa638e1ef48d31ab13585409830",
+        "frame-001000.png": "cc19661bff22079eb4380986bf7e540909355903d43daf97c5b5887ba0c972c0",
+        "frame-001300.png": "ca7500d54e14029e439381089e1e219ef020858a1acd190a1a8dbe7e0cc728f3",
+        "main-ram.bin": "aaf8a2c1891220745df51095bbd1babe786e0b68a8d893187adfaba0994f3b1f",
+        "smoke-report.json": "96fcc9d7a915c447288ab7cd67df76c168ccac0dea1619a5146c7c398098eb33",
+        "state.bin": "1557a8186ffa421b30a7b2b727f63ff77fdd101d65af9762401c1af6890958d7",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 481,
+          "fallbacks": 481,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1921
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          26
+        ]
+      }
+    },
+    "ss14d-flash-fresh": {
+      "source_artifact": "local_data/verification/ss14d-cave-reenter/state.bin",
+      "source_sha256": "1557a8186ffa421b30a7b2b727f63ff77fdd101d65af9762401c1af6890958d7",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 4200,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            2100,
+            2104
+          ],
+          [
+            "A",
+            2700,
+            2704
+          ],
+          [
+            "A",
+            3100,
+            3104
+          ],
+          [
+            "SELECT",
+            3700,
+            3704
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            120,
+            60,
+            64
+          ],
+          [
+            112,
+            15,
+            700,
+            704
+          ],
+          [
+            60,
+            50,
+            1100,
+            1104
+          ],
+          [
+            140,
+            145,
+            1500,
+            1504
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001900.png": "ec25b0894e6fdbeba91bf7fea477e25e2acaec486443df59b4bb460858d5102f",
+        "frame-003500.png": "49bde998a036dcb1e0e15193ba71e744033be0ebdec57ba44318682fdf429e47",
+        "frame-004200.png": "7ce131989c387515df40bc9328412680c0c1b312a69122a9812c38eea9fc14a2",
+        "main-ram.bin": "38b652d295081905d26d0a5558af57ec515067bd804f2cb2cb01d7e8197152c0",
+        "smoke-report.json": "238d0abeb9b7c99f5d17752b418791bb9b582a7a96d05022a1de406a3dbf44a3",
+        "state.bin": "df0a6a213e038d170d938c8921d68fb0dfe3d20a3dd2a064530f56b4335b36d6",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 901,
+          "fallbacks": 901,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 3,
+          "disabled": 0,
+          "cache_hits": 3591
+        },
+        "field_bag": {
+          "field": 36307604,
+          "save": 36160172,
+          "item": 397,
+          "active": 0,
+          "slot": 0,
+          "offered": 1,
+          "accepted": 1,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          26
+        ]
+      }
+    },
+    "ss14d-la-menu": {
+      "source_artifact": "local_data/verification/ss14d-menu/state.bin",
+      "source_sha256": "bb29864927b29d43d960a68d3535bb35df923e60813f58e6eeac2154864b2e68",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 200,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "X",
+            10,
+            14
+          ],
+          [
+            "X",
+            50,
+            54
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "c7507ed2a538cf96cb78ac4654f65399641c1fa31deac67a23c8722eab28ac9a",
+        "source_ram_sha256": "00f2b08da9a6880a411bc618f137a59a5b2dfd9aca1a2fc90026d0524d36659e",
+        "applied_ram_sha256": "59a17a5d14848b064cf004486876467a1180928ee6782c36947a2694275e93d3",
+        "changes": [
+          {
+            "address": 35459392,
+            "before": "00000000",
+            "after": "03000000",
+            "reason": "Isolated native runtime L=A input mode, no Pokemon or save data changes."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000200.png": "058d6ec572296c38b3cf39c26a5a86fa7de14a721f565e2481f96b2120439167",
+        "main-ram.bin": "352c4f9d4c946dac1be837ce135af65b7d3fc80c452507cee08c7fc70d2542ed",
+        "smoke-report.json": "d4bde01e67281ff3573f3fbd648a5dcfc28cc9916cf60efe835cf171b223d33d",
+        "state.bin": "cc000771178f78a0d82c9ff669e11ad737e4f6806a38aac276370e15b44006c2",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 197,
+          "fallbacks": 197,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 785
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-la-summary": {
+      "source_artifact": "local_data/verification/ss14d-summary-cycle/state.bin",
+      "source_sha256": "10c2679d54794129029b28e8b7895857c5a2b8cad2645a14e488f3ab361185f0",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 1800,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "Y",
+            10,
+            14
+          ],
+          [
+            "Y",
+            600,
+            604
+          ],
+          [
+            "Y",
+            1200,
+            1204
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "af09b422216e547f9cbeef0a132b30730be57e355d9ff2559da6bfe09640b01e",
+        "source_ram_sha256": "585afaffcd200bf41a3aca1122aa02e44a5e6ca965a2a3a7978f58044514162b",
+        "applied_ram_sha256": "9a630b74c9f94eaf9529dcd048ec29055496abc40239317d4e279017d19b0160",
+        "changes": [
+          {
+            "address": 35459392,
+            "before": "00000000",
+            "after": "03000000",
+            "reason": "Isolated native runtime L=A input mode, no Pokemon or save data changes."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000400.png": "4d779b80d9522d6546e8f8be34bc9ca1aeefd5c2899bf6a4865f9db18d7d8247",
+        "frame-001000.png": "1f751d4cb4c4c75d655e7cb70c14e96dd98c53ad4ecf05430a81d3418e885e71",
+        "frame-001800.png": "24020372f6c36837ac2b5f63500eeb9b939814db784f5de43e8db7e9f3b07cfe",
+        "main-ram.bin": "ca88c86c0113ee553dd9cbeca449fb265ee0ff99f759aff3929b624db68b1a24",
+        "smoke-report.json": "f38044e2e1da2d9ec125e127f2632b74c9edeebbbd1f6751954fda4848a6d348",
+        "state.bin": "0e16385f052bb90ea5446bfc2517a88e9e91fac6e6175705eac4fcd010b12089",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438940,
+          "pokemon": 36160340,
+          "mode": 2,
+          "draws": 3,
+          "switches": 9,
+          "data_type": 1,
+          "reads": 7,
+          "values": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-menu": {
+      "source_artifact": "local_data/verification/ss14a-cave-save/cartridge.sav",
+      "source_sha256": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ],
+          [
+            "X",
+            3100,
+            3104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "058d6ec572296c38b3cf39c26a5a86fa7de14a721f565e2481f96b2120439167",
+        "main-ram.bin": "00f2b08da9a6880a411bc618f137a59a5b2dfd9aca1a2fc90026d0524d36659e",
+        "smoke-report.json": "c4f77d13ef08e2dfacff108d72d4d9decf3c199b874c2ea1f9cc3c8f4d81afdc",
+        "state.bin": "bb29864927b29d43d960a68d3535bb35df923e60813f58e6eeac2154864b2e68",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 197,
+          "fallbacks": 197,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 785
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-summary-cycle": {
+      "source_artifact": "local_data/verification/ss14d-menu/state.bin",
+      "source_sha256": "bb29864927b29d43d960a68d3535bb35df923e60813f58e6eeac2154864b2e68",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 5600,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            1100,
+            1104
+          ],
+          [
+            "RIGHT",
+            1900,
+            1904
+          ],
+          [
+            "Y",
+            2400,
+            2404
+          ],
+          [
+            "Y",
+            3100,
+            3104
+          ],
+          [
+            "Y",
+            3800,
+            3804
+          ],
+          [
+            "R",
+            4500,
+            4504
+          ],
+          [
+            "L",
+            4900,
+            4904
+          ],
+          [
+            "R",
+            5300,
+            5304
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            75,
+            60,
+            64
+          ],
+          [
+            55,
+            40,
+            800,
+            804
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002800.png": "24020372f6c36837ac2b5f63500eeb9b939814db784f5de43e8db7e9f3b07cfe",
+        "frame-003500.png": "4d779b80d9522d6546e8f8be34bc9ca1aeefd5c2899bf6a4865f9db18d7d8247",
+        "frame-004200.png": "1f751d4cb4c4c75d655e7cb70c14e96dd98c53ad4ecf05430a81d3418e885e71",
+        "frame-004800.png": "24020372f6c36837ac2b5f63500eeb9b939814db784f5de43e8db7e9f3b07cfe",
+        "frame-005200.png": "4d779b80d9522d6546e8f8be34bc9ca1aeefd5c2899bf6a4865f9db18d7d8247",
+        "frame-005600.png": "24020372f6c36837ac2b5f63500eeb9b939814db784f5de43e8db7e9f3b07cfe",
+        "main-ram.bin": "585afaffcd200bf41a3aca1122aa02e44a5e6ca965a2a3a7978f58044514162b",
+        "smoke-report.json": "acf6ae7a9e3b5be68df46f9e9a3c4255b94db67488e03dbb86b1e021ea9a79f4",
+        "state.bin": "10c2679d54794129029b28e8b7895857c5a2b8cad2645a14e488f3ab361185f0",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438940,
+          "pokemon": 36160340,
+          "mode": 2,
+          "draws": 2,
+          "switches": 6,
+          "data_type": 1,
+          "reads": 5,
+          "values": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-summary-ev": {
+      "source_artifact": "local_data/verification/ss14d-summary-cycle/state.bin",
+      "source_sha256": "10c2679d54794129029b28e8b7895857c5a2b8cad2645a14e488f3ab361185f0",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 400,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "Y",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000400.png": "4d779b80d9522d6546e8f8be34bc9ca1aeefd5c2899bf6a4865f9db18d7d8247",
+        "main-ram.bin": "8da9daa193698e503e5849af2589c2a869d5ab3011a6f4a41cb9558b9b98581a",
+        "smoke-report.json": "2554704df474baa3ca3b9b55c723f9cfe887895901227d962c14a4998ad6cf29",
+        "state.bin": "a7d34f35c0b69f38613a00d4eeb06b880adf8440520960f6a2211ba8513901d2",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438940,
+          "pokemon": 36160340,
+          "mode": 1,
+          "draws": 2,
+          "switches": 7,
+          "data_type": 1,
+          "reads": 6,
+          "values": [
+            4,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-summary-exit": {
+      "source_artifact": "local_data/verification/ss14d-summary-touch/state.bin",
+      "source_sha256": "13ada5462126e596ba92c417de9b1fdcece1a4d9efe32d05699f7cdf6f1e64ab",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 2700,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "B",
+            900,
+            904
+          ],
+          [
+            "B",
+            1600,
+            1604
+          ],
+          [
+            "SELECT",
+            2100,
+            2104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002700.png": "4cc09ce3bc5da4717cb0d4115734c6c1f3cc4d20b503bf5b99933ceecb9857e2",
+        "main-ram.bin": "707e7a67efa23898bed4bd05a28f4374c01cd2ab15b0d3c8a3b866830514ce50",
+        "smoke-report.json": "d43be99f137ec6857ad2595adf9850d51593122991ddf527647cc3b11d8138d0",
+        "state.bin": "55575c620e32cd9c2c1781996606e4a981ce91e303695093993c93477075f560",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438940,
+          "pokemon": 36160340,
+          "mode": 0,
+          "draws": 7,
+          "switches": 8,
+          "data_type": 1,
+          "reads": 7,
+          "values": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 472,
+          "fallbacks": 472,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1885
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-summary-off": {
+      "source_artifact": "local_data/verification/ss14d-viewer-off-reload/state.bin",
+      "source_sha256": "d7fff883cf3749ffc2deaf9680ab8740b5181a5cbb78bfb8d24899baae78154a",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 4300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            1100,
+            1104
+          ],
+          [
+            "RIGHT",
+            1900,
+            1904
+          ],
+          [
+            "Y",
+            2400,
+            2404
+          ],
+          [
+            "R",
+            3100,
+            3104
+          ],
+          [
+            "L",
+            3500,
+            3504
+          ],
+          [
+            "SELECT",
+            3800,
+            3804
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            75,
+            60,
+            64
+          ],
+          [
+            55,
+            40,
+            800,
+            804
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "d3061c7064ee6b6f31789df7eff2d137b8cfe054555965a6d664c221e25389a9",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-004300.png": "1f751d4cb4c4c75d655e7cb70c14e96dd98c53ad4ecf05430a81d3418e885e71",
+        "main-ram.bin": "625f519e609908fc56c24cc49acc95e619d0f59c0f7c63e8968505886f64bb97",
+        "smoke-report.json": "1274dd2452ca62db1a392db0dab03faccf23ff81312cf596d38cbcfe5e966551",
+        "state.bin": "c8e436931b11b46e5988087aae11d2ba32c10020cf386118766f682eeb368130",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 0
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 0
+        },
+        "summary_view": {
+          "summary": 36438816,
+          "pokemon": 36160216,
+          "mode": 0,
+          "draws": 1,
+          "switches": 0,
+          "data_type": 1,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-summary-rattata": {
+      "source_artifact": "local_data/verification/ss14d-summary-cycle/state.bin",
+      "source_sha256": "10c2679d54794129029b28e8b7895857c5a2b8cad2645a14e488f3ab361185f0",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 1400,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "R",
+            800,
+            804
+          ]
+        ],
+        "touches": [
+          [
+            222,
+            55,
+            10,
+            14
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000500.png": "2e98a9b00963a94e81958386e1c407b307b3caa43edc58f63659bcd3d0f52c97",
+        "frame-001400.png": "173451c19d622a08084218daa21c85c5a6208eea6db3a2796a4c7e57227cd8f2",
+        "main-ram.bin": "64afabbe5ae9af0ff9e5c2f7a1d2453c04c0f13beae91b6fc934f2a361691a01",
+        "smoke-report.json": "6e9d3f075c109d9c8ca4afee7df0efb819ce19f62fccb560d788037c54aafd55",
+        "state.bin": "12977a35594603bfb447a76bd5bd2c601b77fe0b069ea4c5350bda5be2cbbb6a",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438940,
+          "pokemon": 36160576,
+          "mode": 2,
+          "draws": 4,
+          "switches": 7,
+          "data_type": 1,
+          "reads": 6,
+          "values": [
+            14,
+            13,
+            15,
+            23,
+            30,
+            3
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-summary-touch": {
+      "source_artifact": "local_data/verification/ss14d-summary-cycle/state.bin",
+      "source_sha256": "10c2679d54794129029b28e8b7895857c5a2b8cad2645a14e488f3ab361185f0",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 2800,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "R",
+            800,
+            804
+          ],
+          [
+            "R",
+            2200,
+            2204
+          ]
+        ],
+        "touches": [
+          [
+            222,
+            55,
+            10,
+            14
+          ],
+          [
+            182,
+            55,
+            1500,
+            1504
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000500.png": "2e98a9b00963a94e81958386e1c407b307b3caa43edc58f63659bcd3d0f52c97",
+        "frame-001200.png": "173451c19d622a08084218daa21c85c5a6208eea6db3a2796a4c7e57227cd8f2",
+        "frame-001900.png": "1f751d4cb4c4c75d655e7cb70c14e96dd98c53ad4ecf05430a81d3418e885e71",
+        "frame-002800.png": "24020372f6c36837ac2b5f63500eeb9b939814db784f5de43e8db7e9f3b07cfe",
+        "main-ram.bin": "a4f880794255d3ebdc2f1e081ef0568d6d98285f1c743d411b8ff59844889b4e",
+        "smoke-report.json": "dc02b19cd5e963a9dee06f8cb0f60c22b6701c6b3881463b7abe80d4ee090c96",
+        "state.bin": "13ada5462126e596ba92c417de9b1fdcece1a4d9efe32d05699f7cdf6f1e64ab",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 36438940,
+          "pokemon": 36160340,
+          "mode": 2,
+          "draws": 6,
+          "switches": 8,
+          "data_type": 1,
+          "reads": 7,
+          "values": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 223,
+          "fallbacks": 223,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 889
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-viewer-cancel": {
+      "source_artifact": "local_data/verification/ss14d-viewer-off-reload/state.bin",
+      "source_sha256": "d7fff883cf3749ffc2deaf9680ab8740b5181a5cbb78bfb8d24899baae78154a",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 900,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            50,
+            54
+          ],
+          [
+            "RIGHT",
+            90,
+            94
+          ],
+          [
+            "B",
+            170,
+            174
+          ],
+          [
+            "SELECT",
+            500,
+            504
+          ],
+          [
+            "X",
+            600,
+            604
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "d3061c7064ee6b6f31789df7eff2d137b8cfe054555965a6d664c221e25389a9",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "c9c832ceccf3d72fd53c5b8058787b2a5bd1139ee168bba783c488846db581c9",
+        "main-ram.bin": "7fcaf4150717d4be8dd991e81fc6fe43417c9e3def481689b86655d01f6d569b",
+        "smoke-report.json": "654ffea7699fcd7c78554b8feeb0de1cc49b5f173341e6d29df73c86c95f26f0",
+        "state.bin": "a311509873bb86d5aec0396085d6a5bcf907fa57ebb3b536098c673ffc4e2801",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 0
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 0
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 362,
+          "fallbacks": 362,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1445
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-viewer-off-reload": {
+      "source_artifact": "local_data/verification/ss14d-viewer-off-save/cartridge.sav",
+      "source_sha256": "d3061c7064ee6b6f31789df7eff2d137b8cfe054555965a6d664c221e25389a9",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ],
+          [
+            "X",
+            3100,
+            3104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "d3061c7064ee6b6f31789df7eff2d137b8cfe054555965a6d664c221e25389a9",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "c9c832ceccf3d72fd53c5b8058787b2a5bd1139ee168bba783c488846db581c9",
+        "main-ram.bin": "c310433f27edc8b51ae648177a61b45e0ff8bf63af75f238d47c322bf953397f",
+        "smoke-report.json": "d3c2b0b52f80de50bc4a941c5c17cd28d1d8c50835af691f42e1f677371a192e",
+        "state.bin": "d7fff883cf3749ffc2deaf9680ab8740b5181a5cbb78bfb8d24899baae78154a",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 0
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 0
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 197,
+          "fallbacks": 197,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 785
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-viewer-off-save": {
+      "source_artifact": "local_data/verification/ss14d-menu/state.bin",
+      "source_sha256": "bb29864927b29d43d960a68d3535bb35df923e60813f58e6eeac2154864b2e68",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 900,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            50,
+            54
+          ],
+          [
+            "LEFT",
+            90,
+            94
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "A",
+            170,
+            174
+          ],
+          [
+            "SELECT",
+            500,
+            504
+          ],
+          [
+            "X",
+            600,
+            604
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "d3061c7064ee6b6f31789df7eff2d137b8cfe054555965a6d664c221e25389a9",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "c9c832ceccf3d72fd53c5b8058787b2a5bd1139ee168bba783c488846db581c9",
+        "main-ram.bin": "e26d6cb8a3d45d753ec233cde944bd21d620132788809a30fd5af5d96786e694",
+        "smoke-report.json": "40732e026485023b8765df89f6c2a3381ae334c3513a475b3ec2f31d2f26a476",
+        "state.bin": "62c5959f4accac9bb0196393a693ab276d063040671da508b9ec0829457c405a",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 0
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 0
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 359,
+          "fallbacks": 359,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1433
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-viewer-on-reload": {
+      "source_artifact": "local_data/verification/ss14d-viewer-on-save/cartridge.sav",
+      "source_sha256": "07b41e4a358e350a835f0684d2787ecc7e5b8e6518c7a984e983af3f88c5d53e",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ],
+          [
+            "X",
+            3100,
+            3104
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "07b41e4a358e350a835f0684d2787ecc7e5b8e6518c7a984e983af3f88c5d53e",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "058d6ec572296c38b3cf39c26a5a86fa7de14a721f565e2481f96b2120439167",
+        "main-ram.bin": "bd6aa8c4ca367f333a7dce095e495ade704d575df99fd081330938b9ea132bdd",
+        "smoke-report.json": "47795a7e2437dbed04e5257b44c556b4c56659186247a2c9a0f0891ba2d7a05c",
+        "state.bin": "b8db72b5c7cf65e04251a05d7d54a7e9a08d705f2b108a98a91dcc1574419d5c",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 7,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 197,
+          "fallbacks": 197,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 785
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    },
+    "ss14d-viewer-on-save": {
+      "source_artifact": "local_data/verification/ss14d-viewer-off-reload/state.bin",
+      "source_sha256": "d7fff883cf3749ffc2deaf9680ab8740b5181a5cbb78bfb8d24899baae78154a",
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "frames": 900,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            50,
+            54
+          ],
+          [
+            "RIGHT",
+            90,
+            94
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "A",
+            170,
+            174
+          ],
+          [
+            "SELECT",
+            500,
+            504
+          ],
+          [
+            "X",
+            600,
+            604
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "07b41e4a358e350a835f0684d2787ecc7e5b8e6518c7a984e983af3f88c5d53e",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000900.png": "058d6ec572296c38b3cf39c26a5a86fa7de14a721f565e2481f96b2120439167",
+        "main-ram.bin": "98fafcdb52c53fa09160c512ad56495f84e9ad751eede388eb191dca33a69a9f",
+        "smoke-report.json": "d22a878c157c276a6fcf4a0c7ea47ddfccf5049aa8d42537f45e21f5c1c478e9",
+        "state.bin": "3735cafb66aab8a5721eaf9c25d2033429decdf8174558fe215afdeb9e819db1",
+        "state.json": "0744a474d2074b5ab2b7d635731439cdfc30c54aba3619486926e43e677b2baf"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 7,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1,
+          "iv_ev_viewer": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 1,
+          "staged_iv_ev_viewer": 1
+        },
+        "summary_view": {
+          "summary": 0,
+          "pokemon": 0,
+          "mode": 0,
+          "draws": 0,
+          "switches": 0,
+          "data_type": 0,
+          "reads": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 359,
+          "fallbacks": 359,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1433
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 176,
+        "player_position": [
+          5,
+          8,
+          25
+        ]
+      }
+    }
+  },
+  "assertions": {
+    "heartgold": {
+      "native_IV_EV_values_match_original_getters": true,
+      "normal_stats_restored_after_touch_and_navigation": true,
+      "saved_Off_and_On_cold_restart_sequences": [
+        6,
+        7
+      ],
+      "cancel_preserves_entire_save": true,
+      "Off_delegates_without_custom_reads": true,
+      "runtime_L_equals_A_retains_X_page_and_Y_cycle": true,
+      "native_Flash_cold_lit_reenter_dark_use_lit": [
+        12,
+        11,
+        12
+      ],
+      "TM70_HM02_quantities_retained": true,
+      "no_Pokemon_data_or_move_changes": true
+    },
+    "soulsilver": {
+      "native_IV_EV_values_match_original_getters": true,
+      "normal_stats_restored_after_touch_and_navigation": true,
+      "saved_Off_and_On_cold_restart_sequences": [
+        6,
+        7
+      ],
+      "cancel_preserves_entire_save": true,
+      "Off_delegates_without_custom_reads": true,
+      "runtime_L_equals_A_retains_X_page_and_Y_cycle": true,
+      "native_Flash_cold_lit_reenter_dark_use_lit": [
+        12,
+        11,
+        12
+      ],
+      "TM70_HM02_quantities_retained": true,
+      "no_Pokemon_data_or_move_changes": true
+    }
+  },
+  "party_preservation": {
+    "heartgold": {
+      "before": [
+        {
+          "slot": 0,
+          "pokemon_sha256": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+          "species": 152,
+          "moves": [
+            33,
+            45,
+            75,
+            0
+          ],
+          "ivs": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ],
+          "evs": [
+            4,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "slot": 1,
+          "pokemon_sha256": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+          "species": 19,
+          "moves": [
+            33,
+            39,
+            0,
+            0
+          ],
+          "ivs": [
+            14,
+            13,
+            15,
+            23,
+            30,
+            3
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "slot": 2,
+          "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+          "species": 163,
+          "moves": [
+            33,
+            45,
+            193,
+            0
+          ],
+          "ivs": [
+            24,
+            0,
+            10,
+            9,
+            4,
+            18
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "slot": 3,
+          "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+          "species": 163,
+          "moves": [
+            33,
+            45,
+            193,
+            0
+          ],
+          "ivs": [
+            6,
+            2,
+            16,
+            29,
+            28,
+            22
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "after": [
+        {
+          "slot": 0,
+          "pokemon_sha256": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+          "species": 152,
+          "moves": [
+            33,
+            45,
+            75,
+            0
+          ],
+          "ivs": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ],
+          "evs": [
+            4,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "slot": 1,
+          "pokemon_sha256": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+          "species": 19,
+          "moves": [
+            33,
+            39,
+            0,
+            0
+          ],
+          "ivs": [
+            14,
+            13,
+            15,
+            23,
+            30,
+            3
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "slot": 2,
+          "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+          "species": 163,
+          "moves": [
+            33,
+            45,
+            193,
+            0
+          ],
+          "ivs": [
+            24,
+            0,
+            10,
+            9,
+            4,
+            18
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "slot": 3,
+          "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+          "species": 163,
+          "moves": [
+            33,
+            45,
+            193,
+            0
+          ],
+          "ivs": [
+            6,
+            2,
+            16,
+            29,
+            28,
+            22
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "all_236_byte_records_identical": true
+    },
+    "soulsilver": {
+      "before": [
+        {
+          "slot": 0,
+          "pokemon_sha256": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+          "species": 152,
+          "moves": [
+            33,
+            45,
+            75,
+            0
+          ],
+          "ivs": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ],
+          "evs": [
+            4,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "slot": 1,
+          "pokemon_sha256": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+          "species": 19,
+          "moves": [
+            33,
+            39,
+            0,
+            0
+          ],
+          "ivs": [
+            14,
+            13,
+            15,
+            23,
+            30,
+            3
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "slot": 2,
+          "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+          "species": 163,
+          "moves": [
+            33,
+            45,
+            193,
+            0
+          ],
+          "ivs": [
+            24,
+            0,
+            10,
+            9,
+            4,
+            18
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "slot": 3,
+          "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+          "species": 163,
+          "moves": [
+            33,
+            45,
+            193,
+            0
+          ],
+          "ivs": [
+            6,
+            2,
+            16,
+            29,
+            28,
+            22
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "after": [
+        {
+          "slot": 0,
+          "pokemon_sha256": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+          "species": 152,
+          "moves": [
+            33,
+            45,
+            75,
+            0
+          ],
+          "ivs": [
+            16,
+            12,
+            2,
+            28,
+            4,
+            22
+          ],
+          "evs": [
+            4,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "slot": 1,
+          "pokemon_sha256": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+          "species": 19,
+          "moves": [
+            33,
+            39,
+            0,
+            0
+          ],
+          "ivs": [
+            14,
+            13,
+            15,
+            23,
+            30,
+            3
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "slot": 2,
+          "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+          "species": 163,
+          "moves": [
+            33,
+            45,
+            193,
+            0
+          ],
+          "ivs": [
+            24,
+            0,
+            10,
+            9,
+            4,
+            18
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "slot": 3,
+          "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+          "species": 163,
+          "moves": [
+            33,
+            45,
+            193,
+            0
+          ],
+          "ivs": [
+            6,
+            2,
+            16,
+            29,
+            28,
+            22
+          ],
+          "evs": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "all_236_byte_records_identical": true
+    }
+  },
+  "native_value_comparisons": {
+    "hg14d-summary-cycle": {
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "mode": "IVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c2d8",
+      "species": 152,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "evs": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "displayed_values": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+      "pokemon_sha256_after": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+      "cached_normal_stats": [
+        14,
+        22,
+        9,
+        12,
+        13,
+        13,
+        11
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    },
+    "hg14d-summary-touch": {
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "mode": "IVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c2d8",
+      "species": 152,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "evs": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "displayed_values": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+      "pokemon_sha256_after": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+      "cached_normal_stats": [
+        14,
+        22,
+        9,
+        12,
+        13,
+        13,
+        11
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    },
+    "hg14d-summary-rattata": {
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "mode": "IVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c3c4",
+      "species": 19,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        14,
+        13,
+        15,
+        23,
+        30,
+        3
+      ],
+      "evs": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "displayed_values": [
+        14,
+        13,
+        15,
+        23,
+        30,
+        3
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+      "pokemon_sha256_after": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+      "cached_normal_stats": [
+        15,
+        15,
+        8,
+        7,
+        6,
+        8,
+        9
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    },
+    "hg14d-summary-ev": {
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "mode": "EVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c2d8",
+      "species": 152,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "evs": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "displayed_values": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+      "pokemon_sha256_after": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+      "cached_normal_stats": [
+        14,
+        22,
+        9,
+        12,
+        13,
+        13,
+        11
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    },
+    "hg14d-la-summary": {
+      "candidate_sha256": "8373df44eae385e94ab3071a850cc0d0a7f90736d92d7c4183311b57291662ee",
+      "mode": "IVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c2d8",
+      "species": 152,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "evs": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "displayed_values": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+      "pokemon_sha256_after": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+      "cached_normal_stats": [
+        14,
+        22,
+        9,
+        12,
+        13,
+        13,
+        11
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    },
+    "ss14d-summary-cycle": {
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "mode": "IVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c354",
+      "species": 152,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "evs": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "displayed_values": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+      "pokemon_sha256_after": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+      "cached_normal_stats": [
+        19,
+        22,
+        9,
+        12,
+        13,
+        13,
+        11
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    },
+    "ss14d-summary-touch": {
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "mode": "IVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c354",
+      "species": 152,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "evs": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "displayed_values": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+      "pokemon_sha256_after": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+      "cached_normal_stats": [
+        19,
+        22,
+        9,
+        12,
+        13,
+        13,
+        11
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    },
+    "ss14d-summary-rattata": {
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "mode": "IVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c440",
+      "species": 19,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        14,
+        13,
+        15,
+        23,
+        30,
+        3
+      ],
+      "evs": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "displayed_values": [
+        14,
+        13,
+        15,
+        23,
+        30,
+        3
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+      "pokemon_sha256_after": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+      "cached_normal_stats": [
+        15,
+        15,
+        8,
+        7,
+        6,
+        8,
+        9
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    },
+    "ss14d-summary-ev": {
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "mode": "EVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c354",
+      "species": 152,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "evs": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "displayed_values": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+      "pokemon_sha256_after": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+      "cached_normal_stats": [
+        19,
+        22,
+        9,
+        12,
+        13,
+        13,
+        11
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    },
+    "ss14d-la-summary": {
+      "candidate_sha256": "aa6099cc6202d5e36a43f0612c370da5eec2edccbf3071fd60726068f023583f",
+      "mode": "IVs",
+      "data_type": 1,
+      "pokemon_pointer": "0x227c354",
+      "species": 152,
+      "stat_order": [
+        "HP",
+        "Attack",
+        "Defense",
+        "Sp.Atk",
+        "Sp.Def",
+        "Speed"
+      ],
+      "ivs": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "evs": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "displayed_values": [
+        16,
+        12,
+        2,
+        28,
+        4,
+        22
+      ],
+      "matches_native_getters": true,
+      "pokemon_sha256_before": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+      "pokemon_sha256_after": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+      "cached_normal_stats": [
+        19,
+        22,
+        9,
+        12,
+        13,
+        13,
+        11
+      ],
+      "scope": "Read-only interpretation of this bounded, ROM-matched active summary checkpoint."
+    }
+  },
+  "flash_world": {
+    "heartgold": {
+      "menu": {
+        "weather": 12,
+        "saved_position": [
+          176,
+          -1,
+          5,
+          25,
+          1
+        ],
+        "tm70_hm02_slots": [
+          397,
+          1,
+          421,
+          1
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "pokemon_sha256": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+            "species": 152,
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "evs": [
+              4,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "slot": 1,
+            "pokemon_sha256": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+            "species": 19,
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 2,
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 3,
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "cave-reenter": {
+        "weather": 11,
+        "saved_position": [
+          176,
+          0,
+          5,
+          26,
+          0
+        ],
+        "tm70_hm02_slots": [
+          397,
+          1,
+          421,
+          1
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "pokemon_sha256": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+            "species": 152,
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "evs": [
+              4,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "slot": 1,
+            "pokemon_sha256": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+            "species": 19,
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 2,
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 3,
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "flash-fresh": {
+        "weather": 12,
+        "saved_position": [
+          176,
+          -1,
+          5,
+          26,
+          0
+        ],
+        "tm70_hm02_slots": [
+          397,
+          1,
+          421,
+          1
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "pokemon_sha256": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+            "species": 152,
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "evs": [
+              4,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "slot": 1,
+            "pokemon_sha256": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+            "species": 19,
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 2,
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 3,
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    "soulsilver": {
+      "menu": {
+        "weather": 12,
+        "saved_position": [
+          176,
+          -1,
+          5,
+          25,
+          1
+        ],
+        "tm70_hm02_slots": [
+          397,
+          1,
+          421,
+          1
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "pokemon_sha256": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+            "species": 152,
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "evs": [
+              4,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "slot": 1,
+            "pokemon_sha256": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+            "species": 19,
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 2,
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 3,
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "cave-reenter": {
+        "weather": 11,
+        "saved_position": [
+          176,
+          0,
+          5,
+          26,
+          0
+        ],
+        "tm70_hm02_slots": [
+          397,
+          1,
+          421,
+          1
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "pokemon_sha256": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+            "species": 152,
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "evs": [
+              4,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "slot": 1,
+            "pokemon_sha256": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+            "species": 19,
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 2,
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 3,
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "flash-fresh": {
+        "weather": 12,
+        "saved_position": [
+          176,
+          -1,
+          5,
+          26,
+          0
+        ],
+        "tm70_hm02_slots": [
+          397,
+          1,
+          421,
+          1
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "pokemon_sha256": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+            "species": 152,
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "evs": [
+              4,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "slot": 1,
+            "pokemon_sha256": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+            "species": 19,
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 2,
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "slot": 3,
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "species": 163,
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "evs": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "fixture_provenance": {
+    "heartgold": {
+      "inherited_item_badge_evidence": "enhancements/milestone-13-verification.json",
+      "cave_entry_fixture": {
+        "kind": "hgss-verification-ram-fixture",
+        "rom_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+        "source_ram_sha256": "6354f0fb6b30a068dcdf29edf237e436a1117c35ca9ce110f00ad98497971d03",
+        "changes": [
+          {
+            "address": 34578060,
+            "before": "3c00b7028d01",
+            "after": "b00005001900",
+            "reason": "Developer entry fixture only: redirect the temporary New Bark special-spawn data to the real Dark Cave Route31-side interior (map176,5,25). Restore routing before Flash testing."
+          },
+          {
+            "address": 33798816,
+            "before": "869e0f02",
+            "after": "8c9e0f02",
+            "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+          },
+          {
+            "address": 33798820,
+            "before": "889e0f02",
+            "after": "8e9e0f02",
+            "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+          },
+          {
+            "address": 33798824,
+            "before": "8a9e0f02",
+            "after": "909e0f02",
+            "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+          }
+        ]
+      },
+      "routing_restore_fixture": {
+        "kind": "hgss-verification-ram-fixture",
+        "rom_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+        "source_ram_sha256": "920d00be4a3c1f7ca9a48e1e9027595bf096e956989fcc45c559f10b8227883b",
+        "changes": [
+          {
+            "address": 34578060,
+            "before": "b00005001900",
+            "after": "3c00b7028d01",
+            "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+          },
+          {
+            "address": 33798816,
+            "before": "8c9e0f02",
+            "after": "869e0f02",
+            "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+          },
+          {
+            "address": 33798820,
+            "before": "8e9e0f02",
+            "after": "889e0f02",
+            "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+          },
+          {
+            "address": 33798824,
+            "before": "909e0f02",
+            "after": "8a9e0f02",
+            "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+          }
+        ]
+      },
+      "historical_runs": {
+        "hg14a-dark-cave": {
+          "source": "local_data/verification/hg13c-fly-map/state.bin",
+          "source_sha256": "385b84af8f293c7a65478ca5f0c66e893975d085ae871f28ea49bbd4ffe80b72",
+          "rom_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+          "inputs": {
+            "buttons": [
+              [
+                "RIGHT",
+                10,
+                14
+              ],
+              [
+                "A",
+                80,
+                84
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "SELECT",
+                1900,
+                1904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": {
+            "fixture_sha256": "abfe9aaa3f095ab6bcc9cca48d3d91c1b3eedf573b23ce9d30725c981bbb0d66",
+            "source_ram_sha256": "6354f0fb6b30a068dcdf29edf237e436a1117c35ca9ce110f00ad98497971d03",
+            "applied_ram_sha256": "0dac7e426ed00be774b1f80391007895724bf4c25e722a5e5b321b7c4da40c5f",
+            "changes": [
+              {
+                "address": 34578060,
+                "before": "3c00b7028d01",
+                "after": "b00005001900",
+                "reason": "Developer entry fixture only: redirect the temporary New Bark special-spawn data to the real Dark Cave Route31-side interior (map176,5,25). Restore routing before Flash testing."
+              },
+              {
+                "address": 33798816,
+                "before": "869e0f02",
+                "after": "8c9e0f02",
+                "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+              },
+              {
+                "address": 33798820,
+                "before": "889e0f02",
+                "after": "8e9e0f02",
+                "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+              },
+              {
+                "address": 33798824,
+                "before": "8a9e0f02",
+                "after": "909e0f02",
+                "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+              }
+            ]
+          },
+          "artifacts": {
+            "frame-001800.png": "f1a8037c3c6dcfb857be5cd28272552280ab57fe54c93225a1b40e881c3230c9",
+            "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9",
+            "frame-002300.png": "2e1cde5f3ad8489efbedad8afe3777fb059033efab18690bb32eca8a0c257eb0",
+            "main-ram.bin": "920d00be4a3c1f7ca9a48e1e9027595bf096e956989fcc45c559f10b8227883b",
+            "smoke-report.json": "d9b13a287837b21ac34e9be6e51bffd8ddee8e1e6a51003ffa13bb3237e76cc3",
+            "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+            "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+            "state.bin": "d240fda60bb7dd534f7e0cce5e7e32be1cfc39bbe0170ed107cf0d0c49615ab3"
+          }
+        },
+        "hg14a-flash-use": {
+          "source": "local_data/verification/hg14a-dark-cave/state.bin",
+          "source_sha256": "d240fda60bb7dd534f7e0cce5e7e32be1cfc39bbe0170ed107cf0d0c49615ab3",
+          "rom_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                2100,
+                2104
+              ],
+              [
+                "A",
+                2700,
+                2704
+              ],
+              [
+                "A",
+                3100,
+                3104
+              ],
+              [
+                "SELECT",
+                3700,
+                3704
+              ]
+            ],
+            "touches": [
+              [
+                40,
+                120,
+                60,
+                64
+              ],
+              [
+                112,
+                15,
+                700,
+                704
+              ],
+              [
+                60,
+                50,
+                1100,
+                1104
+              ],
+              [
+                140,
+                145,
+                1500,
+                1504
+              ]
+            ]
+          },
+          "developer_ram_fixture": {
+            "fixture_sha256": "d780cc7d250ddb94e6d1a920621ba4ff4a4d318c07db76c7c7785dc03e34d74f",
+            "source_ram_sha256": "920d00be4a3c1f7ca9a48e1e9027595bf096e956989fcc45c559f10b8227883b",
+            "applied_ram_sha256": "f8a4bad59532d93ef1c2048595e06b37ce9e78b064be79dcfa1a5343bdd40ff7",
+            "changes": [
+              {
+                "address": 34578060,
+                "before": "b00005001900",
+                "after": "3c00b7028d01",
+                "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+              },
+              {
+                "address": 33798816,
+                "before": "8c9e0f02",
+                "after": "869e0f02",
+                "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+              },
+              {
+                "address": 33798820,
+                "before": "8e9e0f02",
+                "after": "889e0f02",
+                "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+              },
+              {
+                "address": 33798824,
+                "before": "909e0f02",
+                "after": "8a9e0f02",
+                "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+              }
+            ]
+          },
+          "artifacts": {
+            "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9",
+            "main-ram.bin": "c80afbbb77f36009daac89510ed99d440d62f29d4343cb3b66d4fb02a3db7fa9",
+            "frame-004200.png": "707c697e0f99c4c71fce319c7f5ee039fd085290f0539bd6e4fd7b26247baad8",
+            "frame-001900.png": "ec25b0894e6fdbeba91bf7fea477e25e2acaec486443df59b4bb460858d5102f",
+            "frame-002600.png": "73d665681031ccb9e081428a2c566297168520cd8ed72a84980932511bec1213",
+            "frame-003500.png": "1e7c9b6ee65748481c692aa684cfffb046a8edf287e21bcee188bfd46fa52ab5",
+            "smoke-report.json": "6b0ddafc16d7f26ee91bb22f579f06db62181006c99a640a356ccb1240aa4b54",
+            "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+            "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+            "state.bin": "868fefe8d2117ff0319c8c4afb52eee420a2dc12a7e3cd253a9904fe144643ce"
+          }
+        },
+        "hg14a-cave-save": {
+          "source": "local_data/verification/hg14a-flash-use/state.bin",
+          "source_sha256": "868fefe8d2117ff0319c8c4afb52eee420a2dc12a7e3cd253a9904fe144643ce",
+          "rom_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                700,
+                704
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                500,
+                504
+              ],
+              [
+                231,
+                96,
+                950,
+                954
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "artifacts": {
+            "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9",
+            "main-ram.bin": "87d92325ccfed192bffd468e4fa5155e195f094bc5b5e758509f743db3c18806",
+            "smoke-report.json": "86ef392c66f2674049565e42c4101c23e5251cc5fc83f18dbef885ff13da064d",
+            "cartridge.sav": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96",
+            "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+            "state.bin": "e838604ac8884f34d91d6d9ce53a2d90a5f0fbf98c95c2984318694de1e2b66e",
+            "frame-001200.png": "2e0b6d31fa184728a7f9cac25351a7a17fe3d44bef53494ba9c9ee0849b1a6e2",
+            "frame-003000.png": "50352dd7de77bc7270a44e18288c545db94fe2da97aa82048da5051a5f90b086"
+          }
+        }
+      },
+      "native_cold_import": {
+        "artifact": "local_data/verification/hg14a-cave-save/cartridge.sav",
+        "sha256": "e288f19dd005e530c3b12b66011c7c5606f1b1d2719b3b40360ba4cda012cd96"
+      },
+      "final_routing_matches_original": true
+    },
+    "soulsilver": {
+      "inherited_item_badge_evidence": "enhancements/milestone-13-verification.json",
+      "cave_entry_fixture": {
+        "kind": "hgss-verification-ram-fixture",
+        "rom_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+        "source_ram_sha256": "018955495fa57abf42a5c8f0afc234aae7c22a16e1505bb62db0caa3a38da0a3",
+        "changes": [
+          {
+            "address": 34578060,
+            "before": "3c00b7028d01",
+            "after": "b00005001900",
+            "reason": "Developer entry fixture only: redirect the temporary New Bark special-spawn data to the real Dark Cave Route31-side interior (map176,5,25). Restore routing before Flash testing."
+          },
+          {
+            "address": 33798816,
+            "before": "869e0f02",
+            "after": "8c9e0f02",
+            "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+          },
+          {
+            "address": 33798820,
+            "before": "889e0f02",
+            "after": "8e9e0f02",
+            "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+          },
+          {
+            "address": 33798824,
+            "before": "8a9e0f02",
+            "after": "909e0f02",
+            "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+          }
+        ]
+      },
+      "routing_restore_fixture": {
+        "kind": "hgss-verification-ram-fixture",
+        "rom_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+        "source_ram_sha256": "9ae79ef5d1bbd6fdb3647d6a4a10d77ef43074785e51f5814814ff0d8a4fe244",
+        "changes": [
+          {
+            "address": 34578060,
+            "before": "b00005001900",
+            "after": "3c00b7028d01",
+            "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+          },
+          {
+            "address": 33798816,
+            "before": "8c9e0f02",
+            "after": "869e0f02",
+            "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+          },
+          {
+            "address": 33798820,
+            "before": "8e9e0f02",
+            "after": "889e0f02",
+            "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+          },
+          {
+            "address": 33798824,
+            "before": "909e0f02",
+            "after": "8a9e0f02",
+            "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+          }
+        ]
+      },
+      "historical_runs": {
+        "ss14a-dark-cave": {
+          "source": "local_data/verification/ss13c-fly-map/state.bin",
+          "source_sha256": "f02f2a00816d334de4d57d4e713c234590fddc5fa6fbcd7fbe7c0339d2376253",
+          "rom_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+          "inputs": {
+            "buttons": [
+              [
+                "RIGHT",
+                10,
+                14
+              ],
+              [
+                "A",
+                80,
+                84
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "SELECT",
+                1900,
+                1904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": {
+            "fixture_sha256": "3b08b9718682f90c4de35de8f4b592c539c4e0cf6e687728f4ecd2a0e2c69f3c",
+            "source_ram_sha256": "018955495fa57abf42a5c8f0afc234aae7c22a16e1505bb62db0caa3a38da0a3",
+            "applied_ram_sha256": "c21f06f76c293761af9ea8a5572cbbc1f05cee6e781c483238019da623d84061",
+            "changes": [
+              {
+                "address": 34578060,
+                "before": "3c00b7028d01",
+                "after": "b00005001900",
+                "reason": "Developer entry fixture only: redirect the temporary New Bark special-spawn data to the real Dark Cave Route31-side interior (map176,5,25). Restore routing before Flash testing."
+              },
+              {
+                "address": 33798816,
+                "before": "869e0f02",
+                "after": "8c9e0f02",
+                "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+              },
+              {
+                "address": 33798820,
+                "before": "889e0f02",
+                "after": "8e9e0f02",
+                "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+              },
+              {
+                "address": 33798824,
+                "before": "8a9e0f02",
+                "after": "909e0f02",
+                "reason": "Developer entry fixture only: native Fly warp reads the temporary special-spawn data; original Fly-point lookup stays intact. No instruction opcodes are changed. Restore after arrival."
+              }
+            ]
+          },
+          "artifacts": {
+            "frame-001800.png": "f1a8037c3c6dcfb857be5cd28272552280ab57fe54c93225a1b40e881c3230c9",
+            "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629",
+            "frame-002300.png": "2e1cde5f3ad8489efbedad8afe3777fb059033efab18690bb32eca8a0c257eb0",
+            "main-ram.bin": "9ae79ef5d1bbd6fdb3647d6a4a10d77ef43074785e51f5814814ff0d8a4fe244",
+            "smoke-report.json": "c3ebf6fa65b901fb3c0feb1f9b464eba3f89cb123433e0aa76d1c2ecaeb759ed",
+            "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+            "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+            "state.bin": "12411ac6d388f942492fea27cd0bb68b0f40c167b9415d06668c89dd1467b59a"
+          }
+        },
+        "ss14a-flash-use": {
+          "source": "local_data/verification/ss14a-dark-cave/state.bin",
+          "source_sha256": "12411ac6d388f942492fea27cd0bb68b0f40c167b9415d06668c89dd1467b59a",
+          "rom_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                2100,
+                2104
+              ],
+              [
+                "A",
+                2700,
+                2704
+              ],
+              [
+                "A",
+                3100,
+                3104
+              ],
+              [
+                "SELECT",
+                3700,
+                3704
+              ]
+            ],
+            "touches": [
+              [
+                40,
+                120,
+                60,
+                64
+              ],
+              [
+                112,
+                15,
+                700,
+                704
+              ],
+              [
+                60,
+                50,
+                1100,
+                1104
+              ],
+              [
+                140,
+                145,
+                1500,
+                1504
+              ]
+            ]
+          },
+          "developer_ram_fixture": {
+            "fixture_sha256": "29fee3813fd3cc4db7a1508884b16a89dc959d1cee1b7ade041fd5634f3c240e",
+            "source_ram_sha256": "9ae79ef5d1bbd6fdb3647d6a4a10d77ef43074785e51f5814814ff0d8a4fe244",
+            "applied_ram_sha256": "c994655d15cb0f10e811bd8b337f278ed4efae1de1277355e34866ea10260da1",
+            "changes": [
+              {
+                "address": 34578060,
+                "before": "b00005001900",
+                "after": "3c00b7028d01",
+                "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+              },
+              {
+                "address": 33798816,
+                "before": "8c9e0f02",
+                "after": "869e0f02",
+                "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+              },
+              {
+                "address": 33798820,
+                "before": "8e9e0f02",
+                "after": "889e0f02",
+                "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+              },
+              {
+                "address": 33798824,
+                "before": "909e0f02",
+                "after": "8a9e0f02",
+                "reason": "Restore the exact original native routing data before Flash verification; no weather, map, party or field-check values are edited."
+              }
+            ]
+          },
+          "artifacts": {
+            "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629",
+            "main-ram.bin": "3080fecda2881d1d65c5819f922981eab6c7ee8ff47362a8fa604beed5bfbbfb",
+            "frame-004200.png": "707c697e0f99c4c71fce319c7f5ee039fd085290f0539bd6e4fd7b26247baad8",
+            "frame-001900.png": "ec25b0894e6fdbeba91bf7fea477e25e2acaec486443df59b4bb460858d5102f",
+            "frame-002600.png": "73d665681031ccb9e081428a2c566297168520cd8ed72a84980932511bec1213",
+            "frame-003500.png": "dbafefcff40b17d90da813ed133f5f4d8cc60ac7290689e57586120e8b7fdbde",
+            "smoke-report.json": "2a305ca383c29e3ab2f9ebbde86c82db6d04d924cffad393906e0f3195f5ba9c",
+            "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+            "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+            "state.bin": "944af28134a188a69cc6a5b4daa800f697e4bc2d33bdcb6e2b4b1ee0175c69a5"
+          }
+        },
+        "ss14a-cave-save": {
+          "source": "local_data/verification/ss14a-flash-use/state.bin",
+          "source_sha256": "944af28134a188a69cc6a5b4daa800f697e4bc2d33bdcb6e2b4b1ee0175c69a5",
+          "rom_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                700,
+                704
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                500,
+                504
+              ],
+              [
+                231,
+                96,
+                950,
+                954
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "artifacts": {
+            "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629",
+            "main-ram.bin": "17836696f2d49db2d8ca81680a5c7ec5bde4949bd946a7aa16f50467e226c3c5",
+            "smoke-report.json": "b84edf888f812b01447a8e7ee0f2bdf226edb445d5b1089f4be65fffa726fc01",
+            "cartridge.sav": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95",
+            "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+            "state.bin": "f0bbf51019c5202e160100c4922ce7d6672b5e2f99b9d03d4f19198cc1e88d9b",
+            "frame-001200.png": "013fe254d4b68c6372bcecdf41146165200723582baf116e0f5402d506ad9e73",
+            "frame-003000.png": "50352dd7de77bc7270a44e18288c545db94fe2da97aa82048da5051a5f90b086"
+          }
+        }
+      },
+      "native_cold_import": {
+        "artifact": "local_data/verification/ss14a-cave-save/cartridge.sav",
+        "sha256": "99eb6e2505a4702a9d1e4192b5608d5c2e18f383cdd63b216e3f1fa1e7b4fd95"
+      },
+      "final_routing_matches_original": true
+    }
+  },
+  "limitations": [
+    "The full enhancement goal remains active and incomplete; these are experimental candidates.",
+    "Actual PC storage UI, eggs and special summary contexts still require gameplay acceptance. PC-compatible box getter instruction tests do not prove the full PC UI flow.",
+    "Native Dark Cave lighting is verified; Ruins-of-Alph effects and remaining per-HM badge/story/animation/cancellation and transition/save acceptance remain pending.",
+    "These isolated project-created saves include an HG-derived SS fixture; they do not establish a fresh SS playthrough or general save interchangeability.",
+    "Final 14d runs import a native cartridge save containing declared earlier item/badge and temporary entry-routing fixture ancestry. Runtime L=A checks additionally change only the four-byte native input mode in isolated RAM.",
+    "L=A compatibility is checked through the native runtime input mode, not selection of the saved option through its Options UI. Native mapped-A delegation is separately covered by instruction tests.",
+    "Pre-final summary-14a and summary-14b prototype ROM runs are excluded from final candidate acceptance.",
+    "Cave/water visible encounters, legendary-roamer sprites, extended battle/bench evolution/move acceptance and other inventory features remain pending. No hardware or complete-release claim is made."
+  ],
+  "visual_inspection": {
+    "both_games": "IV, EV, normal stats and ability text; touch resets HP label; second Pokemon uses own IVs; X menu pages, Y cycling with runtime L=A; Off screen; Flash prompt and lit cave. Screenshots hashed per run.",
+    "controls": "Y cycles stats/IVs/EVs; L EVs, R IVs, SELECT stats; enhancement menu X pages.",
+    "grass_option": "Saved optional Normal/Roaming only behavior verified in milestone 12 remains integrated; no new full-grass acceptance claim in this viewer milestone."
+  }
+}

@@ -18,6 +18,7 @@ static u16 character(char c) {
     if (c >= 'A' && c <= 'Z') return 299 + c - 'A';
     if (c >= 'a' && c <= 'z') return 325 + c - 'a';
     if (c >= '0' && c <= '9') return 289 + c - '0';
+    if (c == '\n') return 0xE000;
     if (c == '?') return 428;
     if (c == '.') return 430;
     if (c == '/') return 433;

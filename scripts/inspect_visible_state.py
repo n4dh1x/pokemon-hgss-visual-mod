@@ -80,13 +80,20 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         party = resident_words('gPartyExperience', 17)
         result['party_exp'] = dict(zip(('work','context','active','participants','full','half','side','slot','bench','shown','printer','started','completed','groups','suppressed','recipients','calculations'), party))
     if 'gEnhancedExtraOptions' in symbols:
-        result['settings']['field_hms'] = resident_words('gEnhancedExtraOptions', 2)[0]
-        result['settings']['roaming_only_grass'] = resident_words('gEnhancedExtraOptions', 2)[1]
+        result['settings']['field_hms'] = resident_words('gEnhancedExtraOptions', 3 if menu_size >= 88 else 2)[0]
+        result['settings']['roaming_only_grass'] = resident_words('gEnhancedExtraOptions', 3 if menu_size >= 88 else 2)[1]
         result['enhancement_menu']['staged_field_hms'] = menu[15]
         result['enhancement_menu']['staged_roaming_only_grass'] = menu[16]
-        result['enhancement_menu']['page'] = menu[17]
+        result['enhancement_menu']['page'] = menu[18 if menu_size >= 88 else 17]
+        if menu_size >= 88:
+            result['settings']['iv_ev_viewer'] = resident_words('gEnhancedExtraOptions', 3)[2]
+            result['enhancement_menu']['staged_iv_ev_viewer'] = menu[17]
         hm = resident_words('gFieldHmState', 9)
         result['field_hms'] = dict(zip(('scripts','checks','fallbacks','no_user','last_move','last_slot','compatible','disabled','cache_hits'), hm))
+    if 'gSummaryViewState' in symbols:
+        summary = resident_words('gSummaryViewState', 13)
+        result['summary_view'] = dict(zip(('summary','pokemon','mode','draws','switches','data_type','reads'), summary[:7]))
+        result['summary_view']['values'] = list(summary[7:])
     if 'gFieldBagState' in symbols:
         result['field_bag'] = dict(zip(('field','save','item','active','slot','offered','accepted','cancelled','blocked','launched','response'), resident_words('gFieldBagState', 11)))
     if 'gEnhancedRepelDialog' in symbols:

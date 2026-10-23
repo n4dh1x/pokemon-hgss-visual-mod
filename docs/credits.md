@@ -12,3 +12,10 @@
 
 Pokémon © Nintendo / Creatures Inc. / GAME FREAK inc. — this is an
 unofficial fan project. See [Legal](legal.md).
+
+
+The enhancement work uses the pinned [pret/pokeheartgold](https://github.com/pret/pokeheartgold)
+decompilation as a native interface reference. The summary-viewer approach was
+informed by [hg-engine](https://github.com/BluRosie/hg-engine), whose summary work
+credits LheaRachel and Bubble. Exact audited revisions are in
+[sources.lock.json](../enhancements/sources.lock.json).

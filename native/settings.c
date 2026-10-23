@@ -42,6 +42,7 @@ static int valid_format(const struct EnhancedJournal *r) {
         (!(r->reserved[0] & 4) || r->values[5] <= 1) &&
         (!(r->reserved[0] & 8) || r->values[6] <= 1) &&
         (!(r->reserved[0] & 16) || r->values[7] <= 1) &&
+        (!(r->reserved[0] & 32) || r->values[8] <= 1) &&
         r->checksum == EnhancedSettingsCRC(r, 252);
 }
 int EnhancedSettingsValid(const struct EnhancedJournal *r, u32 owner) {
@@ -78,6 +79,7 @@ void EnhancedSettingsEnsure(void *field) {
     gEnhancedOptions.party_exp = 1;
     gEnhancedExtraOptions.field_hms = 1;
     gEnhancedExtraOptions.roaming_only_grass = 0;
+    gEnhancedExtraOptions.iv_ev_viewer = 1;
     for (int i = 0; i < 2; ++i) {
         struct EnhancedJournal *r = &gSettingsState.pages[i];
         int read = FlashLoadChunk(journal_offsets[i], r, sizeof(*r));
@@ -98,6 +100,7 @@ void EnhancedSettingsEnsure(void *field) {
             gEnhancedOptions.party_exp = (r->reserved[0] & 4) ? r->values[5] : 1;
             gEnhancedExtraOptions.field_hms = (r->reserved[0] & 8) ? r->values[6] : 1;
             gEnhancedExtraOptions.roaming_only_grass = (r->reserved[0] & 16) ? r->values[7] : 0;
+            gEnhancedExtraOptions.iv_ev_viewer = (r->reserved[0] & 32) ? r->values[8] : 1;
         }
     }
 }
@@ -115,7 +118,7 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         u32 capture, u32 party, const struct EnhancedExtraOptions *extra) {
     if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3 || repel > 1 || capture > 1 || party > 1)
         return 0;
-    if (extra && (extra->field_hms > 1 || extra->roaming_only_grass > 1)) return 0;
+    if (extra && (extra->field_hms > 1 || extra->roaming_only_grass > 1 || extra->iv_ev_viewer > 1)) return 0;
     int target = gSettingsState.last_slot < 0 ? 0 : 1 - gSettingsState.last_slot;
     if (gSettingsState.last_slot < 0 && !gSettingsState.writable[target])
         target = 1;
@@ -148,7 +151,8 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
     if (extra) {
         r->values[6] = extra->field_hms;
         r->values[7] = extra->roaming_only_grass;
-        r->reserved[0] |= 24;
+        r->values[8] = extra->iv_ev_viewer;
+        r->reserved[0] |= 56;
     }
     r->checksum = EnhancedSettingsCRC(r, 252);
     Sys_SetSleepDisableFlag(1);
@@ -183,6 +187,7 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
     if (extra) {
         gEnhancedExtraOptions.field_hms = extra->field_hms;
         gEnhancedExtraOptions.roaming_only_grass = extra->roaming_only_grass;
+        gEnhancedExtraOptions.iv_ev_viewer = extra->iv_ev_viewer;
     }
     return 1;
 }
