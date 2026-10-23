@@ -80,16 +80,22 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         party = resident_words('gPartyExperience', 17)
         result['party_exp'] = dict(zip(('work','context','active','participants','full','half','side','slot','bench','shown','printer','started','completed','groups','suppressed','recipients','calculations'), party))
     if 'gEnhancedExtraOptions' in symbols:
-        result['settings']['field_hms'] = resident_words('gEnhancedExtraOptions', 3 if menu_size >= 88 else 2)[0]
-        result['settings']['roaming_only_grass'] = resident_words('gEnhancedExtraOptions', 3 if menu_size >= 88 else 2)[1]
+        extra_count = report.get('diagnostics', {}).get('extra_options_bytes', 12 if menu_size >= 88 else 8) // 4
+        extra = resident_words('gEnhancedExtraOptions', extra_count)
+        result['settings']['field_hms'] = extra[0]
+        result['settings']['roaming_only_grass'] = extra[1]
         result['enhancement_menu']['staged_field_hms'] = menu[15]
         result['enhancement_menu']['staged_roaming_only_grass'] = menu[16]
-        result['enhancement_menu']['page'] = menu[18 if menu_size >= 88 else 17]
+        result['enhancement_menu']['page'] = menu[15 + extra_count]
         if menu_size >= 88:
-            result['settings']['iv_ev_viewer'] = resident_words('gEnhancedExtraOptions', 3)[2]
+            result['settings']['iv_ev_viewer'] = extra[2]
             result['enhancement_menu']['staged_iv_ev_viewer'] = menu[17]
         hm = resident_words('gFieldHmState', 9)
         result['field_hms'] = dict(zip(('scripts','checks','fallbacks','no_user','last_move','last_slot','compatible','disabled','cache_hits'), hm))
+    if 'gEncounterRateState' in symbols:
+        result['settings']['encounter_rate'] = extra[3]
+        result['enhancement_menu']['staged_encounter_rate'] = menu[18]
+        result['encounter_rate'] = dict(zip(('field','roamer','cached','native_rolls','scaled_rolls','roamer_preserved','off_blocks'), resident_words('gEncounterRateState', 7)))
     if 'gSummaryViewState' in symbols:
         summary = resident_words('gSummaryViewState', 13)
         result['summary_view'] = dict(zip(('summary','pokemon','mode','draws','switches','data_type','reads'), summary[:7]))

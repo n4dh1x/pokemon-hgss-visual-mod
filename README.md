@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 14.**
+**Current stage: experimental gameplay milestone 15.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -12,7 +12,7 @@ checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
 settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. 135 tests pass. The repeat-Repel option offers another Repel of the
+connected-map changes remove old-map wilds. 147 tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
@@ -40,6 +40,10 @@ Y cycles stats/IVs/EVs; L shows EVs, R shows IVs and SELECT restores normal stat
 X changes enhancement-menu pages, including with L=A enabled. Native touch/page/party
 navigation restores the normal view first. Both games pass saved On/Off reloads
 and unchanged encrypted party data checks. Actual PC-box UI acceptance remains pending.
+The tenth saved option is Encounter rate: Normal, Off, 1/4, 1/2 or 2x. It scales
+ordinary walking/surfing checks and visible spawn cadence; Off removes visible
+wilds too. Native legendary decisions, fishing and scripted/special encounters
+retain their separate rules. See [encounter-rate.md](docs/encounter-rate.md).
 Cave/water encounters, legendary-roamer sprites, full capacity and transition
 coverage, other enhancements and final gameplay validation remain.
 These candidates are not the final release.
@@ -56,6 +60,7 @@ These candidates are not the final release.
 - [Capture EXP integration and verification](docs/capture-experience.md)
 - [Party-wide EXP Share and verification](docs/party-experience.md)
 - [Native IV/EV summary viewer](docs/summary-viewer.md)
+- [Encounter rate and visible spawn cadence](docs/encounter-rate.md)
 - [Bench leveling and multiple participants](docs/party-progress.md)
 
 Verify the inventory:

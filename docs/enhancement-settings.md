@@ -124,3 +124,18 @@ the fixed 32-byte loader header and evolution trampoline stay unchanged. Page 2
 skips its three blank rows before Save/Cancel. Both games cold-reload explicit
 Off and On, and cancelling a staged change preserves the entire cartridge save.
 See [summary-viewer.md](summary-viewer.md).
+
+
+## Milestone 15 extension
+
+Page 2 adds Encounter rate (Normal/Off/1/4/1/2/2x), default Normal. Left and Right
+cycle in both directions and A advances a choice; X changes pages. The four-row
+page skips its two blank rows before Save/Cancel. Value slot 9 and presence bit 6
+in reserved word 0 persist the option. Legacy unused slot 9 is ignored without
+that bit. Unknown slots 10..47 and future reserved bits survive writes; invalid
+explicit choices are rejected before any write. Old six-argument callers
+preserve an existing explicit rate. Version, owner, page size and CRC are unchanged.
+
+The auxiliary runtime structure is 16 bytes, the menu is 92 bytes, and the loader
+header remains 32 bytes. Both games save all choices, cold-load Off and 2x, and
+Cancel preserves the whole cartridge save. See [encounter-rate.md](encounter-rate.md).

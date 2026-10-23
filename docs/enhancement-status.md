@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 135 tests pass, including compiled ARM field logic and independently checked
+- 147 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 14,856-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 15,440-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -328,3 +328,33 @@ guarded hooks, xdelta reproduction and bounded Mac evidence are recorded in
 [milestone-14-verification.json](../enhancements/milestone-14-verification.json).
 Ruins-of-Alph effects, remaining contextual HM acceptance, PC UI and the rest of
 the audited enhancement inventory remain in the full active goal.
+
+
+## Milestone 15: saved encounter rate and visible spawn cadence
+
+The tenth setting adds Normal, Off, 1/4, 1/2 and 2x on page 2. Normal remains
+the legacy/default value and delegates the original native rate call unchanged.
+Custom rates scale the native ordinary walking/surfing parameter after HGSS's
+ability/item/flute effects, with integer truncation and a 100 cap. The native
+legendary rate/selection decision is evaluated separately and handed back once;
+a failed native legendary gate cannot become a legendary through 2x. Original
+Repel, generation, battle setup and legendary bookkeeping remain native.
+Fishing, scripted encounters and partner/Safari/contest/Pal Park contexts retain
+their original paths. Optional Roaming only still prevents all hidden grass-step
+battles, as introduced in milestone 12.
+
+Visible spawning uses 60/disabled/240/120/30 free field updates respectively,
+without changing density limits or the retained generated Pokemon. These are
+field input updates, not display frames. Off removes existing owned wilds and
+blocks early A interaction with a stale object. Both games save all choices,
+cold-reload Off and 2x, preserve the entire save on Cancel, and reach one new
+visible spawn at each active interval. Saved Off blocks 11 real walking checks
+in each bounded test without starting an ordinary battle or spawning a wild.
+
+147 tests pass, including original native rate/legendary instructions in both
+USA ROMs and new exact routine fingerprints. Local builds and xdelta round trips
+match the tested ROMs. See [encounter-rate.md](encounter-rate.md) and
+[milestone-15-verification.json](../enhancements/milestone-15-verification.json).
+Full Surf/cave/special-area and actual legendary gameplay acceptance remain
+pending; instruction tests and Route 29 checks are bounded evidence. All other
+unfinished enhancement inventory work remains in the active goal.

@@ -80,7 +80,9 @@ def install_field(rom, payload: Payload) -> tuple[list[PatchResult], list[Overla
     context = {
         1: [(0x021E6AF4, 0x2D0, '0b22495d52b5131c68a2b20749a33064d7af8589aa5c25211b53d58371e041a7'),
             (0x021E7114, 0x84, '71e23a58ecd82a89f42f2e87edc9f504a579fbe1beae6e5e0bfb93d3bb016970')],
-        2: [(0x02246C8C, 0x2E0, '2774f4f3deddfce2d71849c774885c82017a033979d9e2c39512802e0d6aba18')],
+        2: [(0x02246C8C, 0x2E0, '2774f4f3deddfce2d71849c774885c82017a033979d9e2c39512802e0d6aba18'),
+            (0x02247568, 0x128, '464e76abf472b8300050cb5c74e20f735c2c2c759dadf168a9c0298e3330be9c'),
+            (0x02248360, 0xB8, '7de447044d65a4aa3547e36de7811ef549b3a80bd8354ac58fdc6ceaec676076')],
     }
     calls = {
         1: [(0x021E6C6C, 0x0203FE75, 'EnhancedStartScript'),

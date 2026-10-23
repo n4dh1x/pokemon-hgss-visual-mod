@@ -191,11 +191,63 @@ static int repel_allows_contact(void *field, u32 wild_level) {
     return 0;
 }
 
+/* The native legendary check follows the ordinary rate roll. Preserve its
+ * normal-rate decision before independently scaling ordinary encounters. The
+ * cached result is consumed once by that same synchronous native call chain. */
+struct EncounterRateState {
+    void *field, *roamer;
+    u32 cached, native_rolls, scaled_rolls, roamer_preserved, off_blocks;
+};
+struct EncounterRateState gEncounterRateState;
+_Static_assert(sizeof(struct EncounterRateState) == 28, "Encounter-rate diagnostic ABI");
+u32 EnhancedEncounterPercent(void) {
+    static const u8 percent[5] = {100, 0, 25, 50, 200};
+    u32 setting = gEnhancedExtraOptions.encounter_rate;
+    return setting < 5 ? percent[setting] : 100;
+}
+u32 EnhancedSpawnInterval(void) {
+    static const u16 interval[5] = {60, 0, 240, 120, 30};
+    u32 setting = gEnhancedExtraOptions.encounter_rate;
+    return setting < 5 ? interval[setting] : 60;
+}
 int EnhancedEncounterRoll(void *field, u8 rate, u8 tile) {
-    return gVisibleState.capture ? 1 : OriginalEncounterRoll(field, rate, tile);
+    gEncounterRateState.cached = 0;
+    if (gVisibleState.capture) return 1;
+    u32 percent = EnhancedEncounterPercent();
+    if (percent == 100 || !regular(field))
+        return OriginalEncounterRoll(field, rate, tile);
+    ++gEncounterRateState.native_rolls;
+    int native = OriginalEncounterRoll(field, rate, tile);
+    void *roamer = 0;
+    if (native && OriginalRoamerCheck(field, &roamer)) {
+        gEncounterRateState.field = field;
+        gEncounterRateState.roamer = roamer;
+        gEncounterRateState.cached = 1;
+        ++gEncounterRateState.roamer_preserved;
+        return 1;
+    }
+    int result = 0;
+    if (percent) {
+        u32 scaled = (u32)rate * percent / 100;
+        if (scaled > 100) scaled = 100; /* Clamp before narrowing to u8. */
+        ++gEncounterRateState.scaled_rolls;
+        result = OriginalEncounterRoll(field, (u8)scaled, tile);
+    } else ++gEncounterRateState.off_blocks;
+    if (result) {
+        gEncounterRateState.field = field;
+        gEncounterRateState.roamer = 0;
+        gEncounterRateState.cached = 1;
+    }
+    return result;
 }
 int EnhancedRoamerCheck(void *field, void **roamer) {
-    return gVisibleState.capture ? 0 : OriginalRoamerCheck(field, roamer);
+    if (gVisibleState.capture) return 0;
+    if (gEncounterRateState.cached && gEncounterRateState.field == field) {
+        gEncounterRateState.cached = 0;
+        *roamer = gEncounterRateState.roamer;
+        return *roamer != 0;
+    }
+    return OriginalRoamerCheck(field, roamer);
 }
 void EnhancedCaptureEncounter(void *field, void *setup) {
     if (gVisibleState.capture)
@@ -234,7 +286,7 @@ static int launch(void *field, int index) {
     /* Native A interaction dispatches before our ordinary free-input loop.
      * Validate here too, including immediately after an option/map/context
      * change, before constructing any battle or consuming the stored Pokemon. */
-    if (!mode || mode > 3 || (u32)index >= mode * 2 ||
+    if (!mode || mode > 3 || !EnhancedEncounterPercent() || (u32)index >= mode * 2 ||
         gVisibleState.slots[index].map != word(ptr(field, 0x20), 0) || !regular(field)) {
         if (gVisibleState.slots[index].map != word(ptr(field, 0x20), 0))
             ++gVisibleState.map_releases;
@@ -405,7 +457,8 @@ int EnhancedFieldInput(void *input, void *field) {
     void *player = ptr(ptr(field, 0x40), 0x30);
     int px = word(player, 0x64), pz = word(player, 0x6C);
     u32 mode = gEnhancedOptions.visible_encounters;
-    unsigned limit = mode > 3 ? 0 : mode * 2;
+    unsigned limit = mode > 3 || !EnhancedEncounterPercent() ? 0 : mode * 2;
+    if (!limit) gVisibleState.tick = 0;
     int context = regular(field);
     for (int i = 0; i < 6; ++i) {
         void *object = gVisibleState.slots[i].object;
@@ -435,7 +488,7 @@ int EnhancedFieldInput(void *input, void *field) {
     if (!limit || !context || !alive(field) ||
         !grass(GetMetatileBehavior(field, px, pz)))
         return 0;
-    if (++gVisibleState.tick < 60)
+    if (++gVisibleState.tick < EnhancedSpawnInterval())
         return 0;
     gVisibleState.tick = 0;
     for (unsigned i = 0; i < limit; ++i)

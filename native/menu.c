@@ -11,12 +11,13 @@ struct MenuState {
     u32 paused_before[2];
 };
 struct MenuState gEnhancedMenu;
-_Static_assert(sizeof(struct MenuState) == 88, "Menu diagnostic ABI");
+_Static_assert(sizeof(struct MenuState) == 92, "Menu diagnostic ABI");
 static void *ptr(void *p, unsigned offset) { return *(void **)((u8 *)p + offset); }
 static void print(const char *text, u32 x, u32 y) {
     EnhancedDrawText(&gEnhancedMenu.window, gEnhancedMenu.string, text, x, y);
 }
 static void render(void) {
+    static const char *rates[5] = {"Normal", "Off", "1/4", "1/2", "2x"};
     static const char *modes[4] = {"Off", "Few", "Some", "Many"};
     FillWindowPixelBuffer(&gEnhancedMenu.window, 15);
     print(gEnhancedMenu.page ? "ENHANCEMENTS 2/2" : "ENHANCEMENTS 1/2", 8, 2);
@@ -40,6 +41,8 @@ static void render(void) {
         print(gEnhancedMenu.extra.roaming_only_grass ? "Roaming only" : "Normal", 144, 44);
         print("IV / EV viewer", 16, 60);
         print(gEnhancedMenu.extra.iv_ev_viewer ? "On" : "Off", 172, 60);
+        print("Encounter rate", 16, 76);
+        print(rates[gEnhancedMenu.extra.encounter_rate], 172, 76);
     }
     print("Save and close", 16, 124);
     print("Cancel", 16, 140);
@@ -77,7 +80,7 @@ int EnhancedMenuTask(void *task) {
     if (keys & 2) return close_menu();
     int redraw = 0;
     if (keys & 0x700) { gEnhancedMenu.page ^= 1; gEnhancedMenu.row = 0; redraw = 1; }
-    u32 count = gEnhancedMenu.page ? 3 : 6;
+    u32 count = gEnhancedMenu.page ? 4 : 6;
     if (keys & 0x40) {
         gEnhancedMenu.row = gEnhancedMenu.row == 0 ? 7 :
             gEnhancedMenu.row == 6 ? count - 1 : gEnhancedMenu.row - 1;
@@ -93,7 +96,11 @@ int EnhancedMenuTask(void *task) {
             if (gEnhancedMenu.page) {
                 if (gEnhancedMenu.row == 0) gEnhancedMenu.extra.field_hms ^= 1;
                 else if (gEnhancedMenu.row == 1) gEnhancedMenu.extra.roaming_only_grass ^= 1;
-                else gEnhancedMenu.extra.iv_ev_viewer ^= 1;
+                else if (gEnhancedMenu.row == 2) gEnhancedMenu.extra.iv_ev_viewer ^= 1;
+                else {
+                    u32 rate = gEnhancedMenu.extra.encounter_rate + ((keys & 0x20) ? 4 : 1);
+                    gEnhancedMenu.extra.encounter_rate = rate >= 5 ? rate - 5 : rate;
+                }
             }
             else if (gEnhancedMenu.row == 0)
                 gEnhancedMenu.visible = (gEnhancedMenu.visible + ((keys & 0x20) ? 3 : 1)) & 3;
@@ -126,6 +133,7 @@ int EnhancedMenuOpen(void *field) {
     gEnhancedMenu.extra.field_hms = gEnhancedExtraOptions.field_hms;
     gEnhancedMenu.extra.roaming_only_grass = gEnhancedExtraOptions.roaming_only_grass;
     gEnhancedMenu.extra.iv_ev_viewer = gEnhancedExtraOptions.iv_ev_viewer;
+    gEnhancedMenu.extra.encounter_rate = gEnhancedExtraOptions.encounter_rate;
     EnhancedNpcPause(field, gEnhancedMenu.paused_before, 1);
     FieldSystem_CreateTask(field, EnhancedMenuTask, 0);
     return 1;

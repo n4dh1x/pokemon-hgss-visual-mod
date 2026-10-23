@@ -184,7 +184,7 @@
       "category": "custom",
       "base_heartgold": "Party must know the field move.",
       "visual_plus": "Not added.",
-      "required_work": "Milestone 12 adds saved contextual HM fallback; milestone 13 adds owned HM02/TM70 Bag USE NOW actions, native checks/confirmation and safe native start-menu use. Cancel returns to Bag and normal teaching remains. Real native Fly/Flash callbacks and both-ROM hook guards pass instruction tests. Finish all contextual badge/story/use/animation acceptance, actual Flash cave/Alph effects and broader transitions/save verification. Flash is a TM; Dive is absent in HGSS.",
+      "required_work": "Milestone 12 adds saved contextual HM fallback; milestone 13 adds owned HM02/TM70 Bag USE NOW actions, native checks/confirmation and safe native start-menu use. Cancel returns to Bag and normal teaching remains. Real native Fly/Flash callbacks and both-ROM hook guards pass instruction tests. Finish all contextual badge/story/use/animation acceptance, Alph effects (Dark Cave Flash passed in milestone 14) and broader transitions/save verification. Flash is a TM; Dive is absent in HGSS.",
       "evidence": [
         "patches/pokeemerald/0013-field-hms.patch",
         "patches/pokeemerald/0019-field-hms-from-bag.patch",
@@ -519,12 +519,27 @@
       "category": "custom",
       "base_heartgold": "Normal game encounter-rate modifiers only.",
       "visual_plus": "Not added.",
-      "required_work": "Optional rate control must cover random encounter chance and visible spawn cadence; Off removes visible spawns too. Keep fishing, scripted and legendary paths separate.",
+      "required_work": "Milestone 15 adds saved Normal/Off/1/4/1/2/2x, ordinary walking/surfing scaling and visible cadence control. Off removes visible wilds. Original legendary decisions are preserved separately; fishing, scripted and special contexts remain native. Both Mac games pass menu choices, Off/2x cold reload, Cancel, visible intervals and ordinary Off walking. Surf/cave/special-area and actual legendary gameplay acceptance remain pending.",
       "evidence": [
         "patches/pokeemerald/0021-encounter-rate.patch",
-        "patches/pokeemerald/0029-visible-wild-encounter-rate.patch"
+        "patches/pokeemerald/0029-visible-wild-encounter-rate.patch",
+        "native/field.c",
+        "native/settings.c",
+        "native/menu.c",
+        "tests/test_encounter_rate.py",
+        "tests/test_visible_field.py",
+        "tests/test_settings.py",
+        "docs/encounter-rate.md",
+        "enhancements/milestone-15-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "native_rate_and_legendary_instructions_both_games": "passed_compiled_arm_with_bounded_API_fixtures",
+        "all_choice_menu_save_and_off_double_cold_reload_both_mac": "passed",
+        "visible_intervals_off_cleanup_and_cancel_both_mac": "passed",
+        "ordinary_off_real_walking_both_mac": "passed_11_checks_each",
+        "actual_surf_cave_special_areas_active_legendary": "pending"
+      }
     },
     {
       "id": "shiny_odds",

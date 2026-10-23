@@ -59,6 +59,8 @@ class TestVisibleField(unittest.TestCase):
         self.allowed, self.movement_busy, self.blocked, self.occupied = True, False, False, False
         self.moves = []
         self.roamer_result = False
+        self.native_roll_results = []
+        self.native_roamer_gate = 7
         self.repel = False
         self.party_mons = [self.mon]
         self.calls, self.freed, self.removed, self.script_calls = [], [], [], []
@@ -134,8 +136,11 @@ class TestVisibleField(unittest.TestCase):
             elif self.get(self.state + 1624) and not self.roamer_result:
                 self.put(self.state + 1628, 1)
             result = 1
-        elif address in (0x02247568, 0x02248360):
-            result = 7
+        elif address == 0x02247568:
+            result = self.native_roll_results.pop(0) if self.native_roll_results else 7
+        elif address == 0x02248360:
+            result = self.native_roamer_gate
+            if result and b:self.put(b,self.save+0x300)
         elif address == 0x02051BF8:
             self.assertEqual(a, self.setup)
             self.freed.append(a)
@@ -437,6 +442,68 @@ class TestVisibleField(unittest.TestCase):
         self.execute('EnhancedStartScript', self.field, 0, self.created)
         self.assertEqual(self.removed, [self.created])
         self.assertIsNone(self.battle_mon)
+
+    def test_encounter_rate_scales_native_rate_clamps_and_keeps_normal_calls_exact(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions']
+        for mode,rate,want in ((0,20,20),(2,20,5),(3,20,10),(4,20,40),(4,200,100),(2,3,0),(99,20,20)):
+            self.put(extra+12,mode);self.native_roamer_gate=0;self.native_roll_results=[0,1]
+            self.calls=[];self.execute('EnhancedEncounterRoll',self.field,rate,2)
+            rolls=[c for c in self.calls if c[0]==0x02247568]
+            self.assertEqual(rolls[-1][2:4],(want,2))
+            self.assertEqual(len(rolls),1 if mode in (0,99) else 2)
+            self.assertEqual(self.native_mon,bytes(self.uc.mem_read(self.mon,236)))
+
+    def test_encounter_rate_off_blocks_ordinary_but_preserves_cached_native_roamer(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions'];state=self.payload.symbols['gEncounterRateState'];out=self.input+0x40
+        self.put(extra+12,1);self.native_roamer_gate=0;self.native_roll_results=[1]
+        self.assertEqual(self.execute('EnhancedEncounterRoll',self.field,20,2),0)
+        self.assertEqual(self.get(state+24),1)
+        self.native_roamer_gate=1;self.native_roll_results=[1];self.calls=[]
+        self.assertEqual(self.execute('EnhancedEncounterRoll',self.field,20,2),1)
+        self.assertEqual(self.execute('EnhancedRoamerCheck',self.field,out),1)
+        self.assertEqual(self.get(out),self.save+0x300);self.assertEqual(self.get(state+8),0)
+        self.assertEqual(len([c for c in self.calls if c[0]==0x02248360]),1)
+        self.assertEqual(self.get(state+20),1)
+
+    def test_double_rate_cannot_create_a_roamer_after_failed_native_roll(self):
+        self.put(self.payload.symbols['gEnhancedExtraOptions']+12,4)
+        self.native_roll_results=[0,1];self.native_roamer_gate=1;self.calls=[];out=self.input+0x40
+        self.assertEqual(self.execute('EnhancedEncounterRoll',self.field,20,2),1)
+        self.assertEqual(self.execute('EnhancedRoamerCheck',self.field,out),0)
+        self.assertEqual(self.get(out),0)
+        self.assertEqual([c for c in self.calls if c[0]==0x02248360],[])
+        self.assertEqual(self.execute('EnhancedRoamerCheck',self.field,out),1)
+        self.assertEqual(len([c for c in self.calls if c[0]==0x02248360]),1,'Cache must be consumed exactly once.')
+
+    def test_rate_capture_bypasses_multiplier_but_native_special_contexts_do_not_change(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions'];state=self.payload.symbols['gEncounterRateState']
+        for mode in range(5):
+            self.put(extra+12,mode);self.put(self.state+4,1);self.calls=[]
+            self.assertEqual(self.execute('EnhancedEncounterRoll',self.field,20,2),1)
+            self.assertEqual(self.execute('EnhancedRoamerCheck',self.field,self.input+0x40),0)
+            self.assertEqual(self.calls,[])
+        self.put(self.state+4,0);self.special=True;self.put(extra+12,1);self.calls=[]
+        self.assertEqual(self.execute('EnhancedEncounterRoll',self.field,20,2),7)
+        self.assertEqual(self.get(state+12),0)
+
+    def test_visible_spawn_cadence_scales_without_altering_density_or_identity(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions']
+        for mode,interval in ((0,60),(2,240),(3,120),(4,30),(99,60)):
+            self.put(extra+12,mode);self.assertEqual(self.execute('EnhancedSpawnInterval'),interval)
+            self.put(self.state,self.manager);self.put(self.state+12,interval-2)
+            self.put(self.state+32,0);self.put(self.created,0);self.put(self.state+16,0)
+            self.execute('EnhancedFieldInput',self.input,self.field);self.assertEqual(self.get(self.state+16),0)
+            self.execute('EnhancedFieldInput',self.input,self.field);self.assertEqual(self.get(self.state+16),1)
+            self.assertEqual(bytes(self.uc.mem_read(self.state+44,236)),self.native_mon)
+
+    def test_rate_off_clears_visible_wilds_and_blocks_stale_a_contact(self):
+        self.make_spawn();extra=self.payload.symbols['gEnhancedExtraOptions'];self.put(extra+12,1)
+        self.execute('EnhancedStartScript',self.field,0,self.created)
+        self.assertEqual(self.removed,[self.created]);self.assertIsNone(self.battle_mon)
+        self.put(self.state+12,999);self.execute('EnhancedFieldInput',self.input,self.field)
+        self.assertEqual(self.get(self.state+12),0);self.assertEqual(self.get(self.state+16),1)
+        self.assertEqual(self.execute('EnhancedSpawnInterval'),0)
+
 
 
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for ROM field hooks.')

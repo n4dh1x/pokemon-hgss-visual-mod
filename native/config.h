@@ -25,6 +25,7 @@ struct EnhancedExtraOptions {
     u32 field_hms;
     u32 roaming_only_grass; /* Optional sprite-contact-only grass; default Off. */
     u32 iv_ev_viewer;
+    u32 encounter_rate; /* Normal, Off, quarter, half, double. */
 };
 extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 
