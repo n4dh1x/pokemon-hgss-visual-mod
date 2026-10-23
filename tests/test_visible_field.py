@@ -54,6 +54,7 @@ class TestVisibleField(unittest.TestCase):
         self.native_mon = struct.pack('<59I', *words)
         self.uc.mem_write(self.mon, self.native_mon)
         self.put(self.setup + 8, self.enemy_party)
+        self.tiles = {}
         self.tile, self.map_wild, self.special, self.hp = 2, True, False, 12
         self.original_result = 0
         self.allowed, self.movement_busy, self.blocked, self.occupied = True, False, False, False
@@ -120,7 +121,11 @@ class TestVisibleField(unittest.TestCase):
             if a == self.mon and b == 163:
                 result = self.hp
         elif address == 0x02054918:
-            result = self.tile
+            result = self.tiles.get((b,c), self.tile)
+        elif address == 0x0205B994:
+            result = int(a in (2,3,5,8,11,16,18,21,37,42))
+        elif address == 0x0205B778:
+            result = int(a in (16,17,18,19,20,21,25,42,80,81,82,83))
         elif address in (0x020548C0, 0x020549F4):
             result = int(self.blocked)
         elif address == 0x02060BFC:
@@ -248,6 +253,51 @@ class TestVisibleField(unittest.TestCase):
         for _ in range(3):
             self.execute('EnhancedFieldInput', self.input, self.field)
         self.assertFalse(any(c[0] in (0x021FE66C,0x0200604C) for c in self.calls))
+
+    def test_cave_and_surf_spawns_keep_native_pokemon_and_surface(self):
+        for tile, habitat, surfing in ((8,2,False),(16,3,True)):
+            self.setUp();self.tile=tile
+            self.put(self.avatar+0x18,2 if surfing else 0)
+            self.make_spawn()
+            hs=self.payload.symbols['gVisibleHabitatState']
+            self.assertEqual(self.get(hs),habitat)
+            self.assertEqual(self.get(hs+24+habitat*4),1)
+            self.execute('EnhancedStartScript',self.field,0,self.created)
+            self.assertEqual(self.battle_mon,self.native_mon)
+            self.assertEqual(self.get(hs),0)
+
+    def test_water_requires_surf_and_water_wild_is_cleared_after_dismount(self):
+        self.tile=16;self.put(self.state,self.manager);self.put(self.state+12,59)
+        self.execute('EnhancedFieldInput',self.input,self.field)
+        self.assertEqual(self.get(self.state+16),0)
+        self.put(self.avatar+0x18,2);self.make_spawn()
+        self.put(self.avatar+0x18,0)
+        self.execute('EnhancedStartScript',self.field,0,self.created)
+        self.assertIsNone(self.battle_mon)
+        self.assertEqual(self.removed,[self.created])
+
+    def test_cave_wilds_cannot_step_on_warps_or_water(self):
+        self.tile=8;self.make_spawn()
+        x=self.get(self.created+0x64);z=self.get(self.created+0x6C)
+        for bad_tile in (0,16,60):
+            self.tiles[(x,z-1)]=bad_tile
+            self.put(self.state+1592,0)
+            self.execute('EnhancedFieldInput',self.input,self.field)
+            self.assertEqual(self.moves,[])
+        self.tiles[(x,z-1)]=8;self.put(self.state+1592,0)
+        self.execute('EnhancedFieldInput',self.input,self.field)
+        self.assertEqual(self.moves,[(self.created,12)])
+
+    def test_surf_wilds_cannot_step_onto_shore_and_release_on_surface_change(self):
+        self.tile=16;self.put(self.avatar+0x18,2);self.make_spawn()
+        x=self.get(self.created+0x64);z=self.get(self.created+0x6C)
+        self.tiles[(x,z-1)]=8;self.put(self.state+1592,0)
+        self.execute('EnhancedFieldInput',self.input,self.field)
+        self.assertEqual(self.moves,[])
+        self.tiles[(x,z)]=0
+        self.execute('EnhancedFieldInput',self.input,self.field)
+        self.assertEqual(self.removed,[self.created])
+        self.assertEqual(self.get(self.payload.symbols['gVisibleHabitatState']+40),1)
 
     def test_spawn_keeps_exact_pokemon_and_contact_refreshes_battle(self):
         self.make_spawn()

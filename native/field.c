@@ -39,6 +39,8 @@ extern int CheckPartner(void *flags);
 extern int CheckSafari(void *flags);
 extern int CheckContest(void *flags);
 extern int CheckPalPark(void *flags);
+extern int NativeEncounterTile(u8 tile);
+extern int NativeSurfableTile(u8 tile);
 extern u8 GetMetatileBehavior(void *field, int x, int z);
 extern int TerrainBlocked(void *field, int x, int z);
 extern int ObjectCollision(void *object, int x, int y, int z);
@@ -103,6 +105,35 @@ static int owned(void *object) {
     return -1;
 }
 
+/* Session-only surface identity prevents a surf spawn crossing onto land.
+ * The original tile flags, encounter tables and generator remain authoritative. */
+struct VisibleHabitatState {
+    u32 slots[6], spawned[4], surface_releases;
+};
+struct VisibleHabitatState gVisibleHabitatState;
+_Static_assert(sizeof(struct VisibleHabitatState) == 44, "Visible habitat diagnostic ABI");
+
+u32 EnhancedTileHabitat(u8 tile) {
+    if (!NativeEncounterTile(tile)) return 0;
+    if (NativeSurfableTile(tile)) return 3;
+    return grass(tile) ? 1 : 2;
+}
+static u32 player_habitat(void *field, void *player) {
+    u32 habitat = EnhancedTileHabitat(GetMetatileBehavior(field,
+        word(player, 0x64), word(player, 0x6C)));
+    int surfing = word(ptr(field, 0x40), 0x18) == 2;
+    if ((habitat == 3) != surfing) return 0;
+    return habitat;
+}
+static int compatible_surface(void *field, int index) {
+    void *object = gVisibleState.slots[index].object;
+    u32 habitat = gVisibleHabitatState.slots[index];
+    int surfing = word(ptr(field, 0x40), 0x18) == 2;
+    return habitat && ((habitat == 3) == surfing) &&
+        EnhancedTileHabitat(GetMetatileBehavior(field,
+            word(object, 0x64), word(object, 0x6C))) == habitat;
+}
+
 struct VisibleVisualState {
     u32 pending_slot, pending_sprite, owned_lookups, construction_lookups, native_lookups;
     u32 sparkles, sparkle_failures, sparkle_ticks[6], chimes;
@@ -160,6 +191,7 @@ static void forget(void) {
     for (int i = 0; i < 6; ++i) {
         gVisibleState.roam_delay[i] = 0;
         gVisibleVisualState.sparkle_ticks[i] = 0;
+        gVisibleHabitatState.slots[i] = 0;
     }
 }
 
@@ -330,6 +362,7 @@ static void release_slot(int index) {
     gVisibleState.slots[index].object = 0;
     gVisibleState.roam_delay[index] = 0;
     gVisibleVisualState.sparkle_ticks[index] = 0;
+    gVisibleHabitatState.slots[index] = 0;
     gVisibleState.paused_mask &= ~(1u << index);
 }
 
@@ -341,7 +374,8 @@ static int launch(void *field, int index) {
      * Validate here too, including immediately after an option/map/context
      * change, before constructing any battle or consuming the stored Pokemon. */
     if (!mode || mode > 3 || !EnhancedEncounterPercent() || (u32)index >= mode * 2 ||
-        gVisibleState.slots[index].map != word(ptr(field, 0x20), 0) || !regular(field)) {
+        gVisibleState.slots[index].map != word(ptr(field, 0x20), 0) || !regular(field) ||
+        !compatible_surface(field, index)) {
         if (gVisibleState.slots[index].map != word(ptr(field, 0x20), 0))
             ++gVisibleState.map_releases;
         release_slot(index);
@@ -401,7 +435,7 @@ static int generate(void *field, struct VisibleSlot *slot) {
     return valid;
 }
 
-static void spawn(void *field, void *player, int index) {
+static void spawn(void *field, void *player, int index, u32 habitat) {
     int px = word(player, 0x64), pz = word(player, 0x6C);
     int x = px, z = pz, found = 0;
     for (int attempt = 0; attempt < 24; ++attempt) {
@@ -410,7 +444,7 @@ static void spawn(void *field, void *player, int index) {
         z = pz + (int)((random >> 3) & 7) - 3;
         if (distance(x, px) + distance(z, pz) < 2 || x < 0 || z < 0)
             continue;
-        if (!grass(GetMetatileBehavior(field, x, z)) || TerrainBlocked(field, x, z) ||
+        if (EnhancedTileHabitat(GetMetatileBehavior(field, x, z)) != habitat || TerrainBlocked(field, x, z) ||
             MovementBlocked(field, (u8 *)player + 0x70, x, z, 0) ||
             ObjectCollision(player, x, word(player, 0x68), z))
             continue;
@@ -453,7 +487,7 @@ static void spawn(void *field, void *player, int index) {
     event.range_x = event.range_z = 0;
     event.x = (u16)x;
     event.z = (u16)z;
-    event.y = 0;
+    event.y = (s32)word(player, 0x74);
     slot->map = word(ptr(field, 0x20), 0);
     slot->id = id;
     gVisibleVisualState.pending_slot = (u32)index + 1;
@@ -468,6 +502,8 @@ static void spawn(void *field, void *player, int index) {
     SetPokemonHidden(object, 0);
     slot->object = object;
     slot->id = id;
+    gVisibleHabitatState.slots[index] = habitat;
+    ++gVisibleHabitatState.spawned[habitat];
     ++gVisibleState.generated;
     gVisibleState.roam_delay[index] = 45 + (LCRandom() & 63);
     shiny_sparkle(field, index, 1);
@@ -489,7 +525,8 @@ static int roam(void *field, int index) {
     x += direction == 2 ? -1 : direction == 3 ? 1 : 0;
     z += direction == 0 ? -1 : direction == 1 ? 1 : 0;
     if (x < 0 || z < 0 || distance(x, word(object, 0x4C)) > 3 ||
-        distance(z, word(object, 0x54)) > 3 || !grass(GetMetatileBehavior(field, x, z)) ||
+        distance(z, word(object, 0x54)) > 3 ||
+        EnhancedTileHabitat(GetMetatileBehavior(field, x, z)) != gVisibleHabitatState.slots[index] ||
         MovementBlocked(field, (u8 *)object + 0x70, x, z, 0))
         return 0;
     void *player = ptr(ptr(field, 0x40), 0x30);
@@ -533,10 +570,13 @@ int EnhancedFieldInput(void *input, void *field) {
             continue;
         }
         int x = word(object, 0x64), z = word(object, 0x6C);
+        int same_map = gVisibleState.slots[i].map == word(ptr(field, 0x20), 0);
+        int surface_ok = !same_map || !context || compatible_surface(field, i);
         if ((unsigned)i >= limit || !context || gVisibleState.slots[i].map != word(ptr(field, 0x20), 0) ||
-            distance(x, px) > 12 || distance(z, pz) > 12) {
+            distance(x, px) > 12 || distance(z, pz) > 12 || !surface_ok) {
             if (gVisibleState.slots[i].map != word(ptr(field, 0x20), 0))
                 ++gVisibleState.map_releases;
+            if (!surface_ok) ++gVisibleHabitatState.surface_releases;
             release_slot(i);
             continue;
         }
@@ -555,15 +595,15 @@ int EnhancedFieldInput(void *input, void *field) {
         if (roam(field, i))
             return 1;
     }
-    if (!limit || !context || !alive(field) ||
-        !grass(GetMetatileBehavior(field, px, pz)))
+    u32 habitat = player_habitat(field, player);
+    if (!limit || !context || !alive(field) || !habitat)
         return 0;
     if (++gVisibleState.tick < EnhancedSpawnInterval())
         return 0;
     gVisibleState.tick = 0;
     for (unsigned i = 0; i < limit; ++i)
         if (!gVisibleState.slots[i].object) {
-            spawn(field, player, (int)i);
+            spawn(field, player, (int)i, habitat);
             break;
         }
     return 0;

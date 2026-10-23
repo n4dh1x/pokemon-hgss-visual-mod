@@ -144,3 +144,6 @@ NativeMonBaseStat = 0x0206FBE9;
 NativeMapObjectId = 0x0205F24D;
 
 NativeFieldSparkle = 0x021FE66D;
+
+NativeEncounterTile = 0x0205B995;
+NativeSurfableTile = 0x0205B779;

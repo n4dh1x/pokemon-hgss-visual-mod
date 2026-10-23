@@ -1,6 +1,6 @@
 # Enhancement implementation status
 
-## Verified on 23 October 2026
+## Verified on 24 October 2026
 
 - Fork: https://github.com/n4dh1x/pokemon-hgss-visual-mod
 - Branch: `emerald-feature-parity`.
@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 165 tests pass, including compiled ARM field logic and independently checked
+- 170 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 17,000-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 17,280-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -31,7 +31,7 @@
 - Both games cross Route 29 to New Bark Town with old-map wilds cleared. HeartGold
   returns to grass, filters low-level spawns and regenerates fresh identities in
   a separate declared simulated-expiry copy.
-- Cave/water support, full mode/capacity/transition/Repel coverage and general spawn
+- Wider cave/water-map, full mode/capacity/transition/Repel coverage and general spawn
   effects remain pending. No complete visible-encounter parity claim is made.
 - Reusable TMs and trade evolution now have saved runtime controls; full teaching
   and evolution/cancellation flows and bag quantity labels remain pending.
@@ -418,3 +418,36 @@ This is bounded Hoothoot/Rattata acceptance on Mac melonDS DS, with recorded PCM
 full species/forms/capacity/long-play coverage remains pending. The full goal is
 still active. See [shiny-field-visuals.md](shiny-field-visuals.md) and
 [milestone-17-verification.json](../enhancements/milestone-17-verification.json).
+
+
+## Milestone 18: native cave and Surf habitats
+
+Visible wilds now use original encounter-tile and surfable flags to cover grass,
+other encounter-capable land floors and Surf water. The original generator still
+selects tables, species, levels, abilities, Repel filtering and Pokemon identity.
+Native walking/height/collision logic places each model and animates movement.
+Per-slot session habitat identity prevents crossing water/land or stepping onto
+non-encounter warps/walls. Dismount clears water wilds; land wilds can then spawn.
+
+170 tests pass. Both original native tile-flag functions are executed against
+pinned ROM data, including positive surfaces and negative whirlpool/waterfall,
+ice, ledge and warp controls. New movement/contact tests cover cave floors,
+Surf state, shore boundaries, stale surface contact and cleanup. Final 17,280-byte
+payloads reproduce the exact tested ROMs and pass existing static/patch checks.
+
+Both games show native Dark Cave Zubat/Geodude and swimming-area Magikarp, reach
+real retained contact battles with unchanged 236-byte enemies, clear water
+wilds on real dismounts and filter them from native saving. Cold reload resumes
+Surf state, creates two fresh wilds and has exactly E0/E1, without duplicate
+saved NPCs. The native party's encrypted records survive saving/cold reload.
+Both games also retain shiny grass palettes/glints/chimes in Route 29.
+
+The Surf test uses the actual prompt, HM animation and mount, with a declared
+one-byte Fog Badge grant on isolated progress. No Pokemon, move, position, item
+or Surf-state fixture is used. This also supplies bounded gameplay acceptance
+for the existing Field HMs Surf fallback. Wider HM acceptance remains pending.
+Grass battles stays an optional grass-only setting; cave/water hidden battles,
+fishing and special contexts retain native behavior. Legendary-roamer sprites,
+full maps/species/forms/capacity/long-play coverage and other enhancements remain.
+See [visible-habitats.md](visible-habitats.md) and
+[milestone-18-verification.json](../enhancements/milestone-18-verification.json).

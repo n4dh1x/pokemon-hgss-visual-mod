@@ -67,6 +67,8 @@ def install_field(rom, payload: Payload) -> tuple[list[PatchResult], list[Overla
     fingerprint(arm, base, 0x0206a0e0, 0x50, 'f1af7065750ba31c3bb46086ddf90d850f283f2baace151e583b0b9c5636feec')
     fingerprint(arm, base, 0x0205f2d0, 0x44, '351960bfbc8c946189b6b94b73e8298e913c60b59540d0c24933c9d58a1dd020')
     fingerprint(arm, base, 0x0205f24c, 0x4, '6205c2d0ac2eb5ed791c6daa7b8172e98f8aa6dbe679405d95309ffde6ff60d6')
+    fingerprint(arm, base, 0x0205B994, 0x14, '0adbc8810ba611a223b281865cc949cd56c0302add7764c5449f35889c3212a0')
+    fingerprint(arm, base, 0x0205B778, 0x14, 'bf99ffae4af42c7ad1851e1a0060b9dce6bf99e8e866cf06da8f7f5cfc36ba1c')
     main = []
     for site, original, symbol in (
         (0x0203E0D0, 0x0203E15D, 'EnhancedFieldControl'),

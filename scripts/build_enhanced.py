@@ -77,7 +77,7 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-17'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-18'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -126,11 +126,11 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'grass_battles': {'choices': ['Normal', 'Roaming only'], 'default': 'Normal',
                           'scope': 'Regular grass while visible wilds are enabled; other contexts remain native'},
         'diagnostics': {'visible_state_bytes': 1644, 'settings_state_bytes': 1060,
-                        'menu_state_bytes': 96, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 20, 'shiny_state_bytes': 40, 'visible_visual_state_bytes': 56, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
+                        'menu_state_bytes': 96, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 20, 'shiny_state_bytes': 40, 'visible_visual_state_bytes': 56, 'visible_habitat_state_bytes': 44, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', 'gVisibleHabitatState', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
@@ -144,9 +144,9 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
                        'Roaming only suppresses hidden grass roamer battles too; native legendary roamers are not yet rendered as visible spawns. Use Normal for their native path.',
                        'Full in-game TM teaching and evolution/cancellation flows still need verification.',
                        'Bag TM quantity labels retain their original presentation.',
-                       'Visible encounters are an experimental grass integration; full acceptance cases remain pending.',
+                       'Visible encounters cover native grass, cave/land encounter floors and surfing water; full acceptance cases remain pending.',
                        'Visible mode defaults to Few when no valid owned settings journal exists.',
-                       'Cave/water encounters, general spawn effects and full transition/capacity verification remain pending.',
+                       'General spawn effects, legendary-roamer sprites and full transition/capacity verification remain pending.',
                        'Other new Emerald enhancements remain pending.'],
     }
     report_output.write_text(json.dumps(report, indent=2) + '\n')

@@ -101,6 +101,9 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['visible_visuals'] = dict(zip(('pending_slot','pending_sprite','owned_lookups','construction_lookups','native_lookups','sparkles','sparkle_failures'), values[:7]))
         result['visible_visuals']['sparkle_ticks'] = list(values[7:13])
         result['visible_visuals']['chimes'] = values[13] if len(values) > 13 else 0
+    if 'gVisibleHabitatState' in symbols:
+        habitats = resident_words('gVisibleHabitatState', 11)
+        result['habitats'] = {'slots': list(habitats[:6]), 'spawned': list(habitats[6:10]), 'surface_releases': habitats[10]}
     if 'gShinyState' in symbols:
         result['settings']['shiny_odds'] = extra[4]
         result['enhancement_menu']['staged_shiny_odds'] = menu[19]
@@ -158,6 +161,7 @@ def inspect_run(run: Path, report_path: Path) -> dict:
             result['current_map'] = word(location)
         avatar = word(field + 0x40)
         if avatar:
+            result['avatar_state'] = word(avatar + 0x18)
             player = word(avatar + 0x30)
             if player:
                 result['player_position'] = list(struct.unpack('<3i', read(player + 0x64, 12)))

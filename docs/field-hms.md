@@ -57,3 +57,11 @@ TM70/HM02 and Storm Badge fixture provenance remains recorded.
 Complete contextual HM coverage, actual Alph effects and broader
 transitions/save acceptance remain pending. This is an experimental candidate,
 not completion of the full enhancement goal.
+
+
+Milestone 18 verifies native Surf entry in both games with no learned Surf:
+real cave movement, prompt, text, HM animation and mount, followed by water
+encounters, dismount and native Surf saving/cold reload. A declared isolated
+one-byte Fog Badge fixture opens the normal badge gate; Pokemon, moves, items,
+position and Surf state are unchanged by the fixture. See
+[visible-habitats.md](visible-habitats.md). Other HM acceptance remains pending.

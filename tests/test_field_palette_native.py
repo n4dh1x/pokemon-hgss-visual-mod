@@ -11,7 +11,8 @@ class TestNativeFieldPalette(unittest.TestCase):
                 if any(a <= address < b for a,b in ((0x02069EE8,0x02069F0C),
                     (0x0206A080,0x0206A0A4),(0x0206A0E0,0x0206A128),
                     (0x0206A304,0x0206A32E),(0x0205F2D0,0x0205F314),
-                    (0x0220553C,0x02205564))): return
+                    (0x0220553C,0x02205564),(0x0205B994,0x0205B9A8),
+                    (0x0205B778,0x0205B78C))): return
                 if address == 0x02007508:
                     self.assertEqual(uc.reg_read(api.UC_ARM_REG_R1),141)
                     uc.mem_write(uc.reg_read(api.UC_ARM_REG_R0),bytes([0,1,0x23,0]))
@@ -52,3 +53,12 @@ class TestNativeFieldPalette(unittest.TestCase):
                 for npc in (0xFD,0xFA,0xFB,0xFF,42):
                     f.put(f.player+8,npc);f.put(f.player+0x40,1)
                     self.assertEqual(f.execute('NativeSelector',f.player),int(npc in (0xFD,0xFA,0xFB)))
+
+    def test_habitat_classifier_uses_actual_native_tile_flags(self):
+        for game in ('heartgold','soulsilver'):
+            f=self.fixture(game)
+            for tile in (2,3):self.assertEqual(f.execute('EnhancedTileHabitat',tile),1)
+            for tile in (5,8,11,37):self.assertEqual(f.execute('EnhancedTileHabitat',tile),2)
+            for tile in (16,18,21,42):self.assertEqual(f.execute('EnhancedTileHabitat',tile),3)
+            for tile in (0,6,17,19,20,22,23,25,32,56,60,75,80,81):
+                self.assertEqual(f.execute('EnhancedTileHabitat',tile),0)

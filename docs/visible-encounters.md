@@ -1,9 +1,10 @@
-# Native moving grass encounters
+# Native roaming encounters
 
-Wild Pokemon now appear and roam in Route 29 grass in both USA games over Visual+.
+Wild Pokemon now appear and roam on native encounter-capable grass, cave floors
+and Surf water in both USA games over Visual+.
 They use HGSS's native following-Pokemon species/form/gender models and normal
 walking commands. The party follower retains its native behavior. This is a
-working grass integration, not complete Emerald feature parity.
+working encounter integration, not complete Emerald feature parity.
 
 ## Current behavior
 
@@ -11,11 +12,11 @@ working grass integration, not complete Emerald feature parity.
   Save and close applies and stores the choice; B or Cancel discards changes.
   Few is the default without valid owned settings. See
   [enhancement-settings.md](enhancement-settings.md).
-- Generation reuses native HGSS land encounters: route/time data, radio/swarm
+- Generation reuses native HGSS land/Surf encounters: route/time data, radio/swarm
   substitutions, abilities, Repel checks and the actual Pokemon generation path.
   The full encrypted 236-byte Pokemon is retained. Its species, level, PID, IVs,
   nature, gender and form are not rerolled at contact.
-- Native species models walk independently on grass with randomized waits,
+- Native species models move independently on their encounter surface with randomized waits,
   turns and a three-tile home radius. Destination terrain, elevation/gimmick
   collision and current/previous object occupancy are checked before issuing
   native movement commands. Position changes use native interpolation.
@@ -98,7 +99,7 @@ six active moving wilds in Many; SoulSilver shows four in Some and six in Many.
 HeartGold Off removes all owned wilds. Both games read saved values on cold boot;
 the test area includes Hoothoot and Rattata, not six distinct simultaneous species.
 
-Do not mark the overall feature verified yet. Cave/water support,
+Do not mark the overall feature verified yet. Wider cave/water-map coverage,
 all Few/Some/Many/off capacity cases, six-species texture/heap limits,
 busy maps, long play, further connected-map crossings/warps and party/Repel edge cases,
 general spawn/despawn effects, further capture and additional script/fade cases
@@ -129,3 +130,12 @@ Milestone 17 adds native alternate palettes, repeating silent star glints and on
 appearance chime for shiny visible wilds. Both games pass mixed shiny/ordinary
 roamers, Off cleanup/resource release and retained shiny contact battles. Native
 walking animations continue. See [shiny-field-visuals.md](shiny-field-visuals.md).
+
+
+Milestone 18 adds encounter-capable land floors and surfing water. Native tile
+flags classify grass, other land floors and water; each wild remains on its
+own surface. Water requires native Surf state and clears on dismount. Both
+games pass retained cave/water enemies, water movement, real shore transitions
+and native Surf saving/cold reload without NPC ghosts. Ordinary cave/water
+random encounters stay native; Grass battles still applies only to grass. See
+[visible-habitats.md](visible-habitats.md).

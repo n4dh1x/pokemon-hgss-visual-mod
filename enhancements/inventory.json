@@ -184,7 +184,7 @@
       "category": "custom",
       "base_heartgold": "Party must know the field move.",
       "visual_plus": "Not added.",
-      "required_work": "Milestone 12 adds saved contextual HM fallback; milestone 13 adds owned HM02/TM70 Bag USE NOW actions, native checks/confirmation and safe native start-menu use. Cancel returns to Bag and normal teaching remains. Real native Fly/Flash callbacks and both-ROM hook guards pass instruction tests. Finish all contextual badge/story/use/animation acceptance, Alph effects (Dark Cave Flash passed in milestone 14) and broader transitions/save verification. Flash is a TM; Dive is absent in HGSS.",
+      "required_work": "Milestone 12 adds saved contextual HM fallback; milestone 13 adds owned HM02/TM70 Bag USE NOW actions, native checks/confirmation and safe native start-menu use. Cancel returns to Bag and normal teaching remains. Real native Fly/Flash callbacks and both-ROM hook guards pass instruction tests. Finish all contextual badge/story/use/animation acceptance, Alph effects (Dark Cave Flash passed in milestone 14) and broader transitions/save verification. Flash is a TM; Dive is absent in HGSS. Milestone 18 completes native Surf prompt/animation/mount in both games without learning Surf, using a declared isolated Fog Badge fixture.",
       "evidence": [
         "patches/pokeemerald/0013-field-hms.patch",
         "patches/pokeemerald/0019-field-hms-from-bag.patch",
@@ -198,7 +198,9 @@
         "gameplay/field_hm_bag.py",
         "tests/test_field_hm_bag.py",
         "enhancements/milestone-13-verification.json",
-        "enhancements/milestone-14-verification.json"
+        "enhancements/milestone-14-verification.json",
+        "docs/visible-habitats.md",
+        "enhancements/milestone-18-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
@@ -213,7 +215,8 @@
         "native_tm_teaching_party_entry_cancel_and_saved_off_both_mac": "passed",
         "party_and_tm_hm_quantities_preserved_both_mac": "passed",
         "contextual_cut_no_badge_on_off_historical_milestone12_heartgold": "passed_exact_old_rom; not current all-HM acceptance",
-        "actual_flash_cave_alph_effects": "Dark Cave passed both Mac games; Alph effects pending"
+        "actual_flash_cave_alph_effects": "Dark Cave passed both Mac games; Alph effects pending",
+        "native_surf_no_learned_move_both_mac": "passed_declared_one_byte_Fog_Badge_fixture"
       }
     },
     {
@@ -226,7 +229,7 @@
       "category": "custom",
       "base_heartgold": "Random grass/cave/water encounters plus specific scripted overworld Pokemon; no general roaming-spawn system.",
       "visual_plus": "Not added.",
-      "required_work": "Native follower models walk as grass wilds retain their generated Pokemon into contact battles. Saved Off/Few/Some/Many controls are integrated. Milestone 05 adds current native Repel checks on unsolicited contact and map-aware cleanup; both games pass protected/control contact runs and Route 29 to New Bark transitions. Finish cave/water support, full mode/capacity/map/party/Repel coverage, general spawn effects. Milestone 12 makes Normal grass battles the default for every density and adds a separate optional Roaming only setting. Milestone 16 verifies retained shiny data/battle/capture identities; milestone 17 adds native shiny palettes, silent repeating glints and one appearance chime, with mixed-colour and Off resource cleanup checks in both games.",
+      "required_work": "Native follower models walk as grass wilds retain their generated Pokemon into contact battles. Saved Off/Few/Some/Many controls are integrated. Milestone 05 adds current native Repel checks on unsolicited contact and map-aware cleanup; both games pass protected/control contact runs and Route 29 to New Bark transitions. Milestone 18 adds native encounter floors and Surf water, surface-bound movement, real shore cleanup, retained cave/water contact battles and native Surf save/cold reload. Finish legendary-roamer models, full mode/capacity/map/party/Repel coverage and general spawn effects. Milestone 12 makes Normal grass battles the default for every density and adds a separate optional Roaming only setting. Milestone 16 verifies retained shiny data/battle/capture identities; milestone 17 adds native shiny palettes, silent repeating glints and one appearance chime, with mixed-colour and Off resource cleanup checks in both games.",
       "evidence": [
         "patches/pokeemerald/0014-visible-wild.patch",
         "patches/pokeemerald/0056-follower-pokemon.patch",
@@ -244,7 +247,9 @@
         "enhancements/milestone-05-verification.json",
         "docs/shiny-field-visuals.md",
         "tests/test_field_palette_native.py",
-        "enhancements/milestone-17-verification.json"
+        "enhancements/milestone-17-verification.json",
+        "docs/visible-habitats.md",
+        "enhancements/milestone-18-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
@@ -263,7 +268,8 @@
         "connected_route29_newbark_cleanup_both_games": "passed",
         "returned_grass_repel_filter_and_simulated_expiry_respawn_heartgold": "passed",
         "early_native_a_map_mode_context_guards": "passed_compiled_arm",
-        "shiny_palettes_glints_one_chime_mixed_and_off_both_mac": "passed_bounded_Hoothoot_Rattata"
+        "shiny_palettes_glints_one_chime_mixed_and_off_both_mac": "passed_bounded_Hoothoot_Rattata",
+        "native_cave_surf_contact_shore_save_reload_both_mac": "passed_bounded_Dark_Cave_Zubat_Geodude_Magikarp; declared_one_byte_badge_fixture_for_Surf_entry"
       }
     },
     {
