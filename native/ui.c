@@ -25,12 +25,15 @@ static u16 character(char c) {
     if (c == '-') return 446;
     return 478;
 }
-void EnhancedDrawText(struct Window *window, void *string, const char *text, u32 x, u32 y) {
+void EnhancedCopyText(void *string, const char *text) {
     u16 encoded[64];
     unsigned n = 0;
     while (*text && n < 63) encoded[n++] = character(*text++);
     encoded[n] = 0xFFFF;
     CopyU16ArrayToString(string, encoded);
+}
+void EnhancedDrawText(struct Window *window, void *string, const char *text, u32 x, u32 y) {
+    EnhancedCopyText(string, text);
     AddTextPrinterParameterizedWithColor(window, 0, string, x, y, 0xFF, 0x01020F, 0);
 }
 void *EnhancedWindowOpen(void *field, struct Window *window, u8 y, u8 height) {

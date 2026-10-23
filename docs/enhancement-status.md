@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 111 tests pass, including compiled ARM field logic and independently checked
+- 123 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 12,260-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 13,752-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -275,3 +275,32 @@ Fly/Flash menu access remain pending. See [field-hms.md](field-hms.md).
 111 tests pass. Exact build hashes, bounded Mac runs and limitations are recorded
 in [milestone-12-verification.json](../enhancements/milestone-12-verification.json).
 The full enhancement goal remains active; these are experimental candidates.
+
+
+## Milestone 13: native Bag field moves
+
+The current candidates add USE NOW on owned HM02 and TM70 when Field HMs is On.
+They retain the ordinary teaching action, native badge/location/companion and
+special-area checks, confirmation, and the actual native Fly/Flash callbacks.
+Bag-launched Fly has its own cancel return to the Bag; selected destinations keep
+the original native flight task. The one-shot intent uses the real native start-menu
+environment and is revalidated at acceptance and handoff.
+
+123 tests pass. Twenty-one bounded current-ROM Mac runs cover both games:
+Fly opens its native map, flies to New Bark Town using a Hoothoot without Fly,
+and returns with identical party stats/moves/HP/EXP/PP and unchanged HM02/TM70
+quantities. Map cancel returns to Bag; declining USE NOW causes no additional
+handoff. Both games reject Fly without Storm Badge and Flash on Route29, preserve
+native TM teaching party selection/cancel, and remove USE NOW with saved Field HMs
+Off. Test-only TM70/HM02 and Storm Badge fixtures are explicitly recorded.
+
+Separately labelled historical checks on the exact milestone-12 HeartGold ROM
+show contextual Cut rejecting no badge, removing the tree with a one-byte Hive
+Badge fixture and no learned Cut, and rejecting again with Field HMs Off. These
+are not current-ROM all-HM acceptance. New current-ROM navigation attempts did
+not reach the tree and are recorded without a Cut pass claim.
+
+Actual Flash cave/Alph effects, complete contextual HM badge/story/animation and
+transition/save coverage remain pending. The whole enhancement goal remains
+active. See [field-hms.md](field-hms.md) and
+[milestone-13-verification.json](../enhancements/milestone-13-verification.json).

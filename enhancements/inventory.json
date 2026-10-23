@@ -184,7 +184,7 @@
       "category": "custom",
       "base_heartgold": "Party must know the field move.",
       "visual_plus": "Not added.",
-      "required_work": "Milestone 12 adds saved Field HMs On/Off and contextual HM-user fallback without teaching moves, retaining native badge/story scripts. Prefer an actual learned user, then a compatible non-egg species, then the first non-egg party member. Surf/Waterfall input checks share the fallback. Fly/Flash Bag/menu access and full native HM-use/animation acceptance remain pending; Flash is a TM and Dive is absent in HGSS.",
+      "required_work": "Milestone 12 adds saved contextual HM fallback; milestone 13 adds owned HM02/TM70 Bag USE NOW actions, native checks/confirmation and safe native start-menu use. Cancel returns to Bag and normal teaching remains. Real native Fly/Flash callbacks and both-ROM hook guards pass instruction tests. Finish all contextual badge/story/use/animation acceptance, actual Flash cave/Alph effects and broader transitions/save verification. Flash is a TM; Dive is absent in HGSS.",
       "evidence": [
         "patches/pokeemerald/0013-field-hms.patch",
         "patches/pokeemerald/0019-field-hms-from-bag.patch",
@@ -193,14 +193,26 @@
         "gameplay/field_hms.py",
         "tests/test_field_hms.py",
         "docs/field-hms.md",
-        "enhancements/milestone-12-verification.json"
+        "enhancements/milestone-12-verification.json",
+        "native/field_hm_bag.c",
+        "gameplay/field_hm_bag.py",
+        "tests/test_field_hm_bag.py",
+        "enhancements/milestone-13-verification.json"
       ],
       "implementation": "integrated_untested",
       "verification": {
         "compiled_arm_both_native_commands_and_personal_data": "passed",
         "guarded_installer_both_games": "passed",
         "saved_ui_defaults_and_live_eligibility_checks_both_games": "passed",
-        "native_use_badge_story_animation_fly_flash": "pending"
+        "native_use_badge_story_animation_fly_flash": "partial; full contextual and actual Flash effects pending",
+        "native_fly_flash_checks_use_and_return_instructions": "passed",
+        "bag_native_guards_both_roms_and_repel_composition": "passed",
+        "native_fly_map_flight_no_learned_fly_both_mac": "passed",
+        "fly_map_cancel_to_bag_and_use_now_no_both_mac": "passed",
+        "native_tm_teaching_party_entry_cancel_and_saved_off_both_mac": "passed",
+        "party_and_tm_hm_quantities_preserved_both_mac": "passed",
+        "contextual_cut_no_badge_on_off_historical_milestone12_heartgold": "passed_exact_old_rom; not current all-HM acceptance",
+        "actual_flash_cave_alph_effects": "pending"
       }
     },
     {

@@ -39,7 +39,7 @@ static struct HmCompatCache compatibility[8];
 static u32 next_compatibility;
 static int compatible(void *mon, u16 species, int index) {
     u16 form = (u16)GetMonData(mon, 112, 0);
-    u32 bit = 1u << (index - 92);
+    u32 bit = index == 69 ? 1u << 8 : 1u << (index - 92);
     struct HmCompatCache *entry = 0;
     for (int i = 0; i < 8; ++i)
         if (compatibility[i].species == species && compatibility[i].form == form) {
@@ -62,11 +62,10 @@ static int compatible(void *mon, u16 species, int index) {
     return result;
 }
 
-int EnhancedFirstPartyMove(void *party, u16 move) {
+static int first_user(void *party, u16 move, int tmhm) {
     ++gFieldHmState.checks;
     gFieldHmState.last_move = move;
     int original = NativeFirstPartyMove(party, move);
-    int tmhm = hm_index(move);
     if (!gEnhancedExtraOptions.field_hms || original != 255 || tmhm < 0) {
         if (!gEnhancedExtraOptions.field_hms) ++gFieldHmState.disabled;
         gFieldHmState.last_slot = original;
@@ -89,6 +88,14 @@ int EnhancedFirstPartyMove(void *party, u16 move) {
     else ++gFieldHmState.fallbacks;
     gFieldHmState.last_slot = first;
     return first;
+}
+
+int EnhancedFirstPartyMove(void *party, u16 move) {
+    return first_user(party, move, hm_index(move));
+}
+
+int EnhancedBagFieldUser(void *party, u16 move) {
+    return first_user(party, move, move == 148 ? 69 : hm_index(move));
 }
 
 int EnhancedPartySlotWithMove(void *ctx) {

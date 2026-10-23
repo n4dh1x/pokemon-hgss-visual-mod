@@ -1,0 +1,3463 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 13,
+  "verified_on": "2026-10-23",
+  "final_release": false,
+  "scope": "Native Bag USE NOW for owned HM02/TM70, safe native Fly/Flash task handoff, Bag-specific Fly cancellation, and ordinary teaching/Off controls.",
+  "regression": {
+    "passed": 123,
+    "skipped": 0,
+    "log_sha256": "fd2baeeea18a34351baa9c3d09102751cd08ccac25e4b7f222840b032954504c"
+  },
+  "inventory": {
+    "feature_rows": 59,
+    "emerald_option_keys": 41,
+    "pinned_source_coverage": "passed"
+  },
+  "candidates": {
+    "heartgold": {
+      "local_rom": "build/candidates/heartgold-visual-plus-gameplay-milestone-13.nds",
+      "output_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "patch_sha256": "202418d1ce838e7d3d104b16604514549ec94009e41bd8e9e96b6b50164cbe4c",
+      "build_report_sha256": "884f5de91ee6246b87979bb62d3c3ff01fbe93b5b7a542148bd3907550fab684",
+      "payload_bytes": 13752,
+      "reproduced_tested_experiment": true
+    },
+    "soulsilver": {
+      "local_rom": "build/candidates/soulsilver-visual-plus-gameplay-milestone-13.nds",
+      "output_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "patch_sha256": "b87cd454ac3f9af7d23745f16d3597cfeed08244ca9b9cd6b8f28b498c523ff3",
+      "build_report_sha256": "00a3526dad9e97e8283338b25479ec838c5c89f8cd367b41bdc8cecb99911aa1",
+      "payload_bytes": 13752,
+      "reproduced_tested_experiment": true
+    }
+  },
+  "runs": {
+    "hg13c-bag-controls": {
+      "source_artifact": "local_data/verification/hg13c-menu/state.bin",
+      "source_sha256": "b5e7da45c79f68a8af30f26d185a7c61c4ce1e3af31b058e1eaff05079f8fe26",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 7100,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            2100,
+            2104
+          ],
+          [
+            "A",
+            3500,
+            3504
+          ],
+          [
+            "A",
+            4900,
+            4904
+          ],
+          [
+            "A",
+            5500,
+            5504
+          ],
+          [
+            "B",
+            6500,
+            6504
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            120,
+            60,
+            64
+          ],
+          [
+            112,
+            15,
+            700,
+            704
+          ],
+          [
+            60,
+            50,
+            1100,
+            1104
+          ],
+          [
+            140,
+            145,
+            1500,
+            1504
+          ],
+          [
+            190,
+            50,
+            2500,
+            2504
+          ],
+          [
+            140,
+            145,
+            2900,
+            2904
+          ],
+          [
+            60,
+            50,
+            3900,
+            3904
+          ],
+          [
+            50,
+            145,
+            4300,
+            4304
+          ]
+        ]
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "b06250ac09ce5da516b6e053d446bcd73346f5d99cd02d357b6c8766f5072c18",
+        "source_ram_sha256": "d2dabba1e7a0fe3114570cb7928d14fc35beabab3fb88ac2d3ceabd1498359a8",
+        "applied_ram_sha256": "705cbf5f35f8b7d7d28b4d01063e4be4331cacf386883a30893f001231b1a61d",
+        "changes": [
+          {
+            "address": 36162476,
+            "before": "0000000000000000",
+            "after": "8d010100a5010100",
+            "reason": "Isolated Bag verification fixture: one TM70 and HM02, leaving party moves and other inventory untouched."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001900.png": "f0dff6d5ae916e51da3e20b648bf0bafe273b0f3d69686e77989f84e94a6e619",
+        "frame-003300.png": "53c2b31796114fa24ac58d311b4db7452213469a1a7febb4d42677cb450852de",
+        "frame-006200.png": "a61d36fff278c1f546b26c4ac272463b5a7c96e56a5c77cb8a57fe55fa972598",
+        "frame-007100.png": "11cbac39a782ef9aed7a268de27992ba16b2b00f17cc276dd130bdfeeb0d151c",
+        "main-ram.bin": "a2d23fac5aaf191930d2cd489e287d1e6c6be6d745875976db46be46ac61abf6",
+        "smoke-report.json": "371b222a6b234b7a5e45f25b7c2c2b40d195173222cee0f822a2622ea6d89da6",
+        "state.bin": "fd0557d4cddbbe686b8d6da96320b03321ca42070bdd74a17c6bcf855650a49b",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 214,
+          "fallbacks": 214,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 2,
+          "disabled": 0,
+          "cache_hits": 845
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 2,
+          "launched": 0,
+          "response": 2
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "hg13c-cut-approach": {
+      "source_artifact": "local_data/verification/hg13c-menu/state.bin",
+      "source_sha256": "b5e7da45c79f68a8af30f26d185a7c61c4ce1e3af31b058e1eaff05079f8fe26",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 1500,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            60,
+            166
+          ],
+          [
+            "LEFT",
+            220,
+            470
+          ],
+          [
+            "DOWN",
+            520,
+            562
+          ],
+          [
+            "LEFT",
+            610,
+            764
+          ],
+          [
+            "UP",
+            810,
+            884
+          ],
+          [
+            "LEFT",
+            930,
+            972
+          ],
+          [
+            "UP",
+            1020,
+            1110
+          ],
+          [
+            "SELECT",
+            1300,
+            1304
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001500.png": "025fdd6577f21b8e383c33beb609dbf25dca48a28a6095ab211a3f98e0558759",
+        "main-ram.bin": "48e6b272659a679ec371304589ac883b65cb4d5e18a784930c687d2b950afc6f",
+        "smoke-report.json": "e486583282bbc636c8ce33f99956f1d1a10852e206083dabc241bf11fc568f26",
+        "state.bin": "19aeb7b2099953b9221ac7deb979f4712c06d9a69687ab61d543902cb91ccf76",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 828,
+          "fallbacks": 828,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 3309
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          642,
+          2,
+          408
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "acceptance": "Navigation only; target tree not reached. SS entered a retained visible contact battle."
+    },
+    "hg13c-field-hms-off": {
+      "source_artifact": "local_data/verification/hg13c-menu/state.bin",
+      "source_sha256": "b5e7da45c79f68a8af30f26d185a7c61c4ce1e3af31b058e1eaff05079f8fe26",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 2200,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "R",
+            10,
+            14
+          ],
+          [
+            "LEFT",
+            50,
+            54
+          ],
+          [
+            "DOWN",
+            90,
+            94
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "A",
+            170,
+            174
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            120,
+            500,
+            504
+          ],
+          [
+            112,
+            15,
+            1100,
+            1104
+          ],
+          [
+            190,
+            50,
+            1500,
+            1504
+          ]
+        ]
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "b06250ac09ce5da516b6e053d446bcd73346f5d99cd02d357b6c8766f5072c18",
+        "source_ram_sha256": "d2dabba1e7a0fe3114570cb7928d14fc35beabab3fb88ac2d3ceabd1498359a8",
+        "applied_ram_sha256": "705cbf5f35f8b7d7d28b4d01063e4be4331cacf386883a30893f001231b1a61d",
+        "changes": [
+          {
+            "address": 36162476,
+            "before": "0000000000000000",
+            "after": "8d010100a5010100",
+            "reason": "Isolated Bag verification fixture: one TM70 and HM02, leaving party moves and other inventory untouched."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "897bc298088fb62d9d158caf21c7db05f6bcc5f041e4cf773972859115617d80",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002200.png": "c14a699f527c9ff2f34432d49e738802d843d1b17a85b4050fdc8f866f0bcaeb",
+        "main-ram.bin": "fedc144946e875354260c5ceef1867852460b35417ecc5da0e227ad4eccae919",
+        "smoke-report.json": "c68ce74633d5c6ca424e565a1ac266ed97bc46b85584b62e1aff3dc9cc6b1206",
+        "state.bin": "5b523fad1fb9bf72e531f42b04467de59b80f86698daf88cbc32d5c7151dc46d",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 0,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 2,
+          "row": 6,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 0,
+          "staged_roaming_only_grass": 1,
+          "page": 1
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 349,
+          "fallbacks": 186,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 255,
+          "compatible": 0,
+          "disabled": 163,
+          "cache_hits": 741
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "hg13c-fly-cancel": {
+      "source_artifact": "local_data/verification/hg13c-fly-map/state.bin",
+      "source_sha256": "385b84af8f293c7a65478ca5f0c66e893975d085ae871f28ea49bbd4ffe80b72",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 1300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001000.png": "7e271fc432df559dd3fac3e42042b676c8e0a07cdc5fffe06df09d3b85c654e4",
+        "frame-001300.png": "7e271fc432df559dd3fac3e42042b676c8e0a07cdc5fffe06df09d3b85c654e4",
+        "main-ram.bin": "2db3a15925802a86ece32ec212ebfcb29e22a869088833946043d607fd0ba67c",
+        "smoke-report.json": "995734fd8ed798cbbfbb70dc6205af47ff5fe8eb3446f0b066e38a1dfbb89dc1",
+        "state.bin": "98eef9db3ed870e03c61e98012593ad5fe80fc42d64d6d1d5c35cd1705e6df0f",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 215,
+          "fallbacks": 215,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 3,
+          "disabled": 0,
+          "cache_hits": 851
+        },
+        "field_bag": {
+          "field": 36307428,
+          "save": 36159996,
+          "item": 421,
+          "active": 0,
+          "slot": 2,
+          "offered": 1,
+          "accepted": 1,
+          "cancelled": 1,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "hg13c-fly-land": {
+      "source_artifact": "local_data/verification/hg13c-fly-map/state.bin",
+      "source_sha256": "385b84af8f293c7a65478ca5f0c66e893975d085ae871f28ea49bbd4ffe80b72",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 2300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "RIGHT",
+            10,
+            14
+          ],
+          [
+            "A",
+            80,
+            84
+          ],
+          [
+            "A",
+            500,
+            504
+          ],
+          [
+            "SELECT",
+            1900,
+            1904
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000300.png": "85efbefc4005ce7d20128ea68c6147a0867eb472a56f443d366c6fb89852a401",
+        "frame-001100.png": "e103c6b472b4e6672afc358c46be9840304a67442793df3ab7902a961d970e02",
+        "frame-002300.png": "a65eeb6b8cd5440e458f1f675cc69a319ec720fa5a86977bc6ee39b5f43f8ce6",
+        "main-ram.bin": "a315c899f5089cde2725a3a4bce575e6666c2f17e2cc074089f24e264abd59ed",
+        "smoke-report.json": "7a0b6e4ac7a3868af03292945354353a1ecfbf7a21cdb69cc8b6609aa57cecaf",
+        "state.bin": "de6b03e58702ff4c831440b8f7b4df267182cf68b111dd940ef4655573af3281",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 559,
+          "fallbacks": 559,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 3,
+          "disabled": 0,
+          "cache_hits": 2227
+        },
+        "field_bag": {
+          "field": 36307428,
+          "save": 36159996,
+          "item": 421,
+          "active": 0,
+          "slot": 2,
+          "offered": 1,
+          "accepted": 1,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 60,
+        "player_position": [
+          695,
+          2,
+          397
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "hg13c-fly-map": {
+      "source_artifact": "local_data/verification/hg13c-menu/state.bin",
+      "source_sha256": "b5e7da45c79f68a8af30f26d185a7c61c4ce1e3af31b058e1eaff05079f8fe26",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 3100,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            2100,
+            2104
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            120,
+            60,
+            64
+          ],
+          [
+            112,
+            15,
+            700,
+            704
+          ],
+          [
+            190,
+            50,
+            1100,
+            1104
+          ],
+          [
+            140,
+            145,
+            1500,
+            1504
+          ]
+        ]
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "8fce55da644fb80b264dffb11442aa2f14c9be504c6969e17f1cd69acdd34797",
+        "source_ram_sha256": "d2dabba1e7a0fe3114570cb7928d14fc35beabab3fb88ac2d3ceabd1498359a8",
+        "applied_ram_sha256": "4f88a97e5c124d7876833bc8ab52cc9ecb31b74bcbb2fff2739ead55eabbd975",
+        "changes": [
+          {
+            "address": 36162476,
+            "before": "0000000000000000",
+            "after": "8d010100a5010100",
+            "reason": "Isolated Bag verification fixture: one TM70 and HM02, leaving party moves and other inventory untouched."
+          },
+          {
+            "address": 36160138,
+            "before": "00",
+            "after": "10",
+            "reason": "Isolated positive Fly test only: add Storm Badge to exercise the original native Fly map/animation."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001900.png": "ff487fdac7bca55f498a350fb888ec40c448308971353fd357889f342db97043",
+        "frame-003100.png": "9887f9f0582a043ef0c224228c549d7ef817b1cf0df0fff0c09d253f5c6158ec",
+        "main-ram.bin": "6354f0fb6b30a068dcdf29edf237e436a1117c35ca9ce110f00ad98497971d03",
+        "smoke-report.json": "96201bc7e219ca9815518b2d7112f84984ca344754fb0b06ad5667c84445a828",
+        "state.bin": "385b84af8f293c7a65478ca5f0c66e893975d085ae871f28ea49bbd4ffe80b72",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 215,
+          "fallbacks": 215,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 3,
+          "disabled": 0,
+          "cache_hits": 851
+        },
+        "field_bag": {
+          "field": 36307428,
+          "save": 36159996,
+          "item": 421,
+          "active": 0,
+          "slot": 2,
+          "offered": 1,
+          "accepted": 1,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "hg13c-menu": {
+      "source_artifact": "local_data/verification/hg12b-roaming-save/cartridge.sav",
+      "source_sha256": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "343520379211ff46b719e24156dfe31fc773a63e636850ccb925735c96bccdc0",
+        "main-ram.bin": "d2dabba1e7a0fe3114570cb7928d14fc35beabab3fb88ac2d3ceabd1498359a8",
+        "smoke-report.json": "2c8667d8f954fa72441a249d1c5246cc9a6154dd490cde6bdb17e27bc831f128",
+        "state.bin": "b5e7da45c79f68a8af30f26d185a7c61c4ce1e3af31b058e1eaff05079f8fe26",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 186,
+          "fallbacks": 186,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 741
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "hg13c-teach-cancel": {
+      "source_artifact": "local_data/verification/hg13c-bag-controls/state.bin",
+      "source_sha256": "fd0557d4cddbbe686b8d6da96320b03321ca42070bdd74a17c6bcf855650a49b",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 3700,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1000,
+            1004
+          ],
+          [
+            "A",
+            1800,
+            1804
+          ],
+          [
+            "B",
+            2900,
+            2904
+          ]
+        ],
+        "touches": [
+          [
+            60,
+            50,
+            10,
+            14
+          ],
+          [
+            50,
+            145,
+            400,
+            404
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002600.png": "18f347113967dd3caf1d54518ac3496998261beed26812fb057a6551646a8acc",
+        "frame-003700.png": "520fc42cfd9547490feeb1aa3ca270351f8b0d042a50e66730199ab0420abd80",
+        "main-ram.bin": "62c52419b636d8fcc304efc56f3dd9fbca50c8be3a4f90d0f729ccdbf8c55cae",
+        "smoke-report.json": "ef04c2ae541e2234921b54d8c3d5251733c2fbf28e5105944ea5f2aebff275a7",
+        "state.bin": "c51972eb4a05ac85e46dfa0d811f11d86d4f6c5a35a89b08029f7c45ccd0b9b3",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 214,
+          "fallbacks": 214,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 2,
+          "disabled": 0,
+          "cache_hits": 845
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 2,
+          "launched": 0,
+          "response": 2
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ],
+      "acceptance": "Native teaching prompt and cancellation only; these attempts did not enter the party selection. Use teach-original for completed teaching-entry control."
+    },
+    "hg13c-teach-original": {
+      "source_artifact": "local_data/verification/hg13c-bag-controls/state.bin",
+      "source_sha256": "fd0557d4cddbbe686b8d6da96320b03321ca42070bdd74a17c6bcf855650a49b",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 3700,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1000,
+            1004
+          ],
+          [
+            "A",
+            1800,
+            1804
+          ],
+          [
+            "A",
+            2200,
+            2204
+          ],
+          [
+            "B",
+            2900,
+            2904
+          ]
+        ],
+        "touches": [
+          [
+            60,
+            50,
+            10,
+            14
+          ],
+          [
+            50,
+            145,
+            400,
+            404
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002600.png": "84289fce299b301a7cf4b7ea47124862c3011201a915492f5baf1580290a7f3b",
+        "frame-003700.png": "11cbac39a782ef9aed7a268de27992ba16b2b00f17cc276dd130bdfeeb0d151c",
+        "main-ram.bin": "4da0ca76e10968775352fcba8e564a721fc1058e33c59f4d39dc2611d00d005a",
+        "smoke-report.json": "1444b98ac1bbc13b020e4d23b898c9cb80d68d1c145fb175729e3d3a0a07b23b",
+        "state.bin": "e112101ba94d205e3a34fd63ea41cf3582f48ea9319305a63d335c146ec48bb5",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 214,
+          "fallbacks": 214,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 2,
+          "disabled": 0,
+          "cache_hits": 845
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 2,
+          "launched": 0,
+          "response": 2
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "hg13c-teach-party": {
+      "source_artifact": "local_data/verification/hg13c-bag-controls/state.bin",
+      "source_sha256": "fd0557d4cddbbe686b8d6da96320b03321ca42070bdd74a17c6bcf855650a49b",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 4800,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1000,
+            1004
+          ],
+          [
+            "B",
+            3900,
+            3904
+          ]
+        ],
+        "touches": [
+          [
+            60,
+            50,
+            10,
+            14
+          ],
+          [
+            50,
+            145,
+            400,
+            404
+          ],
+          [
+            225,
+            95,
+            2800,
+            2804
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002600.png": "c12a8fcd806d513942fec3b748296e7ac805e1188721b3f535a1e786da0e029b",
+        "frame-003600.png": "18f347113967dd3caf1d54518ac3496998261beed26812fb057a6551646a8acc",
+        "frame-004800.png": "11cbac39a782ef9aed7a268de27992ba16b2b00f17cc276dd130bdfeeb0d151c",
+        "main-ram.bin": "a1b68511df32b8acfadcbde4700c35e65b36feed533f9209f85e038323eb128a",
+        "smoke-report.json": "c025fb1ba14c6e9f21e444f69784110a513bb9b5a924775887b3cb1124d91c4b",
+        "state.bin": "33307408bd8cc21da4a70b7c6788e3d17708975a7167d0737d22667f9fcd4443",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 214,
+          "fallbacks": 214,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 2,
+          "disabled": 0,
+          "cache_hits": 845
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 2,
+          "launched": 0,
+          "response": 2
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ],
+      "acceptance": "Native teaching prompt and cancellation only; these attempts did not enter the party selection. Use teach-original for completed teaching-entry control."
+    },
+    "hg13c-use-now-no": {
+      "source_artifact": "local_data/verification/hg13c-fly-cancel/state.bin",
+      "source_sha256": "98eef9db3ed870e03c61e98012593ad5fe80fc42d64d6d1d5c35cd1705e6df0f",
+      "candidate_sha256": "51865a1ff88230640f7afc09ef2a915dee19445cd24ece8153702ff0670e2364",
+      "frames": 2300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            1000,
+            1004
+          ],
+          [
+            "B",
+            1300,
+            1304
+          ],
+          [
+            "SELECT",
+            2000,
+            2004
+          ]
+        ],
+        "touches": [
+          [
+            190,
+            50,
+            10,
+            14
+          ],
+          [
+            140,
+            145,
+            400,
+            404
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000800.png": "2ed28755d9117199d8df933a5cf8176685d67891754d7daf571923963a61b24c",
+        "frame-002300.png": "2c51d19cf8e3f350406f631f0bfc9c370689231ac9bd2b334ee83900de75d0f9",
+        "main-ram.bin": "9cca5c43aade072c74572a5d5c440b4e4bc3c636c4b680310842713ecc05a7ce",
+        "smoke-report.json": "14d06d5ce31ed4b274708a4bb16e0a05ff9235ed9a0d96c6d024c191691ae1c8",
+        "state.bin": "2737c7d34b8130b11a541a38e7707cab4eedb82ad85b1971fa8ed5440b129de9",
+        "state.json": "86dc30d3059da93343cba71d735ce4b7b77f3041ac0e4110c5678bc0fd3082f9"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 216,
+          "fallbacks": 216,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 4,
+          "disabled": 0,
+          "cache_hits": 854
+        },
+        "field_bag": {
+          "field": 36307428,
+          "save": 36159996,
+          "item": 421,
+          "active": 0,
+          "slot": 2,
+          "offered": 2,
+          "accepted": 1,
+          "cancelled": 2,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "ss13c-bag-controls": {
+      "source_artifact": "local_data/verification/ss13c-menu/state.bin",
+      "source_sha256": "5617416c06a91f0e788450ed878f0afc392526b7fc2300ffc7b9a8fe53dfb4b2",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 7100,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            2100,
+            2104
+          ],
+          [
+            "A",
+            3500,
+            3504
+          ],
+          [
+            "A",
+            4900,
+            4904
+          ],
+          [
+            "A",
+            5500,
+            5504
+          ],
+          [
+            "B",
+            6500,
+            6504
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            120,
+            60,
+            64
+          ],
+          [
+            112,
+            15,
+            700,
+            704
+          ],
+          [
+            60,
+            50,
+            1100,
+            1104
+          ],
+          [
+            140,
+            145,
+            1500,
+            1504
+          ],
+          [
+            190,
+            50,
+            2500,
+            2504
+          ],
+          [
+            140,
+            145,
+            2900,
+            2904
+          ],
+          [
+            60,
+            50,
+            3900,
+            3904
+          ],
+          [
+            50,
+            145,
+            4300,
+            4304
+          ]
+        ]
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "dee15861369a170eb533ed723c1a35170e7a4e7ddb4b1444a2350d16c16baf4d",
+        "source_ram_sha256": "53121be52a8ace073c61a9db017d44b4df61a0b348f5a3f539dfaa5e4e24ce9b",
+        "applied_ram_sha256": "5224cab82f5febf05a8ab2cf0cce19a56dbcc25629e0a55114d4e4be42242c9c",
+        "changes": [
+          {
+            "address": 36162684,
+            "before": "0000000000000000",
+            "after": "8d010100a5010100",
+            "reason": "Isolated Bag verification fixture: one TM70 and HM02, leaving party moves and other inventory untouched."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001900.png": "f0dff6d5ae916e51da3e20b648bf0bafe273b0f3d69686e77989f84e94a6e619",
+        "frame-003300.png": "53c2b31796114fa24ac58d311b4db7452213469a1a7febb4d42677cb450852de",
+        "frame-006200.png": "7313fcf659a591d8818328bf5603dcbe27b8cfa1fb1a47fd82ba43077d3b16de",
+        "frame-007100.png": "11cbac39a782ef9aed7a268de27992ba16b2b00f17cc276dd130bdfeeb0d151c",
+        "main-ram.bin": "f847c49addd6ee5f3641515ed14ebbcff242ec11883eb7e4bd9f068ab4477ed3",
+        "smoke-report.json": "dbdab7db6b275e6ebcc8232be16c67049cc93dcdc62ff84bb284d7f32ae22489",
+        "state.bin": "dc5658372b2a3d78102aaac9eaa666646c4a4fefd0980ac196fea8b8ae63817a",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 214,
+          "fallbacks": 214,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 2,
+          "disabled": 0,
+          "cache_hits": 845
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 2,
+          "launched": 0,
+          "response": 2
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "ss13c-cut-approach": {
+      "source_artifact": "local_data/verification/ss13c-menu/state.bin",
+      "source_sha256": "5617416c06a91f0e788450ed878f0afc392526b7fc2300ffc7b9a8fe53dfb4b2",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 1500,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            60,
+            166
+          ],
+          [
+            "LEFT",
+            220,
+            470
+          ],
+          [
+            "DOWN",
+            520,
+            562
+          ],
+          [
+            "LEFT",
+            610,
+            764
+          ],
+          [
+            "UP",
+            810,
+            884
+          ],
+          [
+            "LEFT",
+            930,
+            972
+          ],
+          [
+            "UP",
+            1020,
+            1110
+          ],
+          [
+            "SELECT",
+            1300,
+            1304
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001500.png": "a4b4727e0845bd22488d9361ff4bfe1b880d76c1a819def2b9af4f3d4f76b31b",
+        "main-ram.bin": "3d46d67e1ea73a8f9e19509b6232338b90e30efa4fa85d5e4c06671b26748e7f",
+        "smoke-report.json": "12086f7ec8328234a3880e8455179b47cb5911a01bcb3d49bebafa29cf9ca127",
+        "state.bin": "2d4a4ef6270bf66604ad019e665402585804775674958921041076deb6fd4ec1",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 292,
+          "fallbacks": 292,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 1165
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          406
+        ],
+        "native_battle": {
+          "setup": "0x22a6c14",
+          "enemy_party": "0x22a7824",
+          "pokemon_sha256": "ce5959cd16df353388091308c71d9438c8b0acc22127d48d9a6a1c5ebff58cdf",
+          "identical_retained_slots": [
+            0
+          ]
+        }
+      },
+      "tm70_hm02_native_bag_slots": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "acceptance": "Navigation only; target tree not reached. SS entered a retained visible contact battle."
+    },
+    "ss13c-field-hms-off": {
+      "source_artifact": "local_data/verification/ss13c-menu/state.bin",
+      "source_sha256": "5617416c06a91f0e788450ed878f0afc392526b7fc2300ffc7b9a8fe53dfb4b2",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 2200,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "R",
+            10,
+            14
+          ],
+          [
+            "LEFT",
+            50,
+            54
+          ],
+          [
+            "DOWN",
+            90,
+            94
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "A",
+            170,
+            174
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            120,
+            500,
+            504
+          ],
+          [
+            112,
+            15,
+            1100,
+            1104
+          ],
+          [
+            190,
+            50,
+            1500,
+            1504
+          ]
+        ]
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "dee15861369a170eb533ed723c1a35170e7a4e7ddb4b1444a2350d16c16baf4d",
+        "source_ram_sha256": "53121be52a8ace073c61a9db017d44b4df61a0b348f5a3f539dfaa5e4e24ce9b",
+        "applied_ram_sha256": "5224cab82f5febf05a8ab2cf0cce19a56dbcc25629e0a55114d4e4be42242c9c",
+        "changes": [
+          {
+            "address": 36162684,
+            "before": "0000000000000000",
+            "after": "8d010100a5010100",
+            "reason": "Isolated Bag verification fixture: one TM70 and HM02, leaving party moves and other inventory untouched."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "98ce5a2819511f9ead6f49aa17c3d8c6fea5060ecc11fc74f1e06790a4e56607",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002200.png": "c14a699f527c9ff2f34432d49e738802d843d1b17a85b4050fdc8f866f0bcaeb",
+        "main-ram.bin": "6a320563db7eab395569b873d5d419fd6fa1978d18d2d34407ee60ab780c7164",
+        "smoke-report.json": "1e9bf2b750559ef6b7faf9fe2f2f5642707b6df2a4ed9ae1983fdb81030439dc",
+        "state.bin": "272e0249eee9964d9e6bb4436768af34e6e08c769c05df11b336b8ad8f26fc91",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 6,
+          "last_slot": 1,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 1,
+          "status": 1,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 0,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 2,
+          "row": 6,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 0,
+          "staged_roaming_only_grass": 1,
+          "page": 1
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 350,
+          "fallbacks": 186,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 255,
+          "compatible": 0,
+          "disabled": 164,
+          "cache_hits": 741
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "ss13c-fly-cancel": {
+      "source_artifact": "local_data/verification/ss13c-fly-map/state.bin",
+      "source_sha256": "f02f2a00816d334de4d57d4e713c234590fddc5fa6fbcd7fbe7c0339d2376253",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 1300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001000.png": "7e271fc432df559dd3fac3e42042b676c8e0a07cdc5fffe06df09d3b85c654e4",
+        "frame-001300.png": "7e271fc432df559dd3fac3e42042b676c8e0a07cdc5fffe06df09d3b85c654e4",
+        "main-ram.bin": "86cbe515bcbbff85be9d7e6dcad43f6a9687dad1f3b7666fa622c6a6fee9b9e3",
+        "smoke-report.json": "1b62f7d9e18686853b4d1a6bd43ca658a505154267ccf6bb86059ec6d2614ddf",
+        "state.bin": "a5ca3c736d6f419cb604a77b1267c180a7647875e1219ef02b3b99aba5e54061",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 215,
+          "fallbacks": 215,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 3,
+          "disabled": 0,
+          "cache_hits": 851
+        },
+        "field_bag": {
+          "field": 36307636,
+          "save": 36160204,
+          "item": 421,
+          "active": 0,
+          "slot": 2,
+          "offered": 1,
+          "accepted": 1,
+          "cancelled": 1,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "ss13c-fly-land": {
+      "source_artifact": "local_data/verification/ss13c-fly-map/state.bin",
+      "source_sha256": "f02f2a00816d334de4d57d4e713c234590fddc5fa6fbcd7fbe7c0339d2376253",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 2300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "RIGHT",
+            10,
+            14
+          ],
+          [
+            "A",
+            80,
+            84
+          ],
+          [
+            "A",
+            500,
+            504
+          ],
+          [
+            "SELECT",
+            1900,
+            1904
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000300.png": "85efbefc4005ce7d20128ea68c6147a0867eb472a56f443d366c6fb89852a401",
+        "frame-001100.png": "d01c94109308c710a9a8894a51688fb171adf61715795ec80a4c46125cb16ca6",
+        "frame-002300.png": "a65eeb6b8cd5440e458f1f675cc69a319ec720fa5a86977bc6ee39b5f43f8ce6",
+        "main-ram.bin": "bf33dfa4bf0e8af0c59eb6d0609f9cb595263b612b398c55d4798c2f808d7f79",
+        "smoke-report.json": "821857a1e9954ad9c8a7e51bfb882b769413cd8d7391d686dddaababb3ac67be",
+        "state.bin": "682502b04232975edff3d0598850e99fe1b2b5ba58bf67f5ece31c218fe916fd",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 560,
+          "fallbacks": 560,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 3,
+          "disabled": 0,
+          "cache_hits": 2231
+        },
+        "field_bag": {
+          "field": 36307636,
+          "save": 36160204,
+          "item": 421,
+          "active": 0,
+          "slot": 2,
+          "offered": 1,
+          "accepted": 1,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 60,
+        "player_position": [
+          695,
+          2,
+          397
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "ss13c-fly-map": {
+      "source_artifact": "local_data/verification/ss13c-menu/state.bin",
+      "source_sha256": "5617416c06a91f0e788450ed878f0afc392526b7fc2300ffc7b9a8fe53dfb4b2",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 3100,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            2100,
+            2104
+          ]
+        ],
+        "touches": [
+          [
+            40,
+            120,
+            60,
+            64
+          ],
+          [
+            112,
+            15,
+            700,
+            704
+          ],
+          [
+            190,
+            50,
+            1100,
+            1104
+          ],
+          [
+            140,
+            145,
+            1500,
+            1504
+          ]
+        ]
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "4d19db86a3e44105c9cb3fc5e5f55ddbfe30573d8361d9aab73dca54d1bccc67",
+        "source_ram_sha256": "53121be52a8ace073c61a9db017d44b4df61a0b348f5a3f539dfaa5e4e24ce9b",
+        "applied_ram_sha256": "1566e65dd10dc11f171d2b802dac07a4054702bcd62d3fa68888cdf808e5098a",
+        "changes": [
+          {
+            "address": 36162684,
+            "before": "0000000000000000",
+            "after": "8d010100a5010100",
+            "reason": "Isolated Bag verification fixture: one TM70 and HM02, leaving party moves and other inventory untouched."
+          },
+          {
+            "address": 36160346,
+            "before": "00",
+            "after": "10",
+            "reason": "Isolated positive Fly test only: add Storm Badge to exercise the original native Fly map/animation."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-001900.png": "d528044027eee4c742aa075ff081ba3b1b37ee182d7048cf21107d3943412faa",
+        "frame-003100.png": "9887f9f0582a043ef0c224228c549d7ef817b1cf0df0fff0c09d253f5c6158ec",
+        "main-ram.bin": "018955495fa57abf42a5c8f0afc234aae7c22a16e1505bb62db0caa3a38da0a3",
+        "smoke-report.json": "5c1ffb7aae6b8a2da6c219fad76ab1855635831c8a01292d279683c21bf02645",
+        "state.bin": "f02f2a00816d334de4d57d4e713c234590fddc5fa6fbcd7fbe7c0339d2376253",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 215,
+          "fallbacks": 215,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 3,
+          "disabled": 0,
+          "cache_hits": 851
+        },
+        "field_bag": {
+          "field": 36307636,
+          "save": 36160204,
+          "item": 421,
+          "active": 0,
+          "slot": 2,
+          "offered": 1,
+          "accepted": 1,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "ss13c-menu": {
+      "source_artifact": "local_data/verification/ss12b-roaming-save/cartridge.sav",
+      "source_sha256": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 3300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ],
+          [
+            "SELECT",
+            3000,
+            3004
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-003300.png": "343520379211ff46b719e24156dfe31fc773a63e636850ccb925735c96bccdc0",
+        "main-ram.bin": "53121be52a8ace073c61a9db017d44b4df61a0b348f5a3f539dfaa5e4e24ce9b",
+        "smoke-report.json": "3e904907df0e27faa77fee0ab7e77064660cd48a2a5944a71b5e14b31ee91b78",
+        "state.bin": "5617416c06a91f0e788450ed878f0afc392526b7fc2300ffc7b9a8fe53dfb4b2",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": true,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 186,
+          "fallbacks": 186,
+          "no_user": 0,
+          "last_move": 127,
+          "last_slot": 0,
+          "compatible": 0,
+          "disabled": 0,
+          "cache_hits": 741
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 0,
+          "launched": 0,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "ss13c-teach-cancel": {
+      "source_artifact": "local_data/verification/ss13c-bag-controls/state.bin",
+      "source_sha256": "dc5658372b2a3d78102aaac9eaa666646c4a4fefd0980ac196fea8b8ae63817a",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 3700,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1000,
+            1004
+          ],
+          [
+            "A",
+            1800,
+            1804
+          ],
+          [
+            "B",
+            2900,
+            2904
+          ]
+        ],
+        "touches": [
+          [
+            60,
+            50,
+            10,
+            14
+          ],
+          [
+            50,
+            145,
+            400,
+            404
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002600.png": "18f347113967dd3caf1d54518ac3496998261beed26812fb057a6551646a8acc",
+        "frame-003700.png": "8d73c97a2b905a1fdd70975be58daadd3a02adea8c2cbe84830ea313433bf270",
+        "main-ram.bin": "caf5a7e6fec1f6fbf933e62311ff996b9ca9f4e1c30d2c1a64606f0c5720aad6",
+        "smoke-report.json": "bc84fb47c957942eca942a61e6c5487269b9b75222085df16fd8b8c3074017dc",
+        "state.bin": "4c60bc4081acf141c97b04b70b2be1c3aea573dd684ca5333ed99ff2c8d5e988",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 214,
+          "fallbacks": 214,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 2,
+          "disabled": 0,
+          "cache_hits": 845
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 2,
+          "launched": 0,
+          "response": 2
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ],
+      "acceptance": "Native teaching prompt and cancellation only; these attempts did not enter the party selection. Use teach-original for completed teaching-entry control."
+    },
+    "ss13c-teach-original": {
+      "source_artifact": "local_data/verification/ss13c-bag-controls/state.bin",
+      "source_sha256": "dc5658372b2a3d78102aaac9eaa666646c4a4fefd0980ac196fea8b8ae63817a",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 3700,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1000,
+            1004
+          ],
+          [
+            "A",
+            1800,
+            1804
+          ],
+          [
+            "A",
+            2200,
+            2204
+          ],
+          [
+            "B",
+            2900,
+            2904
+          ]
+        ],
+        "touches": [
+          [
+            60,
+            50,
+            10,
+            14
+          ],
+          [
+            50,
+            145,
+            400,
+            404
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-002600.png": "84289fce299b301a7cf4b7ea47124862c3011201a915492f5baf1580290a7f3b",
+        "frame-003700.png": "11cbac39a782ef9aed7a268de27992ba16b2b00f17cc276dd130bdfeeb0d151c",
+        "main-ram.bin": "65fc08fd67657ec9a8ccecee698d8be5ff96aa3b73ef7c2906889a42a55eec0c",
+        "smoke-report.json": "07f36e5ba9f99a0305605e1efed6ae1fdd9826875172e454199d06deea4764b2",
+        "state.bin": "739e61a6a64d70a02d6d65a65f2e3521a49ab0a120f5b0316127a1f67a998a3c",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 214,
+          "fallbacks": 214,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 2,
+          "disabled": 0,
+          "cache_hits": 845
+        },
+        "field_bag": {
+          "field": 0,
+          "save": 0,
+          "item": 0,
+          "active": 0,
+          "slot": 0,
+          "offered": 0,
+          "accepted": 0,
+          "cancelled": 0,
+          "blocked": 2,
+          "launched": 0,
+          "response": 2
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    },
+    "ss13c-use-now-no": {
+      "source_artifact": "local_data/verification/ss13c-fly-cancel/state.bin",
+      "source_sha256": "a5ca3c736d6f419cb604a77b1267c180a7647875e1219ef02b3b99aba5e54061",
+      "candidate_sha256": "fdb2cc1a9eaf53b6a558f73372c51b9030ded15a218bf375fd8f3e35c2c896a9",
+      "frames": 2300,
+      "core": "melonDS DS",
+      "core_version": "1.3.1",
+      "renderer": "software",
+      "bios": "builtin",
+      "jit": "disabled",
+      "network": "disabled",
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            1000,
+            1004
+          ],
+          [
+            "B",
+            1300,
+            1304
+          ],
+          [
+            "SELECT",
+            2000,
+            2004
+          ]
+        ],
+        "touches": [
+          [
+            190,
+            50,
+            10,
+            14
+          ],
+          [
+            140,
+            145,
+            400,
+            404
+          ]
+        ]
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "9747490c7000ffd6da2a35453cee31c8b0d7544ab315944d93d3da86bdec1333",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000800.png": "2ed28755d9117199d8df933a5cf8176685d67891754d7daf571923963a61b24c",
+        "frame-002300.png": "355d0f3bb6e23cc35b243b26352d66226c57bd27183f52fa330cee1f6d2e642c",
+        "main-ram.bin": "f3af9dfc2dde100b04d234e2726308a01474ab178893801144a3ccd061d35f10",
+        "smoke-report.json": "3e01a024afc88fd612fc71e15906ab6cb41c225aa480e728cc92f06e8b16b729",
+        "state.bin": "0e310ccca71d8431f4c8edddd5361d683904ca789b951479a332034317f23beb",
+        "state.json": "8ba55b41e4b7433d902353b67d695b69e6ab51b604c3ffca7447dc2c275bf629"
+      },
+      "diagnostics": {
+        "settings": {
+          "loaded": true,
+          "sequence": 5,
+          "last_slot": 0,
+          "writable_slots": [
+            true,
+            true
+          ],
+          "successful_writes": 0,
+          "status": 0,
+          "trade_evolutions": 0,
+          "reusable_tms": 0,
+          "repel_prompt": 1,
+          "capture_exp": 1,
+          "party_exp": 1,
+          "field_hms": 1,
+          "roaming_only_grass": 1
+        },
+        "enhancement_menu": {
+          "active": false,
+          "phase": 1,
+          "row": 0,
+          "staged_trade": 0,
+          "staged_tms": 0,
+          "staged_visible": 1,
+          "error": 0,
+          "staged_repel_prompt": 1,
+          "staged_capture_exp": 1,
+          "staged_party_exp": 1,
+          "staged_field_hms": 1,
+          "staged_roaming_only_grass": 1,
+          "page": 0
+        },
+        "field_hms": {
+          "scripts": 0,
+          "checks": 216,
+          "fallbacks": 216,
+          "no_user": 0,
+          "last_move": 19,
+          "last_slot": 2,
+          "compatible": 4,
+          "disabled": 0,
+          "cache_hits": 854
+        },
+        "field_bag": {
+          "field": 36307636,
+          "save": 36160204,
+          "item": 421,
+          "active": 0,
+          "slot": 2,
+          "offered": 2,
+          "accepted": 1,
+          "cancelled": 2,
+          "blocked": 0,
+          "launched": 1,
+          "response": 0
+        },
+        "current_map": 33,
+        "player_position": [
+          658,
+          2,
+          401
+        ]
+      },
+      "tm70_hm02_native_bag_slots": [
+        397,
+        1,
+        421,
+        1
+      ]
+    }
+  },
+  "assertions": {
+    "heartgold": {
+      "native_fly_map_and_newbark_landing": "passed",
+      "unchanged_moves_stats_exp_hp_pp": "passed",
+      "flying_user_does_not_know_fly": "passed",
+      "cancelled_fly_map_returns_to_bag": "passed_screenshot_and_counter",
+      "declining_use_now_no_second_handoff": "passed",
+      "flash_outside_native_location_and_fly_no_badge_rejection": "passed_screenshots_and_counters",
+      "ordinary_tm_teaching_party_entry_and_cancel": "passed_screenshots",
+      "saved_off_removes_extra_action": "passed_screenshot_and_settings",
+      "tm70_hm02_quantities_preserved": "passed_native_save_bag_getter_and_audited_pocket_slots"
+    },
+    "soulsilver": {
+      "native_fly_map_and_newbark_landing": "passed",
+      "unchanged_moves_stats_exp_hp_pp": "passed",
+      "flying_user_does_not_know_fly": "passed",
+      "cancelled_fly_map_returns_to_bag": "passed_screenshot_and_counter",
+      "declining_use_now_no_second_handoff": "passed",
+      "flash_outside_native_location_and_fly_no_badge_rejection": "passed_screenshots_and_counters",
+      "ordinary_tm_teaching_party_entry_and_cancel": "passed_screenshots",
+      "saved_off_removes_extra_action": "passed_screenshot_and_settings",
+      "tm70_hm02_quantities_preserved": "passed_native_save_bag_getter_and_audited_pocket_slots"
+    }
+  },
+  "party_before_after": {
+    "heartgold": {
+      "identical": true,
+      "flying_slot": 2,
+      "species": 163,
+      "party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 223,
+          "level": 6,
+          "hp": 14,
+          "hp_ev": 4,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 29,
+          "move2_pp": 40,
+          "move3_pp": 20,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 19,
+          "experience": 36,
+          "level": 3,
+          "hp": 15,
+          "hp_ev": 2,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 32,
+          "move2_pp": 30,
+          "move3_pp": 0,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 163,
+          "experience": 28,
+          "level": 3,
+          "hp": 17,
+          "hp_ev": 2,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 3,
+          "species": 163,
+          "experience": 28,
+          "level": 3,
+          "hp": 16,
+          "hp_ev": 2,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        }
+      ],
+      "before_inspector_sha256": "64b8f487b7965a0dad5dd1ff125a6e43b3313e1b42bd88e20d2905f5846379d5",
+      "after_inspector_sha256": "64b8f487b7965a0dad5dd1ff125a6e43b3313e1b42bd88e20d2905f5846379d5"
+    },
+    "soulsilver": {
+      "identical": true,
+      "flying_slot": 2,
+      "species": 163,
+      "party": [
+        {
+          "slot": 0,
+          "species": 152,
+          "experience": 223,
+          "level": 6,
+          "hp": 19,
+          "hp_ev": 4,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 1,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 75,
+          "move4": 0,
+          "move1_pp": 29,
+          "move2_pp": 40,
+          "move3_pp": 22,
+          "move4_pp": 0
+        },
+        {
+          "slot": 1,
+          "species": 19,
+          "experience": 28,
+          "level": 3,
+          "hp": 15,
+          "hp_ev": 2,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 39,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 30,
+          "move3_pp": 0,
+          "move4_pp": 0
+        },
+        {
+          "slot": 2,
+          "species": 163,
+          "experience": 28,
+          "level": 3,
+          "hp": 17,
+          "hp_ev": 2,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        },
+        {
+          "slot": 3,
+          "species": 163,
+          "experience": 28,
+          "level": 3,
+          "hp": 16,
+          "hp_ev": 2,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 33,
+          "move2": 45,
+          "move3": 193,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 40,
+          "move3_pp": 40,
+          "move4_pp": 0
+        }
+      ],
+      "before_inspector_sha256": "73dec37e1a47b668b55f74a880d444cda01802489421c0bcc08948fb3a247a57",
+      "after_inspector_sha256": "73dec37e1a47b668b55f74a880d444cda01802489421c0bcc08948fb3a247a57"
+    }
+  },
+  "limitations": [
+    "The full enhancement goal remains active and incomplete.",
+    "Actual Flash cave-lighting and Ruins-of-Alph effects remain pending; original native checks and use callbacks execute in instruction tests, with Route29 rejection verified in both Mac games.",
+    "Complete Cut/Surf/Strength/Whirlpool/RockSmash/Waterfall/RockClimb badge/story/animation/cancellation and transitions/save acceptance remain pending.",
+    "Historical Cut checks below used the exact milestone-12 ROM, not the final milestone-13 candidate. New current-ROM navigation attempts did not reach the tree and are not counted as Cut acceptance.",
+    "Runs use isolated copies of project-created native saves, including an HG-derived SS fixture. They do not establish a fresh SS playthrough or general save interchangeability.",
+    "Fixtures add only the declared TM70/HM02 item slots and, in positive Fly tests, the Storm Badge byte. No party/moves/HP/EXP modifications were used. Fixtures and emulator state remain local and ignored.",
+    "The reported Bag launched counter counts native use callback handoffs, not completed field moves. Fly completion is separately evidenced by native animation screenshots and landing in map60.",
+    "Cave/water visible encounters, native legendary-roamer sprites, full capacity/transition coverage and other inventory features remain pending.",
+    "Pre-cancel-correction field-bag-13a prototype runs are excluded from final candidate acceptance."
+  ],
+  "historical_cut": {
+    "hg13a-cut-approach": {
+      "candidate_sha256": "40be4b4baece2f75f6afb205e50bb1f7cc50ab495c4f51a87801242aa1800f6d",
+      "native_tree_at_629_401": [
+        {
+          "id": 4,
+          "flags": "0xc061"
+        }
+      ],
+      "frames": 1400,
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "DOWN",
+            60,
+            214
+          ],
+          [
+            "LEFT",
+            260,
+            414
+          ],
+          [
+            "DOWN",
+            460,
+            502
+          ],
+          [
+            "LEFT",
+            550,
+            704
+          ],
+          [
+            "UP",
+            750,
+            824
+          ],
+          [
+            "LEFT",
+            870,
+            912
+          ],
+          [
+            "UP",
+            960,
+            1050
+          ],
+          [
+            "SELECT",
+            1250,
+            1254
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000750.png": "7180123d46efb6a565c6d76dbc54c4b50346e1618648b33794166fb6c8fc6ecd",
+        "frame-001400.png": "2a5e5b3f0baa6baf1aca7e5727489ac30f65d41e5c0a34806f8867d1d1d6da22",
+        "main-ram.bin": "5756dc77abaf9574c9290004d47d192820996489d3f3a13a72239e6fc131f01b",
+        "smoke-report.json": "95b5b70d2f8349c3d3628cc80d51894a3f60fc64e07486b4fd74bd22e7334137",
+        "state.bin": "95fefafae9686cfcc87090247b343d057d7d7f1e498adf27d021357522962aea",
+        "state.json": "974605b17914a41d4184a7ead5a4cf95f2182e972e325b2f942137163b065a46"
+      }
+    },
+    "hg13a-cut-no-badge": {
+      "candidate_sha256": "40be4b4baece2f75f6afb205e50bb1f7cc50ab495c4f51a87801242aa1800f6d",
+      "native_tree_at_629_401": [
+        {
+          "id": 4,
+          "flags": "0xc061"
+        }
+      ],
+      "frames": 500,
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            60,
+            64
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000300.png": "aa70b7dae735c3793f0529029ef17a5f9d9b58dabbd3b533dbf51d9a51737608",
+        "frame-000500.png": "d24b0e0125ef72bb6ed72c052ff4fb932fc3207cef603e044e5e6272dbcc11ac",
+        "main-ram.bin": "9feb9907e5ac149de938d7208f54e0a28def43761cf2fc6c0b56e799bccd3c68",
+        "smoke-report.json": "d113042b13424bf3a5cfc96657ec16dfc89e446fbff088f784098c2bc758064f",
+        "state.bin": "11e522463c0c613ae597e4ae98e96136d7630ad622d608bcbfcfee7552b8dd7c",
+        "state.json": "974605b17914a41d4184a7ead5a4cf95f2182e972e325b2f942137163b065a46"
+      }
+    },
+    "hg13a-cut-hive-on": {
+      "candidate_sha256": "40be4b4baece2f75f6afb205e50bb1f7cc50ab495c4f51a87801242aa1800f6d",
+      "native_tree_at_629_401": [],
+      "frames": 2400,
+      "inputs": {
+        "buttons": [
+          [
+            "B",
+            10,
+            14
+          ],
+          [
+            "A",
+            60,
+            64
+          ],
+          [
+            "A",
+            400,
+            404
+          ],
+          [
+            "A",
+            900,
+            904
+          ],
+          [
+            "SELECT",
+            2200,
+            2204
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "7f162b15675243d8ffc88f1321ec1b76470431f6de918e2718f14634979f1356",
+        "source_ram_sha256": "5756dc77abaf9574c9290004d47d192820996489d3f3a13a72239e6fc131f01b",
+        "applied_ram_sha256": "27ecaf7d4bf44cd3a9a07e04fd70f0804597d91921bad2a464bba393294d1a60",
+        "changes": [
+          {
+            "address": 36160150,
+            "before": "00",
+            "after": "02",
+            "reason": "Isolated developer test: grant only Hive Badge to verify native contextual Cut with unchanged party moves."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "13a8276509db9fcce81589af98f77dc1f87d2ad067d8b3af049b52ebca488394",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000300.png": "e222c72aeb6aa41aa06ad554b94bc36f08f7d8c55b70684323f7de3b9f4bc532",
+        "frame-000900.png": "b8433c91416693d79a25719054ab8e2e2005dc77ef3bd23f0833acde597fdfb1",
+        "frame-001800.png": "9d11c5a7d0a9aea5ff4b03424567667471c796039f4b3a49a21afd51af07a26a",
+        "frame-002400.png": "c837abb66b50f35051c70895ec0a28e01a43afe653028fea0f50c86577c7eb5f",
+        "main-ram.bin": "67dbb11deb9b22572f5e7f9d8d345f789d3932f0afca2dcf05413ac685644c9e",
+        "smoke-report.json": "4dcc40abe5e847daabef582506befe5fec50a847bcf47bf7dbbb3c22a17c3594",
+        "state.bin": "6bfdd510c870cb54a0c6bfef5b1895cc5c74991abba5568a60f9469116871f79",
+        "state.json": "974605b17914a41d4184a7ead5a4cf95f2182e972e325b2f942137163b065a46"
+      }
+    },
+    "hg13a-cut-hive-off": {
+      "candidate_sha256": "40be4b4baece2f75f6afb205e50bb1f7cc50ab495c4f51a87801242aa1800f6d",
+      "native_tree_at_629_401": [
+        {
+          "id": 4,
+          "flags": "0xc061"
+        }
+      ],
+      "frames": 900,
+      "inputs": {
+        "buttons": [
+          [
+            "R",
+            10,
+            14
+          ],
+          [
+            "LEFT",
+            50,
+            54
+          ],
+          [
+            "DOWN",
+            90,
+            94
+          ],
+          [
+            "DOWN",
+            130,
+            134
+          ],
+          [
+            "A",
+            170,
+            174
+          ],
+          [
+            "A",
+            300,
+            304
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": {
+        "fixture_sha256": "7f162b15675243d8ffc88f1321ec1b76470431f6de918e2718f14634979f1356",
+        "source_ram_sha256": "5756dc77abaf9574c9290004d47d192820996489d3f3a13a72239e6fc131f01b",
+        "applied_ram_sha256": "27ecaf7d4bf44cd3a9a07e04fd70f0804597d91921bad2a464bba393294d1a60",
+        "changes": [
+          {
+            "address": 36160150,
+            "before": "00",
+            "after": "02",
+            "reason": "Isolated developer test: grant only Hive Badge to verify native contextual Cut with unchanged party moves."
+          }
+        ]
+      },
+      "artifacts": {
+        "cartridge.sav": "897bc298088fb62d9d158caf21c7db05f6bcc5f041e4cf773972859115617d80",
+        "core-options.json": "4f4d4994bfce05bb26d59f02b0511050f4b2eaa2a1da5b80a1415ec7aa10a1a6",
+        "frame-000600.png": "aa70b7dae735c3793f0529029ef17a5f9d9b58dabbd3b533dbf51d9a51737608",
+        "frame-000900.png": "b09c31dcf5231385e3360a8f1bb42752cad6a56fba01b7be4a745502aff51929",
+        "main-ram.bin": "37800fcb1384e1bebcacd7d3ce494d1922b92bfaea108b9a3738ec39552fe93a",
+        "smoke-report.json": "2f54c808ed7d83a82af9390e154e4482c9583fe4e13900b25907fdb97a71ac5d",
+        "state.bin": "0f8359fe9012469911400ec3030445f233237b7da3c71771677ee37bc8b051ea",
+        "state.json": "974605b17914a41d4184a7ead5a4cf95f2182e972e325b2f942137163b065a46"
+      }
+    },
+    "party_before": [
+      {
+        "slot": 0,
+        "species": 152,
+        "experience": 223,
+        "level": 6,
+        "hp": 14,
+        "hp_ev": 4,
+        "attack_ev": 0,
+        "defense_ev": 0,
+        "speed_ev": 1,
+        "spatk_ev": 0,
+        "spdef_ev": 0,
+        "move1": 33,
+        "move2": 45,
+        "move3": 75,
+        "move4": 0,
+        "move1_pp": 29,
+        "move2_pp": 40,
+        "move3_pp": 20,
+        "move4_pp": 0
+      },
+      {
+        "slot": 1,
+        "species": 19,
+        "experience": 36,
+        "level": 3,
+        "hp": 15,
+        "hp_ev": 2,
+        "attack_ev": 0,
+        "defense_ev": 0,
+        "speed_ev": 0,
+        "spatk_ev": 0,
+        "spdef_ev": 0,
+        "move1": 33,
+        "move2": 39,
+        "move3": 0,
+        "move4": 0,
+        "move1_pp": 32,
+        "move2_pp": 30,
+        "move3_pp": 0,
+        "move4_pp": 0
+      },
+      {
+        "slot": 2,
+        "species": 163,
+        "experience": 28,
+        "level": 3,
+        "hp": 17,
+        "hp_ev": 2,
+        "attack_ev": 0,
+        "defense_ev": 0,
+        "speed_ev": 0,
+        "spatk_ev": 0,
+        "spdef_ev": 0,
+        "move1": 33,
+        "move2": 45,
+        "move3": 193,
+        "move4": 0,
+        "move1_pp": 35,
+        "move2_pp": 40,
+        "move3_pp": 40,
+        "move4_pp": 0
+      },
+      {
+        "slot": 3,
+        "species": 163,
+        "experience": 28,
+        "level": 3,
+        "hp": 16,
+        "hp_ev": 2,
+        "attack_ev": 0,
+        "defense_ev": 0,
+        "speed_ev": 0,
+        "spatk_ev": 0,
+        "spdef_ev": 0,
+        "move1": 33,
+        "move2": 45,
+        "move3": 193,
+        "move4": 0,
+        "move1_pp": 35,
+        "move2_pp": 40,
+        "move3_pp": 40,
+        "move4_pp": 0
+      }
+    ]
+  }
+}

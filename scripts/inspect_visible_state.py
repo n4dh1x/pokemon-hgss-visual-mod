@@ -87,6 +87,8 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['enhancement_menu']['page'] = menu[17]
         hm = resident_words('gFieldHmState', 9)
         result['field_hms'] = dict(zip(('scripts','checks','fallbacks','no_user','last_move','last_slot','compatible','disabled','cache_hits'), hm))
+    if 'gFieldBagState' in symbols:
+        result['field_bag'] = dict(zip(('field','save','item','active','slot','offered','accepted','cancelled','blocked','launched','response'), resident_words('gFieldBagState', 11)))
     if 'gEnhancedRepelDialog' in symbols:
         dialog = resident_words('gEnhancedRepelDialog', 17)
         result['repel_dialog'] = {'active': bool(dialog[6]), 'phase': dialog[7],

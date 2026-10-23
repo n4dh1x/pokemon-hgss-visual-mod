@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 12.**
+**Current stage: experimental gameplay milestone 13.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -12,7 +12,7 @@ checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
 settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. 111 tests pass. The repeat-Repel option offers another Repel of the
+connected-map changes remove old-map wilds. 123 tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
@@ -30,8 +30,10 @@ Milestone 12 adds a second settings page: Field HMs and Grass battles.
 Grass battles defaults to Normal at every density. Optional Roaming only removes
 step-triggered regular grass battles while retaining moving contact encounters;
 turning visible wilds Off restores native random encounters. Both games save and
-cold-reload the option. Contextual field-HM fallback is integrated, with native
-use/animation acceptance and Fly/Flash menu access still pending.
+cold-reload the option. Contextual field-HM fallback is integrated. Milestone 13 adds Bag USE NOW
+actions for owned HM02 (Fly) and TM70 (Flash), with native restrictions and
+confirmation. Cancel returns to the Bag; ordinary teaching remains available.
+Full per-move gameplay acceptance is still in progress.
 Cave/water encounters, legendary-roamer sprites, full capacity and transition
 coverage, other enhancements and final gameplay validation remain.
 These candidates are not the final release.

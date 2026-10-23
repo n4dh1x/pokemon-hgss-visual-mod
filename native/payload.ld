@@ -107,3 +107,24 @@ ScriptReadHalfword = 0x0203FE2D;
 GetVarPointer = 0x02040375;
 FieldSystem_VarGet = 0x020403AD;
 GetMonTMHMCompat = 0x0207224D;
+
+
+NativeBagDrawContext = 0x021FEB85;
+NativeBagSetCancel = 0x021FD789;
+NativeBagHideCursor = 0x021FFF25;
+NativeBagCancelContext = 0x021FB605;
+NativeBagPrintMessage = 0x021FEF49;
+NativeBagCreateYesNo = 0x021FF005;
+NativeBagDestroyYesNo = 0x021FF059;
+NativeYesNoInput = 0x020168F5;
+NativeTextPrinterActive = 0x02020095;
+NativeAppFade = 0x020880CD;
+NativeFieldMoveFunction = 0x02067DF5;
+NativeTaskField = 0x0205064D;
+NativeTaskEnvironment = 0x02050651;
+NativeItemUseTMHM = 0x02064E19;
+NativeReopenBag = 0x0203E3FD;
+NativeStartMenuExit = 0x0203C8F1;
+NativeBagReturn = 0x0203CFC1;
+
+NativeFlyReturn = 0x0203D759;

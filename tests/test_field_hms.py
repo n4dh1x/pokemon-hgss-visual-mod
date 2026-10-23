@@ -87,6 +87,14 @@ class TestFieldHms(unittest.TestCase):
                 self.f.put(self.extra,enabled)
                 self.f.mons=[{5:129},{5:151}]
                 self.assertEqual(self.command(15),1 if enabled else 6)
+    def test_bag_flash_uses_real_tm70_compatibility_without_changing_contextual_flash(self):
+        f=self.f
+        self.assertEqual(f.execute('EnhancedBagFieldUser',self.party,148),1)
+        self.assertEqual(f.compat,[69,69])
+        self.assertEqual(f.execute('EnhancedFirstPartyMove',self.party,148),255)
+        f.put(self.extra,0)
+        self.assertEqual(f.execute('EnhancedBagFieldUser',self.party,148),255)
+
     def test_direct_surf_waterfall_helper_preserves_native_255_convention(self):
         f=self.f
         self.assertEqual(f.execute('EnhancedFirstPartyMove',self.party,57),1)

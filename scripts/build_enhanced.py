@@ -29,6 +29,7 @@ from gameplay.repel import install_repel
 from gameplay.capture import install_capture
 from gameplay.party_exp import install_party_exp
 from gameplay.field_hms import install_field_hms
+from gameplay.field_hm_bag import install_field_hm_bag
 from build_baseline import build_baseline, read_rom, sha256
 
 
@@ -65,11 +66,14 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     hm_main, hm_overlays = install_field_hms(patched, payload)
     results.extend(hm_main)
     overlay_changes.extend(hm_overlays)
+    bag_main, bag_overlays = install_field_hm_bag(patched, payload)
+    results.extend(bag_main)
+    overlay_changes.extend(bag_overlays)
     injection = inject_evolution(patched.arm9, original.arm9RamAddress, payload)
     results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-12'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-13'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -111,11 +115,11 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'grass_battles': {'choices': ['Normal', 'Roaming only'], 'default': 'Normal',
                           'scope': 'Regular grass while visible wilds are enabled; other contexts remain native'},
         'diagnostics': {'visible_state_bytes': 1644, 'settings_state_bytes': 1060,
-                        'menu_state_bytes': 84, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 8},
+                        'menu_state_bytes': 84, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 8, 'field_bag_state_bytes': 44},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
@@ -123,7 +127,7 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
                    'one guarded appended battle message; other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
         'runtime_gameplay_tested': False,
         'limitations': ['The enhancement menu currently exposes eight integrated gameplay options across two pages.',
-                       'Field HMs cover contextual moves; Fly/Flash Bag integration and full field acceptance remain pending.',
+                       'Field HMs include contextual fallback and native Bag Use Now actions for HM02/TM70; full per-move acceptance remains pending.',
                        'Roaming only suppresses hidden grass roamer battles too; native legendary roamers are not yet rendered as visible spawns. Use Normal for their native path.',
                        'Full in-game TM teaching and evolution/cancellation flows still need verification.',
                        'Bag TM quantity labels retain their original presentation.',
