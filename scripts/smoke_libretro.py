@@ -16,6 +16,7 @@ from pathlib import Path
 import struct
 import time
 import zlib
+import wave
 
 ROOT = Path(__file__).resolve().parent.parent
 BUTTONS = {'B': 0, 'Y': 1, 'SELECT': 2, 'START': 3, 'UP': 4, 'DOWN': 5,
@@ -30,6 +31,19 @@ class SystemInfo(C.Structure):
     _fields_ = [('library_name', C.c_char_p), ('library_version', C.c_char_p),
                 ('valid_extensions', C.c_char_p), ('need_fullpath', C.c_bool),
                 ('block_extract', C.c_bool)]
+
+
+class Geometry(C.Structure):
+    _fields_ = [('base_width', C.c_uint), ('base_height', C.c_uint),
+                ('max_width', C.c_uint), ('max_height', C.c_uint), ('aspect_ratio', C.c_float)]
+
+
+class Timing(C.Structure):
+    _fields_ = [('fps', C.c_double), ('sample_rate', C.c_double)]
+
+
+class AVInfo(C.Structure):
+    _fields_ = [('geometry', Geometry), ('timing', Timing)]
 
 
 class GameInfo(C.Structure):
@@ -89,7 +103,7 @@ def apply_ram_fixture(ram: bytes, fixture: dict, rom_sha256: str) -> bytes:
     return bytes(result)
 
 
-def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tuple], captures: set[int], load_state: Path | None = None, touches: list[tuple] | None = None, load_save: Path | None = None, ram_fixture: Path | None = None):
+def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tuple], captures: set[int], load_state: Path | None = None, touches: list[tuple] | None = None, load_save: Path | None = None, ram_fixture: Path | None = None, record_audio: bool = False):
     core_path, rom, output = core_path.resolve(), rom.resolve(), output.resolve()
     load_state = load_state.resolve() if load_state else None
     load_save = load_save.resolve() if load_save else None
@@ -114,6 +128,7 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
                  'melonds_jit_enable': 'disabled', 'melonds_network_mode': 'disabled',
                  'melonds_start_time_mode': 'absolute'}
     frame, video_format, last_video, audio_samples = 0, 0, None, 0
+    audio_pcm = bytearray()
     touches = touches or []
     errors = []
 
@@ -185,12 +200,15 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
 
     @C.CFUNCTYPE(None, C.c_int16, C.c_int16)
     def audio_sample(left, right):
-        pass
+        if record_audio:
+            audio_pcm.extend(struct.pack('<hh', left, right))
 
     @C.CFUNCTYPE(C.c_size_t, C.POINTER(C.c_int16), C.c_size_t)
     def audio_batch(data, count):
         nonlocal audio_samples
         audio_samples += count
+        if record_audio:
+            audio_pcm.extend(C.string_at(data, count * 4))
         return count
 
     @C.CFUNCTYPE(None)
@@ -251,6 +269,9 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
         if not core.retro_load_game(C.byref(game)):
             raise RuntimeError(f'melonDS could not load the ROM; options: {defaults}')
         loaded = True
+        core.retro_get_system_av_info.argtypes = [C.POINTER(AVInfo)]
+        av_info = AVInfo()
+        core.retro_get_system_av_info(C.byref(av_info))
         (output / 'core-options.json').write_text(json.dumps({'defaults': defaults, 'choices': choices}, indent=2))
         rom_sha = hashlib.sha256(rom.read_bytes()).hexdigest()
         save_size = core.retro_get_memory_size(0)
@@ -314,6 +335,13 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
                   'save_export': save_export,
                   'developer_ram_fixture': fixture_report,
                   'scope': 'Boot/smoke check only; not full gameplay verification.'}
+        if record_audio:
+            with wave.open(str(output / 'audio.wav'), 'wb') as recording:
+                recording.setnchannels(2)
+                recording.setsampwidth(2)
+                recording.setframerate(round(av_info.timing.sample_rate))
+                recording.writeframes(audio_pcm)
+            report['audio_recording'] = {'path': 'audio.wav', 'sample_rate': av_info.timing.sample_rate, 'bytes': len(audio_pcm), 'sha256': hashlib.sha256(audio_pcm).hexdigest()}
         (output / 'smoke-report.json').write_text(json.dumps(report, indent=2) + '\n')
         return report
     finally:
@@ -330,6 +358,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--frames', type=int, default=600)
     parser.add_argument('--capture', type=int, action='append', default=[])
+    parser.add_argument('--record-audio', action='store_true', help='Keep stereo PCM audio for local sound verification')
     parser.add_argument('--load-state', type=Path)
     parser.add_argument('--load-save', type=Path, help='Copy an exact 512 KiB cartridge save into the isolated test core')
     parser.add_argument('--ram-fixture', type=Path, help='Apply a ROM/RAM-hash-matched developer fixture to an isolated loaded state')
@@ -358,7 +387,7 @@ def main():
             parser.error(f'Invalid touch interval: {event}')
         touches.append((x, y, start, end))
     print(json.dumps(run(args.core, args.rom, args.output, args.frames, presses,
-                         set(args.capture) | {args.frames}, args.load_state, touches, args.load_save, args.ram_fixture), indent=2))
+                         set(args.capture) | {args.frames}, args.load_state, touches, args.load_save, args.ram_fixture, args.record_audio), indent=2))
 
 
 if __name__ == '__main__':

@@ -140,3 +140,7 @@ GetBoxMonData = 0x0206E641;
 NativeCreateMon = 0x0206DE39;
 NativeNatureFromPid = 0x0206FE2D;
 NativeMonBaseStat = 0x0206FBE9;
+
+NativeMapObjectId = 0x0205F24D;
+
+NativeFieldSparkle = 0x021FE66D;

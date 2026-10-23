@@ -101,7 +101,7 @@ the test area includes Hoothoot and Rattata, not six distinct simultaneous speci
 Do not mark the overall feature verified yet. Cave/water support,
 all Few/Some/Many/off capacity cases, six-species texture/heap limits,
 busy maps, long play, further connected-map crossings/warps and party/Repel edge cases,
-shiny sparkle, spawn/despawn effects, capture and additional script/fade cases
+general spawn/despawn effects, further capture and additional script/fade cases
 still require implementation or verification. The original full encounter
 specification in [emerald-parity.md](emerald-parity.md) remains authoritative.
 
@@ -123,3 +123,9 @@ is active. Compiled ARM tests also cover Normal at all densities, visible Off,
 special contexts, cave/water fallback, Repel after spawning and exact contact
 identity. These bounded checks do not establish all-map or all-species acceptance.
 See [milestone-12-verification.json](../enhancements/milestone-12-verification.json).
+
+
+Milestone 17 adds native alternate palettes, repeating silent star glints and one
+appearance chime for shiny visible wilds. Both games pass mixed shiny/ordinary
+roamers, Off cleanup/resource release and retained shiny contact battles. Native
+walking animations continue. See [shiny-field-visuals.md](shiny-field-visuals.md).

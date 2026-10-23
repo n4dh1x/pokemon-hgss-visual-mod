@@ -74,9 +74,11 @@ The test saves were empty of balls; empty-bag and late-seeded attempts are recor
 as diagnostics and excluded from capture acceptance. SS uses HG-derived project
 test progress, not a fresh SS playthrough or a general save interchange guarantee.
 
-Field sprites still need palette correction and sparkle. A true native object
-shiny parameter does not establish that its displayed palette is shiny; observed
-Hoothoot field sprites still use ordinary colors while battle sprites are shiny.
+Milestone 17 adds native shiny field palettes and repeating star glints to owned
+roaming wilds, with one short chime on each shiny's appearance. Later glints are
+silent, and ordinary spawns emit neither effect. Both games show shiny and
+ordinary Hoothoot together with separate colours. See
+[shiny-field-visuals.md](shiny-field-visuals.md).
 Full starter/gift, newly released roamer, egg/trade exclusions and additional
 species/forms/abilities require gameplay acceptance. The full enhancement goal
 remains incomplete. Exact hashes, inputs, fixture ancestry and observations are

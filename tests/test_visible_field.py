@@ -58,6 +58,9 @@ class TestVisibleField(unittest.TestCase):
         self.original_result = 0
         self.allowed, self.movement_busy, self.blocked, self.occupied = True, False, False, False
         self.moves = []
+        self.shiny = False
+        self.sparkle_result = 0x02230000
+        self.put(self.field+0x44, 0x02231000)
         self.roamer_result = False
         self.native_roll_results = []
         self.native_roamer_gate = 7
@@ -146,8 +149,14 @@ class TestVisibleField(unittest.TestCase):
             self.freed.append(a)
         elif address == 0x02069D70:
             result = 0x251
+        elif address == 0x021FE66C:
+            self.assertEqual(a, self.created)
+            result = self.sparkle_result
+        elif address == 0x0200604C:
+            self.assertEqual(a, 2340)
+            result = 1
         elif address == 0x0207003C:
-            result = 0
+            result = int(self.shiny)
         elif address == 0x0205E1D0:
             event = bytes(uc.mem_read(b, 32))
             values = struct.unpack('<12H2Hi', event)
@@ -156,9 +165,11 @@ class TestVisibleField(unittest.TestCase):
                                   (0x4C, values[12]), (0x54, values[13]),
                                   (0x64, values[12]), (0x68, 2), (0x6C, values[13]), (0xB4, self.manager)):
                 self.put(self.created + offset, value)
+            self.put(self.created+0x38,values[7]);self.put(self.created+0x3C,values[8]);self.put(self.created+0x40,values[9])
             result = self.created
         elif address == 0x02069EE8:
-            self.assertEqual((a, b), (self.created, 163))
+            self.assertEqual(b, 163)
+            self.put(a+0x38,b);self.put(a+0x3C,0x123);self.put(a+0x40,int(self.shiny))
         elif address == 0x02069DC8:
             self.assertEqual(b, 0, 'Native TRUE hides Pokemon models.')
         elif address == 0x020518D8:
@@ -169,6 +180,8 @@ class TestVisibleField(unittest.TestCase):
         elif address == 0x02051C9C:
             self.battle_mon = bytes(uc.mem_read(b, 236))
             self.assertEqual(c, 1)
+        elif address == 0x0205F24C:
+            result = self.get(a+8)
         elif address == 0x0205E3CC:
             self.removed.append(a)
             self.put(a, 0)
@@ -204,6 +217,37 @@ class TestVisibleField(unittest.TestCase):
         self.put(self.state + 12, 59)
         self.execute('EnhancedFieldInput', self.input, self.field)
         self.assertEqual(self.get(self.state + 16), 1)
+
+    def test_shiny_glints_repeat_silently_and_normal_spawns_are_silent(self):
+        self.shiny = True
+        self.make_spawn()
+        visual = self.payload.symbols['gVisibleVisualState']
+        self.assertEqual(self.get(visual+20), 1)
+        self.assertEqual(self.get(visual+52), 1)
+        self.assertEqual(self.get(visual+28), 120)
+        self.put(visual+28, 0)
+        self.execute('EnhancedFieldInput', self.input, self.field)
+        self.assertEqual(self.get(visual+20), 2)
+        self.assertEqual(self.get(visual+52), 1)
+        self.assertEqual(len([c for c in self.calls if c[0]==0x0200604C]), 1)
+        self.execute('EnhancedStartScript', self.field, 0, self.created)
+        self.assertEqual(self.get(visual+28), 0)
+        self.assertEqual(self.battle_mon, self.native_mon)
+
+    def test_sparkle_failure_keeps_shiny_spawn_and_one_chime(self):
+        self.shiny = True
+        self.sparkle_result = 0
+        self.make_spawn()
+        visual = self.payload.symbols['gVisibleVisualState']
+        self.assertEqual(self.get(visual+24), 1)
+        self.assertEqual(self.get(visual+52), 1)
+        self.assertEqual(self.get(self.state+32), self.created)
+
+    def test_normal_spawn_has_no_shiny_effect_or_sound(self):
+        self.make_spawn()
+        for _ in range(3):
+            self.execute('EnhancedFieldInput', self.input, self.field)
+        self.assertFalse(any(c[0] in (0x021FE66C,0x0200604C) for c in self.calls))
 
     def test_spawn_keeps_exact_pokemon_and_contact_refreshes_battle(self):
         self.make_spawn()
@@ -505,6 +549,32 @@ class TestVisibleField(unittest.TestCase):
         self.assertEqual(self.execute('EnhancedSpawnInterval'),0)
 
 
+    def test_palette_identity_is_local_to_owned_objects_and_preserves_real_ids(self):
+        self.shiny=True;self.make_spawn()
+        self.assertEqual(self.get(self.created+0x38),163)
+        self.assertEqual(self.get(self.created+0x3C),0x123)
+        self.assertEqual(self.get(self.created+0x40)&1,1)
+        before=bytes(self.uc.mem_read(self.created,0x12C));mon=bytes(self.uc.mem_read(self.state+44,236))
+        self.assertEqual(self.execute('EnhancedPaletteObjectId',self.created),0xFD)
+        self.assertEqual(bytes(self.uc.mem_read(self.created,0x12C)),before)
+        self.assertEqual(bytes(self.uc.mem_read(self.state+44,236)),mon)
+        self.assertEqual(self.execute('EnhancedPaletteObjectId',self.player),255)
+        self.put(self.created+0x0C,34)
+        self.assertEqual(self.execute('EnhancedPaletteObjectId',self.created),0xE0)
+        self.assertEqual(self.get(self.created+8),0xE0)
+
+    def test_palette_pending_requires_exact_manager_map_sprite_species_and_active_object(self):
+        self.shiny=True;self.make_spawn();visual=self.payload.symbols['gVisibleVisualState']
+        self.put(self.state+32,0);self.put(visual,1);self.put(visual+4,self.get(self.created+0x10))
+        self.assertEqual(self.execute('EnhancedPaletteObjectId',self.created),0xFD)
+        for offset in (0,8,0x0C,0x10,0x38,0xB4):
+            before=self.get(self.created+offset);self.put(self.created+offset,before^1)
+            self.assertNotEqual(self.execute('EnhancedPaletteObjectId',self.created),0xFD)
+            self.put(self.created+offset,before)
+        self.put(visual,0)
+        self.assertEqual(self.execute('EnhancedPaletteObjectId',self.created),0xE0)
+        self.assertEqual(self.get(visual+12),1)
+
 
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for ROM field hooks.')
 class TestFieldHooks(unittest.TestCase):
@@ -520,7 +590,7 @@ class TestFieldHooks(unittest.TestCase):
             original = ndspy.rom.NintendoDSRom.fromFile(path)
             patched = ndspy.rom.NintendoDSRom.fromFile(path)
             main, overlays = install_field(patched, self.payload)
-            self.assertEqual((len(main), len(overlays)), (5, 6))
+            self.assertEqual((len(main), len(overlays)), (5, 8))
             verify_field_files(original, patched, overlays)
             patched.files[-1] = bytes(patched.files[-1]) + b'changed'
             with self.assertRaises(PatchMismatch):

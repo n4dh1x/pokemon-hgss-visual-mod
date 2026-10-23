@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 159 tests pass, including compiled ARM field logic and independently checked
+- 165 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 16,600-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 17,000-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -31,7 +31,7 @@
 - Both games cross Route 29 to New Bark Town with old-map wilds cleared. HeartGold
   returns to grass, filters low-level spawns and regenerates fresh identities in
   a separate declared simulated-expiry copy.
-- Cave/water support, full mode/capacity/transition/Repel coverage and sparkle/spawn
+- Cave/water support, full mode/capacity/transition/Repel coverage and general spawn
   effects remain pending. No complete visible-encounter parity claim is made.
 - Reusable TMs and trade evolution now have saved runtime controls; full teaching
   and evolution/cancellation flows and bag quantity labels remain pending.
@@ -391,3 +391,30 @@ the native object shiny bit and data/battle shininess do not prove field color.
 Palette correction and shiny sparkle remain in the full active goal alongside
 all other unfinished inventory work. See [shiny-odds.md](shiny-odds.md) and
 [milestone-16-verification.json](../enhancements/milestone-16-verification.json).
+
+
+## Milestone 17: shiny field colours, sparkle and appearance chime
+
+Owned visible wilds now select original native shiny palettes. Parameters are
+ready before synchronous native graphics initialization; only two palette
+identity queries treat a verified owned wild as a follower. Real object IDs,
+NPC scripts, native followers and Pokemon data keep their original paths.
+
+Shiny spawns produce a brief native star glint and SEQ_SE_GS_KIRAKIRA chime.
+Glints repeat every 120 eligible field updates without replaying the sound.
+Original effect tasks release their graphics through native reference counts.
+Normal spawns emit neither effect. No extra setting or save format is needed.
+
+165 tests pass, including original native parameter/selector instructions from
+both baselines. Both final-ROM candidates reproduce the tested experiment bytes.
+Eight field/mixed/Off/contact cases plus two normal SELECT-paused snapshots show
+separate shiny/ordinary colours, two chimes for two shiny appearances, silent
+repeated glints, zero effect failures, released effect resources on Off, and
+byte-identical retained shiny enemies in real native battles. Paused native
+party reads avoid sampling halfway through the game's decrypt/encrypt routine.
+No RAM fixtures are used in these runs.
+
+This is bounded Hoothoot/Rattata acceptance on Mac melonDS DS, with recorded PCM;
+full species/forms/capacity/long-play coverage remains pending. The full goal is
+still active. See [shiny-field-visuals.md](shiny-field-visuals.md) and
+[milestone-17-verification.json](../enhancements/milestone-17-verification.json).

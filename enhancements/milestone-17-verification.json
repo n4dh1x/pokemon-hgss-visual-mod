@@ -1,0 +1,2496 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 17,
+  "verified_on": "2026-10-23",
+  "final_release": false,
+  "scope": "Native shiny palettes on owned visible wilds, short native glint bursts every 120 eligible field updates and one chime per shiny appearance.",
+  "regression": {
+    "passed": 165,
+    "skipped": 0,
+    "log_sha256": "ae1ebbe4845ee7ce80b32c42056f97d4af40c25f7a42ce155b4e1b2eb92033c9",
+    "native_palette_test_log_sha256": "43560c8711f702e46a5e89d650832a4c8c26a421125aced76d424d1bbaec5b20"
+  },
+  "candidates": {
+    "heartgold": {
+      "local_rom": "build/candidates/heartgold-visual-plus-gameplay-milestone-17.nds",
+      "output_sha256": "96f933e511b6b6420574596de28e8c6669726f9ba964e4d4658cecc73b2f968f",
+      "patch_sha256": "770451631e89c6c706d610d9712b8f5ecbdfc67a4ee08e4fe102ca68ec10eef6",
+      "build_report_sha256": "a2192dde9d29cc1a7e1827477a7c3c6201f1197685af5d72a34a42f729eed2a2",
+      "payload_bytes": 17000,
+      "payload_end": "0x1ffd268",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    },
+    "soulsilver": {
+      "local_rom": "build/candidates/soulsilver-visual-plus-gameplay-milestone-17.nds",
+      "output_sha256": "2f3b8960dd93c68e2c822aba8ac288e745095ee916e4a58e3fcb2293dcba1f42",
+      "patch_sha256": "15ef5e67f7318e1ba2f0f0609dc82d0f8b930a5ef7c3e987cd316e7f74d89474",
+      "build_report_sha256": "a8ea35868c536bf5708cfaa4aedca976b6dd771e9ce6e13c932c49a87a583ddc",
+      "payload_bytes": 17000,
+      "payload_end": "0x1ffd268",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    }
+  },
+  "runs": [
+    {
+      "game": "heartgold",
+      "case": "sparkle",
+      "local_run": "local_data/verification/hg17c-sparkle-paused",
+      "smoke_report_sha256": "df6efcae786a15573594a18e6788cdf193a7e0ed420040dcca6af6db0a847932",
+      "state_sha256": "262ae869991ea2730a059f06526423ced216d308238efcae4f63170f904891f7",
+      "ram_sha256": "75055ad3b80592814eb1cc65c8e6c932cb9a4feec6aec8b28dd48abcf517bdcd",
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "generated": 2,
+      "launched": 0,
+      "visuals": {
+        "pending_slot": 0,
+        "pending_sprite": 593,
+        "owned_lookups": 0,
+        "construction_lookups": 4,
+        "native_lookups": 1,
+        "sparkles": 5,
+        "sparkle_failures": 0,
+        "sparkle_ticks": [
+          82,
+          21,
+          0,
+          0,
+          0,
+          0
+        ],
+        "chimes": 2
+      },
+      "native_glint_resource": {
+        "active_tasks": 0,
+        "resources_loaded": 0
+      },
+      "identities": {
+        "candidate_sha256": "96f933e511b6b6420574596de28e8c6669726f9ba964e4d4658cecc73b2f968f",
+        "retained": [
+          {
+            "index": 0,
+            "owned_active": true,
+            "species": 19,
+            "pid": 1666872128,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 4,
+            "level": 4,
+            "nature": 3,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              0,
+              25,
+              11,
+              29,
+              27,
+              29
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "a7fcfe0fdc308cb48f3bd1aab6d092570be5e0caf318120c29b29fbebb42b924",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              19,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          },
+          {
+            "index": 1,
+            "owned_active": true,
+            "species": 163,
+            "pid": 2431549686,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 6,
+            "level": 2,
+            "nature": 11,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              20,
+              15,
+              3,
+              15,
+              20,
+              21
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "f62473ee09b602a0eaa4a10b8cb8bf2007075344b53af2ac847212d252b84300",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              163,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          }
+        ],
+        "native_battle": null,
+        "native_ball_slot": [
+          0,
+          0
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "pid": 979102915,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 50822,
+            "level": 6,
+            "nature": 15,
+            "form": 0,
+            "ability": 65,
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "pokemon_sha256": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "pid": 3731898638,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 36704,
+            "level": 3,
+            "nature": 13,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "pokemon_sha256": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "pid": 3295685048,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 64982,
+            "level": 3,
+            "nature": 23,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "pid": 2437644991,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 1002,
+            "level": 3,
+            "nature": 16,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "scope": "Read-only native getters and shiny rule on this ROM-matched snapshot; no live RAM or save writes."
+      },
+      "screenshots": {
+        "frame-002800.png": "dfec1c9052283b02e4a385f35ef38f9792382d7d7872d0b69c0cd97dd7210bc1",
+        "frame-002810.png": "54bd921ebec1a8e0d42f27202469909f671d58d095954c5d21f378e0064a8e92",
+        "frame-002820.png": "5fb4093031849dde09e66ed25e8fbab17febbfd335dba751d01c935107ed20ec",
+        "frame-002830.png": "3c68699062ad9e629d3a1fb84daf4260aa388aa466b592d90abed0b39bd0c8f6",
+        "frame-002840.png": "ccf9e84d897974d8886626a0770bff71a32e319fd8e3962b5a5e294805d45f05",
+        "frame-002850.png": "f53c34b0939afa3ac24c8ef18b9238b730d1c4fd1962104bf476d54600c913da",
+        "frame-002860.png": "5cfa1cc2cc70ee87d4d79b974b3feb5f02e2442f67c2110cb512643e24cfa83a",
+        "frame-002900.png": "e026cc92535da134b5dac481a89745c8d6471b9907f908643e4135d5f3781342",
+        "frame-002920.png": "71b8dec1ab934cfe6e47e66c3bfc608388b0ef12003de2b4f0b12002440c87b8",
+        "frame-002960.png": "df824e557019f57ff9b83527aa5e44195f131aa6c464bace4a8005c6847c403c",
+        "frame-002990.png": "3047bc44fc1d37cb966b3081dd32db518f0fb0c440b75d3473cd776c59d2cbd1",
+        "frame-003000.png": "1cc57bb04da549369476f7dc160140408b4285dc4b8f87ebe31028f1e4eef8cc",
+        "frame-003010.png": "fc81361dd0b3bc4d3d395018efd5228edcd7864db00b0332fa8160677d6a112b",
+        "frame-003020.png": "268147f92bf7a68d5617fb85356b7da3a8c81d1045dbe7c6cb4432c3c6d6e26d",
+        "frame-003100.png": "9280ec48f3c322c9c42939e44226e1dba7e6bbfdc8b5b8125d1f0e079878bf4b",
+        "frame-003200.png": "580e0393cb87e1e17429e23b897cd8eb422365020e90a1c36d17bb805d5cc2f3",
+        "frame-003300.png": "bc7c758bb259ed07eb8a6d173d7562df9ce2b469e420cae18b1e1629962081ea"
+      },
+      "visual_capture_run": "local_data/verification/hg17c-sparkle",
+      "visual_source_report_sha256": "d5f71bcd1badfbcb094d0263d9d4e6ad2dd971f26c15f1da1ecbdde15e4f3226",
+      "snapshot_note": "Normal SELECT pause before native party reads; an unpaused frame can interrupt a native decrypt/encrypt operation. All live states/saves stay unmodified.",
+      "native_audio": {
+        "path": "audio.wav",
+        "sample_rate": 32728.498046875,
+        "bytes": 7221196,
+        "sha256": "18584683fc83752fe3e6b425ee68f94edd6a9d57cd2c648c6eb34d3818434e47",
+        "wave_sample_rate": 32728,
+        "nonzero_pcm": true
+      }
+    },
+    {
+      "game": "heartgold",
+      "case": "mixed",
+      "local_run": "local_data/verification/hg17c-mixed",
+      "smoke_report_sha256": "e4424f30081c292929b8bba60ed9267aef120ff1d641b8dcdc8f781b72e09a60",
+      "state_sha256": "2ff0a49452fac3a9d8a56344a990dc0d721ae941d2b0b079b7654743a0f4e791",
+      "ram_sha256": "ff9eb9dc3e1efec466807d545b2fc46a9256e9c2ad7fa2a9b62396922b98e518",
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            10,
+            14
+          ],
+          [
+            "RIGHT",
+            60,
+            64
+          ],
+          [
+            "X",
+            100,
+            104
+          ],
+          [
+            "DOWN",
+            140,
+            144
+          ],
+          [
+            "DOWN",
+            180,
+            184
+          ],
+          [
+            "DOWN",
+            220,
+            224
+          ],
+          [
+            "DOWN",
+            260,
+            264
+          ],
+          [
+            "RIGHT",
+            300,
+            304
+          ],
+          [
+            "DOWN",
+            340,
+            344
+          ],
+          [
+            "A",
+            380,
+            384
+          ],
+          [
+            "SELECT",
+            1000,
+            1004
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "generated": 4,
+      "launched": 0,
+      "visuals": {
+        "pending_slot": 0,
+        "pending_sprite": 447,
+        "owned_lookups": 0,
+        "construction_lookups": 6,
+        "native_lookups": 1,
+        "sparkles": 10,
+        "sparkle_failures": 0,
+        "sparkle_ticks": [
+          22,
+          82,
+          0,
+          0,
+          0,
+          0
+        ],
+        "chimes": 2
+      },
+      "native_glint_resource": {
+        "active_tasks": 0,
+        "resources_loaded": 0
+      },
+      "identities": {
+        "candidate_sha256": "96f933e511b6b6420574596de28e8c6669726f9ba964e4d4658cecc73b2f968f",
+        "retained": [
+          {
+            "index": 0,
+            "owned_active": true,
+            "species": 19,
+            "pid": 1666872128,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 4,
+            "level": 4,
+            "nature": 3,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              0,
+              25,
+              11,
+              29,
+              27,
+              29
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "a7fcfe0fdc308cb48f3bd1aab6d092570be5e0caf318120c29b29fbebb42b924",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              19,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          },
+          {
+            "index": 1,
+            "owned_active": true,
+            "species": 163,
+            "pid": 2431549686,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 6,
+            "level": 2,
+            "nature": 11,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              20,
+              15,
+              3,
+              15,
+              20,
+              21
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "f62473ee09b602a0eaa4a10b8cb8bf2007075344b53af2ac847212d252b84300",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              163,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          },
+          {
+            "index": 2,
+            "owned_active": true,
+            "species": 163,
+            "pid": 2861384294,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 63733,
+            "level": 2,
+            "nature": 19,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              29,
+              2,
+              5,
+              2,
+              16,
+              6
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "702b39ef6ae00c610be91bc77880ba19f83f5db4522183bc50e77e5feacf268a",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              163,
+              0,
+              0
+            ],
+            "native_object_shiny_bit": false
+          },
+          {
+            "index": 3,
+            "owned_active": true,
+            "species": 19,
+            "pid": 2597556235,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 6854,
+            "level": 4,
+            "nature": 10,
+            "form": 0,
+            "ability": 62,
+            "ivs": [
+              3,
+              30,
+              12,
+              3,
+              27,
+              12
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "71d4000151f5325180eaf599d97d0390c773350e578efe8e46fb37b00d19ef8f",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              19,
+              0,
+              0
+            ],
+            "native_object_shiny_bit": false
+          }
+        ],
+        "native_battle": null,
+        "native_ball_slot": [
+          0,
+          0
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "pid": 979102915,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 50822,
+            "level": 6,
+            "nature": 15,
+            "form": 0,
+            "ability": 65,
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "pokemon_sha256": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "pid": 3731898638,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 36704,
+            "level": 3,
+            "nature": 13,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "pokemon_sha256": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "pid": 3295685048,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 64982,
+            "level": 3,
+            "nature": 23,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "pid": 2437644991,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 1002,
+            "level": 3,
+            "nature": 16,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "scope": "Read-only native getters and shiny rule on this ROM-matched snapshot; no live RAM or save writes."
+      },
+      "screenshots": {
+        "frame-000340.png": "4c5750e90b8355ad821e8af0ef9c0599d7857c3e1bcad2e4e976b7472b8680b4",
+        "frame-000850.png": "7170d4fe3f0cde412825b38842652f6bb13a1631139e80fe256969d06053ffe7",
+        "frame-001100.png": "16f15e91ebcd3c198f86211222bb406718b6d82ab6e5c5f67157630b9d0da73d",
+        "frame-001200.png": "16f15e91ebcd3c198f86211222bb406718b6d82ab6e5c5f67157630b9d0da73d"
+      },
+      "visual_capture_run": "local_data/verification/hg17c-mixed"
+    },
+    {
+      "game": "heartgold",
+      "case": "off",
+      "local_run": "local_data/verification/hg17c-off-paused",
+      "smoke_report_sha256": "e1c216f0f2a467a9cb43483e610b9e504402b249ca49e83bd90b0875efc0a683",
+      "state_sha256": "373128e84e22fb35e8e68a1bba3827bdd463a16041ff8d87bb185e7908992103",
+      "ram_sha256": "5e78388cb7cde08b0e081e2e051325f8ab61818ebddb4a19a72a3edc7ef2a053",
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            10,
+            14
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "generated": 4,
+      "launched": 0,
+      "visuals": {
+        "pending_slot": 0,
+        "pending_sprite": 447,
+        "owned_lookups": 0,
+        "construction_lookups": 6,
+        "native_lookups": 1,
+        "sparkles": 10,
+        "sparkle_failures": 0,
+        "sparkle_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "chimes": 2
+      },
+      "native_glint_resource": {
+        "active_tasks": 0,
+        "resources_loaded": 0
+      },
+      "identities": {
+        "candidate_sha256": "96f933e511b6b6420574596de28e8c6669726f9ba964e4d4658cecc73b2f968f",
+        "retained": [
+          {
+            "index": 0,
+            "owned_active": false,
+            "species": 19,
+            "pid": 1666872128,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 4,
+            "level": 4,
+            "nature": 3,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              0,
+              25,
+              11,
+              29,
+              27,
+              29
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "a7fcfe0fdc308cb48f3bd1aab6d092570be5e0caf318120c29b29fbebb42b924",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "index": 1,
+            "owned_active": false,
+            "species": 163,
+            "pid": 2431549686,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 6,
+            "level": 2,
+            "nature": 11,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              20,
+              15,
+              3,
+              15,
+              20,
+              21
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "f62473ee09b602a0eaa4a10b8cb8bf2007075344b53af2ac847212d252b84300",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "index": 2,
+            "owned_active": false,
+            "species": 163,
+            "pid": 2861384294,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 63733,
+            "level": 2,
+            "nature": 19,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              29,
+              2,
+              5,
+              2,
+              16,
+              6
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "702b39ef6ae00c610be91bc77880ba19f83f5db4522183bc50e77e5feacf268a",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "index": 3,
+            "owned_active": false,
+            "species": 19,
+            "pid": 2597556235,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 6854,
+            "level": 4,
+            "nature": 10,
+            "form": 0,
+            "ability": 62,
+            "ivs": [
+              3,
+              30,
+              12,
+              3,
+              27,
+              12
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "71d4000151f5325180eaf599d97d0390c773350e578efe8e46fb37b00d19ef8f",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "native_battle": null,
+        "native_ball_slot": [
+          0,
+          0
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "pid": 979102915,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 50822,
+            "level": 6,
+            "nature": 15,
+            "form": 0,
+            "ability": 65,
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "pokemon_sha256": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "pid": 3731898638,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 36704,
+            "level": 3,
+            "nature": 13,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "pokemon_sha256": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "pid": 3295685048,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 64982,
+            "level": 3,
+            "nature": 23,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "pid": 2437644991,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 1002,
+            "level": 3,
+            "nature": 16,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "scope": "Read-only native getters and shiny rule on this ROM-matched snapshot; no live RAM or save writes."
+      },
+      "screenshots": {
+        "frame-000450.png": "efe14a0354917e79e7d72751ec8a50559792af6a63ea7d240fd3ecb731c5c403",
+        "frame-000600.png": "4fdf43513feb538b29ee208c00adb727bd8146498882d0c4ee5665526c49421a"
+      },
+      "visual_capture_run": "local_data/verification/hg17c-off",
+      "visual_source_report_sha256": "80405e060ff1915ea0e64b732339ae9e61e26112a4b24ba4861dbd1b12e52dce",
+      "snapshot_note": "Normal SELECT pause before native party reads; an unpaused frame can interrupt a native decrypt/encrypt operation. All live states/saves stay unmodified."
+    },
+    {
+      "game": "heartgold",
+      "case": "contact",
+      "local_run": "local_data/verification/hg17c-contact",
+      "smoke_report_sha256": "3c04b116d49981a73878bb30b7212bbe5fae268ab50f1be23146f44cfd977854",
+      "state_sha256": "dda672be0869060d25f987c26b2747e1b2c993c65a04311b35592667f64f78df",
+      "ram_sha256": "cd669dc22c3cb8dcf92a21e2c3486995030d3a884a19199c86753cc07d455ad4",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            70
+          ],
+          [
+            "LEFT",
+            110,
+            170
+          ],
+          [
+            "UP",
+            210,
+            270
+          ],
+          [
+            "RIGHT",
+            310,
+            370
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "generated": 2,
+      "launched": 1,
+      "visuals": {
+        "pending_slot": 0,
+        "pending_sprite": 593,
+        "owned_lookups": 0,
+        "construction_lookups": 4,
+        "native_lookups": 1,
+        "sparkles": 7,
+        "sparkle_failures": 0,
+        "sparkle_ticks": [
+          98,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "chimes": 2
+      },
+      "native_glint_resource": null,
+      "identities": {
+        "candidate_sha256": "96f933e511b6b6420574596de28e8c6669726f9ba964e4d4658cecc73b2f968f",
+        "retained": [
+          {
+            "index": 0,
+            "owned_active": true,
+            "species": 19,
+            "pid": 1666872128,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 4,
+            "level": 4,
+            "nature": 3,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              0,
+              25,
+              11,
+              29,
+              27,
+              29
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "a7fcfe0fdc308cb48f3bd1aab6d092570be5e0caf318120c29b29fbebb42b924",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              19,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          },
+          {
+            "index": 1,
+            "owned_active": false,
+            "species": 163,
+            "pid": 2431549686,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 6,
+            "level": 2,
+            "nature": 11,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              20,
+              15,
+              3,
+              15,
+              20,
+              21
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "f62473ee09b602a0eaa4a10b8cb8bf2007075344b53af2ac847212d252b84300",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "native_battle": {
+          "species": 163,
+          "pid": 2431549686,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 6,
+          "level": 2,
+          "nature": 11,
+          "form": 0,
+          "ability": 15,
+          "ivs": [
+            20,
+            15,
+            3,
+            15,
+            20,
+            21
+          ],
+          "moves": [
+            33,
+            45,
+            193,
+            0
+          ],
+          "pokemon_sha256": "f62473ee09b602a0eaa4a10b8cb8bf2007075344b53af2ac847212d252b84300",
+          "private_getters_preserve_all_bytes": true,
+          "identical_retained_slots": [
+            1
+          ]
+        },
+        "native_ball_slot": [
+          0,
+          0
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "pid": 979102915,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 50822,
+            "level": 6,
+            "nature": 15,
+            "form": 0,
+            "ability": 65,
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "pokemon_sha256": "839e7116ddb1467afb83bdd14ce60a567484d0746096d83be34d407b671cc30f",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "pid": 3731898638,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 36704,
+            "level": 3,
+            "nature": 13,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "pokemon_sha256": "bc1d4dc35acdf15076ddbbc5343906e80d26f6ee08a5ed78d737859340d181c2",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "pid": 3295685048,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 64982,
+            "level": 3,
+            "nature": 23,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "pid": 2437644991,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 1002,
+            "level": 3,
+            "nature": 16,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "scope": "Read-only native getters and shiny rule on this ROM-matched snapshot; no live RAM or save writes."
+      },
+      "screenshots": {
+        "frame-000500.png": "2da9df6400a67bbfd7318626eb326606a4de9fd649f27432f4c2c7f34ad03edf",
+        "frame-001000.png": "28de438250a70b992bc67a837f5d22119fba93acaceceb6c9190719a1e40bf88",
+        "frame-001400.png": "75141acc8489503280211fbb9d7d2209ca103ff608eda459fbc1e059cbbbfddd"
+      },
+      "visual_capture_run": "local_data/verification/hg17c-contact"
+    },
+    {
+      "game": "soulsilver",
+      "case": "sparkle",
+      "local_run": "local_data/verification/ss17c-sparkle",
+      "smoke_report_sha256": "7f91a7ac5475c2d90f3dbf18cc49582f13eafc83b3ba5dae1ce05100ae7dab68",
+      "state_sha256": "b66a03bd485888168a2c4e4a4eefad7aefa7d4beec12f5337590666292bab0da",
+      "ram_sha256": "8a2680667b5f83e056c56c2833b359237c9d07502b37e26afc22e89b8dd72297",
+      "inputs": {
+        "buttons": [
+          [
+            "A",
+            1810,
+            1814
+          ],
+          [
+            "START",
+            1970,
+            1974
+          ],
+          [
+            "A",
+            2450,
+            2454
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "generated": 2,
+      "launched": 0,
+      "visuals": {
+        "pending_slot": 0,
+        "pending_sprite": 593,
+        "owned_lookups": 0,
+        "construction_lookups": 4,
+        "native_lookups": 1,
+        "sparkles": 5,
+        "sparkle_failures": 0,
+        "sparkle_ticks": [
+          87,
+          26,
+          0,
+          0,
+          0,
+          0
+        ],
+        "chimes": 2
+      },
+      "native_glint_resource": {
+        "active_tasks": 1,
+        "resources_loaded": 1
+      },
+      "identities": {
+        "candidate_sha256": "2f3b8960dd93c68e2c822aba8ac288e745095ee916e4a58e3fcb2293dcba1f42",
+        "retained": [
+          {
+            "index": 0,
+            "owned_active": true,
+            "species": 19,
+            "pid": 4098090072,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 5,
+            "level": 4,
+            "nature": 22,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              29,
+              2,
+              8,
+              8,
+              5,
+              5
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "2fe985a742efc470500a0b7aea614ab3a5817fc1f269f413ae1fa5df30c0f86f",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              19,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          },
+          {
+            "index": 1,
+            "owned_active": true,
+            "species": 163,
+            "pid": 2386665052,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 3,
+            "level": 4,
+            "nature": 2,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              8,
+              4,
+              0,
+              17,
+              27,
+              29
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "fb1d38a43198a89bd0f2fdc027b3f7f46465f23241f062271e460b4b92806824",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              163,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          }
+        ],
+        "native_battle": null,
+        "native_ball_slot": [
+          0,
+          0
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "pid": 979102915,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 50822,
+            "level": 6,
+            "nature": 15,
+            "form": 0,
+            "ability": 65,
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "pokemon_sha256": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "pid": 3731898638,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 36704,
+            "level": 3,
+            "nature": 13,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "pokemon_sha256": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "pid": 3295685048,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 64982,
+            "level": 3,
+            "nature": 23,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "pid": 2437644991,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 1002,
+            "level": 3,
+            "nature": 16,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "scope": "Read-only native getters and shiny rule on this ROM-matched snapshot; no live RAM or save writes."
+      },
+      "screenshots": {
+        "frame-002800.png": "009037ee469e24ec8c22b3c9d920145c08722bcc6c679c8ec04d8edb728b60ba",
+        "frame-002810.png": "bb5418e058de08436272d770a820acc759744723c8b619ba40a7d2ddd40120e0",
+        "frame-002820.png": "b56cb3a44346da243b54d4236fc5ae104e1f8c513d11526d0ed24bd8d0617e62",
+        "frame-002830.png": "2083762c37da4a0ef32c67e43752a884265aa310c10a3bc834c80650e1928d9b",
+        "frame-002840.png": "e719c1fb4863b47ead7264644289374b72f84ab2363af837347dfdcb40872fda",
+        "frame-002850.png": "156db62373bcffd53ac4286432a90bd77065a68dc64b5958a1aa59c365d53079",
+        "frame-002860.png": "5e04eb2ae3daa3f4f224f1eb9b81df1b469aa72d7b635cc7e8fad173c83cd1e3",
+        "frame-002900.png": "f769d3e6cc4142ab2ea16c7140d19c7081f235d51c04452c0ca78eaada724360",
+        "frame-002920.png": "1242c86cdbe240e0721da0df43d2a28636acd94f65d7fa0678a244e2e26e5bad",
+        "frame-002960.png": "90538f28f3c7ba783bd8f09ef5229763763ad0c4c0540e84101697965e7759ed",
+        "frame-002990.png": "a8abf1a54a7ce7c37c6996a13b2daae44c0ad77e0a38a8327ab0a31f541764e2",
+        "frame-003000.png": "334d6cabe1818776b5de24dc7991113aa82767b9b481120e5844f60373664428",
+        "frame-003010.png": "b999bda534fdb95dc4c83b1470fa42823f3a700728ffc4aa5e4bde958839dec9",
+        "frame-003020.png": "bdee91a1040220a360d973d60bff8e3b68f912c784535df92551cc029a19705e",
+        "frame-003100.png": "dd706ae28b9f3416d8596cd7f64bf678afc9105ebced80ddf23be4a7b1b71cfb",
+        "frame-003200.png": "0851af194dd31361653a51ba86a0a93b3545809c382a9d62279f209f1c2d91a8",
+        "frame-003300.png": "657af958205a1ac17e159a3cd78a580c9acd96e0964ffe9a6451ca27f8146f40"
+      },
+      "visual_capture_run": "local_data/verification/ss17c-sparkle",
+      "native_audio": {
+        "path": "audio.wav",
+        "sample_rate": 32728.498046875,
+        "bytes": 7221196,
+        "sha256": "8254ddf8511a4bb32e89f4e5a0426b90e7a9489721018f19b334eb1f0729534f",
+        "wave_sample_rate": 32728,
+        "nonzero_pcm": true
+      }
+    },
+    {
+      "game": "soulsilver",
+      "case": "mixed",
+      "local_run": "local_data/verification/ss17c-mixed",
+      "smoke_report_sha256": "b969027b19369439b74189f7eebaeda8c45a7f40dbfd6c0f186c33a10a064db2",
+      "state_sha256": "5dc0b0717a2e71398002f03f8fae91308c70b2ba43f780086fae8b27ec0c2257",
+      "ram_sha256": "d7fc2ed30b63017e6629cada5d7aaac9c6e577d104d125e1e4e65eb78864bb9a",
+      "inputs": {
+        "buttons": [
+          [
+            "SELECT",
+            10,
+            14
+          ],
+          [
+            "RIGHT",
+            60,
+            64
+          ],
+          [
+            "X",
+            100,
+            104
+          ],
+          [
+            "DOWN",
+            140,
+            144
+          ],
+          [
+            "DOWN",
+            180,
+            184
+          ],
+          [
+            "DOWN",
+            220,
+            224
+          ],
+          [
+            "DOWN",
+            260,
+            264
+          ],
+          [
+            "RIGHT",
+            300,
+            304
+          ],
+          [
+            "DOWN",
+            340,
+            344
+          ],
+          [
+            "A",
+            380,
+            384
+          ],
+          [
+            "SELECT",
+            1000,
+            1004
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "generated": 4,
+      "launched": 0,
+      "visuals": {
+        "pending_slot": 0,
+        "pending_sprite": 593,
+        "owned_lookups": 0,
+        "construction_lookups": 6,
+        "native_lookups": 1,
+        "sparkles": 10,
+        "sparkle_failures": 0,
+        "sparkle_ticks": [
+          21,
+          81,
+          0,
+          0,
+          0,
+          0
+        ],
+        "chimes": 2
+      },
+      "native_glint_resource": {
+        "active_tasks": 0,
+        "resources_loaded": 0
+      },
+      "identities": {
+        "candidate_sha256": "2f3b8960dd93c68e2c822aba8ac288e745095ee916e4a58e3fcb2293dcba1f42",
+        "retained": [
+          {
+            "index": 0,
+            "owned_active": true,
+            "species": 19,
+            "pid": 4098090072,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 5,
+            "level": 4,
+            "nature": 22,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              29,
+              2,
+              8,
+              8,
+              5,
+              5
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "2fe985a742efc470500a0b7aea614ab3a5817fc1f269f413ae1fa5df30c0f86f",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              19,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          },
+          {
+            "index": 1,
+            "owned_active": true,
+            "species": 163,
+            "pid": 2386665052,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 3,
+            "level": 4,
+            "nature": 2,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              8,
+              4,
+              0,
+              17,
+              27,
+              29
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "fb1d38a43198a89bd0f2fdc027b3f7f46465f23241f062271e460b4b92806824",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              163,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          },
+          {
+            "index": 2,
+            "owned_active": true,
+            "species": 163,
+            "pid": 66488602,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 39666,
+            "level": 4,
+            "nature": 2,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              11,
+              25,
+              7,
+              16,
+              13,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "e0acc9a480e9cc98043a5b667bfbcea19923c47a5616a8c73c7b0c382d7ce4b1",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              163,
+              0,
+              0
+            ],
+            "native_object_shiny_bit": false
+          },
+          {
+            "index": 3,
+            "owned_active": true,
+            "species": 163,
+            "pid": 1566991055,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 12215,
+            "level": 3,
+            "nature": 5,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              24,
+              14,
+              28,
+              3,
+              31,
+              10
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "b150134f3b347297296ed0e1050930d7b22be825ab52671bb8b6f62b0b422a3a",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              163,
+              0,
+              0
+            ],
+            "native_object_shiny_bit": false
+          }
+        ],
+        "native_battle": null,
+        "native_ball_slot": [
+          0,
+          0
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "pid": 979102915,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 50822,
+            "level": 6,
+            "nature": 15,
+            "form": 0,
+            "ability": 65,
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "pokemon_sha256": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "pid": 3731898638,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 36704,
+            "level": 3,
+            "nature": 13,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "pokemon_sha256": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "pid": 3295685048,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 64982,
+            "level": 3,
+            "nature": 23,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "pid": 2437644991,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 1002,
+            "level": 3,
+            "nature": 16,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "scope": "Read-only native getters and shiny rule on this ROM-matched snapshot; no live RAM or save writes."
+      },
+      "screenshots": {
+        "frame-000340.png": "4c5750e90b8355ad821e8af0ef9c0599d7857c3e1bcad2e4e976b7472b8680b4",
+        "frame-000850.png": "56487b60c7773bb884401dcc9e54b4792b8e34d14fc0a5d40cb31908dadea3f7",
+        "frame-001100.png": "16f15e91ebcd3c198f86211222bb406718b6d82ab6e5c5f67157630b9d0da73d",
+        "frame-001200.png": "16f15e91ebcd3c198f86211222bb406718b6d82ab6e5c5f67157630b9d0da73d"
+      },
+      "visual_capture_run": "local_data/verification/ss17c-mixed"
+    },
+    {
+      "game": "soulsilver",
+      "case": "off",
+      "local_run": "local_data/verification/ss17c-off",
+      "smoke_report_sha256": "11197c490d9b440383cead73e4060e09d50833e3305237ebd20764a1ac005e32",
+      "state_sha256": "f8d9bb596e31a9c20d95052894b1391c75473f32c58a40078110673dea46400c",
+      "ram_sha256": "c4721eaeffbcfb931656e91beea952be8b6ecc130364cf10b7f396a819bbce55",
+      "inputs": {
+        "buttons": [
+          [
+            "LEFT",
+            10,
+            14
+          ],
+          [
+            "LEFT",
+            50,
+            54
+          ],
+          [
+            "UP",
+            90,
+            94
+          ],
+          [
+            "UP",
+            130,
+            134
+          ],
+          [
+            "A",
+            170,
+            174
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "generated": 4,
+      "launched": 0,
+      "visuals": {
+        "pending_slot": 0,
+        "pending_sprite": 593,
+        "owned_lookups": 0,
+        "construction_lookups": 6,
+        "native_lookups": 1,
+        "sparkles": 10,
+        "sparkle_failures": 0,
+        "sparkle_ticks": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "chimes": 2
+      },
+      "native_glint_resource": {
+        "active_tasks": 0,
+        "resources_loaded": 0
+      },
+      "identities": {
+        "candidate_sha256": "2f3b8960dd93c68e2c822aba8ac288e745095ee916e4a58e3fcb2293dcba1f42",
+        "retained": [
+          {
+            "index": 0,
+            "owned_active": false,
+            "species": 19,
+            "pid": 4098090072,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 5,
+            "level": 4,
+            "nature": 22,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              29,
+              2,
+              8,
+              8,
+              5,
+              5
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "2fe985a742efc470500a0b7aea614ab3a5817fc1f269f413ae1fa5df30c0f86f",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "index": 1,
+            "owned_active": false,
+            "species": 163,
+            "pid": 2386665052,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 3,
+            "level": 4,
+            "nature": 2,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              8,
+              4,
+              0,
+              17,
+              27,
+              29
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "fb1d38a43198a89bd0f2fdc027b3f7f46465f23241f062271e460b4b92806824",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "index": 2,
+            "owned_active": false,
+            "species": 163,
+            "pid": 66488602,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 39666,
+            "level": 4,
+            "nature": 2,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              11,
+              25,
+              7,
+              16,
+              13,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "e0acc9a480e9cc98043a5b667bfbcea19923c47a5616a8c73c7b0c382d7ce4b1",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "index": 3,
+            "owned_active": false,
+            "species": 163,
+            "pid": 1566991055,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 12215,
+            "level": 3,
+            "nature": 5,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              24,
+              14,
+              28,
+              3,
+              31,
+              10
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "b150134f3b347297296ed0e1050930d7b22be825ab52671bb8b6f62b0b422a3a",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "native_battle": null,
+        "native_ball_slot": [
+          0,
+          0
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "pid": 979102915,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 50822,
+            "level": 6,
+            "nature": 15,
+            "form": 0,
+            "ability": 65,
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "pokemon_sha256": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "pid": 3731898638,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 36704,
+            "level": 3,
+            "nature": 13,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "pokemon_sha256": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "pid": 3295685048,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 64982,
+            "level": 3,
+            "nature": 23,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "pid": 2437644991,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 1002,
+            "level": 3,
+            "nature": 16,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "scope": "Read-only native getters and shiny rule on this ROM-matched snapshot; no live RAM or save writes."
+      },
+      "screenshots": {
+        "frame-000450.png": "4fdf43513feb538b29ee208c00adb727bd8146498882d0c4ee5665526c49421a",
+        "frame-000600.png": "efe14a0354917e79e7d72751ec8a50559792af6a63ea7d240fd3ecb731c5c403"
+      },
+      "visual_capture_run": "local_data/verification/ss17c-off"
+    },
+    {
+      "game": "soulsilver",
+      "case": "contact",
+      "local_run": "local_data/verification/ss17c-contact",
+      "smoke_report_sha256": "1634571de7c66b1bc4b101d4480924dea7ea3cdba18918f64a680f77be71696f",
+      "state_sha256": "0738eb2a5911e021b26ba3ee2adeac2cc11f87928cf5712adcd4593e11f8bc88",
+      "ram_sha256": "9917aebc7f0016b369b7dc37e4529eb094a7633dbb21684318419efe92a94be2",
+      "inputs": {
+        "buttons": [
+          [
+            "DOWN",
+            10,
+            70
+          ],
+          [
+            "LEFT",
+            110,
+            170
+          ],
+          [
+            "UP",
+            210,
+            270
+          ],
+          [
+            "RIGHT",
+            310,
+            370
+          ]
+        ],
+        "touches": []
+      },
+      "developer_ram_fixture": null,
+      "generated": 2,
+      "launched": 1,
+      "visuals": {
+        "pending_slot": 0,
+        "pending_sprite": 593,
+        "owned_lookups": 0,
+        "construction_lookups": 4,
+        "native_lookups": 1,
+        "sparkles": 6,
+        "sparkle_failures": 0,
+        "sparkle_ticks": [
+          0,
+          80,
+          0,
+          0,
+          0,
+          0
+        ],
+        "chimes": 2
+      },
+      "native_glint_resource": null,
+      "identities": {
+        "candidate_sha256": "2f3b8960dd93c68e2c822aba8ac288e745095ee916e4a58e3fcb2293dcba1f42",
+        "retained": [
+          {
+            "index": 0,
+            "owned_active": false,
+            "species": 19,
+            "pid": 4098090072,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 5,
+            "level": 4,
+            "nature": 22,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              29,
+              2,
+              8,
+              8,
+              5,
+              5
+            ],
+            "moves": [
+              33,
+              39,
+              98,
+              0
+            ],
+            "pokemon_sha256": "2fe985a742efc470500a0b7aea614ab3a5817fc1f269f413ae1fa5df30c0f86f",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "index": 1,
+            "owned_active": true,
+            "species": 163,
+            "pid": 2386665052,
+            "ot_id": 2836379921,
+            "native_shiny": true,
+            "shiny_xor": 3,
+            "level": 4,
+            "nature": 2,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              8,
+              4,
+              0,
+              17,
+              27,
+              29
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "fb1d38a43198a89bd0f2fdc027b3f7f46465f23241f062271e460b4b92806824",
+            "private_getters_preserve_all_bytes": true,
+            "native_object_params": [
+              163,
+              0,
+              1
+            ],
+            "native_object_shiny_bit": true
+          }
+        ],
+        "native_battle": {
+          "species": 19,
+          "pid": 4098090072,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 5,
+          "level": 4,
+          "nature": 22,
+          "form": 0,
+          "ability": 50,
+          "ivs": [
+            29,
+            2,
+            8,
+            8,
+            5,
+            5
+          ],
+          "moves": [
+            33,
+            39,
+            98,
+            0
+          ],
+          "pokemon_sha256": "2fe985a742efc470500a0b7aea614ab3a5817fc1f269f413ae1fa5df30c0f86f",
+          "private_getters_preserve_all_bytes": true,
+          "identical_retained_slots": [
+            0
+          ]
+        },
+        "native_ball_slot": [
+          0,
+          0
+        ],
+        "party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "pid": 979102915,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 50822,
+            "level": 6,
+            "nature": 15,
+            "form": 0,
+            "ability": 65,
+            "ivs": [
+              16,
+              12,
+              2,
+              28,
+              4,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "pokemon_sha256": "526d9bcd7050ef52a9e29f28e58f8adcaf2003c111fb6695a9ba3cd420f8b7d0",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "pid": 3731898638,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 36704,
+            "level": 3,
+            "nature": 13,
+            "form": 0,
+            "ability": 50,
+            "ivs": [
+              14,
+              13,
+              15,
+              23,
+              30,
+              3
+            ],
+            "moves": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "pokemon_sha256": "1f0d82ec781e432c06310130181bbdd247ded926a0bf6ade74f77888ec2537c3",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "pid": 3295685048,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 64982,
+            "level": 3,
+            "nature": 23,
+            "form": 0,
+            "ability": 15,
+            "ivs": [
+              24,
+              0,
+              10,
+              9,
+              4,
+              18
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "5ca9e20468481dfbf9c29e20203dcc75144483a08846b8a5e04f9680add0015a",
+            "private_getters_preserve_all_bytes": true
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "pid": 2437644991,
+            "ot_id": 2836379921,
+            "native_shiny": false,
+            "shiny_xor": 1002,
+            "level": 3,
+            "nature": 16,
+            "form": 0,
+            "ability": 51,
+            "ivs": [
+              6,
+              2,
+              16,
+              29,
+              28,
+              22
+            ],
+            "moves": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "pokemon_sha256": "826f9105ddd2a21e017bd4c87073469e9127e562f8ca9efedb11647f9ff58d55",
+            "private_getters_preserve_all_bytes": true
+          }
+        ],
+        "scope": "Read-only native getters and shiny rule on this ROM-matched snapshot; no live RAM or save writes."
+      },
+      "screenshots": {
+        "frame-000500.png": "ed99763f229923a269450fda14fe162e2bfc17f0f88bed91b9166a177f68f57f",
+        "frame-001000.png": "fd6ef828b349a4de2fce76e5f677c8beffc6016b5bb12e345bf322b780b70317",
+        "frame-001400.png": "65478713b2c78ae99889c4c4225f204465a476a2e56ec63d4480435d4a0bf807"
+      },
+      "visual_capture_run": "local_data/verification/ss17c-contact"
+    }
+  ],
+  "limitations": [
+    "Bounded Route 29 Hoothoot/Rattata tests; full species/form/capacity/long-play acceptance is pending.",
+    "Glints use the native seed_kira effect: each short burst stays at its sampled world position; later bursts sample the moving Pokemon again.",
+    "Sound API selection/counts and nonempty native PCM recording checked; no human listening assessment is claimed.",
+    "SoulSilver uses HG-derived project test progress, not a fresh SoulSilver playthrough.",
+    "Full Emerald enhancement goal and final release remain incomplete."
+  ]
+}

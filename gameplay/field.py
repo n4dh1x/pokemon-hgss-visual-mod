@@ -62,6 +62,11 @@ def install_field(rom, payload: Payload) -> tuple[list[PatchResult], list[Overla
     fingerprint(arm, base, 0x0203E15C, 0x198, '652e669711e0f8af6e082cad86640e34db51b0229ece1b731001b3f19bc49f16')
     fingerprint(arm, base, 0x0205E5EC, 0x5C, 'd1e26d932f67ffa9f3172f1a2b8965b464f434e2ecc03a824159c97a29b29ea6')
     fingerprint(arm, base, 0x0205E0E8, 0x1C, '4f992d38cdf5fefd9739bbd4160ca005475856b601d1fb6f2fd744050496ebc5')
+    fingerprint(arm, base, 0x02069ee8, 0x24, '3f06d972a989e5659ec1d588a6cf9bf86432cbd4076495f104fa1b965ea21ed2')
+    fingerprint(arm, base, 0x0206a080, 0x28, 'e2747de7e32a48f23a04edb496d46c6103f15c4580a0844a4f066f7b7b18908e')
+    fingerprint(arm, base, 0x0206a0e0, 0x50, 'f1af7065750ba31c3bb46086ddf90d850f283f2baace151e583b0b9c5636feec')
+    fingerprint(arm, base, 0x0205f2d0, 0x44, '351960bfbc8c946189b6b94b73e8298e913c60b59540d0c24933c9d58a1dd020')
+    fingerprint(arm, base, 0x0205f24c, 0x4, '6205c2d0ac2eb5ed791c6daa7b8172e98f8aa6dbe679405d95309ffde6ff60d6')
     main = []
     for site, original, symbol in (
         (0x0203E0D0, 0x0203E15D, 'EnhancedFieldControl'),
@@ -78,8 +83,12 @@ def install_field(rom, payload: Payload) -> tuple[list[PatchResult], list[Overla
     overlays = ndspy.code.loadOverlayTable(rom.arm9OverlayTable,
                                            lambda oid, fid: rom.files[fid], {1, 2})
     context = {
-        1: [(0x021E6AF4, 0x2D0, '0b22495d52b5131c68a2b20749a33064d7af8589aa5c25211b53d58371e041a7'),
-            (0x021E7114, 0x84, '71e23a58ecd82a89f42f2e87edc9f504a579fbe1beae6e5e0bfb93d3bb016970')],
+        1: [(0x021FE590, 0x1F0, 'a183ca2ffb9a691fbf5d55877e5f7fd0812c49399c0fa6842d7c183e1a69426f'),
+            (0x02209084, 0x40, '11ea2647ae5b806f527f298c34cf39b5fe01f677cabc39e1a9d433d84c70b6be'),
+            (0x021E6AF4, 0x2D0, '0b22495d52b5131c68a2b20749a33064d7af8589aa5c25211b53d58371e041a7'),
+            (0x021E7114, 0x84, '71e23a58ecd82a89f42f2e87edc9f504a579fbe1beae6e5e0bfb93d3bb016970'),
+            (0x0220553C, 0x28, '961132aa8f371f0aebf1c5a8af0aeec9444881caac27d891f07a28678557582a'),
+            (0x02205808, 0x90, '6556218d6b00c0c083d37a8e14f06d991cec578bef01b39d54ea766c7ce30c6a')],
         2: [(0x02246C8C, 0x2E0, '2774f4f3deddfce2d71849c774885c82017a033979d9e2c39512802e0d6aba18'),
             (0x02247568, 0x128, '464e76abf472b8300050cb5c74e20f735c2c2c759dadf168a9c0298e3330be9c'),
             (0x02248360, 0xB8, '7de447044d65a4aa3547e36de7811ef549b3a80bd8354ac58fdc6ceaec676076')],
@@ -87,7 +96,9 @@ def install_field(rom, payload: Payload) -> tuple[list[PatchResult], list[Overla
     calls = {
         1: [(0x021E6C6C, 0x0203FE75, 'EnhancedStartScript'),
             (0x021E6C78, 0x0203FE75, 'EnhancedStartScript'),
-            (0x021E7180, 0x02246C8D, 'EnhancedStepEncounter')],
+            (0x021E7180, 0x02246C8D, 'EnhancedStepEncounter'),
+            (0x02205540, 0x0205F24D, 'EnhancedPaletteObjectId'),
+            (0x0220582C, 0x0205F24D, 'EnhancedPaletteObjectId')],
         2: [(0x02246D5E, 0x02247569, 'EnhancedEncounterRoll'),
             (0x02246D92, 0x02248361, 'EnhancedRoamerCheck'),
             (0x02246F2E, 0x02050B09, 'EnhancedCaptureEncounter')],

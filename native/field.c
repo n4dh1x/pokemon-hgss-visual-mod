@@ -21,6 +21,9 @@ extern int OriginalEncounterRoll(void *field, u8 rate, u8 tile);
 extern int OriginalRoamerCheck(void *field, void **roamer);
 extern void OriginalStartEncounter(void *field, void *setup);
 extern void OriginalStartScript(void *field, u16 script, void *object);
+extern u32 NativeMapObjectId(void *object);
+extern void *NativeFieldSparkle(void *object);
+extern int PlaySE(int sequence);
 extern int OriginalObjectIterator(void *manager, void **object, int *index, u32 mask);
 extern void Heap_FreeExplicit(int heap, void *memory);
 extern void *SaveArray_Party_Get(void *save);
@@ -100,14 +103,64 @@ static int owned(void *object) {
     return -1;
 }
 
+struct VisibleVisualState {
+    u32 pending_slot, pending_sprite, owned_lookups, construction_lookups, native_lookups;
+    u32 sparkles, sparkle_failures, sparkle_ticks[6], chimes;
+};
+struct VisibleVisualState gVisibleVisualState;
+_Static_assert(sizeof(struct VisibleVisualState) == 56, "Visible visuals diagnostic ABI");
+
+/* Only two palette-local identity queries call this. The real object ID is
+ * never changed, and other NPC/follower queries retain the native getter. */
+u32 EnhancedPaletteObjectId(void *object) {
+    if (owned(object) >= 0) {
+        ++gVisibleVisualState.owned_lookups;
+        return 0xFD;
+    }
+    u32 pending = gVisibleVisualState.pending_slot;
+    if (object && pending >= 1 && pending <= 6) {
+        struct VisibleSlot *slot = &gVisibleState.slots[pending - 1];
+        if ((word(object, 0) & 1) && ptr(object, 0xB4) == gVisibleState.manager &&
+            word(object, 8) == slot->id && word(object, 0x0C) == slot->map &&
+            word(object, 0x10) == gVisibleVisualState.pending_sprite &&
+            word(object, 0x38) == slot->species) {
+            ++gVisibleVisualState.construction_lookups;
+            return 0xFD;
+        }
+    }
+    ++gVisibleVisualState.native_lookups;
+    return NativeMapObjectId(object);
+}
+
+/* Native seed_kira field glints use a short, self-deleting task with reference-
+ * counted renderer resources. They retain a world position, never a Pokemon or
+ * map-object pointer. Each new burst samples the moving object's current pose. */
+static void shiny_sparkle(void *field, int index, int appearance) {
+    void *object = gVisibleState.slots[index].object;
+    if (owned(object) != index || !(word(object, 0x40) & 1))
+        return;
+    if (ptr(field, 0x44) && NativeFieldSparkle(object))
+        ++gVisibleVisualState.sparkles;
+    else
+        ++gVisibleVisualState.sparkle_failures;
+    if (appearance) {
+        PlaySE(2340); /* SEQ_SE_GS_KIRAKIRA: brief native glint sound. */
+        ++gVisibleVisualState.chimes;
+    }
+    gVisibleVisualState.sparkle_ticks[index] = 120;
+}
+
 static void forget(void) {
+    gVisibleVisualState.pending_slot = 0;
     for (int i = 0; i < 6; ++i)
         gVisibleState.slots[i].object = 0;
     gVisibleState.manager = 0;
     gVisibleState.tick = 0;
     gVisibleState.paused_mask = 0;
-    for (int i = 0; i < 6; ++i)
+    for (int i = 0; i < 6; ++i) {
         gVisibleState.roam_delay[i] = 0;
+        gVisibleVisualState.sparkle_ticks[i] = 0;
+    }
 }
 
 static void pause_wilds(int paused) {
@@ -276,6 +329,7 @@ static void release_slot(int index) {
         MapObject_Remove(object);
     gVisibleState.slots[index].object = 0;
     gVisibleState.roam_delay[index] = 0;
+    gVisibleVisualState.sparkle_ticks[index] = 0;
     gVisibleState.paused_mask &= ~(1u << index);
 }
 
@@ -387,24 +441,36 @@ static void spawn(void *field, void *player, int index) {
     event.flag = 0;
     event.script = 0;
     event.facing = 1;
-    event.parameter[0] = event.parameter[1] = event.parameter[2] = 0;
+    /* Native graphics initialize synchronously inside CreateObject. Prepare
+     * their parameters first using the original parameter-only helper on a
+     * bounded scratch prefix; it accesses only param[0..2] at offsets38..40. */
+    u32 parameters[17];
+    parameters[14] = parameters[15] = parameters[16] = 0;
+    FollowMon_SetObjectParams(parameters, slot->species, (u8)form, MonIsShiny(slot->mon));
+    event.parameter[0] = (u16)parameters[14];
+    event.parameter[1] = (u16)parameters[15];
+    event.parameter[2] = (u16)parameters[16];
     event.range_x = event.range_z = 0;
     event.x = (u16)x;
     event.z = (u16)z;
     event.y = 0;
     slot->map = word(ptr(field, 0x20), 0);
+    slot->id = id;
+    gVisibleVisualState.pending_slot = (u32)index + 1;
+    gVisibleVisualState.pending_sprite = event.sprite;
     void *object = CreateObject(manager, &event, slot->map);
+    gVisibleVisualState.pending_slot = 0;
     if (!object) {
         ++gVisibleState.failures;
         return;
     }
-    FollowMon_SetObjectParams(object, slot->species, (u8)form, MonIsShiny(slot->mon));
     put(object, 0, (word(object, 0) | (1u << 13) | (1u << 10) | (1u << 29)) & ~0x180u);
     SetPokemonHidden(object, 0);
     slot->object = object;
     slot->id = id;
     ++gVisibleState.generated;
     gVisibleState.roam_delay[index] = 45 + (LCRandom() & 63);
+    shiny_sparkle(field, index, 1);
 }
 
 static int roam(void *field, int index) {
@@ -482,6 +548,10 @@ int EnhancedFieldInput(void *input, void *field) {
         if ((held & direction_key) && x == px + dx && z == pz + dz &&
             distance(word(object, 0x68), word(player, 0x68)) < 2 && launch(field, i))
             return 1;
+        if (gVisibleVisualState.sparkle_ticks[i])
+            --gVisibleVisualState.sparkle_ticks[i];
+        else
+            shiny_sparkle(field, i, 0);
         if (roam(field, i))
             return 1;
     }

@@ -96,6 +96,11 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['settings']['encounter_rate'] = extra[3]
         result['enhancement_menu']['staged_encounter_rate'] = menu[18]
         result['encounter_rate'] = dict(zip(('field','roamer','cached','native_rolls','scaled_rolls','roamer_preserved','off_blocks'), resident_words('gEncounterRateState', 7)))
+    if 'gVisibleVisualState' in symbols:
+        values = resident_words('gVisibleVisualState', 14 if report['diagnostics']['visible_visual_state_bytes'] == 56 else 13)
+        result['visible_visuals'] = dict(zip(('pending_slot','pending_sprite','owned_lookups','construction_lookups','native_lookups','sparkles','sparkle_failures'), values[:7]))
+        result['visible_visuals']['sparkle_ticks'] = list(values[7:13])
+        result['visible_visuals']['chimes'] = values[13] if len(values) > 13 else 0
     if 'gShinyState' in symbols:
         result['settings']['shiny_odds'] = extra[4]
         result['enhancement_menu']['staged_shiny_odds'] = menu[19]

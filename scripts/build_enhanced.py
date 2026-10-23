@@ -77,7 +77,7 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     results.extend(injection.changes)
     patched.arm9 = injection.image
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-16'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-17'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -126,11 +126,11 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
         'grass_battles': {'choices': ['Normal', 'Roaming only'], 'default': 'Normal',
                           'scope': 'Regular grass while visible wilds are enabled; other contexts remain native'},
         'diagnostics': {'visible_state_bytes': 1644, 'settings_state_bytes': 1060,
-                        'menu_state_bytes': 96, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 20, 'shiny_state_bytes': 40, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
+                        'menu_state_bytes': 96, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 20, 'shiny_state_bytes': 40, 'visible_visual_state_bytes': 56, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
@@ -138,7 +138,7 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
                    'one guarded appended battle message; other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
         'runtime_gameplay_tested': False,
         'limitations': ['Shiny odds cover new wild/nature/gender callers, starters and script gifts; preset/fixed/egg/trade and stored roamer identities stay native. Full gift/starter/roamer acceptance remains pending.',
-                       'Native shiny state and battle colors are verified separately; overworld shiny palette selection and sparkle remain pending.',
+                       'Shiny visible wilds use native alternate palettes and brief native glints; one chime plays per new shiny spawn. Full species/form acceptance remains pending.',
                        'The enhancement menu currently exposes eleven integrated gameplay options across two pages.',
                        'Field HMs include contextual fallback and native Bag Use Now actions for HM02/TM70; full per-move acceptance remains pending.',
                        'Roaming only suppresses hidden grass roamer battles too; native legendary roamers are not yet rendered as visible spawns. Use Normal for their native path.',
@@ -146,7 +146,7 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
                        'Bag TM quantity labels retain their original presentation.',
                        'Visible encounters are an experimental grass integration; full acceptance cases remain pending.',
                        'Visible mode defaults to Few when no valid owned settings journal exists.',
-                       'Cave/water encounters, spawn effects, sparkle and full transition/capacity verification remain pending.',
+                       'Cave/water encounters, general spawn effects and full transition/capacity verification remain pending.',
                        'Other new Emerald enhancements remain pending.'],
     }
     report_output.write_text(json.dumps(report, indent=2) + '\n')
