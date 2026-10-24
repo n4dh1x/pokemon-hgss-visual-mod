@@ -104,6 +104,13 @@ def inspect_run(run: Path, report_path: Path) -> dict:
     if 'gVisibleHabitatState' in symbols:
         habitats = resident_words('gVisibleHabitatState', 11)
         result['habitats'] = {'slots': list(habitats[:6]), 'spawned': list(habitats[6:10]), 'surface_releases': habitats[10]}
+    if 'gVisibleRoamerState' in symbols:
+        r = resident_words('gVisibleRoamerState', 48)
+        result['visible_roamers'] = dict(zip(('capture_slot','candidate','selected','duplicates','stale','launched'),r[:6]))
+        result['visible_roamers']['slots'] = []
+        for i in range(6):
+            at=6+i*7
+            result['visible_roamers']['slots'].append({'identity':r[at],'record':list(r[at+1:at+6]),'battle_type':r[at+6]})
     if 'gShinyState' in symbols:
         result['settings']['shiny_odds'] = extra[4]
         result['enhancement_menu']['staged_shiny_odds'] = menu[19]
@@ -176,7 +183,7 @@ def inspect_run(run: Path, report_path: Path) -> dict:
                 if not 1 <= count <= 6:
                     raise ValueError('Battle enemy party has an invalid count.')
                 mon = read(party + 8, 236)
-                result['native_battle'] = {'setup': hex(environment), 'enemy_party': hex(party),
+                result['native_battle'] = {'setup': hex(environment), 'battle_type': word(environment), 'enemy_party': hex(party),
                     'pokemon_sha256': hashlib.sha256(mon).hexdigest(),
                     'identical_retained_slots': [i for i, candidate in enumerate(retained) if candidate == mon]}
                 break

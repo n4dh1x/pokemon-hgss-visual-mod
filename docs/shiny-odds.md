@@ -28,12 +28,14 @@ party storage and saving. Its ordinary met/capture data is filled by native code
 
 ## Creation scope
 
-Four guarded calls wrap native initialization from wild nature creation,
-wild gender/nature/letter creation, starter selection and script GiveMon.
+Five guarded calls wrap native initialization from wild nature creation,
+wild gender/nature/letter creation, starter selection, script GiveMon and new
+native legendary release.
 The original creator and other call sites stay intact. Eggs, trades, trainer
-teams, UI preview mons, fixed/preset personalities and stored native roamers
-remain native. New native roamer creation currently uses its preset-OT path and
-is also unchanged; further adaptation/acceptance is tracked in the inventory.
+teams, UI preview mons, fixed personalities and stored native roamers remain
+native. The guarded new-roamer factory selects against the final full player
+owner while preserving its original preset-OT arguments. Existing saved
+legendary personalities are never rerolled.
 This is not a patch to every fixed or scripted special Pokemon.
 
 Unloaded settings or a trainer owner mismatch uses native creation. The option
@@ -46,11 +48,11 @@ the all-nature/gender/all-Unown-letter tests or observed gameplay.
 
 ## Verification and remaining work
 
-159 tests pass, including actual native nature and Cute Charm caller instructions
+Milestone 16 passed 159 tests, including actual native nature and Cute Charm caller instructions
 from both USA ROMs, exact roll budgets, early stop, owner/default/preset/fixed
 guards, initialization once, constrained PIDs and mutation rejection. The
-original egg/trade/trainer/roamer calls and native creation/shiny routines remain
-byte-identical. Tests of those exclusions are not full story/egg/trade playthroughs.
+original egg/trade/trainer and fixed-IV roamer reconstruction calls, plus native
+creation/shiny routines, remain byte-identical. Tests of those exclusions are not full story/egg/trade playthroughs.
 
 Both Mac games display all six labels and cold-load native, 1/64 and Always.
 The observed 1/64 runs use 128 rolls per non-shiny generated wild. Existing shiny
@@ -79,7 +81,9 @@ roaming wilds, with one short chime on each shiny's appearance. Later glints are
 silent, and ordinary spawns emit neither effect. Both games show shiny and
 ordinary Hoothoot together with separate colours. See
 [shiny-field-visuals.md](shiny-field-visuals.md).
-Full starter/gift, newly released roamer, egg/trade exclusions and additional
-species/forms/abilities require gameplay acceptance. The full enhancement goal
-remains incomplete. Exact hashes, inputs, fixture ancestry and observations are
+Milestone 19 verifies native new-release Raikou shininess and retained
+model/contact/capture/save identity in both games. Full starter/gift, other
+legendary species, egg/trade exclusions and additional species/forms/abilities
+require gameplay acceptance. See [visible-legendaries.md](visible-legendaries.md).
+The full enhancement goal remains incomplete. Exact hashes, inputs, fixture ancestry and observations are
 in [milestone-16-verification.json](../enhancements/milestone-16-verification.json).

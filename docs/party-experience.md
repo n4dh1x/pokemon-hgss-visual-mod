@@ -91,3 +91,14 @@ full 16 EXP to both, while each bench member receives 8. SoulSilver awards 8 to
 all three bench members and advances each to level 3. The ROM code is unchanged;
 see [party-progress.md](party-progress.md) and
 [milestone-11-verification.json](../enhancements/milestone-11-verification.json).
+
+## Milestone 19 progression acceptance
+
+Both games complete combined native Raikou capture and party-wide rewards:
+1234 EXP for the participant, 617 for each of three bench Pokemon, native stat
+screens, bench move learning and Synthesis replacing Tackle through the native
+full-moveset forget UI. Native save/cold reload preserves EXP, EVs, moves and PP.
+This adds bounded legendary capture coverage; evolution/cancellation, other
+legendary species, held-item/double/special-area contexts remain pending.
+See [visible-legendaries.md](visible-legendaries.md) and
+[milestone-19 evidence](../enhancements/milestone-19-verification.json).

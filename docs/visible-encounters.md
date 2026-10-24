@@ -28,15 +28,16 @@ working encounter integration, not complete Emerald feature parity.
   are unchanged. If Repel is used after spawning, lower-level wilds remain visible
   but cannot initiate a battle by walking into the player. Deliberate player
   contact remains allowed, matching Emerald's visible-encounter behavior.
-- Grass battles is a separate saved option on page 2 (L/R). Normal is the
+- Grass battles is a separate saved option on page 2 (X). Normal is the
   default for Few, Some and Many and keeps native random encounters. Roaming only
   removes walking-triggered regular grass battles; collision/interaction with a
   moving visible wild starts its retained battle. Visible Off restores native
   random encounters. Water, caves and special contexts keep native behavior.
   Safari, contest, Pal Park and partner contexts are excluded from spawning.
-- Native legendary roamers do not yet have visible sprites. Their hidden grass
-  step-battle branch is also suppressed while Roaming only applies. Use Normal
-  for their native encounters until explicit visible-roamer support is added.
+- Native legendary roamers can now appear with their saved identity, HP/status
+  and native ROAMER battle type. Duplicate and stale identities are rejected.
+  Both games pass shiny Raikou contact/capture/save checks; wider legendary
+  species and contexts remain pending. See [visible-legendaries.md](visible-legendaries.md).
 - Owned wilds freeze, including in-progress native movement, while field control
   is locked. Closing both a party screen and its parent field menu resumes them.
 - Only owned temporary objects are skipped by the native saved-object iterator.

@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 170 tests pass, including compiled ARM field logic and independently checked
+- 176 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 17,280-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 18,252-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -451,3 +451,23 @@ fishing and special contexts retain native behavior. Legendary-roamer sprites,
 full maps/species/forms/capacity/long-play coverage and other enhancements remain.
 See [visible-habitats.md](visible-habitats.md) and
 [milestone-18-verification.json](../enhancements/milestone-18-verification.json).
+
+## Milestone 19: native legendary identities and capture progression
+
+Saved legendary roamers can appear as moving models, with duplicate and stale
+record guards and the native ROAMER battle type. New native releases honor shiny
+odds against the final full owner ID; existing stored personalities stay native.
+The second native land encounter-start branch is now intercepted during model
+generation, preventing a hidden legendary encounter.
+
+176 tests pass. Both final ROMs reproduce the tested experiment hashes and pass
+checked edits and xdelta round trips. Both Mac games pass shiny Raikou retained
+contact, capture, native captured-flag/record clearing, native save and cold reload.
+Combined capture/party EXP completes, including bench move learning and native
+Synthesis-for-Tackle replacement on a full moveset; EXP/EV/moves/PP persist.
+
+Declared isolated fixtures exercise the native release VM, current map and one
+Master Ball supply. Full story release, other legendary species, positive status,
+wider contexts and the rest of the enhancement inventory remain unfinished.
+See [implementation and limits](visible-legendaries.md) and
+[exact evidence](../enhancements/milestone-19-verification.json).

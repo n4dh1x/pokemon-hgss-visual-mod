@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 18.**
+**Current stage: experimental gameplay milestone 19.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -12,20 +12,21 @@ checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
 settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. 170 tests pass. The repeat-Repel option offers another Repel of the
+connected-map changes remove old-map wilds. 176 tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
 pass successful capture, Pokédex registration, nickname decline and field return.
 Both games also pass level-6 stat screens, Razor Leaf learning into an empty slot,
-and native save/cold reload of rewards. Evolution, full movesets and wider capture
-cases remain pending.
+and native save/cold reload of rewards. Evolution and wider capture cases remain pending; milestone 19 also verifies
+a native full-moveset replacement during legendary capture EXP.
 A sixth saved option adds party-wide EXP Share: full EXP for participants, half
 for healthy bench Pokemon, with one collective message. Both games pass ordinary
 victories, saved Off controls and native save/cold reload of rewards; SoulSilver
 also passes combined party/capture EXP. Follow-up verification passes native bench
 level-3 stat screens in both games and full EXP for two actual HG participants.
-Full bench move/evolution and extended battle acceptance remain pending.
+Milestone 19 verifies native bench move learning; bench evolution and extended
+battle acceptance remain pending.
 Milestone 12 adds a second settings page: Field HMs and Grass battles.
 Grass battles defaults to Normal at every density. Optional Roaming only removes
 step-triggered regular grass battles while retaining moving contact encounters;
@@ -54,8 +55,11 @@ chime on appearance. Ordinary roamers stay silent. See
 Milestone 18 adds roaming cave-floor and Surf-water encounters using native
 tables. Both games pass cave/water contact battles, shore cleanup and native
 Surf saves/cold reloads. See [visible-habitats.md](docs/visible-habitats.md).
-Legendary-roamer sprites, full capacity/transition coverage, other enhancements
-and final gameplay validation remain.
+Milestone 19 adds saved legendary-roamer models and native battle bookkeeping,
+plus shiny selection on new native releases. Both games pass retained shiny
+Raikou contact, capture, rewards and native save/cold reload. See
+[visible-legendaries.md](docs/visible-legendaries.md). Wider legendary species,
+full capacity/transition coverage, other enhancements and final validation remain.
 These candidates are not the final release.
 
 - [Complete 59-row feature inventory](docs/emerald-parity.md)

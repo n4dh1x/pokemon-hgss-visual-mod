@@ -64,3 +64,14 @@ party/PC storage, double/roamer capture, special-area story flows and save/reloa
 after these rewards remain pending. Battle presentation and long sessions need
 further checks. The inventory remains `integrated_untested` for full acceptance;
 the complete enhancement goal remains active.
+
+## Milestone 19 progression acceptance
+
+Both games complete combined native Raikou capture and party-wide rewards:
+1234 EXP for the participant, 617 for each of three bench Pokemon, native stat
+screens, bench move learning and Synthesis replacing Tackle through the native
+full-moveset forget UI. Native save/cold reload preserves EXP, EVs, moves and PP.
+This adds bounded legendary capture coverage; evolution/cancellation, other
+legendary species, held-item/double/special-area contexts remain pending.
+See [visible-legendaries.md](visible-legendaries.md) and
+[milestone-19 evidence](../enhancements/milestone-19-verification.json).

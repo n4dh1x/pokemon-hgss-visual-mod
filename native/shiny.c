@@ -105,3 +105,17 @@ void EnhancedNatureCreateMon(void *mon, int species, int level, int iv, int fixe
 void EnhancedGenderCreateMon(void *mon, int species, int level, int iv, int fixed, u32 pid, int ot_type, u32 ot_id) {
     wild(mon, species, level, iv, fixed, pid, ot_type, ot_id, 2);
 }
+
+/* New native roaming identities are created with the visible trainer-ID half,
+ * but their later encounter reconstruction applies the full player OT ID.
+ * Select against that final owner; preserve the native factory's OT arguments. */
+void EnhancedRoamerCreateMon(void *mon, int species, int level, int iv, int fixed, u32 pid, int ot_type, u32 ot_id) {
+    u32 owner;
+    if (!fixed && ot_type == 1 &&
+        (species == 243 || species == 244 || species == 380 || species == 381) &&
+        enabled(&owner) && ot_id == (owner & 65535)) {
+        pid = EnhancedShinySelect(random_pid(), owner, (u32)species, 0);
+        fixed = 1;
+    }
+    NativeCreateMon(mon, species, level, iv, fixed, pid, ot_type, ot_id);
+}

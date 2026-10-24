@@ -11,7 +11,7 @@ def inspect_wilds(run:Path,report_path:Path,rom_path:Path):
     diag=inspect_run(run,report_path);report=json.loads(report_path.read_text());raw=rom_path.read_bytes()
     if hashlib.sha256(raw).hexdigest()!=report['output_sha256']:raise ValueError('ROM differs from the candidate report.')
     rom=ndspy.rom.NintendoDSRom(raw);ram=(run/'main-ram.bin').read_bytes();state=(run/'state.bin').read_bytes()
-    for address,size in ((0x0206E540,32),(0x0206E640,32),(0x0207003C,0x94)):
+    for address,size in ((0x0206E540,32),(0x0206E640,32),(0x0207003C,0x94),(0x0202D9C4,12),(0x020403AC,20)):
         offset=address-0x02000000
         if ram[offset:offset+size]!=rom.arm9[offset:offset+size]:raise ValueError('Native getter/check bytes differ from the ROM.')
     uc=Uc(UC_ARCH_ARM,UC_MODE_THUMB);uc.mem_map(0x02000000,0x400000);uc.mem_write(0x02000000,ram)
@@ -28,7 +28,7 @@ def inspect_wilds(run:Path,report_path:Path,rom_path:Path):
         pid=get(0);owner=get(7);native_shiny=bool(call(0x0207003D,at))
         xor=(pid&65535)^(pid>>16)^(owner&65535)^(owner>>16)
         result={'species':get(5),'pid':pid,'ot_id':owner,'native_shiny':native_shiny,'shiny_xor':xor,
-                'level':get(161),'nature':pid%25,'form':get(112),'ability':get(10),
+                'level':get(161),'hp':get(163),'max_hp':get(164),'status':get(160),'nature':pid%25,'form':get(112),'ability':get(10),
                 'ivs':[get(i) for i in (70,71,72,74,75,73)],'moves':[get(i) for i in range(54,58)],
                 'pokemon_sha256':hashlib.sha256(data).hexdigest()}
         if native_shiny!=(xor<8):raise ValueError('Native shininess differs from the unmodified Gen IV rule.')
@@ -65,6 +65,16 @@ def inspect_wilds(run:Path,report_path:Path,rom_path:Path):
         bag=call(0x0207879D,save);ball=bag+0x6C0-0x02000000
         if ball<0 or ball+4>len(ram):raise ValueError('Native balls slot exceeds main RAM.')
         result['native_ball_slot']=list(struct.unpack_from('<2H',ram,ball))
+        # Original save/variable getters on this private snapshot. Preserve the
+        # whole native 104-byte roaming block while reading capture flags.
+        roamer_base=call(0x0202D9C5,save);roamer_at=roamer_base-0x02000000
+        if roamer_at<0 or roamer_at+104>len(ram):raise ValueError('Native roamer save exceeds main RAM.')
+        roaming=ram[roamer_at:roamer_at+104]
+        result['native_roamers']={'records':[list(struct.unpack_from('<5I',roaming,16+20*i)) for i in range(4)],
+            'locations':list(roaming[96:100]),
+            'captured_flags':[call(0x020403AD,field,0x4045+i) for i in range(4)]}
+        if bytes(uc.mem_read(roamer_base,104))!=roaming:raise ValueError('Private roaming getters modified saved data.')
+        result['native_roamers']['private_getters_preserve_all_bytes']=True
         result['party']=[]
         for slot in range(count):
             at=call(0x02074645,party,slot)-0x02000000

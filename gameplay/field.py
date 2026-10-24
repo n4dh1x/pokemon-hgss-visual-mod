@@ -101,7 +101,8 @@ def install_field(rom, payload: Payload) -> tuple[list[PatchResult], list[Overla
             (0x021E7180, 0x02246C8D, 'EnhancedStepEncounter'),
             (0x02205540, 0x0205F24D, 'EnhancedPaletteObjectId'),
             (0x0220582C, 0x0205F24D, 'EnhancedPaletteObjectId')],
-        2: [(0x02246D5E, 0x02247569, 'EnhancedEncounterRoll'),
+        2: [(0x02246DD0, 0x02050B09, 'EnhancedCaptureEncounter'),
+            (0x02246D5E, 0x02247569, 'EnhancedEncounterRoll'),
             (0x02246D92, 0x02248361, 'EnhancedRoamerCheck'),
             (0x02246F2E, 0x02050B09, 'EnhancedCaptureEncounter')],
     }

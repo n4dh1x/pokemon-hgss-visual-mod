@@ -145,8 +145,8 @@ class TestShiny(unittest.TestCase):
             self.execute(0x0206E14D,0x02230000,163,7,32,1,13,0)
             pid=self.created[0][5];self.assertTrue(shiny(pid,self.f.owner));self.assertEqual(pid%25,13)
             self.assertEqual(gender(pid,127),1);self.assertEqual(len(self.created),1)
-    def test_only_four_audited_creation_calls_change_and_native_checks_and_other_callers_stay(self):
-        wanted={0x02054216,0x020960E6,0x0206E142,0x0206E1E4}
+    def test_only_five_audited_creation_calls_change_and_native_checks_and_other_callers_stay(self):
+        wanted={0x02067780,0x02054216,0x020960E6,0x0206E142,0x0206E1E4}
         for original in self.roms:
             rom=api.ndspy.rom.NintendoDSRom(original.save());changes=install_shiny(rom,self.payload)
             self.assertEqual({c.address for c in changes},wanted)
@@ -158,3 +158,24 @@ class TestShiny(unittest.TestCase):
                 self.assertEqual(rom.arm9[at-0x02000000:at-0x02000000+size],original.arm9[at-0x02000000:at-0x02000000+size])
             damaged=api.ndspy.rom.NintendoDSRom(original.save());data=bytearray(damaged.arm9);data[0x6E108]^=1;damaged.arm9=bytes(data)
             with self.assertRaises(ValueError):install_shiny(damaged,self.payload)
+
+    def test_new_roamers_select_shininess_for_final_full_owner_without_changing_ot_arguments(self):
+        mon=0x02230000;self.f.put(self.extra+16,5)
+        for species in (243,244,380,381):
+            self.created=[]
+            self.execute('EnhancedRoamerCreateMon',mon,species,40,32,0,0,1,self.f.owner&65535)
+            args=self.created[0];self.assertEqual(len(self.created),1)
+            self.assertEqual(args[:5],(mon,species,40,32,1))
+            self.assertEqual(args[6:],(1,self.f.owner&65535))
+            self.assertTrue(shiny(args[5],self.f.owner))
+        self.assertEqual(self.f.get(self.state+28),self.f.owner)
+
+    def test_roamer_default_fixed_wrong_owner_and_unrelated_species_forward_unchanged(self):
+        mon=0x02230000
+        for setting,fixed,species,ot,owner in ((0,0,243,1,self.f.owner&65535),
+            (5,1,243,1,self.f.owner&65535),(5,0,163,1,self.f.owner&65535),
+            (5,0,243,0,self.f.owner&65535),(5,0,243,1,(self.f.owner&65535)^1)):
+            self.f.put(self.extra+16,setting);self.created=[]
+            self.execute('EnhancedRoamerCreateMon',mon,species,40,32,fixed,12345,ot,owner)
+            self.assertEqual(self.created,[(mon,species,40,32,fixed,12345,ot,owner)])
+        self.assertEqual(self.rng_calls,0)

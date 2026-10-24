@@ -105,6 +105,39 @@ static int owned(void *object) {
     return -1;
 }
 
+struct VisibleRoamerSlot {
+    u32 identity, record[5], battle_type;
+};
+struct VisibleRoamerState {
+    u32 capture_slot;
+    void *candidate;
+    u32 selected, duplicates, stale, launched;
+    struct VisibleRoamerSlot slots[6];
+};
+struct VisibleRoamerState gVisibleRoamerState;
+_Static_assert(sizeof(struct VisibleRoamerState) == 192, "Visible roamer diagnostic ABI");
+
+/* Roamer save records are four native 20-byte entries following a 16-byte
+ * header. Validate pointer membership before any candidate dereference. */
+static u32 roamer_identity(void *field, void *candidate) {
+    u8 *base = Save_Roamers_Get(ptr(field, 0x0C));
+    for (u32 i = 0; i < 4; ++i)
+        if (candidate == base + 16 + i * 20)
+            return i + 1;
+    return 0;
+}
+static int roamer_current(void *field, int index) {
+    struct VisibleRoamerSlot *slot = &gVisibleRoamerState.slots[index];
+    if (!slot->identity) return 1;
+    if (slot->identity > 4) return 0;
+    u8 *base = Save_Roamers_Get(ptr(field, 0x0C));
+    u32 *record = (u32 *)(base + 16 + (slot->identity - 1) * 20);
+    if (!(record[4] & 0xFF0000) || record[0] != word(ptr(field, 0x20), 0)) return 0;
+    for (int i = 0; i < 5; ++i)
+        if (record[i] != slot->record[i]) return 0;
+    return 1;
+}
+
 /* Session-only surface identity prevents a surf spawn crossing onto land.
  * The original tile flags, encounter tables and generator remain authoritative. */
 struct VisibleHabitatState {
@@ -183,6 +216,8 @@ static void shiny_sparkle(void *field, int index, int appearance) {
 
 static void forget(void) {
     gVisibleVisualState.pending_slot = 0;
+    gVisibleRoamerState.capture_slot = 0;
+    gVisibleRoamerState.candidate = 0;
     for (int i = 0; i < 6; ++i)
         gVisibleState.slots[i].object = 0;
     gVisibleState.manager = 0;
@@ -192,6 +227,7 @@ static void forget(void) {
         gVisibleState.roam_delay[i] = 0;
         gVisibleVisualState.sparkle_ticks[i] = 0;
         gVisibleHabitatState.slots[i] = 0;
+        gVisibleRoamerState.slots[i].identity = 0;
     }
 }
 
@@ -326,7 +362,24 @@ int EnhancedEncounterRoll(void *field, u8 rate, u8 tile) {
     return result;
 }
 int EnhancedRoamerCheck(void *field, void **roamer) {
-    if (gVisibleState.capture) return 0;
+    if (gVisibleState.capture) {
+        if (!gVisibleRoamerState.capture_slot || !roamer) return 0;
+        if (!OriginalRoamerCheck(field, roamer)) return 0;
+        u32 identity = roamer_identity(field, *roamer);
+        if (!identity) return 0;
+        static const u16 species[4] = {243, 244, 380, 381};
+        u32 *record = *roamer;
+        if (!(record[4] & 0xFF0000) || record[0] != word(ptr(field, 0x20), 0) ||
+            (record[3] & 0xFFFF) != species[identity - 1]) return 0;
+        for (int i = 0; i < 6; ++i)
+            if (owned(gVisibleState.slots[i].object) == i &&
+                gVisibleRoamerState.slots[i].identity == identity) {
+                ++gVisibleRoamerState.duplicates;
+                return 0;
+            }
+        gVisibleRoamerState.candidate = *roamer;
+        return 1;
+    }
     if (gEncounterRateState.cached && gEncounterRateState.field == field) {
         gEncounterRateState.cached = 0;
         *roamer = gEncounterRateState.roamer;
@@ -363,6 +416,7 @@ static void release_slot(int index) {
     gVisibleState.roam_delay[index] = 0;
     gVisibleVisualState.sparkle_ticks[index] = 0;
     gVisibleHabitatState.slots[index] = 0;
+    gVisibleRoamerState.slots[index].identity = 0;
     gVisibleState.paused_mask &= ~(1u << index);
 }
 
@@ -375,7 +429,7 @@ static int launch(void *field, int index) {
      * change, before constructing any battle or consuming the stored Pokemon. */
     if (!mode || mode > 3 || !EnhancedEncounterPercent() || (u32)index >= mode * 2 ||
         gVisibleState.slots[index].map != word(ptr(field, 0x20), 0) || !regular(field) ||
-        !compatible_surface(field, index)) {
+        !compatible_surface(field, index) || !roamer_current(field, index)) {
         if (gVisibleState.slots[index].map != word(ptr(field, 0x20), 0))
             ++gVisibleState.map_releases;
         release_slot(index);
@@ -383,11 +437,15 @@ static int launch(void *field, int index) {
     }
     if (!alive(field))
         return 0;
-    void *setup = BattleSetup_New(11, 0);
-    if (!setup)
+    u32 battle_type = gVisibleRoamerState.slots[index].identity ? 0x100 : 0;
+    void *setup = BattleSetup_New(11, battle_type);
+    if (!setup) {
+        gVisibleRoamerState.candidate = 0;
         return 0;
+    }
     BattleSetup_InitFromFieldSystem(setup, field);
     BattleSetup_AddMonToParty(setup, gVisibleState.slots[index].mon, 1);
+    if (battle_type) ++gVisibleRoamerState.launched;
     release_slot(index);
     ++gVisibleState.launched;
     OriginalStartEncounter(field, setup);
@@ -403,7 +461,7 @@ void EnhancedStartScript(void *field, u16 script, void *object) {
     OriginalStartScript(field, script, object);
 }
 
-static int generate(void *field, struct VisibleSlot *slot) {
+static int generate(void *field, struct VisibleSlot *slot, int index) {
     /* The native generator uses current HGSS tables/abilities/Repel and rolls
      * PID/IVs/form once. Capture its successful battle setup, copy its Pokemon,
      * then free all setup allocations; player data is refreshed at contact. */
@@ -411,15 +469,21 @@ static int generate(void *field, struct VisibleSlot *slot) {
     u16 facing = *(u16 *)((u8 *)field + 0x7A);
     *(u16 *)((u8 *)field + 0x7E) = 4;
     gVisibleState.captured = 0;
+    gVisibleRoamerState.capture_slot = (u32)index + 1;
+    gVisibleRoamerState.candidate = 0;
+    gVisibleRoamerState.slots[index].identity = 0;
     gVisibleState.capture = 1;
     OriginalStepEncounter(field);
     gVisibleState.capture = 0;
+    gVisibleRoamerState.capture_slot = 0;
     put(field, 0x7C, counters);
     *(u16 *)((u8 *)field + 0x7A) = facing;
     void *setup = gVisibleState.captured;
     gVisibleState.captured = 0;
-    if (!setup)
+    if (!setup) {
+        gVisibleRoamerState.candidate = 0;
         return 0;
+    }
     void *party = ptr(setup, 8);
     int valid = Party_GetCount(party) == 1;
     if (valid) {
@@ -431,6 +495,23 @@ static int generate(void *field, struct VisibleSlot *slot) {
         slot->personality = GetMonData(slot->mon, 0, 0);
         valid = slot->species >= 1 && slot->species <= 493;
     }
+    u32 battle_type = word(setup, 0);
+    if (valid && battle_type == 0x100) {
+        u32 identity = roamer_identity(field, gVisibleRoamerState.candidate);
+        valid = identity != 0;
+        if (valid) {
+            struct VisibleRoamerSlot *rs = &gVisibleRoamerState.slots[index];
+            u32 *record = gVisibleRoamerState.candidate;
+            rs->identity = identity;
+            for (int i = 0; i < 5; ++i) rs->record[i] = record[i];
+            rs->battle_type = battle_type;
+            valid = roamer_current(field, index) && slot->personality == record[2] &&
+                slot->species == (record[3] & 0xFFFF) && slot->level == (record[4] & 0xFF);
+            if (valid) ++gVisibleRoamerState.selected;
+        }
+    } else if (battle_type) valid = 0;
+    if (!valid) gVisibleRoamerState.slots[index].identity = 0;
+    gVisibleRoamerState.candidate = 0;
     BattleSetup_Delete(setup);
     return valid;
 }
@@ -464,7 +545,7 @@ static void spawn(void *field, void *player, int index, u32 habitat) {
     for (u32 i = 0; i < count; ++i)
         if ((word(objects + i * 0x12C, 0) & 1) && word(objects + i * 0x12C, 8) == id)
             return;
-    if (!generate(field, slot))
+    if (!generate(field, slot, index))
         return;
     u16 form = (u16)GetMonData(slot->mon, 112, 0);
     struct ObjectEvent event;
@@ -572,11 +653,13 @@ int EnhancedFieldInput(void *input, void *field) {
         int x = word(object, 0x64), z = word(object, 0x6C);
         int same_map = gVisibleState.slots[i].map == word(ptr(field, 0x20), 0);
         int surface_ok = !same_map || !context || compatible_surface(field, i);
+        int roamer_ok = !same_map || !context || roamer_current(field, i);
         if ((unsigned)i >= limit || !context || gVisibleState.slots[i].map != word(ptr(field, 0x20), 0) ||
-            distance(x, px) > 12 || distance(z, pz) > 12 || !surface_ok) {
+            distance(x, px) > 12 || distance(z, pz) > 12 || !surface_ok || !roamer_ok) {
             if (gVisibleState.slots[i].map != word(ptr(field, 0x20), 0))
                 ++gVisibleState.map_releases;
             if (!surface_ok) ++gVisibleHabitatState.surface_releases;
+            if (!roamer_ok) ++gVisibleRoamerState.stale;
             release_slot(i);
             continue;
         }

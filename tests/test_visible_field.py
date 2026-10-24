@@ -65,6 +65,8 @@ class TestVisibleField(unittest.TestCase):
         self.roamer_result = False
         self.native_roll_results = []
         self.native_roamer_gate = 7
+        self.native_roamer_pointer = self.save+0x300
+        self.roamer_generate = False
         self.repel = False
         self.party_mons = [self.mon]
         self.calls, self.freed, self.removed, self.script_calls = [], [], [], []
@@ -141,6 +143,9 @@ class TestVisibleField(unittest.TestCase):
         elif address == 0x02246C8C:
             if self.get(self.state + 4):
                 self.put(self.state + 8, self.setup)
+                if self.roamer_generate:
+                    self.put(self.payload.symbols['gVisibleRoamerState']+4,self.native_roamer_pointer)
+                    self.put(self.setup,0x100)
             elif self.get(self.state + 1624) and not self.roamer_result:
                 self.put(self.state + 1628, 1)
             result = 1
@@ -148,7 +153,7 @@ class TestVisibleField(unittest.TestCase):
             result = self.native_roll_results.pop(0) if self.native_roll_results else 7
         elif address == 0x02248360:
             result = self.native_roamer_gate
-            if result and b:self.put(b,self.save+0x300)
+            if result and b:self.put(b,self.native_roamer_pointer)
         elif address == 0x02051BF8:
             self.assertEqual(a, self.setup)
             self.freed.append(a)
@@ -173,12 +178,12 @@ class TestVisibleField(unittest.TestCase):
             self.put(self.created+0x38,values[7]);self.put(self.created+0x3C,values[8]);self.put(self.created+0x40,values[9])
             result = self.created
         elif address == 0x02069EE8:
-            self.assertEqual(b, 163)
+            self.assertEqual(b, self.get(self.mon+4))
             self.put(a+0x38,b);self.put(a+0x3C,0x123);self.put(a+0x40,int(self.shiny))
         elif address == 0x02069DC8:
             self.assertEqual(b, 0, 'Native TRUE hides Pokemon models.')
         elif address == 0x020518D8:
-            self.assertEqual((a, b), (11, 0))
+            self.assertEqual((a, b), (11, 0x100 if self.roamer_generate else 0))
             result = self.setup
         elif address == 0x02051F00:
             self.assertEqual((a, b), (self.setup, self.field))
@@ -253,6 +258,59 @@ class TestVisibleField(unittest.TestCase):
         for _ in range(3):
             self.execute('EnhancedFieldInput', self.input, self.field)
         self.assertFalse(any(c[0] in (0x021FE66C,0x0200604C) for c in self.calls))
+
+    def prepare_roamer(self):
+        self.roamer_generate=True
+        self.native_roamer_pointer=self.save+0x210
+        words=list(struct.unpack('<59I',self.native_mon));words[1]=243;words[2]=40
+        self.native_mon=struct.pack('<59I',*words);self.uc.mem_write(self.mon,self.native_mon)
+        self.native_roamer_record=struct.pack('<5I',33,0x1020304,words[0],243|(12<<16),40|(1<<16))
+        self.uc.mem_write(self.native_roamer_pointer,self.native_roamer_record)
+
+    def test_roamer_generation_and_contact_keep_native_type_record_and_mon(self):
+        self.prepare_roamer();self.make_spawn()
+        rs=self.payload.symbols['gVisibleRoamerState']
+        self.assertEqual(self.get(rs+24),1)
+        self.assertEqual(bytes(self.uc.mem_read(rs+28,20)),self.native_roamer_record)
+        self.assertEqual(self.get(rs+48),0x100)
+        self.execute('EnhancedStartScript',self.field,0,self.created)
+        self.assertEqual(self.battle_mon,self.native_mon)
+        self.assertEqual(self.get(rs+20),1)
+        self.assertEqual(self.get(rs+24),0)
+        self.assertEqual(bytes(self.uc.mem_read(self.native_roamer_pointer,20)),self.native_roamer_record)
+
+    def test_roamer_selection_rejects_duplicate_and_invalid_native_records(self):
+        self.prepare_roamer();self.make_spawn()
+        rs=self.payload.symbols['gVisibleRoamerState'];self.put(self.state+4,1);self.put(rs,2)
+        out=self.input+0x40
+        self.assertEqual(self.execute('EnhancedRoamerCheck',self.field,out),0)
+        self.assertEqual(self.get(rs+12),1)
+        self.put(self.created,0)
+        self.assertEqual(self.execute('EnhancedRoamerCheck',self.field,out),1)
+        self.assertEqual(self.get(rs+4),self.native_roamer_pointer)
+        for offset in (0,12,16):
+            original=self.get(self.native_roamer_pointer+offset)
+            self.put(self.native_roamer_pointer+offset,0)
+            self.assertEqual(self.execute('EnhancedRoamerCheck',self.field,out),0)
+            self.put(self.native_roamer_pointer+offset,original)
+        self.native_roamer_pointer=self.save+0x201
+        self.assertEqual(self.execute('EnhancedRoamerCheck',self.field,out),0)
+
+    def test_roamer_hp_status_personality_movement_or_capture_changes_clear_stale_models(self):
+        for offset,change in ((0,1),(4,1),(8,1),(12,1<<16),(16,1<<8),(16,1<<16)):
+            self.setUp();self.prepare_roamer();self.make_spawn()
+            a=self.native_roamer_pointer+offset;self.put(a,self.get(a)^change)
+            expected=bytes(self.uc.mem_read(self.native_roamer_pointer,20))
+            self.execute('EnhancedFieldInput',self.input,self.field)
+            self.assertEqual(self.removed,[self.created]);self.assertIsNone(self.battle_mon)
+            self.assertEqual(self.get(self.payload.symbols['gVisibleRoamerState']+16),1)
+            self.assertEqual(bytes(self.uc.mem_read(self.native_roamer_pointer,20)),expected)
+
+    def test_stale_roamer_early_interaction_cannot_launch_old_hp_or_caught_identity(self):
+        self.prepare_roamer();self.make_spawn()
+        self.put(self.native_roamer_pointer+16,0)
+        self.execute('EnhancedStartScript',self.field,0,self.created)
+        self.assertIsNone(self.battle_mon);self.assertEqual(self.removed,[self.created])
 
     def test_cave_and_surf_spawns_keep_native_pokemon_and_surface(self):
         for tile, habitat, surfing in ((8,2,False),(16,3,True)):
@@ -640,7 +698,12 @@ class TestFieldHooks(unittest.TestCase):
             original = ndspy.rom.NintendoDSRom.fromFile(path)
             patched = ndspy.rom.NintendoDSRom.fromFile(path)
             main, overlays = install_field(patched, self.payload)
-            self.assertEqual((len(main), len(overlays)), (5, 8))
+            self.assertEqual((len(main), len(overlays)), (5, 9))
+            native=ndspy.code.loadOverlayTable(original.arm9OverlayTable,lambda oid,fid:original.files[fid],{2})[2]
+            starts={site for site in range(0x02246C8C,0x02246F6C,2)
+                    if bytes(native.data[site-native.ramAddress:site-native.ramAddress+4])==thumb_call(site,0x02050B09)}
+            intercepted={r.patch.address for r in overlays if r.patch.behavior=='EnhancedCaptureEncounter'}
+            self.assertEqual(starts,intercepted,'Every native land/Surf/roamer encounter-start branch must be captured.')
             verify_field_files(original, patched, overlays)
             patched.files[-1] = bytes(patched.files[-1]) + b'changed'
             with self.assertRaises(PatchMismatch):

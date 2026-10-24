@@ -1,0 +1,3912 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 19,
+  "verified_on": "2026-10-24",
+  "final_release": false,
+  "scope": "Native saved legendary identities as moving visible encounters; native battle type, shiny new-release selection, capture EXP/full-moveset progression and captured-flag native save/cold reload.",
+  "regression": {
+    "passed": 176,
+    "skipped": 0,
+    "log_sha256": "89fab443cbd47d4749b81d05cd85f96b05d1c1b23422c7066a0fa6f5249fd338"
+  },
+  "candidates": {
+    "heartgold": {
+      "local_rom": "build/candidates/heartgold-visual-plus-gameplay-milestone-19.nds",
+      "output_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+      "patch_sha256": "ef859751b04994030cecbc217527903049a3a8ba7c99ebba38f35ca5ccd31e6b",
+      "report_sha256": "816752c935b803ac231b2e519ff0cd244c6de25544ba5b8d1a2e9acb8e7faad5",
+      "payload_bytes": 18252,
+      "payload_end": "0x1ffd74c",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    },
+    "soulsilver": {
+      "local_rom": "build/candidates/soulsilver-visual-plus-gameplay-milestone-19.nds",
+      "output_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+      "patch_sha256": "3353d7238b54db98b56fc101c1dfbf1223d8d15a2f91f122b85cc4f58f702f61",
+      "report_sha256": "ea0e7344688e291d925f99dba0da674c328e73fd4fe649e47c5c45fa9ad44d42",
+      "payload_bytes": 18252,
+      "payload_end": "0x1ffd74c",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    }
+  },
+  "games": {
+    "heartgold": {
+      "steps": [
+        {
+          "local_run": "local_data/verification/hg19b-visible",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "ad4d9019a89e2fdaa73325aab450cd7a4dba5aeb6d812c75a382a399d1d19788",
+          "ram_sha256": "435ea752ff5f619edb65dd42db9a8d4820f2ca3a024f73d74af70c320fba7b2e",
+          "report_sha256": "bbf5a250614a79190f86ea8eb748e70950a8052bbe5cd0a6f31fc9c26f791012",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "RIGHT",
+                10,
+                14
+              ],
+              [
+                "RIGHT",
+                50,
+                54
+              ],
+              [
+                "UP",
+                90,
+                94
+              ],
+              [
+                "UP",
+                130,
+                134
+              ],
+              [
+                "A",
+                170,
+                174
+              ],
+              [
+                "SELECT",
+                1200,
+                1204
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": {
+            "fixture_sha256": "af5cfce6131b1a84bc0b12831f3a2c0a51e46c8d4801002083c0f03eb528c0d4",
+            "source_ram_sha256": "f47ef943abf4f9768171a4c32bf8590c13837ea0cc3616bae3a6aea646bcd41c",
+            "applied_ram_sha256": "bc4f182bc154d915b62179102594a2f29ae78c0f6e0ca18468845ad4869dd6b8",
+            "changes": [
+              {
+                "address": 36186800,
+                "before": "23000000",
+                "after": "21000000",
+                "reason": "Isolated current-map simulation; all native-created PID/IV/HP/status fields remain unchanged."
+              },
+              {
+                "address": 36186880,
+                "before": "02",
+                "after": "00",
+                "reason": "Matching native Route 29 location index."
+              }
+            ]
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-field/state.bin",
+            "sha256": "2b2726213a76f79098cfc8f264f567788e39eb041966b829f825c1168635a8ea"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-contact",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "3f7cce763a05c5c46834fbec2678713fcb46317c45363a8d264cb623fae82450",
+          "ram_sha256": "c650d1055ae0566494007c7d431cd4820bbed42286bac20eb602dc0685d97877",
+          "report_sha256": "e85c55ddf844461825920c1b7936f00e1a58da95d4ffdbeab439eaf7ba916b24",
+          "frames": 1600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "RIGHT",
+                30,
+                46
+              ],
+              [
+                "DOWN",
+                60,
+                76
+              ],
+              [
+                "A",
+                90,
+                94
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-visible/state.bin",
+            "sha256": "ad4d9019a89e2fdaa73325aab450cd7a4dba5aeb6d812c75a382a399d1d19788"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-capture-ready",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "2902cddce86195923d63801c0931ccb7a88e657e08c02152886fc6cdc38c95d4",
+          "ram_sha256": "4b0a0fb695c200d3b33d82e3e578264844e8acefeff6f26317bced8a6cb410cf",
+          "report_sha256": "21361e9f1f147e72d9226db3d77e4d115f5364564349a52e4319b2a17b5da4ff",
+          "frames": 1600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "RIGHT",
+                30,
+                46
+              ],
+              [
+                "DOWN",
+                60,
+                76
+              ],
+              [
+                "A",
+                90,
+                94
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": {
+            "fixture_sha256": "0c9bd661bccd3de937efec8716fe44cf228e574d023fc4e8121555f1c79d9aad",
+            "source_ram_sha256": "435ea752ff5f619edb65dd42db9a8d4820f2ca3a024f73d74af70c320fba7b2e",
+            "applied_ram_sha256": "da34cd2341a433c8403abc2d15e8f4cdf2c0674b9ee5198f890de0c33cf73c4f",
+            "changes": [
+              {
+                "address": 36163328,
+                "before": "00000000",
+                "after": "01000100",
+                "reason": "Isolated one-Master-Ball supply before native battle setup copies the bag. No Pokemon, HP, status, EXP or story edits."
+              }
+            ]
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-visible/state.bin",
+            "sha256": "ad4d9019a89e2fdaa73325aab450cd7a4dba5aeb6d812c75a382a399d1d19788"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "bc3b5308afedd1026b0221370be485e2608a231f40ef078264871ee8274a1750",
+          "ram_sha256": "6e00bb62a9e6d787ad51db06452643cc945a7f55108f5002d1e0217083765349",
+          "report_sha256": "ac8c8f8cb9d8f85feda3ff7e68ad5c80652c360ffa6d243b44fcde118edd9621",
+          "frames": 5500,
+          "inputs": {
+            "buttons": [],
+            "touches": [
+              [
+                40,
+                170,
+                10,
+                14
+              ],
+              [
+                190,
+                75,
+                400,
+                404
+              ],
+              [
+                50,
+                35,
+                1000,
+                1004
+              ],
+              [
+                100,
+                170,
+                1500,
+                1504
+              ]
+            ]
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-capture-ready/state.bin",
+            "sha256": "2902cddce86195923d63801c0931ccb7a88e657e08c02152886fc6cdc38c95d4"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-levels1",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "9470a4e58ee89fafd5376ac3053251fd1f5949a83d36897fc5e9badb1792afca",
+          "ram_sha256": "2ec9289214435ab7f0cbb6e0a5db43914bc7059ac84dca13db4903136a2ed55f",
+          "report_sha256": "31e8f60ca7b4f7c2cb0ee0f63a92beda1879e381ebcf4c5b310b17a768f40d59",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "A",
+                750,
+                754
+              ],
+              [
+                "A",
+                1000,
+                1004
+              ],
+              [
+                "A",
+                1250,
+                1254
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch/state.bin",
+            "sha256": "bc3b5308afedd1026b0221370be485e2608a231f40ef078264871ee8274a1750"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-levels2",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "3bb4597932280050ed1245ca88bc532615a6dcfcf087ea6c090ee5be7b2b1ba6",
+          "ram_sha256": "4a56541dc25c668a3e2795dab0a429542f6c7d1874245e5d1ae0e9c48bd5a8f1",
+          "report_sha256": "260d54c1a37adfa55ec0b792137d60d7783acd1aac520fe085f975279a8d69f1",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "A",
+                750,
+                754
+              ],
+              [
+                "A",
+                1000,
+                1004
+              ],
+              [
+                "A",
+                1250,
+                1254
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-levels1/state.bin",
+            "sha256": "9470a4e58ee89fafd5376ac3053251fd1f5949a83d36897fc5e9badb1792afca"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-levels3",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "19768ca19a4b468e915cd6e4db727b8a602ec0f0387a149c5a6194f0552c3b85",
+          "ram_sha256": "ab6f321358a85022a8c7973f746b4805433957616acf47fdfbf1b1bd98c64eb4",
+          "report_sha256": "a956bac37bb038408d7a429b55b616ddf4c174ca0f94d47429faaf92d739347b",
+          "frames": 1700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "A",
+                750,
+                754
+              ],
+              [
+                "A",
+                1000,
+                1004
+              ],
+              [
+                "A",
+                1250,
+                1254
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-levels2/state.bin",
+            "sha256": "3bb4597932280050ed1245ca88bc532615a6dcfcf087ea6c090ee5be7b2b1ba6"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-reflect-prompt",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "0c8de5955bbb80a0bc4197fc5b0aa67e8c5fc9b0f7482b87b38fd599d87fe680",
+          "ram_sha256": "8434888aaa7128c7dd91a7d68978b8cb44070f85a672712128ac573c216b31d0",
+          "report_sha256": "3c0ccbbe7d8ab8f8f0dabe2dcd8587b31ad4371b714a1b3c08e690c596997020",
+          "frames": 1000,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-levels3/state.bin",
+            "sha256": "19768ca19a4b468e915cd6e4db727b8a602ec0f0387a149c5a6194f0552c3b85"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-forget-menu",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "a64de975ae2b464f89fcebfdea12289cd6d3a7093655117142a62ba2a2121298",
+          "ram_sha256": "a88c0980f0840b2cc4fbc114791d986b00db24961e7c2c0e98b237fccae9f26b",
+          "report_sha256": "11fe66acd75ff03bcd5f7e9831fdf5ffb440083db865057ff2670af80587543b",
+          "frames": 900,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-reflect-prompt/state.bin",
+            "sha256": "0c8de5955bbb80a0bc4197fc5b0aa67e8c5fc9b0f7482b87b38fd599d87fe680"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-learn-synthesis",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "073f9090ed21fdb6b4ffaecb8558441fba218a3d3d1b994930480fcaa3ccafac",
+          "ram_sha256": "fb68b6a65c1bac478652a57814c7eeebd795dc1fc8d323f6819ef3956e288580",
+          "report_sha256": "5af4c6717d944dcca85773f86394ace9ca5a78108c9c4526ea2cc4e68e6f47f0",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                400,
+                404
+              ],
+              [
+                "A",
+                800,
+                804
+              ],
+              [
+                "A",
+                1200,
+                1204
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-forget-menu/state.bin",
+            "sha256": "a64de975ae2b464f89fcebfdea12289cd6d3a7093655117142a62ba2a2121298"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-bench1",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "481b3aa991a406ba690a1ccc5a0550310a237afb3f5f600e2a49ef2541a66df2",
+          "ram_sha256": "638383eb4224399d59819482fc50a57eb27393b9a8cc0a6297f79a5682dbe407",
+          "report_sha256": "07e63e521b60b70fd77e5b0f4b826f9b852eb95eb5ecc42e842745af1d7b02e4",
+          "frames": 2200,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "A",
+                750,
+                754
+              ],
+              [
+                "A",
+                1000,
+                1004
+              ],
+              [
+                "A",
+                1250,
+                1254
+              ],
+              [
+                "A",
+                1500,
+                1504
+              ],
+              [
+                "A",
+                1750,
+                1754
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-learn-synthesis/state.bin",
+            "sha256": "073f9090ed21fdb6b4ffaecb8558441fba218a3d3d1b994930480fcaa3ccafac"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-bench2",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "2a7aed818772e860a8760ef6a27aaad1de14c0eeb635c0f5f9f236c54157e86c",
+          "ram_sha256": "150d03f3bcb8b529373c6f26dcd1baf714c415470d32efe4dbfe23f9c569b3a5",
+          "report_sha256": "4e4363ea40238d30fe5b6c20a6bc96ed8bdea87e7d9f31370373f6ca9bb13af8",
+          "frames": 2700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ],
+              [
+                "A",
+                1510,
+                1514
+              ],
+              [
+                "A",
+                1760,
+                1764
+              ],
+              [
+                "A",
+                2010,
+                2014
+              ],
+              [
+                "A",
+                2260,
+                2264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-bench1/state.bin",
+            "sha256": "481b3aa991a406ba690a1ccc5a0550310a237afb3f5f600e2a49ef2541a66df2"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-bench3",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "aec40783765d3bb051781eb27b280ac8faec617087187e9efefda960aba2fab4",
+          "ram_sha256": "f6be91672b3a745178f69ddc2e6e5b8f74461156f39e7d6cb26573dfa562fd85",
+          "report_sha256": "ec2bec6a29320342ef921f71b6017bcbc29174608c3b0361278e20e19812323f",
+          "frames": 2700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ],
+              [
+                "A",
+                1510,
+                1514
+              ],
+              [
+                "A",
+                1760,
+                1764
+              ],
+              [
+                "A",
+                2010,
+                2014
+              ],
+              [
+                "A",
+                2260,
+                2264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-bench2/state.bin",
+            "sha256": "2a7aed818772e860a8760ef6a27aaad1de14c0eeb635c0f5f9f236c54157e86c"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-bench4",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "1d2b8b66e47daccac5f8c191f63ab26d8383aa8a99890fa2b69ec833f949c2d2",
+          "ram_sha256": "c55ae6954f45bd5de848657470f519758d4ab0d68855c07d50fec9049a20bf86",
+          "report_sha256": "81a055ea1cf27ad4d425fb2abf7201d55ac396d6de79d24e73c8f44c47b3828c",
+          "frames": 2700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ],
+              [
+                "A",
+                1510,
+                1514
+              ],
+              [
+                "A",
+                1760,
+                1764
+              ],
+              [
+                "A",
+                2010,
+                2014
+              ],
+              [
+                "A",
+                2260,
+                2264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-bench3/state.bin",
+            "sha256": "aec40783765d3bb051781eb27b280ac8faec617087187e9efefda960aba2fab4"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-bench5",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "ea3ec980af6f3655c7577a75f3c89e291af06423e56c2144fb799bf5c77a45b9",
+          "ram_sha256": "eb0f25750250e63205ab353461bf0de03ce341e02efb2d88b61b9ac453d945dc",
+          "report_sha256": "9fea9c1cab25287bd81ed1d4721cfbc99ab852fbafe4ff9c2b5187d02ac418eb",
+          "frames": 2700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ],
+              [
+                "A",
+                1510,
+                1514
+              ],
+              [
+                "A",
+                1760,
+                1764
+              ],
+              [
+                "A",
+                2010,
+                2014
+              ],
+              [
+                "A",
+                2260,
+                2264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-bench4/state.bin",
+            "sha256": "1d2b8b66e47daccac5f8c191f63ab26d8383aa8a99890fa2b69ec833f949c2d2"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-bench6",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "ac450d75a0201c5e4e1f92de5a86ac600ffc9ee33ff836cbbea11679f25f139b",
+          "ram_sha256": "b111f2c970cbbe35c27bd2ecdc00acaa04465a55081bcd26b8ccd83873526da3",
+          "report_sha256": "6733b39ac5ca9e6bbca8944fe6fa0c987719b1d7365f6e3496ddea6a202d8d00",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-bench5/state.bin",
+            "sha256": "ea3ec980af6f3655c7577a75f3c89e291af06423e56c2144fb799bf5c77a45b9"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-rewards-end",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "40e42a6c8d6755c07dc5be3f16ffec0c1031f3d5c4090eec250763b0d511575d",
+          "ram_sha256": "33c5142acb3c6e6271f5f1cf8f9e67e817784a98039ead9c5887e2cf9d281c6a",
+          "report_sha256": "6375d6d38df9ee9c6d2194313b8a963e6744a1c8fc5168506579767a85499620",
+          "frames": 1400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-bench6/state.bin",
+            "sha256": "ac450d75a0201c5e4e1f92de5a86ac600ffc9ee33ff836cbbea11679f25f139b"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-dex-close",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "d933e8c7a2aec1eaa841206d8a85bcf5edb9bde46d0b576b5c1defadbe158470",
+          "ram_sha256": "48cac2d9f09089be6dd0eef920c421726bbfae23154e890a0fc0b2d84454aa38",
+          "report_sha256": "38190fdb05989f81974e870e7bdb682d95b1ac6ccfe45e798355968e445f1424",
+          "frames": 1600,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "B",
+                600,
+                604
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-rewards-end/state.bin",
+            "sha256": "40e42a6c8d6755c07dc5be3f16ffec0c1031f3d5c4090eec250763b0d511575d"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-field",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "627cc20c3f02eedc91351bfed9ef3f0331ed451a5721cc582c5d561768456154",
+          "ram_sha256": "ed38c9dfc31e7bfd3311f4f812268a571199fbebd7181694111f106431c078ba",
+          "report_sha256": "20df951c04d289526071ab8175a73e9c26203242ae560b9448732de0fe43e143",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "SELECT",
+                1500,
+                1504
+              ]
+            ],
+            "touches": [
+              [
+                128,
+                140,
+                10,
+                14
+              ]
+            ]
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-dex-close/state.bin",
+            "sha256": "d933e8c7a2aec1eaa841206d8a85bcf5edb9bde46d0b576b5c1defadbe158470"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-catch-extra-flee",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "751fd661475b2e7557544500d23a9f4fa0b572b1631e70bfa4ab83779c6ebd0b",
+          "ram_sha256": "13b66737cb38586b52b4f53325eedd78d4311535279fa01cb330c85fc20f9033",
+          "report_sha256": "42b2c131b7b2edd2a201f0638f61ad79eda0c32682f08338bf341a15af4892db",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "SELECT",
+                600,
+                604
+              ]
+            ],
+            "touches": [
+              [
+                128,
+                175,
+                10,
+                14
+              ]
+            ]
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-field/state.bin",
+            "sha256": "627cc20c3f02eedc91351bfed9ef3f0331ed451a5721cc582c5d561768456154"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-caught-save",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "91b16786acad85a4f4001aea922cd772f8776cbd9b2d4d2b3778bbedf3c41122",
+          "ram_sha256": "7bce026f568967103a2e5ba4a6f9fda62e79d4775272fd9ca3cf0afa0a0deecb",
+          "report_sha256": "315fc21e6b5d06aad9d3627aa554737a4402a1fdfd205b37e6d1f364ec6dd12e",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                2000,
+                2004
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                80,
+                84
+              ],
+              [
+                231,
+                96,
+                600,
+                604
+              ]
+            ]
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/hg19b-catch-extra-flee/state.bin",
+            "sha256": "751fd661475b2e7557544500d23a9f4fa0b572b1631e70bfa4ab83779c6ebd0b"
+          }
+        },
+        {
+          "local_run": "local_data/verification/hg19b-caught-cold",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "state_sha256": "6dd2b468c5d87547965b442c3f9854077e2f419dfddc1c2e2b531fbfb719947b",
+          "ram_sha256": "032cf5405f9046272dbe6c3258df6b97f5936fb681535524c0f0db1108a9848d",
+          "report_sha256": "9d194c538a7a9436df60909548071b0db5a3804eefc6ef92df3bcb075d203165",
+          "frames": 3400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                2700,
+                2704
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": "b064e77006701b78a4c8189b1db99077f4b7af528ec7db048f9f7e41c7b6a4b4",
+          "developer_ram_fixture": null,
+          "loaded_native_save": {
+            "path": "local_data/verification/hg19b-caught-save/cartridge.sav",
+            "sha256": "b064e77006701b78a4c8189b1db99077f4b7af528ec7db048f9f7e41c7b6a4b4"
+          }
+        }
+      ],
+      "visible": {
+        "generated": 6,
+        "launched": 0,
+        "native_saved_roamers": {
+          "records": [
+            [
+              33,
+              728072593,
+              4226739189,
+              8192243,
+              65576
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "locations": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "captured_flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "private_getters_preserve_all_bytes": true
+        },
+        "roamer_selection": {
+          "capture_slot": 0,
+          "candidate": 0,
+          "selected": 1,
+          "duplicates": 0,
+          "stale": 0,
+          "launched": 0,
+          "slots": [
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            },
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            },
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            },
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            },
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            },
+            {
+              "identity": 1,
+              "record": [
+                33,
+                728072593,
+                4226739189,
+                8192243,
+                65576
+              ],
+              "battle_type": 256
+            }
+          ]
+        },
+        "shiny_visuals": {
+          "pending_slot": 0,
+          "pending_sprite": 704,
+          "owned_lookups": 0,
+          "construction_lookups": 12,
+          "native_lookups": 1,
+          "sparkles": 18,
+          "sparkle_failures": 0,
+          "sparkle_ticks": [
+            4,
+            64,
+            3,
+            63,
+            2,
+            62
+          ],
+          "chimes": 6
+        },
+        "retained_legendary": {
+          "index": 5,
+          "owned_active": true,
+          "species": 243,
+          "pid": 4226739189,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 5,
+          "level": 40,
+          "hp": 125,
+          "max_hp": 128,
+          "status": 0,
+          "nature": 14,
+          "form": 0,
+          "ability": 46,
+          "ivs": [
+            17,
+            12,
+            0,
+            22,
+            21,
+            11
+          ],
+          "moves": [
+            46,
+            98,
+            209,
+            115
+          ],
+          "pokemon_sha256": "f03b7e187651662b23fdeed1108fc5b568bfaedc96cc77c47f19af372529df89",
+          "private_getters_preserve_all_bytes": true,
+          "native_object_params": [
+            243,
+            0,
+            1
+          ],
+          "native_object_shiny_bit": true
+        }
+      },
+      "contact": {
+        "native_battle_type": 256,
+        "roamer_launches": 1,
+        "enemy": {
+          "species": 243,
+          "pid": 4226739189,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 5,
+          "level": 40,
+          "hp": 125,
+          "max_hp": 128,
+          "status": 0,
+          "nature": 14,
+          "form": 0,
+          "ability": 46,
+          "ivs": [
+            17,
+            12,
+            0,
+            22,
+            21,
+            11
+          ],
+          "moves": [
+            46,
+            98,
+            209,
+            115
+          ],
+          "pokemon_sha256": "f03b7e187651662b23fdeed1108fc5b568bfaedc96cc77c47f19af372529df89",
+          "private_getters_preserve_all_bytes": true,
+          "identical_retained_slots": [
+            5
+          ]
+        }
+      },
+      "postcapture": {
+        "capture_exp": {
+          "parent": 36501672,
+          "context": 36451008,
+          "phase": 2,
+          "completed_once": 1,
+          "saved_fainted": 255,
+          "saved_gained": 0,
+          "saved_shared": 0,
+          "saved_earn0": 1,
+          "saved_earn1": 0,
+          "started": 1,
+          "completed": 1,
+          "failures": 0,
+          "skipped": 0,
+          "last_enemy": 1
+        },
+        "party_exp": {
+          "work": 36692728,
+          "context": 36451008,
+          "active": 0,
+          "participants": 1,
+          "full": 1234,
+          "half": 617,
+          "side": 0,
+          "slot": 4,
+          "bench": 0,
+          "shown": 1,
+          "printer": 0,
+          "started": 1,
+          "completed": 1,
+          "groups": 1,
+          "suppressed": 2,
+          "recipients": 4,
+          "calculations": 1
+        },
+        "native_saved_roamers": {
+          "records": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "locations": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "captured_flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "private_getters_preserve_all_bytes": true
+        },
+        "caught": {
+          "slot": 4,
+          "species": 243,
+          "pid": 4226739189,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 5,
+          "level": 40,
+          "hp": 125,
+          "max_hp": 128,
+          "status": 0,
+          "nature": 14,
+          "form": 0,
+          "ability": 46,
+          "ivs": [
+            17,
+            12,
+            0,
+            22,
+            21,
+            11
+          ],
+          "moves": [
+            46,
+            98,
+            209,
+            115
+          ],
+          "pokemon_sha256": "aa368466b03d85093dbf726d96e75c2fb30afc572c40cb689499dd86bba2a3e5",
+          "private_getters_preserve_all_bytes": true
+        }
+      },
+      "native_rewards": {
+        "deltas": [
+          {
+            "slot": 0,
+            "experience": 1234,
+            "level_before": 6,
+            "level_after": 13,
+            "moves_before": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "moves_after": [
+              235,
+              45,
+              75,
+              77
+            ],
+            "ev_deltas": {
+              "hp_ev": 0,
+              "attack_ev": 0,
+              "defense_ev": 0,
+              "speed_ev": 2,
+              "spatk_ev": 1,
+              "spdef_ev": 0
+            }
+          },
+          {
+            "slot": 1,
+            "experience": 617,
+            "level_before": 3,
+            "level_after": 8,
+            "moves_before": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "moves_after": [
+              33,
+              39,
+              98,
+              116
+            ],
+            "ev_deltas": {
+              "hp_ev": 0,
+              "attack_ev": 0,
+              "defense_ev": 0,
+              "speed_ev": 2,
+              "spatk_ev": 1,
+              "spdef_ev": 0
+            }
+          },
+          {
+            "slot": 2,
+            "experience": 617,
+            "level_before": 3,
+            "level_after": 8,
+            "moves_before": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "moves_after": [
+              33,
+              45,
+              193,
+              95
+            ],
+            "ev_deltas": {
+              "hp_ev": 0,
+              "attack_ev": 0,
+              "defense_ev": 0,
+              "speed_ev": 2,
+              "spatk_ev": 1,
+              "spdef_ev": 0
+            }
+          },
+          {
+            "slot": 3,
+            "experience": 617,
+            "level_before": 3,
+            "level_after": 8,
+            "moves_before": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "moves_after": [
+              33,
+              45,
+              193,
+              95
+            ],
+            "ev_deltas": {
+              "hp_ev": 0,
+              "attack_ev": 0,
+              "defense_ev": 0,
+              "speed_ev": 2,
+              "spatk_ev": 1,
+              "spdef_ev": 0
+            }
+          }
+        ],
+        "saved_party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "experience": 1457,
+            "level": 13,
+            "hp": 28,
+            "hp_ev": 4,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 3,
+            "spatk_ev": 1,
+            "spdef_ev": 0,
+            "move1": 235,
+            "move2": 45,
+            "move3": 75,
+            "move4": 77,
+            "move1_pp": 5,
+            "move2_pp": 40,
+            "move3_pp": 20,
+            "move4_pp": 35
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "experience": 653,
+            "level": 8,
+            "hp": 23,
+            "hp_ev": 2,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 2,
+            "spatk_ev": 1,
+            "spdef_ev": 0,
+            "move1": 33,
+            "move2": 39,
+            "move3": 98,
+            "move4": 116,
+            "move1_pp": 32,
+            "move2_pp": 30,
+            "move3_pp": 30,
+            "move4_pp": 30
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "experience": 645,
+            "level": 8,
+            "hp": 29,
+            "hp_ev": 2,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 2,
+            "spatk_ev": 1,
+            "spdef_ev": 0,
+            "move1": 33,
+            "move2": 45,
+            "move3": 193,
+            "move4": 95,
+            "move1_pp": 35,
+            "move2_pp": 40,
+            "move3_pp": 40,
+            "move4_pp": 20
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "experience": 645,
+            "level": 8,
+            "hp": 28,
+            "hp_ev": 2,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 2,
+            "spatk_ev": 1,
+            "spdef_ev": 0,
+            "move1": 33,
+            "move2": 45,
+            "move3": 193,
+            "move4": 95,
+            "move1_pp": 35,
+            "move2_pp": 40,
+            "move3_pp": 40,
+            "move4_pp": 20
+          },
+          {
+            "slot": 4,
+            "species": 243,
+            "experience": 80000,
+            "level": 40,
+            "hp": 125,
+            "hp_ev": 0,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 0,
+            "spatk_ev": 0,
+            "spdef_ev": 0,
+            "move1": 46,
+            "move2": 98,
+            "move3": 209,
+            "move4": 115,
+            "move1_pp": 20,
+            "move2_pp": 30,
+            "move3_pp": 20,
+            "move4_pp": 20
+          }
+        ],
+        "saved_equals_cold_reloaded": true
+      },
+      "cold_reload": {
+        "native_saved_roamers": {
+          "records": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "locations": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "captured_flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "private_getters_preserve_all_bytes": true
+        },
+        "caught": {
+          "slot": 4,
+          "species": 243,
+          "pid": 4226739189,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 5,
+          "level": 40,
+          "hp": 125,
+          "max_hp": 128,
+          "status": 0,
+          "nature": 14,
+          "form": 0,
+          "ability": 46,
+          "ivs": [
+            17,
+            12,
+            0,
+            22,
+            21,
+            11
+          ],
+          "moves": [
+            46,
+            98,
+            209,
+            115
+          ],
+          "pokemon_sha256": "aa368466b03d85093dbf726d96e75c2fb30afc572c40cb689499dd86bba2a3e5",
+          "private_getters_preserve_all_bytes": true
+        },
+        "legendary_models_selected": 0,
+        "active_legendary_models": 0
+      },
+      "fixtures": [
+        {
+          "kind": "hgss-verification-ram-fixture",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "source_ram_sha256": "f47ef943abf4f9768171a4c32bf8590c13837ea0cc3616bae3a6aea646bcd41c",
+          "changes": [
+            {
+              "address": 36186800,
+              "before": "23000000",
+              "after": "21000000",
+              "reason": "Isolated current-map simulation; all native-created PID/IV/HP/status fields remain unchanged."
+            },
+            {
+              "address": 36186880,
+              "before": "02",
+              "after": "00",
+              "reason": "Matching native Route 29 location index."
+            }
+          ]
+        },
+        {
+          "kind": "hgss-verification-ram-fixture",
+          "rom_sha256": "51a6222ef38b09a293cea7d98b97692d598a96b1b5cceafa82dcb666ba6d49c3",
+          "source_ram_sha256": "435ea752ff5f619edb65dd42db9a8d4820f2ca3a024f73d74af70c320fba7b2e",
+          "changes": [
+            {
+              "address": 36163328,
+              "before": "00000000",
+              "after": "01000100",
+              "reason": "Isolated one-Master-Ball supply before native battle setup copies the bag. No Pokemon, HP, status, EXP or story edits."
+            }
+          ]
+        }
+      ]
+    },
+    "soulsilver": {
+      "steps": [
+        {
+          "local_run": "local_data/verification/ss19b-visible",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "d79ea25227253bbd15383dfa06980fcdbbad8399e023dcdf598d13da0caafb88",
+          "ram_sha256": "f3f76d52ed348025f4d230162ec1fc7bd894145a53bf5b63a5b96a9aedc2e6e2",
+          "report_sha256": "fd8517680becea39a6416b60eb5c408ea7db51c717fd4b957c4d2d3208b0b67f",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "RIGHT",
+                10,
+                14
+              ],
+              [
+                "RIGHT",
+                50,
+                54
+              ],
+              [
+                "UP",
+                90,
+                94
+              ],
+              [
+                "UP",
+                130,
+                134
+              ],
+              [
+                "A",
+                170,
+                174
+              ],
+              [
+                "SELECT",
+                1200,
+                1204
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": {
+            "fixture_sha256": "0b462ff5c5e20bccc035447e59a4c33bbae222f5743e2b8cc4fcb35bd1fa8c41",
+            "source_ram_sha256": "24a05131a518153a412e9e15121029e58ffc05f9b8c3dcc4924ceed32d786915",
+            "applied_ram_sha256": "dc00e47fdde11b13f4c4efc8757dc26d11d2bb3728706d20b197470dddb52f17",
+            "changes": [
+              {
+                "address": 36186776,
+                "before": "29000000",
+                "after": "21000000",
+                "reason": "Isolated current-map simulation; all native-created PID/IV/HP/status fields remain unchanged."
+              },
+              {
+                "address": 36186856,
+                "before": "08",
+                "after": "00",
+                "reason": "Matching native Route 29 location index."
+              }
+            ]
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-field/state.bin",
+            "sha256": "de774dd834ba00746413e36b1285b1912d321d3fcdf94ff0f9cb4a55121ff5ff"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-contact",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "f776eb0981b83a04586e5f9618e85418816a8c0795fbddeb77ec4a69895f317c",
+          "ram_sha256": "ec84b9772cd7a3bf5541fa4ae7743e16c443b7657ad485c7fcc8ffe1e4df38d5",
+          "report_sha256": "c607213461af4efab13afca611c8354600ae81bd8d0f92c13e7550614f163f22",
+          "frames": 1600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "DOWN",
+                30,
+                78
+              ],
+              [
+                "LEFT",
+                100,
+                116
+              ],
+              [
+                "A",
+                140,
+                144
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-visible/state.bin",
+            "sha256": "d79ea25227253bbd15383dfa06980fcdbbad8399e023dcdf598d13da0caafb88"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-capture-ready",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "a0ce58139b28e5fd4a9a0a40a5f5f04d41a45cf4fd59bb5c02d982c19af50323",
+          "ram_sha256": "a6578eefc67d63e7c63f3de5340b5380afb0a14e7b070516b7987dddd6888c9b",
+          "report_sha256": "41b7a81cd6a7bf533ea9772dce9fd1b7a0c82a6d13df0ad425a9c25340fc9521",
+          "frames": 1600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "DOWN",
+                30,
+                78
+              ],
+              [
+                "LEFT",
+                100,
+                116
+              ],
+              [
+                "A",
+                140,
+                144
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": {
+            "fixture_sha256": "a364aff9d90da0ff8405b557a176b49fea0b2daaf4b1f1a7e192da07b40a7c53",
+            "source_ram_sha256": "f3f76d52ed348025f4d230162ec1fc7bd894145a53bf5b63a5b96a9aedc2e6e2",
+            "applied_ram_sha256": "141a22f7c1e10951e8bcfbc2e2345d0d86bfd7785b380ec706789031e2a1adec",
+            "changes": [
+              {
+                "address": 36163304,
+                "before": "00000000",
+                "after": "01000100",
+                "reason": "Isolated one-Master-Ball supply before native battle setup copies the bag. No Pokemon, HP, status, EXP or story edits."
+              }
+            ]
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-visible/state.bin",
+            "sha256": "d79ea25227253bbd15383dfa06980fcdbbad8399e023dcdf598d13da0caafb88"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "c387330f3519a341e1968d2611a8f2c726855a68eae4f084c332a6655c3e78db",
+          "ram_sha256": "f28626a1518243d3302ca74eff480f8661a69b2be99ed764bcf7927a1d500d4e",
+          "report_sha256": "dbf5548bed17c8081cd5c45eefb5ea95cee73bb89804c4381615c7fb460e8ce5",
+          "frames": 5500,
+          "inputs": {
+            "buttons": [],
+            "touches": [
+              [
+                40,
+                170,
+                10,
+                14
+              ],
+              [
+                190,
+                75,
+                400,
+                404
+              ],
+              [
+                50,
+                35,
+                1000,
+                1004
+              ],
+              [
+                100,
+                170,
+                1500,
+                1504
+              ]
+            ]
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-capture-ready/state.bin",
+            "sha256": "a0ce58139b28e5fd4a9a0a40a5f5f04d41a45cf4fd59bb5c02d982c19af50323"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-levels1",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "6cff89ba7e2cae4dca91bacb2fd27758b1e5c83b3032232d068ea537efa57008",
+          "ram_sha256": "dfcf86e823a3190b17d2978c278f43f4f84dd4408e4e2e163fafd874af27e003",
+          "report_sha256": "fd29d0e799a918c84650f05253cb96939391dcc39008964677200606f20a3d22",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "A",
+                750,
+                754
+              ],
+              [
+                "A",
+                1000,
+                1004
+              ],
+              [
+                "A",
+                1250,
+                1254
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch/state.bin",
+            "sha256": "c387330f3519a341e1968d2611a8f2c726855a68eae4f084c332a6655c3e78db"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-levels2",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "cf2120f4cb7bca783bbc637e7389d0bc6626b7d4198b6cea116f1db1791c7148",
+          "ram_sha256": "8ffbee5a2e3e89b72a4b408478c3ac9d65da8c53a0ffb3e942a51a334ae66c81",
+          "report_sha256": "07828161d201b4ac16f52bd2aa22365ac319ba41092f8921ba1157956c8a09b8",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "A",
+                750,
+                754
+              ],
+              [
+                "A",
+                1000,
+                1004
+              ],
+              [
+                "A",
+                1250,
+                1254
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-levels1/state.bin",
+            "sha256": "6cff89ba7e2cae4dca91bacb2fd27758b1e5c83b3032232d068ea537efa57008"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-levels3",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "23aff60ec7c7a0070f036dc590c5c77cc0b85d86c054ee836e0810b604184eea",
+          "ram_sha256": "128c09aab3e863f68bde97349082affc0f810b1cfbe25dc1f540cfa744656905",
+          "report_sha256": "fb34732bf1ad8556108250264d1de7e4b331d4891ebb806494043a04f4f3234e",
+          "frames": 1700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "A",
+                750,
+                754
+              ],
+              [
+                "A",
+                1000,
+                1004
+              ],
+              [
+                "A",
+                1250,
+                1254
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-levels2/state.bin",
+            "sha256": "cf2120f4cb7bca783bbc637e7389d0bc6626b7d4198b6cea116f1db1791c7148"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-reflect-prompt",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "bbf402e2459039f963573733131ee1a9c9100d2c0e2fc4b7ade0e95adb8c02d7",
+          "ram_sha256": "a5cff25cb4188adc26143c3497985b368834380b41eac52bb1d625047abcf058",
+          "report_sha256": "27406243196e3fc8d0de73f2e011337f8f60d1cc21a51604f9bc4a70474d8bb1",
+          "frames": 1000,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-levels3/state.bin",
+            "sha256": "23aff60ec7c7a0070f036dc590c5c77cc0b85d86c054ee836e0810b604184eea"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-forget-menu",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "0a8d4031d9d51eb97bc033571a865d8efa2716fd4e0e77d0f107e178a341e0a5",
+          "ram_sha256": "57e6d6b067c8a22fe2cd5683f08178ebae39dda5e3b7cc5f358f34d6840cd303",
+          "report_sha256": "0933e6555fe659ee37eb9905922b4fdfe192b5dd8985cbb120946374e6c68648",
+          "frames": 900,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-reflect-prompt/state.bin",
+            "sha256": "bbf402e2459039f963573733131ee1a9c9100d2c0e2fc4b7ade0e95adb8c02d7"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-learn-synthesis",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "a1c9a7082613d25a5c0dca0964cf093690b6b1742b0146a9b8e6c68d28db324a",
+          "ram_sha256": "035bbea99ff6d4d7f5db4a9b54ed25d0c8b5ce3642505a3ce325b002ac581235",
+          "report_sha256": "c215bceec4fae7fad01973668a7ae370c8b50d215517001eebb2048186a24421",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                400,
+                404
+              ],
+              [
+                "A",
+                800,
+                804
+              ],
+              [
+                "A",
+                1200,
+                1204
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-forget-menu/state.bin",
+            "sha256": "0a8d4031d9d51eb97bc033571a865d8efa2716fd4e0e77d0f107e178a341e0a5"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-bench1",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "fa981a017aa98f1899ff9349844a2fec1c72bc67adbd4a8b74ef154b54e813e6",
+          "ram_sha256": "949a5f7f4768255ed606b1ecd84c8f402e8161ec01d19bb05ecdbed7164725f2",
+          "report_sha256": "b82d8c495fa25880826b206a664fc0995dd36eaf6962439127cd7802ab3c26f3",
+          "frames": 2200,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "A",
+                750,
+                754
+              ],
+              [
+                "A",
+                1000,
+                1004
+              ],
+              [
+                "A",
+                1250,
+                1254
+              ],
+              [
+                "A",
+                1500,
+                1504
+              ],
+              [
+                "A",
+                1750,
+                1754
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-learn-synthesis/state.bin",
+            "sha256": "a1c9a7082613d25a5c0dca0964cf093690b6b1742b0146a9b8e6c68d28db324a"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-bench2",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "cd8d33b22248482de958994446181b344f0fde2adc05bf0ae2de3715c1bbe86a",
+          "ram_sha256": "bc71364e7154d5d750f9cb2d2701f2ee3e9c0f7bae5e41b4ccc6ae1f7d256c60",
+          "report_sha256": "bbea81b7baca3582e2a9114cf076ae66cbaeb3c217370839c793f2692d50ac96",
+          "frames": 2700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ],
+              [
+                "A",
+                1510,
+                1514
+              ],
+              [
+                "A",
+                1760,
+                1764
+              ],
+              [
+                "A",
+                2010,
+                2014
+              ],
+              [
+                "A",
+                2260,
+                2264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-bench1/state.bin",
+            "sha256": "fa981a017aa98f1899ff9349844a2fec1c72bc67adbd4a8b74ef154b54e813e6"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-bench3",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "bfb461b6d7f4864f0cc259668aa3072157441dab30a63da5f50b6c1978b40006",
+          "ram_sha256": "7c2c6b5e5aec2cf93607025ecdfbd64d6f1d6b9182719714dd639e9b341a5f87",
+          "report_sha256": "53ad1577e74d5721ac7f06ec5486603143fba8151c5b0b61a38f5e5ddcbaa3aa",
+          "frames": 2700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ],
+              [
+                "A",
+                1510,
+                1514
+              ],
+              [
+                "A",
+                1760,
+                1764
+              ],
+              [
+                "A",
+                2010,
+                2014
+              ],
+              [
+                "A",
+                2260,
+                2264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-bench2/state.bin",
+            "sha256": "cd8d33b22248482de958994446181b344f0fde2adc05bf0ae2de3715c1bbe86a"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-bench4",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "9c554297e43ca4be6ee5e392bacb0159bee15cf91201946877d418300f520db6",
+          "ram_sha256": "9abaf01f5405acd943c7ea963f1fb98eee1f72a31ee54d6f03d9a3a71e9a3c11",
+          "report_sha256": "c74e9f5dc16e711b64678e0fe9397596b8eae347b94d080ea7792feba1b0e45a",
+          "frames": 2700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ],
+              [
+                "A",
+                1510,
+                1514
+              ],
+              [
+                "A",
+                1760,
+                1764
+              ],
+              [
+                "A",
+                2010,
+                2014
+              ],
+              [
+                "A",
+                2260,
+                2264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-bench3/state.bin",
+            "sha256": "bfb461b6d7f4864f0cc259668aa3072157441dab30a63da5f50b6c1978b40006"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-bench5",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "d02efa619902a298493d874be5295f6802a7004522f9645ff804a06f9925c572",
+          "ram_sha256": "90789f73c76ad821f0069f81cf762797ca622b383953b1c757d9089f36da350d",
+          "report_sha256": "e01d03d0176249db6e1c569b4caa35d4ca8f5f48b8aedfbb0c6d2d0729ba5ece",
+          "frames": 2700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ],
+              [
+                "A",
+                1510,
+                1514
+              ],
+              [
+                "A",
+                1760,
+                1764
+              ],
+              [
+                "A",
+                2010,
+                2014
+              ],
+              [
+                "A",
+                2260,
+                2264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-bench4/state.bin",
+            "sha256": "9c554297e43ca4be6ee5e392bacb0159bee15cf91201946877d418300f520db6"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-bench6",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "ac205952e5d95b9f18f72ad4212f23ea045085207a57d2939c95f9a9f60cd295",
+          "ram_sha256": "30f61c40f8aa9a95b13d71ba590b0f74bb68f7742a3f21e4fa7e088de6bb2a73",
+          "report_sha256": "da448131c538219ff8514834e2be0e8a596bfa848c0ae9d4a35fefb88523b4b5",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                260,
+                264
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "A",
+                760,
+                764
+              ],
+              [
+                "A",
+                1010,
+                1014
+              ],
+              [
+                "A",
+                1260,
+                1264
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-bench5/state.bin",
+            "sha256": "d02efa619902a298493d874be5295f6802a7004522f9645ff804a06f9925c572"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-rewards-end",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "3c4fbf333a46e8f6c8b4015c2797f5754e6b9d6570bb2726929287cc8d843234",
+          "ram_sha256": "9a6f291571cc3e7687d105ecc7d1a89bcecd7cbcd00bef5548bd33bf46cc8e63",
+          "report_sha256": "a6dd8ab631bcb5ccd365c1f669488a2493f27753d717d283ec0929dcdbe88963",
+          "frames": 1400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-bench6/state.bin",
+            "sha256": "ac205952e5d95b9f18f72ad4212f23ea045085207a57d2939c95f9a9f60cd295"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-dex-close",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "ac95f286dde701f0d030253042ea8118ab7e82c8958c842cc0235519e84f96a6",
+          "ram_sha256": "c75cc415bc04ec3c6e4f4f1a59be1ba46d20c74fb232fa45cef82e0f25484971",
+          "report_sha256": "b51944102961a4a6ece3d2dcb5404243ce1339d01e84c46154fdfce67e3fd83f",
+          "frames": 1600,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "B",
+                600,
+                604
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-rewards-end/state.bin",
+            "sha256": "3c4fbf333a46e8f6c8b4015c2797f5754e6b9d6570bb2726929287cc8d843234"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-catch-field",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "10b391f58cf0d49f331b80b3b40c1afb51f1be17b9d54b09d57d7eeb1d7e5648",
+          "ram_sha256": "58f6522347be41044b5279f20b3693e03f98f69c1aff367e5d459a83d481a651",
+          "report_sha256": "29eac304588a4c91bfbcd37135b4523352d0974ee92b3f81fb4386cd617cd491",
+          "frames": 1800,
+          "inputs": {
+            "buttons": [
+              [
+                "SELECT",
+                1500,
+                1504
+              ]
+            ],
+            "touches": [
+              [
+                128,
+                140,
+                10,
+                14
+              ]
+            ]
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-dex-close/state.bin",
+            "sha256": "ac95f286dde701f0d030253042ea8118ab7e82c8958c842cc0235519e84f96a6"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-caught-save",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "65db6da4859b3d7da6d0289fbf2b6f761af22bd2e6121f1feb64db4a3ebc3470",
+          "ram_sha256": "bce210c632fbb14bc764aa98589a81b6fef198247b62ba8597fbcda3fefd59f8",
+          "report_sha256": "0a3c41d4d518efe1e76ff0c9a1b42c78104f14b85632c845d27dc9d6d71665c1",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                2000,
+                2004
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                80,
+                84
+              ],
+              [
+                231,
+                96,
+                600,
+                604
+              ]
+            ]
+          },
+          "save_import_sha256": null,
+          "developer_ram_fixture": null,
+          "loaded_state": {
+            "path": "local_data/verification/ss19b-catch-field/state.bin",
+            "sha256": "10b391f58cf0d49f331b80b3b40c1afb51f1be17b9d54b09d57d7eeb1d7e5648"
+          }
+        },
+        {
+          "local_run": "local_data/verification/ss19b-caught-cold",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "state_sha256": "b81949b3c3e4cd534742d4d57329e9ab91f8c340f87352f1b718e1c1c0a72daa",
+          "ram_sha256": "16fc44974ec09a9ab179a16587c2bf3e1cf7dd3076fed7476c0ce1773770129e",
+          "report_sha256": "8c1aaa6755d84af416aa0db043bed8ce359a755a4cc33734001b87278e2ff06e",
+          "frames": 3400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                2700,
+                2704
+              ]
+            ],
+            "touches": []
+          },
+          "save_import_sha256": "9c98cd4da2d8573171f310c73388eb6966e3a4b2fa82fdd4c4adc67b7f310025",
+          "developer_ram_fixture": null,
+          "loaded_native_save": {
+            "path": "local_data/verification/ss19b-caught-save/cartridge.sav",
+            "sha256": "9c98cd4da2d8573171f310c73388eb6966e3a4b2fa82fdd4c4adc67b7f310025"
+          }
+        }
+      ],
+      "visible": {
+        "generated": 6,
+        "launched": 0,
+        "native_saved_roamers": {
+          "records": [
+            [
+              33,
+              728072593,
+              4226739189,
+              8192243,
+              65576
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "locations": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "captured_flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "private_getters_preserve_all_bytes": true
+        },
+        "roamer_selection": {
+          "capture_slot": 0,
+          "candidate": 0,
+          "selected": 1,
+          "duplicates": 2,
+          "stale": 0,
+          "launched": 0,
+          "slots": [
+            {
+              "identity": 1,
+              "record": [
+                33,
+                728072593,
+                4226739189,
+                8192243,
+                65576
+              ],
+              "battle_type": 256
+            },
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            },
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            },
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            },
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            },
+            {
+              "identity": 0,
+              "record": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "battle_type": 0
+            }
+          ]
+        },
+        "shiny_visuals": {
+          "pending_slot": 0,
+          "pending_sprite": 593,
+          "owned_lookups": 0,
+          "construction_lookups": 12,
+          "native_lookups": 1,
+          "sparkles": 18,
+          "sparkle_failures": 0,
+          "sparkle_ticks": [
+            4,
+            64,
+            3,
+            63,
+            2,
+            62
+          ],
+          "chimes": 6
+        },
+        "retained_legendary": {
+          "index": 0,
+          "owned_active": true,
+          "species": 243,
+          "pid": 4226739189,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 5,
+          "level": 40,
+          "hp": 125,
+          "max_hp": 128,
+          "status": 0,
+          "nature": 14,
+          "form": 0,
+          "ability": 46,
+          "ivs": [
+            17,
+            12,
+            0,
+            22,
+            21,
+            11
+          ],
+          "moves": [
+            46,
+            98,
+            209,
+            115
+          ],
+          "pokemon_sha256": "0c0d9301c4973e5613ff0ae8915c5aacdf0f95ad59abb0e8bd33f5ed9f6011ce",
+          "private_getters_preserve_all_bytes": true,
+          "native_object_params": [
+            243,
+            0,
+            1
+          ],
+          "native_object_shiny_bit": true
+        }
+      },
+      "contact": {
+        "native_battle_type": 256,
+        "roamer_launches": 1,
+        "enemy": {
+          "species": 243,
+          "pid": 4226739189,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 5,
+          "level": 40,
+          "hp": 125,
+          "max_hp": 128,
+          "status": 0,
+          "nature": 14,
+          "form": 0,
+          "ability": 46,
+          "ivs": [
+            17,
+            12,
+            0,
+            22,
+            21,
+            11
+          ],
+          "moves": [
+            46,
+            98,
+            209,
+            115
+          ],
+          "pokemon_sha256": "0c0d9301c4973e5613ff0ae8915c5aacdf0f95ad59abb0e8bd33f5ed9f6011ce",
+          "private_getters_preserve_all_bytes": true,
+          "identical_retained_slots": [
+            0
+          ]
+        }
+      },
+      "postcapture": {
+        "capture_exp": {
+          "parent": 36501648,
+          "context": 36450984,
+          "phase": 2,
+          "completed_once": 1,
+          "saved_fainted": 255,
+          "saved_gained": 0,
+          "saved_shared": 0,
+          "saved_earn0": 1,
+          "saved_earn1": 0,
+          "started": 1,
+          "completed": 1,
+          "failures": 0,
+          "skipped": 0,
+          "last_enemy": 1
+        },
+        "party_exp": {
+          "work": 36692704,
+          "context": 36450984,
+          "active": 0,
+          "participants": 1,
+          "full": 1234,
+          "half": 617,
+          "side": 0,
+          "slot": 4,
+          "bench": 0,
+          "shown": 1,
+          "printer": 0,
+          "started": 1,
+          "completed": 1,
+          "groups": 1,
+          "suppressed": 2,
+          "recipients": 4,
+          "calculations": 1
+        },
+        "native_saved_roamers": {
+          "records": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "locations": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "captured_flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "private_getters_preserve_all_bytes": true
+        },
+        "caught": {
+          "slot": 4,
+          "species": 243,
+          "pid": 4226739189,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 5,
+          "level": 40,
+          "hp": 125,
+          "max_hp": 128,
+          "status": 0,
+          "nature": 14,
+          "form": 0,
+          "ability": 46,
+          "ivs": [
+            17,
+            12,
+            0,
+            22,
+            21,
+            11
+          ],
+          "moves": [
+            46,
+            98,
+            209,
+            115
+          ],
+          "pokemon_sha256": "996a87a4d1f90ad6d65731675ecaf5bebc810b54027ff04386cf7ea285f1f6d5",
+          "private_getters_preserve_all_bytes": true
+        }
+      },
+      "native_rewards": {
+        "deltas": [
+          {
+            "slot": 0,
+            "experience": 1234,
+            "level_before": 6,
+            "level_after": 13,
+            "moves_before": [
+              33,
+              45,
+              75,
+              0
+            ],
+            "moves_after": [
+              235,
+              45,
+              75,
+              77
+            ],
+            "ev_deltas": {
+              "hp_ev": 0,
+              "attack_ev": 0,
+              "defense_ev": 0,
+              "speed_ev": 2,
+              "spatk_ev": 1,
+              "spdef_ev": 0
+            }
+          },
+          {
+            "slot": 1,
+            "experience": 617,
+            "level_before": 3,
+            "level_after": 8,
+            "moves_before": [
+              33,
+              39,
+              0,
+              0
+            ],
+            "moves_after": [
+              33,
+              39,
+              98,
+              116
+            ],
+            "ev_deltas": {
+              "hp_ev": 0,
+              "attack_ev": 0,
+              "defense_ev": 0,
+              "speed_ev": 2,
+              "spatk_ev": 1,
+              "spdef_ev": 0
+            }
+          },
+          {
+            "slot": 2,
+            "experience": 617,
+            "level_before": 3,
+            "level_after": 8,
+            "moves_before": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "moves_after": [
+              33,
+              45,
+              193,
+              95
+            ],
+            "ev_deltas": {
+              "hp_ev": 0,
+              "attack_ev": 0,
+              "defense_ev": 0,
+              "speed_ev": 2,
+              "spatk_ev": 1,
+              "spdef_ev": 0
+            }
+          },
+          {
+            "slot": 3,
+            "experience": 617,
+            "level_before": 3,
+            "level_after": 8,
+            "moves_before": [
+              33,
+              45,
+              193,
+              0
+            ],
+            "moves_after": [
+              33,
+              45,
+              193,
+              95
+            ],
+            "ev_deltas": {
+              "hp_ev": 0,
+              "attack_ev": 0,
+              "defense_ev": 0,
+              "speed_ev": 2,
+              "spatk_ev": 1,
+              "spdef_ev": 0
+            }
+          }
+        ],
+        "saved_party": [
+          {
+            "slot": 0,
+            "species": 152,
+            "experience": 1457,
+            "level": 13,
+            "hp": 28,
+            "hp_ev": 4,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 3,
+            "spatk_ev": 1,
+            "spdef_ev": 0,
+            "move1": 235,
+            "move2": 45,
+            "move3": 75,
+            "move4": 77,
+            "move1_pp": 5,
+            "move2_pp": 40,
+            "move3_pp": 20,
+            "move4_pp": 35
+          },
+          {
+            "slot": 1,
+            "species": 19,
+            "experience": 653,
+            "level": 8,
+            "hp": 23,
+            "hp_ev": 2,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 2,
+            "spatk_ev": 1,
+            "spdef_ev": 0,
+            "move1": 33,
+            "move2": 39,
+            "move3": 98,
+            "move4": 116,
+            "move1_pp": 32,
+            "move2_pp": 30,
+            "move3_pp": 30,
+            "move4_pp": 30
+          },
+          {
+            "slot": 2,
+            "species": 163,
+            "experience": 645,
+            "level": 8,
+            "hp": 29,
+            "hp_ev": 2,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 2,
+            "spatk_ev": 1,
+            "spdef_ev": 0,
+            "move1": 33,
+            "move2": 45,
+            "move3": 193,
+            "move4": 95,
+            "move1_pp": 35,
+            "move2_pp": 40,
+            "move3_pp": 40,
+            "move4_pp": 20
+          },
+          {
+            "slot": 3,
+            "species": 163,
+            "experience": 645,
+            "level": 8,
+            "hp": 28,
+            "hp_ev": 2,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 2,
+            "spatk_ev": 1,
+            "spdef_ev": 0,
+            "move1": 33,
+            "move2": 45,
+            "move3": 193,
+            "move4": 95,
+            "move1_pp": 35,
+            "move2_pp": 40,
+            "move3_pp": 40,
+            "move4_pp": 20
+          },
+          {
+            "slot": 4,
+            "species": 243,
+            "experience": 80000,
+            "level": 40,
+            "hp": 125,
+            "hp_ev": 0,
+            "attack_ev": 0,
+            "defense_ev": 0,
+            "speed_ev": 0,
+            "spatk_ev": 0,
+            "spdef_ev": 0,
+            "move1": 46,
+            "move2": 98,
+            "move3": 209,
+            "move4": 115,
+            "move1_pp": 20,
+            "move2_pp": 30,
+            "move3_pp": 20,
+            "move4_pp": 20
+          }
+        ],
+        "saved_equals_cold_reloaded": true
+      },
+      "cold_reload": {
+        "native_saved_roamers": {
+          "records": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "locations": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "captured_flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "private_getters_preserve_all_bytes": true
+        },
+        "caught": {
+          "slot": 4,
+          "species": 243,
+          "pid": 4226739189,
+          "ot_id": 2836379921,
+          "native_shiny": true,
+          "shiny_xor": 5,
+          "level": 40,
+          "hp": 125,
+          "max_hp": 128,
+          "status": 0,
+          "nature": 14,
+          "form": 0,
+          "ability": 46,
+          "ivs": [
+            17,
+            12,
+            0,
+            22,
+            21,
+            11
+          ],
+          "moves": [
+            46,
+            98,
+            209,
+            115
+          ],
+          "pokemon_sha256": "996a87a4d1f90ad6d65731675ecaf5bebc810b54027ff04386cf7ea285f1f6d5",
+          "private_getters_preserve_all_bytes": true
+        },
+        "legendary_models_selected": 0,
+        "active_legendary_models": 0
+      },
+      "fixtures": [
+        {
+          "kind": "hgss-verification-ram-fixture",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "source_ram_sha256": "24a05131a518153a412e9e15121029e58ffc05f9b8c3dcc4924ceed32d786915",
+          "changes": [
+            {
+              "address": 36186776,
+              "before": "29000000",
+              "after": "21000000",
+              "reason": "Isolated current-map simulation; all native-created PID/IV/HP/status fields remain unchanged."
+            },
+            {
+              "address": 36186856,
+              "before": "08",
+              "after": "00",
+              "reason": "Matching native Route 29 location index."
+            }
+          ]
+        },
+        {
+          "kind": "hgss-verification-ram-fixture",
+          "rom_sha256": "36ae937b3c1c3bdb1d2e19770478223fb954e1b1df7ef07de82cde9396774498",
+          "source_ram_sha256": "f3f76d52ed348025f4d230162ec1fc7bd894145a53bf5b63a5b96a9aedc2e6e2",
+          "changes": [
+            {
+              "address": 36163304,
+              "before": "00000000",
+              "after": "01000100",
+              "reason": "Isolated one-Master-Ball supply before native battle setup copies the bag. No Pokemon, HP, status, EXP or story edits."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "native_release_damage_control": {
+    "scope": "19a prototype has an uncovered native roamer encounter-start branch: its hidden battle is diagnostic, never accepted as visible-model evidence. The factory, native damage/flee/save still establish creation and saved HP control; 19b intercepts both native start branches.",
+    "steps": [
+      {
+        "local_run": "local_data/verification/hg19a-follower-talk",
+        "rom_sha256": "28ce7217d0fa535f99cc3272a348cce78c343868c8596ca11cf8ab2d005b53a8",
+        "state_sha256": "b3203081d30483a2cbafb28a83d136af96ba0e01db2230df95c03a35484d3e31",
+        "ram_sha256": "76ac980f938051b83479a542bedcf08e6a28950137c1b8c27df87c6ed35b29da",
+        "report_sha256": "4b5123a867871c644420c81e08d0c1c9dd0730252e9025c12b5a0cebeb70ea52",
+        "frames": 500,
+        "inputs": {
+          "buttons": [
+            [
+              "LEFT",
+              10,
+              14
+            ],
+            [
+              "A",
+              60,
+              64
+            ]
+          ],
+          "touches": []
+        },
+        "save_import_sha256": null,
+        "developer_ram_fixture": null
+      },
+      {
+        "local_run": "local_data/verification/hg19a-native-release",
+        "rom_sha256": "28ce7217d0fa535f99cc3272a348cce78c343868c8596ca11cf8ab2d005b53a8",
+        "state_sha256": "102d484380ed4c39c53d5672dccca32a0df4cb2575026799dda770ef6cfcdd77",
+        "ram_sha256": "d35b2d5f4554129f8eac332f0471c0257005f2c0549ffbd223a3250150d810aa",
+        "report_sha256": "4491af286c1cd15283cd440d587856066ea91509e13714d10dbafc39d4616213",
+        "frames": 1000,
+        "inputs": {
+          "buttons": [
+            [
+              "A",
+              100,
+              104
+            ],
+            [
+              "A",
+              300,
+              304
+            ],
+            [
+              "SELECT",
+              800,
+              804
+            ]
+          ],
+          "touches": []
+        },
+        "save_import_sha256": null,
+        "developer_ram_fixture": {
+          "fixture_sha256": "25dfd4700f96c29d468dd9a8683e9fc35253cecae4dd5476b11351a6b1c4121c",
+          "source_ram_sha256": "76ac980f938051b83479a542bedcf08e6a28950137c1b8c27df87c6ed35b29da",
+          "applied_ram_sha256": "b7b0e97d81d1b8efc1ef30dbf079f4fe08b19ab2912521bcdabff4350bebbb84",
+          "changes": [
+            {
+              "address": 36334752,
+              "before": "000000000000000000",
+              "after": "d0010016005b000000",
+              "reason": "Isolated native CreateRoamer(0) command followed by GoTo original bytecode, in unused slots 17-19 of the active native script context stack (stackDepth 0). Native factory generates all PID/IV/HP data."
+            },
+            {
+              "address": 36334680,
+              "before": "046d2a02",
+              "after": "a06c2a02",
+              "reason": "Temporarily route the existing follower script through the native release command, then return to its original continuation. No engine code or original script bank bytes changed."
+            }
+          ]
+        }
+      },
+      {
+        "local_run": "local_data/verification/hg19a-release-close",
+        "rom_sha256": "28ce7217d0fa535f99cc3272a348cce78c343868c8596ca11cf8ab2d005b53a8",
+        "state_sha256": "f79a2f967cd95bcda15f3949e59cbc135734f4e96eb2caeced2044ea214fa820",
+        "ram_sha256": "e1ff0df4ebcec8e093bcb38f4e57e983a9c27022633548cfff418dff5f57455e",
+        "report_sha256": "83fdd48833dee812a4119949e542c4919d22b50f91ee517d30badd0414c69aa8",
+        "frames": 1100,
+        "inputs": {
+          "buttons": [
+            [
+              "A",
+              10,
+              14
+            ],
+            [
+              "A",
+              200,
+              204
+            ],
+            [
+              "A",
+              400,
+              404
+            ],
+            [
+              "A",
+              600,
+              604
+            ],
+            [
+              "SELECT",
+              900,
+              904
+            ]
+          ],
+          "touches": []
+        },
+        "save_import_sha256": null,
+        "developer_ram_fixture": null
+      },
+      {
+        "local_run": "local_data/verification/hg19a-raikou-visible",
+        "rom_sha256": "28ce7217d0fa535f99cc3272a348cce78c343868c8596ca11cf8ab2d005b53a8",
+        "state_sha256": "d0bae730748ef02e0f20dca98e0719c1a937c5d68d70a62175025416372448dd",
+        "ram_sha256": "81e1ab98b1f95195227c34629666d4ad9f8dcc3492189f4fc4a8f0733036b68d",
+        "report_sha256": "ff71ba7fd12a7cf181af3e65e28a939551fe762d4c2d8ed39885e54071e8f80a",
+        "frames": 1700,
+        "inputs": {
+          "buttons": [
+            [
+              "RIGHT",
+              10,
+              14
+            ],
+            [
+              "X",
+              50,
+              54
+            ],
+            [
+              "DOWN",
+              90,
+              94
+            ],
+            [
+              "DOWN",
+              130,
+              134
+            ],
+            [
+              "DOWN",
+              170,
+              174
+            ],
+            [
+              "LEFT",
+              210,
+              214
+            ],
+            [
+              "DOWN",
+              250,
+              254
+            ],
+            [
+              "DOWN",
+              290,
+              294
+            ],
+            [
+              "A",
+              330,
+              334
+            ],
+            [
+              "DOWN",
+              500,
+              548
+            ],
+            [
+              "LEFT",
+              600,
+              664
+            ],
+            [
+              "SELECT",
+              1300,
+              1304
+            ]
+          ],
+          "touches": []
+        },
+        "save_import_sha256": null,
+        "developer_ram_fixture": {
+          "fixture_sha256": "a0a7ddcef6522725aad2156d48bf5888422c9d0757ec410eb81c24c0c97a0f65",
+          "source_ram_sha256": "e1ff0df4ebcec8e093bcb38f4e57e983a9c27022633548cfff418dff5f57455e",
+          "applied_ram_sha256": "e98f8ed6140db932e8e22dffbfdbf92e4edf0a5de04dba5c34d3b9ac2254fa40",
+          "changes": [
+            {
+              "address": 36186828,
+              "before": "23000000",
+              "after": "21000000",
+              "reason": "Isolated native roamer location simulation: current map Route 29, preserving native-created PID/IV/HP/status."
+            },
+            {
+              "address": 36186908,
+              "before": "02",
+              "after": "00",
+              "reason": "Matching Route 29 location index from the original native map table."
+            }
+          ]
+        }
+      },
+      {
+        "local_run": "local_data/verification/hg19a-roamer-turn",
+        "rom_sha256": "28ce7217d0fa535f99cc3272a348cce78c343868c8596ca11cf8ab2d005b53a8",
+        "state_sha256": "f0b979dbbde2c17b45360249b64102c00fbb88ad44aa6c24ea8c4ad5ecd2622c",
+        "ram_sha256": "aab9a5cf4d808f3fd2c6a380d55465d3e054b5a0f95b0b0b22e0a4ce169cc3e8",
+        "report_sha256": "59322c5dafb97bf136e91757ddd6eee8abedd8f917990adba0c06d3f1dbac7ff",
+        "frames": 3200,
+        "inputs": {
+          "buttons": [
+            [
+              "B",
+              10,
+              14
+            ],
+            [
+              "B",
+              110,
+              114
+            ],
+            [
+              "B",
+              210,
+              214
+            ],
+            [
+              "A",
+              700,
+              704
+            ],
+            [
+              "A",
+              1000,
+              1004
+            ],
+            [
+              "A",
+              1400,
+              1404
+            ],
+            [
+              "SELECT",
+              2800,
+              2804
+            ]
+          ],
+          "touches": [
+            [
+              128,
+              70,
+              400,
+              404
+            ]
+          ]
+        },
+        "save_import_sha256": null,
+        "developer_ram_fixture": null
+      },
+      {
+        "local_run": "local_data/verification/hg19a-roamer-native-save",
+        "rom_sha256": "28ce7217d0fa535f99cc3272a348cce78c343868c8596ca11cf8ab2d005b53a8",
+        "state_sha256": "03fd7e2b2b814647dd0a80e4aec48e5071b7dbb620a4efefca673d369da3a73c",
+        "ram_sha256": "078f30b40dc9503b705ccf57fb9d6352cfdb1a1d6fd67927557cae4266cae1ba",
+        "report_sha256": "c81be620066ecdd48b6673e325326f4865da80d4c167c2283fb76698d8476666",
+        "frames": 2600,
+        "inputs": {
+          "buttons": [
+            [
+              "B",
+              10,
+              14
+            ],
+            [
+              "A",
+              300,
+              304
+            ],
+            [
+              "SELECT",
+              2000,
+              2004
+            ]
+          ],
+          "touches": [
+            [
+              127,
+              75,
+              80,
+              84
+            ],
+            [
+              231,
+              96,
+              600,
+              604
+            ]
+          ]
+        },
+        "save_import_sha256": null,
+        "developer_ram_fixture": null
+      }
+    ],
+    "release_fixture": {
+      "kind": "hgss-verification-ram-fixture",
+      "rom_sha256": "28ce7217d0fa535f99cc3272a348cce78c343868c8596ca11cf8ab2d005b53a8",
+      "source_ram_sha256": "76ac980f938051b83479a542bedcf08e6a28950137c1b8c27df87c6ed35b29da",
+      "changes": [
+        {
+          "address": 36334752,
+          "before": "000000000000000000",
+          "after": "d0010016005b000000",
+          "reason": "Isolated native CreateRoamer(0) command followed by GoTo original bytecode, in unused slots 17-19 of the active native script context stack (stackDepth 0). Native factory generates all PID/IV/HP data."
+        },
+        {
+          "address": 36334680,
+          "before": "046d2a02",
+          "after": "a06c2a02",
+          "reason": "Temporarily route the existing follower script through the native release command, then return to its original continuation. No engine code or original script bank bytes changed."
+        }
+      ]
+    },
+    "release": {
+      "records": [
+        [
+          35,
+          728072593,
+          4226739189,
+          8388851,
+          65576
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "locations": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "captured_flags": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "after_damage_and_flee": {
+      "records": [
+        [
+          36,
+          728072593,
+          4226739189,
+          8192243,
+          65576
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "locations": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "captured_flags": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "native_save": {
+      "records": [
+        [
+          36,
+          728072593,
+          4226739189,
+          8192243,
+          65576
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "locations": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "captured_flags": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "notes": [
+      "Native CreateRoamer bytecode and continuation inserted in unused native context stack; native VM generates PID/IV/HP. No Pokemon bytes or engine code edited.",
+      "Raikou PID4226739189, IV word728072593 and level40 persist. Native Tackle reduces HP128 to125 and original roamer code relocates map35 to36.",
+      "19b map fixtures change only current native location map/index (5 bytes) to place the saved roamer in Route29.",
+      "One MasterBall before BattleSetup bag copy (4 bytes) is the sole capture-supply fixture. No HP/status/EXP/story or Pokemon editing."
+    ],
+    "shiny_creation_diagnostics": {
+      "calls": 1,
+      "rolls": 1,
+      "candidates": 1,
+      "changes": 1,
+      "failures": 0,
+      "original_pid": 3488926145,
+      "selected_pid": 4226739189,
+      "owner": 2836379921,
+      "species": 243,
+      "kind": 0
+    }
+  },
+  "limits": [
+    "Both Mac tests use melonDS DS1.3.1 software renderer, builtin BIOS and isolated project saves. SoulSilver uses HG-derived progress; no fresh SS story or general save-interchange guarantee.",
+    "Release fixture verifies native factory through native VM, not the complete Burned Tower story sequence.",
+    "Runtime model/contact/capture acceptance covers Raikou only; Entei/Latias/Latios and full shiny species/forms still need acceptance.",
+    "Positive status, defeated/respawn story flows, wider transitions/capacity/Repel/special-area and long-play coverage remain pending.",
+    "Historical run name reflect-prompt actually shows native Synthesis at level12; the actual move learned and saved is Synthesis235, replacing Tackle through the native forget UI.",
+    "HG immediately contacts an ordinary Hoothoot after return; native Run returns to field before native save. This is not a second Raikou.",
+    "The complete enhancement goal and other inventory rows remain unfinished."
+  ]
+}
