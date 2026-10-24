@@ -147,3 +147,8 @@ NativeFieldSparkle = 0x021FE66D;
 
 NativeEncounterTile = 0x0205B995;
 NativeSurfableTile = 0x0205B779;
+
+NativeFollowerField = 0x0205F1E5;
+NativeFollowerPermission = 0x02069FF5;
+NativeFollowerRefresh = 0x022059AD;
+NativePartyAlive = 0x02054359;

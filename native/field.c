@@ -13,6 +13,7 @@ struct ObjectEvent {
 };
 _Static_assert(sizeof(struct ObjectEvent) == 32, "Object event ABI");
 
+extern void EnhancedFollowerUpdate(void *field);
 extern int OriginalFieldInput(void *input, void *field);
 extern void OriginalFieldControl(void *field);
 extern int FieldMovementAllowed(void *field);
@@ -633,6 +634,7 @@ int EnhancedFieldInput(void *input, void *field) {
         forget();
         gVisibleState.manager = manager;
     }
+    EnhancedFollowerUpdate(field);
     int result = OriginalFieldInput(input, field);
     if (result)
         return result;

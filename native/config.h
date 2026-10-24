@@ -27,6 +27,7 @@ struct EnhancedExtraOptions {
     u32 iv_ev_viewer;
     u32 encounter_rate; /* Normal, Off, quarter, half, double. */
     u32 shiny_odds; /* Native, 2/8/32/128 rolls, always. */
+    u32 hide_follower; /* Default zero preserves the native party follower. */
 };
 extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 

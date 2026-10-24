@@ -111,6 +111,10 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         for i in range(6):
             at=6+i*7
             result['visible_roamers']['slots'].append({'identity':r[at],'record':list(r[at+1:at+6]),'battle_type':r[at+6]})
+    if 'gFollowerState' in symbols:
+        result['follower'] = dict(zip(('field','manager','known','hidden','removed','restored','blocked'),resident_words('gFollowerState',7)))
+        result['settings']['hide_follower'] = extra[5]
+        result['enhancement_menu']['staged_hide_follower'] = menu[20]
     if 'gShinyState' in symbols:
         result['settings']['shiny_odds'] = extra[4]
         result['enhancement_menu']['staged_shiny_odds'] = menu[19]
@@ -127,6 +131,24 @@ def inspect_run(run: Path, report_path: Path) -> dict:
             'choice': dialog[8], 'item': dialog[9], 'offered': dialog[12],
             'accepted': dialog[13], 'declined': dialog[14], 'failures': dialog[15],
             'remembered': dialog[16]}
+    if 'follower' in result:
+        field = word(0x021D4158)
+        if 0x02000000 <= field <= 0x023FFF00:
+            native = read(field + 0xE4, 28)
+            follower = result['follower']
+            follower['native_active'] = bool(native[0x16])
+            follower['native_pending'] = native[0x15]
+            follower['species'] = struct.unpack_from('<I', native, 0x10)[0]
+            follower['gender'] = native[0x14]
+            follower['shiny'] = bool(native[0x17])
+            follower['form'] = struct.unpack_from('<H', native, 0x18)[0]
+            address = struct.unpack_from('<I', native)[0]
+            follower['native_object'] = hex(address)
+            if follower['native_active'] and 0x02000000 <= address <= 0x023FFED4:
+                follower['object'] = {'flags': word(address), 'id': word(address + 8),
+                    'sprite': word(address + 0x10), 'manager': hex(word(address + 0xB4)),
+                    'position': list(struct.unpack('<3i', read(address + 0x64, 12))),
+                    'parameters': list(struct.unpack('<3I', read(address + 0x38, 12)))}
     retained = []
     for index in range(6):
         offset = start + 32 + 260 * index

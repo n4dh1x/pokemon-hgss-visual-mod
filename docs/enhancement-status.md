@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 176 tests pass, including compiled ARM field logic and independently checked
+- 184 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 18,252-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 18,636-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -471,3 +471,19 @@ Master Ball supply. Full story release, other legendary species, positive status
 wider contexts and the rest of the enhancement inventory remain unfinished.
 See [implementation and limits](visible-legendaries.md) and
 [exact evidence](../enhancements/milestone-19-verification.json).
+
+## Milestone 20: saved native party follower On/Off
+
+A twelfth option controls the party follower independently of roaming wilds.
+Native permission and deferred lifecycle routines handle removal/restoration;
+initialization loads the owned settings before checking the saved option.
+Legacy journals default On, with slot 11/presence bit 256 activating explicit Off.
+The original journal version and native save layouts remain unchanged.
+
+184 tests pass. Both exact candidate ROMs pass bounded native lifecycle,
+walking/dialogue, independent wild movement, On/Off game save/cold reload and
+Route 29–New Bark round-trip acceptance on Mac. No new RAM fixtures are used.
+Other species/forms, cycling/Surf, story/partner/HM contexts and long play remain
+pending along with the full feature inventory. See
+[follower-control.md](follower-control.md) and
+[milestone-20 evidence](../enhancements/milestone-20-verification.json).

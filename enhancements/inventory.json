@@ -522,13 +522,26 @@
       "category": "partial",
       "base_heartgold": "Native follower, interaction, cries, animations and held leaves/accessory-related behavior.",
       "visual_plus": "Retained.",
-      "required_work": "Retain native system; optional Off/On menu and any Emerald-specific item-finding rules need separate adaptation.",
+      "required_work": "Milestone 20 adds saved native Party follower On/Off, default On with legacy journal compatibility. Native permission and deferred lifecycle preserve party species/form/shiny initialization and wild-model independence. Both games pass walking/dialogue, On/Off native save/cold reload and Route29-NewBark round trip. Finish wider species/forms, cycling/Surf, story/partner/HM and long-play acceptance; audit item-finding differences separately.",
       "evidence": [
         "patches/pokeemerald/0056-follower-pokemon.patch",
         "local_data/reference/pokeheartgold/src/follow_mon.c",
-        "local_data/reference/pokeheartgold/src/save_follow_mon.c"
+        "local_data/reference/pokeheartgold/src/save_follow_mon.c",
+        "native/follower.c",
+        "gameplay/follower.py",
+        "tests/test_follower.py",
+        "tests/test_settings.py",
+        "docs/follower-control.md",
+        "enhancements/milestone-20-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "native_permission_lifecycle_and_both_rom_hook_guards": "passed_compiled_ARM; native_refresh_instructions_with_controlled_factory_APIs",
+        "legacy_defaults_cancel_atomic_failure_unknown_fields_reload": "passed_compiled_ARM",
+        "off_independent_wilds_on_native_walking_dialogue_both_mac": "passed_bounded_Chikorita_Route29",
+        "native_save_cold_On_Off_and_connected_roundtrip_both_mac": "passed_bounded_Route29_NewBark",
+        "all_species_forms_cycling_surf_story_partner_HM_longplay": "pending"
+      }
     },
     {
       "id": "encounter_rate",

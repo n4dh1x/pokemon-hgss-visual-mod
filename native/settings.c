@@ -45,6 +45,7 @@ static int valid_format(const struct EnhancedJournal *r) {
         (!(r->reserved[0] & 32) || r->values[8] <= 1) &&
         (!(r->reserved[0] & 64) || r->values[9] <= 4) &&
         (!(r->reserved[0] & 128) || r->values[10] <= 5) &&
+        (!(r->reserved[0] & 256) || r->values[11] <= 1) &&
         r->checksum == EnhancedSettingsCRC(r, 252);
 }
 int EnhancedSettingsValid(const struct EnhancedJournal *r, u32 owner) {
@@ -84,6 +85,7 @@ void EnhancedSettingsEnsure(void *field) {
     gEnhancedExtraOptions.iv_ev_viewer = 1;
     gEnhancedExtraOptions.encounter_rate = 0;
     gEnhancedExtraOptions.shiny_odds = 0;
+    gEnhancedExtraOptions.hide_follower = 0;
     for (int i = 0; i < 2; ++i) {
         struct EnhancedJournal *r = &gSettingsState.pages[i];
         int read = FlashLoadChunk(journal_offsets[i], r, sizeof(*r));
@@ -107,6 +109,7 @@ void EnhancedSettingsEnsure(void *field) {
             gEnhancedExtraOptions.iv_ev_viewer = (r->reserved[0] & 32) ? r->values[8] : 1;
             gEnhancedExtraOptions.encounter_rate = (r->reserved[0] & 64) ? r->values[9] : 0;
             gEnhancedExtraOptions.shiny_odds = (r->reserved[0] & 128) ? r->values[10] : 0;
+            gEnhancedExtraOptions.hide_follower = (r->reserved[0] & 256) ? r->values[11] : 0;
         }
     }
 }
@@ -132,7 +135,7 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         u32 capture, u32 party, const struct EnhancedExtraOptions *extra) {
     if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3 || repel > 1 || capture > 1 || party > 1)
         return 0;
-    if (extra && (extra->field_hms > 1 || extra->roaming_only_grass > 1 || extra->iv_ev_viewer > 1 || extra->encounter_rate > 4 || extra->shiny_odds > 5)) return 0;
+    if (extra && (extra->field_hms > 1 || extra->roaming_only_grass > 1 || extra->iv_ev_viewer > 1 || extra->encounter_rate > 4 || extra->shiny_odds > 5 || extra->hide_follower > 1)) return 0;
     int target = gSettingsState.last_slot < 0 ? 0 : 1 - gSettingsState.last_slot;
     if (gSettingsState.last_slot < 0 && !gSettingsState.writable[target])
         target = 1;
@@ -168,7 +171,8 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         r->values[8] = extra->iv_ev_viewer;
         r->values[9] = extra->encounter_rate;
         r->values[10] = extra->shiny_odds;
-        r->reserved[0] |= 248;
+        r->values[11] = extra->hide_follower;
+        r->reserved[0] |= 504;
     }
     r->checksum = EnhancedSettingsCRC(r, 252);
     Sys_SetSleepDisableFlag(1);
@@ -206,6 +210,7 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         gEnhancedExtraOptions.iv_ev_viewer = extra->iv_ev_viewer;
         gEnhancedExtraOptions.encounter_rate = extra->encounter_rate;
         gEnhancedExtraOptions.shiny_odds = extra->shiny_odds;
+        gEnhancedExtraOptions.hide_follower = extra->hide_follower;
     }
     return 1;
 }

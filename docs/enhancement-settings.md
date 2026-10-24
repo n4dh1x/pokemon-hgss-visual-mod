@@ -7,7 +7,7 @@ B or Cancel discards staged changes. Milestone 06 adds the fourth option, Repel
 prompt (On/Off); see [repel-prompt.md](repel-prompt.md). Milestone 08 adds EXP for catching; milestone 10 adds Party EXP Share. Both are
 saved On/Off options and default On for legacy records. Milestone 12 adds Field HMs and Grass battles on a second page; L/R switches
 pages, retaining staged values. Save and close applies both pages atomically.
-The eight-option menu uses 16-pixel row spacing. The rest of the audited enhancement list remains in scope.
+The original eight-option menu uses 16-pixel row spacing. The rest of the audited enhancement list remains in scope.
 
 The menu uses HGSS's field task, window, font and input routines. NPC movement
 pauses while it is open, and prior NPC pause flags are restored on exit. The
@@ -155,3 +155,14 @@ The auxiliary structure is 20 bytes and the menu 96 bytes. The fixed loader head
 The owner getter validates the current trainer against the loaded journal before
 applying extra rolls; unavailable or changed ownership uses native creation.
 See [shiny-odds.md](shiny-odds.md).
+
+## Milestone 20 option and journal extension
+
+The current two-page menu has twelve options, six per page. Party follower is
+page 2 row 6: On by default, Off to remove the native lead follower while visible
+wilds keep roaming. X changes pages; both pages apply atomically. Value slot 11
+and reserved-word-0 presence bit 256 encode hide_follower; absent bit defaults
+native On even if legacy padding is nonzero. Unknown later fields remain intact.
+The journal stays version 1 with 48 slots and the original 256-byte layout.
+Native On/Off saving and cold reload pass in both games. See
+[follower-control.md](follower-control.md).

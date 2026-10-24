@@ -1,0 +1,2094 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 20,
+  "verified_on": "2026-10-24",
+  "final_release": false,
+  "scope": "Saved native party-follower control, independent roaming wilds, native walking/dialogue, On/Off save/cold reload and connected-map round trip.",
+  "regression": {
+    "passed": 184,
+    "skipped": 0,
+    "log_sha256": "ebf52c49e85c29c52735f7f03bd0b3fd5ca72cd086900eb9b38e6f52475188a5",
+    "settings_tests": 31,
+    "settings_log_sha256": "0804288e497bf68d03bbf6cf4d7fec16be9f7120ac38420f37eb562007ea285c",
+    "follower_tests": 6,
+    "follower_log_sha256": "54f8f2c9b29d7dc4bb456a0019ce2282c49c4697f3d4d6ef5b8cafb2491ce5f6"
+  },
+  "candidates": {
+    "heartgold": {
+      "local_rom": "build/candidates/heartgold-visual-plus-gameplay-milestone-20.nds",
+      "output_sha256": "074bd98b683a36a751eb1c85ab0554a0403b3abf6099b4cb0730d9322d29807a",
+      "patch_sha256": "71f397718134ea8ac04cad90e4b2c034e05cf7fc2b3645939169fab6b1c551d9",
+      "report_sha256": "a1dd68268486fa0e7a373fc8f5f4f95cf3dd7727bd4e5a37ecc568ff5ebe700b",
+      "payload_bytes": 18636,
+      "payload_end": "0x1ffd8cc",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    },
+    "soulsilver": {
+      "local_rom": "build/candidates/soulsilver-visual-plus-gameplay-milestone-20.nds",
+      "output_sha256": "efd206ddeebcc131bdc98bae51104a24c25fe07ee4e0977d171536208fdd45cb",
+      "patch_sha256": "4588824984fa21503cd88595f0dbcbba9a595540de437f659ea2c8eac1da3f68",
+      "report_sha256": "9e7f05bb3fe467fe0d987d382c9483a4116e402caa68315763ba037599e30d91",
+      "payload_bytes": 18636,
+      "payload_end": "0x1ffd8cc",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    }
+  },
+  "games": {
+    "heartgold": {
+      "cases": {
+        "field": {
+          "local_run": "local_data/verification/hg20a-field",
+          "state_sha256": "805d58defc9d0f3ee258e87e66463f80ab96c198c68e68684c464a33adba8aec",
+          "ram_sha256": "0b2324d847bf3e855790d249c4899d5f2b273b4997c100acf3cd694529b842f1",
+          "report_sha256": "1d871b92dbe39f20af0af893520eda1d718f97f5e614f93cb31744328717c4df",
+          "frames": 3200,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                2900,
+                2904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307624,
+            "manager": 36314868,
+            "known": 1,
+            "hidden": 0,
+            "removed": 0,
+            "restored": 0,
+            "blocked": 0,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a216c",
+            "object": {
+              "flags": 537191521,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1ef4",
+              "position": [
+                659,
+                2,
+                401
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 10,
+          "settings_writes": 0,
+          "map": 33,
+          "player": [
+            659,
+            2,
+            402
+          ],
+          "wilds": 2,
+          "wild_walk_commands": 1,
+          "native_battle": false,
+          "loaded_native_save": {
+            "path": "local_data/verification/hg19b-caught-save/cartridge.sav",
+            "sha256": "b064e77006701b78a4c8189b1db99077f4b7af528ec7db048f9f7e41c7b6a4b4"
+          }
+        },
+        "off": {
+          "local_run": "local_data/verification/hg20a-off",
+          "state_sha256": "bc331d8fbc91ab7736be325fb0ef9debca04603da82e17dec8aa279369a30f05",
+          "ram_sha256": "c3be81fbaef0057aa407f248eed3dcba8c6c346c2c1c07a79877f1f1b66855b1",
+          "report_sha256": "2a59007d572537404914a3dfde91fd8d29af7f490671385c3a0ad874a4a30fec",
+          "frames": 1000,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "UP",
+                50,
+                54
+              ],
+              [
+                "UP",
+                90,
+                94
+              ],
+              [
+                "UP",
+                130,
+                134
+              ],
+              [
+                "RIGHT",
+                170,
+                174
+              ],
+              [
+                "DOWN",
+                210,
+                214
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "SELECT",
+                600,
+                604
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307624,
+            "manager": 36314868,
+            "known": 1,
+            "hidden": 1,
+            "removed": 1,
+            "restored": 0,
+            "blocked": 1,
+            "native_active": false,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a216c"
+          },
+          "settings_hidden": 1,
+          "settings_sequence": 11,
+          "settings_writes": 1,
+          "map": 33,
+          "player": [
+            659,
+            2,
+            402
+          ],
+          "wilds": 5,
+          "wild_walk_commands": 4,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/hg20a-field/state.bin",
+            "sha256": "805d58defc9d0f3ee258e87e66463f80ab96c198c68e68684c464a33adba8aec"
+          }
+        },
+        "on": {
+          "local_run": "local_data/verification/hg20a-on",
+          "state_sha256": "9452f6cdf994eaaf0934d67af4cbec8b23fa201e4247e84f87d4853204df32e6",
+          "ram_sha256": "15b340e297fd59d47af8ed2ea0f94020f0afabf7cc6a5782584858b8e82899bc",
+          "report_sha256": "0fdabcf97b07f8d0e87987f629be7998c7f51ebaa6ca125fa0105a6afdbe4a5e",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "UP",
+                50,
+                54
+              ],
+              [
+                "UP",
+                90,
+                94
+              ],
+              [
+                "UP",
+                130,
+                134
+              ],
+              [
+                "RIGHT",
+                170,
+                174
+              ],
+              [
+                "DOWN",
+                210,
+                214
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "DOWN",
+                400,
+                416
+              ],
+              [
+                "RIGHT",
+                460,
+                476
+              ],
+              [
+                "SELECT",
+                700,
+                704
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307624,
+            "manager": 36314868,
+            "known": 1,
+            "hidden": 0,
+            "removed": 1,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a30a8",
+            "object": {
+              "flags": 538207297,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1ef4",
+              "position": [
+                659,
+                2,
+                403
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 12,
+          "settings_writes": 2,
+          "map": 33,
+          "player": [
+            660,
+            2,
+            403
+          ],
+          "wilds": 6,
+          "wild_walk_commands": 15,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/hg20a-off/state.bin",
+            "sha256": "bc331d8fbc91ab7736be325fb0ef9debca04603da82e17dec8aa279369a30f05"
+          }
+        },
+        "talk": {
+          "local_run": "local_data/verification/hg20a-talk",
+          "state_sha256": "f6ea21225dd1edac758037371f2a476ee69083469ccc77de4586422a09a210e9",
+          "ram_sha256": "94897ceae66175b1c5ee7b5a128ca8d12a72fc3265c0237228d7850087068a0b",
+          "report_sha256": "a0949ee134a6636560b6049cba3e180f3375f82233f9d0f008ed79414fae5bc4",
+          "frames": 700,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "LEFT",
+                30,
+                34
+              ],
+              [
+                "A",
+                80,
+                84
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307624,
+            "manager": 36314868,
+            "known": 1,
+            "hidden": 0,
+            "removed": 1,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a30a8",
+            "object": {
+              "flags": 538207297,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1ef4",
+              "position": [
+                659,
+                2,
+                403
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 12,
+          "settings_writes": 2,
+          "map": 33,
+          "player": [
+            660,
+            2,
+            403
+          ],
+          "wilds": 6,
+          "wild_walk_commands": 18,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/hg20a-on/state.bin",
+            "sha256": "9452f6cdf994eaaf0934d67af4cbec8b23fa201e4247e84f87d4853204df32e6"
+          }
+        },
+        "off-save": {
+          "local_run": "local_data/verification/hg20a-off-save",
+          "state_sha256": "1ff6404f4a9c02aa6cb03398ba146c19dd82d567500708a86ac43ad3d575f00f",
+          "ram_sha256": "3f09f22ab54df66e7fedfa5c89693436db9f79f3f3736d8fc3f99d7f9f0cd695",
+          "report_sha256": "b790541f5343ee273dc576a93c3da479ea3f70d4b59ab49dcd9cf867e41457ec",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                2000,
+                2004
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                80,
+                84
+              ],
+              [
+                231,
+                96,
+                600,
+                604
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307624,
+            "manager": 36314868,
+            "known": 1,
+            "hidden": 1,
+            "removed": 1,
+            "restored": 0,
+            "blocked": 1,
+            "native_active": false,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a216c"
+          },
+          "settings_hidden": 1,
+          "settings_sequence": 11,
+          "settings_writes": 1,
+          "map": 33,
+          "player": [
+            659,
+            2,
+            402
+          ],
+          "wilds": 6,
+          "wild_walk_commands": 21,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/hg20a-off/state.bin",
+            "sha256": "bc331d8fbc91ab7736be325fb0ef9debca04603da82e17dec8aa279369a30f05"
+          }
+        },
+        "on-save": {
+          "local_run": "local_data/verification/hg20a-on-save",
+          "state_sha256": "5103681dc7e56987b931b46a6bf95b2b1fcaace3a66d96c9c300acd7cefca43d",
+          "ram_sha256": "68d87815138f8cbc378f99c2b580abc21955b89582d41db90d3a6130acf3d5a6",
+          "report_sha256": "fb02f23716c50539c9cfc97beb7a0d4d3dbd672b11dca39e747acefe28561d3d",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                2000,
+                2004
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                80,
+                84
+              ],
+              [
+                231,
+                96,
+                600,
+                604
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307624,
+            "manager": 36314868,
+            "known": 1,
+            "hidden": 0,
+            "removed": 1,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a30a8",
+            "object": {
+              "flags": 538207297,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1ef4",
+              "position": [
+                659,
+                2,
+                403
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 12,
+          "settings_writes": 2,
+          "map": 33,
+          "player": [
+            660,
+            2,
+            403
+          ],
+          "wilds": 6,
+          "wild_walk_commands": 34,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/hg20a-on/state.bin",
+            "sha256": "9452f6cdf994eaaf0934d67af4cbec8b23fa201e4247e84f87d4853204df32e6"
+          }
+        },
+        "off-cold": {
+          "local_run": "local_data/verification/hg20a-off-cold",
+          "state_sha256": "10f584e42dc5195e66041f3f785dfcc71dee3772f6898e8a9a5c377efb121d81",
+          "ram_sha256": "5f19b943976471bc28dda89547c5c42ef53f0c996ff839e583ad2890d0cf2e13",
+          "report_sha256": "684e259e9c430cfdc7ed49c59fb83cdf5ae578d8544ee7ea88614510e32bc1ab",
+          "frames": 3200,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                2900,
+                2904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307396,
+            "manager": 36314640,
+            "known": 1,
+            "hidden": 1,
+            "removed": 0,
+            "restored": 0,
+            "blocked": 1,
+            "native_active": false,
+            "native_pending": 0,
+            "species": 0,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x0"
+          },
+          "settings_hidden": 1,
+          "settings_sequence": 11,
+          "settings_writes": 0,
+          "map": 33,
+          "player": [
+            659,
+            2,
+            402
+          ],
+          "wilds": 2,
+          "wild_walk_commands": 1,
+          "native_battle": false,
+          "loaded_native_save": {
+            "path": "local_data/verification/hg20a-off-save/cartridge.sav",
+            "sha256": "777b90ac1692488b59fc912277c8bdee5d38830a6421c1fd066b14386972ee3a"
+          }
+        },
+        "on-cold": {
+          "local_run": "local_data/verification/hg20a-on-cold",
+          "state_sha256": "f27cf2498104ad1348f5b4613dccdfdbf90e84c13fad90f60e057349f665e248",
+          "ram_sha256": "19c71158a6b60956757dd025aa1ddcd3735fa1ed29ce17069ed427f5e8086df3",
+          "report_sha256": "23b2192b43dfe4d1bb38390ef7190aabf82e725797851be015036f01fa5be0ee",
+          "frames": 3200,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                2900,
+                2904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307440,
+            "manager": 36314684,
+            "known": 1,
+            "hidden": 0,
+            "removed": 0,
+            "restored": 0,
+            "blocked": 0,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a2a14",
+            "object": {
+              "flags": 538207329,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1e3c",
+              "position": [
+                659,
+                2,
+                403
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 12,
+          "settings_writes": 0,
+          "map": 33,
+          "player": [
+            660,
+            2,
+            403
+          ],
+          "wilds": 0,
+          "wild_walk_commands": 0,
+          "native_battle": false,
+          "loaded_native_save": {
+            "path": "local_data/verification/hg20a-on-save/cartridge.sav",
+            "sha256": "bc82da7131329245f3b15f2f56eb43556a215613b47f8760da255205c9dc8a12"
+          }
+        },
+        "off-town": {
+          "local_run": "local_data/verification/hg20a-off-town",
+          "state_sha256": "56b01546ea6eef7fbcd5b2401de0a746052711e0c9c88f46c2d548ca874d5081",
+          "ram_sha256": "323f396b80ab9eec55058d2541942fa5b66350d9a22649e83a6c9612895d334b",
+          "report_sha256": "c4bdbab9ff7af265996275f50d0a9c484558b0b96e5ab03724ae62e0b6b854ff",
+          "frames": 1500,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "DOWN",
+                50,
+                54
+              ],
+              [
+                "DOWN",
+                90,
+                94
+              ],
+              [
+                "DOWN",
+                130,
+                134
+              ],
+              [
+                "RIGHT",
+                170,
+                174
+              ],
+              [
+                "DOWN",
+                210,
+                214
+              ],
+              [
+                "DOWN",
+                250,
+                254
+              ],
+              [
+                "DOWN",
+                290,
+                294
+              ],
+              [
+                "A",
+                330,
+                334
+              ],
+              [
+                "UP",
+                500,
+                516
+              ],
+              [
+                "RIGHT",
+                600,
+                1100
+              ],
+              [
+                "SELECT",
+                1250,
+                1254
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307396,
+            "manager": 36314640,
+            "known": 1,
+            "hidden": 1,
+            "removed": 0,
+            "restored": 0,
+            "blocked": 1,
+            "native_active": false,
+            "native_pending": 0,
+            "species": 0,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x0"
+          },
+          "settings_hidden": 1,
+          "settings_sequence": 12,
+          "settings_writes": 1,
+          "map": 60,
+          "player": [
+            677,
+            2,
+            401
+          ],
+          "wilds": 0,
+          "wild_walk_commands": 1,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/hg20a-off-cold/state.bin",
+            "sha256": "10f584e42dc5195e66041f3f785dfcc71dee3772f6898e8a9a5c377efb121d81"
+          }
+        },
+        "on-town": {
+          "local_run": "local_data/verification/hg20a-on-town",
+          "state_sha256": "eaeac10a141a6fe2338fe19a1375093bc60ee68bc388405c57c4fdebd9aed15d",
+          "ram_sha256": "0d2b5b7bd14d0c77235465fce15eb50c0a019177de75439fe851b8708a0d8ccb",
+          "report_sha256": "d26a4465ff8247018feb1d9d440a3d723cceb6b81c4b34696e7c6e5d05aa2d5c",
+          "frames": 1000,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "UP",
+                50,
+                54
+              ],
+              [
+                "UP",
+                90,
+                94
+              ],
+              [
+                "UP",
+                130,
+                134
+              ],
+              [
+                "RIGHT",
+                170,
+                174
+              ],
+              [
+                "DOWN",
+                210,
+                214
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "RIGHT",
+                400,
+                432
+              ],
+              [
+                "SELECT",
+                700,
+                704
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307396,
+            "manager": 36314640,
+            "known": 1,
+            "hidden": 0,
+            "removed": 0,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a2538",
+            "object": {
+              "flags": 537716321,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1e10",
+              "position": [
+                677,
+                2,
+                401
+              ],
+              "parameters": [
+                152,
+                0,
+                2
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 13,
+          "settings_writes": 2,
+          "map": 60,
+          "player": [
+            677,
+            2,
+            401
+          ],
+          "wilds": 0,
+          "wild_walk_commands": 1,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/hg20a-off-town/state.bin",
+            "sha256": "56b01546ea6eef7fbcd5b2401de0a746052711e0c9c88f46c2d548ca874d5081"
+          }
+        },
+        "on-return": {
+          "local_run": "local_data/verification/hg20a-on-return",
+          "state_sha256": "7351cbb476de1896e4698f730031a3d3b434ec6249a52a4dfdd8165e4b075725",
+          "ram_sha256": "eefc0e8f5a489d3ada06767c370adaf382abde98de0bdbb7a443e5cdd0b39497",
+          "report_sha256": "89936676b745d59d2f038344f28ed9569ed32a37211d57e3c995acae33961b04",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "LEFT",
+                50,
+                550
+              ],
+              [
+                "SELECT",
+                850,
+                854
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307396,
+            "manager": 36314640,
+            "known": 1,
+            "hidden": 0,
+            "removed": 0,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a2538",
+            "object": {
+              "flags": 538240065,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1e10",
+              "position": [
+                653,
+                2,
+                401
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 13,
+          "settings_writes": 2,
+          "map": 33,
+          "player": [
+            652,
+            2,
+            401
+          ],
+          "wilds": 0,
+          "wild_walk_commands": 1,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/hg20a-on-town/state.bin",
+            "sha256": "eaeac10a141a6fe2338fe19a1375093bc60ee68bc388405c57c4fdebd9aed15d"
+          }
+        }
+      },
+      "off_apply_changes_only_one_journal_page": {
+        "changed_bytes": 8,
+        "page_offset": "0x3f000"
+      },
+      "native_saves_preserve_both_journal_pages": true,
+      "strict_party_comparisons": [
+        {
+          "case": "off",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        },
+        {
+          "case": "on",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        },
+        {
+          "case": "off-cold",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        },
+        {
+          "case": "on-cold",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        },
+        {
+          "case": "on-return",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        }
+      ],
+      "party_rewards_exp_ev_moves_pp_preserved_in_both_cold_modes_and_roundtrip": true,
+      "talk_observation": "Restored Chikorita responds with native follower dialogue in frame000700; no native battle starts.",
+      "screenshots": [
+        {
+          "path": "local_data/verification/hg20a-off/frame-000150.png",
+          "sha256": "7caf2b4cac0000c37ff27a87aa3f59a8f0a92cbb528613a5b1b95976b68edbae"
+        },
+        {
+          "path": "local_data/verification/hg20a-off/frame-000450.png",
+          "sha256": "06b4b652609713ee9a1e660269390bbd127d957969f12e6d0757d341275ad878"
+        },
+        {
+          "path": "local_data/verification/hg20a-on/frame-000650.png",
+          "sha256": "697a59075d705f1e984caffb39d6b1c357152347595b9810d48a8865d6460828"
+        },
+        {
+          "path": "local_data/verification/hg20a-talk/frame-000700.png",
+          "sha256": "b471af2730f9d657d3d852513a61988ccead908ff7dd46ddee10d52f67f7b435"
+        },
+        {
+          "path": "local_data/verification/hg20a-on-return/frame-000800.png",
+          "sha256": "917bb1ffdb461db5e5e7ef602184fe97dd5e8e4000e113512a6ad0c623933a6d"
+        }
+      ]
+    },
+    "soulsilver": {
+      "cases": {
+        "field": {
+          "local_run": "local_data/verification/ss20a-field",
+          "state_sha256": "7637363e75a04ede38af362eaf933d7ac213b3bc838ede0af13d0c6840515ca3",
+          "ram_sha256": "910ea5423cf6b24c86f50e267a1f14945c95c6dd1a13ce4d2a0ff86c55980bbf",
+          "report_sha256": "01b8493fa4a32cab9e60bfee4293e751a89fefb1efdbe68825f52adf85a09cf5",
+          "frames": 3200,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                2900,
+                2904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307444,
+            "manager": 36314688,
+            "known": 1,
+            "hidden": 0,
+            "removed": 0,
+            "restored": 0,
+            "blocked": 0,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a20b8",
+            "object": {
+              "flags": 538207329,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1e40",
+              "position": [
+                658,
+                2,
+                404
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 10,
+          "settings_writes": 0,
+          "map": 33,
+          "player": [
+            657,
+            2,
+            404
+          ],
+          "wilds": 2,
+          "wild_walk_commands": 1,
+          "native_battle": false,
+          "loaded_native_save": {
+            "path": "local_data/verification/ss19b-caught-save/cartridge.sav",
+            "sha256": "9c98cd4da2d8573171f310c73388eb6966e3a4b2fa82fdd4c4adc67b7f310025"
+          }
+        },
+        "off": {
+          "local_run": "local_data/verification/ss20a-off",
+          "state_sha256": "0fb36f0fa94631bd0c62513feae57c77922f4694e75d9557c673f0f31cc41237",
+          "ram_sha256": "bbccc159b11ddba7683580d8fbc9ac77259581359a90a9728ef68dac188ed0d6",
+          "report_sha256": "4c6cc333e434e38185315b2ed5f28f131c42a46c88b8bd7baa24dcdd20dc52c2",
+          "frames": 1000,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "UP",
+                50,
+                54
+              ],
+              [
+                "UP",
+                90,
+                94
+              ],
+              [
+                "UP",
+                130,
+                134
+              ],
+              [
+                "RIGHT",
+                170,
+                174
+              ],
+              [
+                "DOWN",
+                210,
+                214
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "SELECT",
+                600,
+                604
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307444,
+            "manager": 36314688,
+            "known": 1,
+            "hidden": 1,
+            "removed": 1,
+            "restored": 0,
+            "blocked": 1,
+            "native_active": false,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a20b8"
+          },
+          "settings_hidden": 1,
+          "settings_sequence": 11,
+          "settings_writes": 1,
+          "map": 33,
+          "player": [
+            657,
+            2,
+            404
+          ],
+          "wilds": 5,
+          "wild_walk_commands": 5,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/ss20a-field/state.bin",
+            "sha256": "7637363e75a04ede38af362eaf933d7ac213b3bc838ede0af13d0c6840515ca3"
+          }
+        },
+        "on": {
+          "local_run": "local_data/verification/ss20a-on",
+          "state_sha256": "e3f6e41736acb4c6f90182f70b5baa73a442065751e5979c7d4930e7171e713b",
+          "ram_sha256": "76675a3c605f42ad4b855b69acf1bd76a87355f14581a79322f48b698a1ceb92",
+          "report_sha256": "765eec070fc74f2c02d44e84a057cf24f737fc645bea3e0fa982b901c30c2132",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "UP",
+                50,
+                54
+              ],
+              [
+                "UP",
+                90,
+                94
+              ],
+              [
+                "UP",
+                130,
+                134
+              ],
+              [
+                "RIGHT",
+                170,
+                174
+              ],
+              [
+                "DOWN",
+                210,
+                214
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "DOWN",
+                400,
+                416
+              ],
+              [
+                "RIGHT",
+                460,
+                476
+              ],
+              [
+                "SELECT",
+                700,
+                704
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307444,
+            "manager": 36314688,
+            "known": 1,
+            "hidden": 0,
+            "removed": 1,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a2ff4",
+            "object": {
+              "flags": 538207297,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1e40",
+              "position": [
+                657,
+                2,
+                405
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 12,
+          "settings_writes": 2,
+          "map": 33,
+          "player": [
+            658,
+            2,
+            405
+          ],
+          "wilds": 6,
+          "wild_walk_commands": 15,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/ss20a-off/state.bin",
+            "sha256": "0fb36f0fa94631bd0c62513feae57c77922f4694e75d9557c673f0f31cc41237"
+          }
+        },
+        "talk": {
+          "local_run": "local_data/verification/ss20a-talk",
+          "state_sha256": "d29b164c4d1008d15466534fbb4093d6121ae0dabb7f035d688cf15a30865951",
+          "ram_sha256": "f484eab12abf15f565a98baca01dd8c177090897fa5b47cf441942806e720c34",
+          "report_sha256": "b47f479c7a083317f61ec8faa588ed882d4fa49d0ce6f5e1a191810fa3f70e79",
+          "frames": 700,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "LEFT",
+                30,
+                34
+              ],
+              [
+                "A",
+                80,
+                84
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307444,
+            "manager": 36314688,
+            "known": 1,
+            "hidden": 0,
+            "removed": 1,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a2ff4",
+            "object": {
+              "flags": 538207297,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1e40",
+              "position": [
+                657,
+                2,
+                405
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 12,
+          "settings_writes": 2,
+          "map": 33,
+          "player": [
+            658,
+            2,
+            405
+          ],
+          "wilds": 6,
+          "wild_walk_commands": 17,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/ss20a-on/state.bin",
+            "sha256": "e3f6e41736acb4c6f90182f70b5baa73a442065751e5979c7d4930e7171e713b"
+          }
+        },
+        "off-save": {
+          "local_run": "local_data/verification/ss20a-off-save",
+          "state_sha256": "201d9e6fe7eb93813273dafc64b06a33a06104ecb935aac6f3b4af4c11461c24",
+          "ram_sha256": "117238cc01a86e183e3c8a7a1db78c172edce757e8b76b370b309e7d2098f9cc",
+          "report_sha256": "b1b1f98d25ac3696f94a60b506a604f47944f8c5443d70d99d2eef0cff0582ab",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                2000,
+                2004
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                80,
+                84
+              ],
+              [
+                231,
+                96,
+                600,
+                604
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307444,
+            "manager": 36314688,
+            "known": 1,
+            "hidden": 1,
+            "removed": 1,
+            "restored": 0,
+            "blocked": 1,
+            "native_active": false,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a20b8"
+          },
+          "settings_hidden": 1,
+          "settings_sequence": 11,
+          "settings_writes": 1,
+          "map": 33,
+          "player": [
+            657,
+            2,
+            404
+          ],
+          "wilds": 6,
+          "wild_walk_commands": 23,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/ss20a-off/state.bin",
+            "sha256": "0fb36f0fa94631bd0c62513feae57c77922f4694e75d9557c673f0f31cc41237"
+          }
+        },
+        "on-save": {
+          "local_run": "local_data/verification/ss20a-on-save",
+          "state_sha256": "9c9a2d670d4f811e09ba5a1dcf85b9426e1b39535d70dea562fd63aa951248b1",
+          "ram_sha256": "d0a2732e9bf0f21e7f6fdc9f07f0c3cb36ab5639a8470d241103d343e4121bb2",
+          "report_sha256": "7d83156a3be7464ca5b5b878a987125c094f7d6dcb4e00648a0ee6171399b076",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                2000,
+                2004
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                80,
+                84
+              ],
+              [
+                231,
+                96,
+                600,
+                604
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307444,
+            "manager": 36314688,
+            "known": 1,
+            "hidden": 0,
+            "removed": 1,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a2ff4",
+            "object": {
+              "flags": 538207297,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1e40",
+              "position": [
+                657,
+                2,
+                405
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 12,
+          "settings_writes": 2,
+          "map": 33,
+          "player": [
+            658,
+            2,
+            405
+          ],
+          "wilds": 6,
+          "wild_walk_commands": 33,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/ss20a-on/state.bin",
+            "sha256": "e3f6e41736acb4c6f90182f70b5baa73a442065751e5979c7d4930e7171e713b"
+          }
+        },
+        "off-cold": {
+          "local_run": "local_data/verification/ss20a-off-cold",
+          "state_sha256": "ed38d2d678f7543600243fbd8ea7fc66fb8d417df16f73acd5230cffa70913a7",
+          "ram_sha256": "b2eb96221101262e3ffcd51ea14cf45847aa43c8f3a33bace7c45358494ed177",
+          "report_sha256": "2c5f009aa0cce2e4e518760daabf15d4b22db5d20c5619eab3b1edd248bf874a",
+          "frames": 3200,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                2900,
+                2904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307480,
+            "manager": 36314724,
+            "known": 1,
+            "hidden": 1,
+            "removed": 0,
+            "restored": 0,
+            "blocked": 1,
+            "native_active": false,
+            "native_pending": 0,
+            "species": 0,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x0"
+          },
+          "settings_hidden": 1,
+          "settings_sequence": 11,
+          "settings_writes": 0,
+          "map": 33,
+          "player": [
+            657,
+            2,
+            404
+          ],
+          "wilds": 2,
+          "wild_walk_commands": 0,
+          "native_battle": false,
+          "loaded_native_save": {
+            "path": "local_data/verification/ss20a-off-save/cartridge.sav",
+            "sha256": "1dda4e98493b89f92d991817858bf590df938e455aeea6d9e43223804dd52b32"
+          }
+        },
+        "on-cold": {
+          "local_run": "local_data/verification/ss20a-on-cold",
+          "state_sha256": "d786e1ddf3e9a1e2f1530cc5c2c6c46ad5d6830910268598d7a7e736e80ef853",
+          "ram_sha256": "d02f86b36d0d5286b4d2917acf6ad33d1e6a90521d9a464a9931bcaefd772ceb",
+          "report_sha256": "48c5b2c0e861f90319726490662d218c171880c0963feada6c61dc4d05952b3b",
+          "frames": 3200,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                2900,
+                2904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307624,
+            "manager": 36314868,
+            "known": 1,
+            "hidden": 0,
+            "removed": 0,
+            "restored": 0,
+            "blocked": 0,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a2acc",
+            "object": {
+              "flags": 538207329,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1ef4",
+              "position": [
+                657,
+                2,
+                405
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 12,
+          "settings_writes": 0,
+          "map": 33,
+          "player": [
+            658,
+            2,
+            405
+          ],
+          "wilds": 2,
+          "wild_walk_commands": 1,
+          "native_battle": false,
+          "loaded_native_save": {
+            "path": "local_data/verification/ss20a-on-save/cartridge.sav",
+            "sha256": "5e939bccc9c16bd434edffdff35ec75089cd22bc6188888da682004a97e8e2eb"
+          }
+        },
+        "off-town": {
+          "local_run": "local_data/verification/ss20a-off-town",
+          "state_sha256": "7f82f9a7a3e53814f74048e86532c64f543fe1d3aa0804ee1f356f67f3616b6a",
+          "ram_sha256": "6b10a999ddf810e944e3b78561aa6f83df84e43561ab409ba0a20a0ea11962cb",
+          "report_sha256": "b21ff53a2841f716ac725ca28a4a9199b8b76d47573680cf3e2a4dcc4cc854c4",
+          "frames": 1500,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "DOWN",
+                50,
+                54
+              ],
+              [
+                "DOWN",
+                90,
+                94
+              ],
+              [
+                "DOWN",
+                130,
+                134
+              ],
+              [
+                "RIGHT",
+                170,
+                174
+              ],
+              [
+                "DOWN",
+                210,
+                214
+              ],
+              [
+                "DOWN",
+                250,
+                254
+              ],
+              [
+                "DOWN",
+                290,
+                294
+              ],
+              [
+                "A",
+                330,
+                334
+              ],
+              [
+                "UP",
+                500,
+                548
+              ],
+              [
+                "RIGHT",
+                600,
+                1100
+              ],
+              [
+                "SELECT",
+                1250,
+                1254
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307480,
+            "manager": 36314724,
+            "known": 1,
+            "hidden": 1,
+            "removed": 0,
+            "restored": 0,
+            "blocked": 1,
+            "native_active": false,
+            "native_pending": 0,
+            "species": 0,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x0"
+          },
+          "settings_hidden": 1,
+          "settings_sequence": 12,
+          "settings_writes": 1,
+          "map": 60,
+          "player": [
+            677,
+            2,
+            401
+          ],
+          "wilds": 0,
+          "wild_walk_commands": 0,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/ss20a-off-cold/state.bin",
+            "sha256": "ed38d2d678f7543600243fbd8ea7fc66fb8d417df16f73acd5230cffa70913a7"
+          }
+        },
+        "on-town": {
+          "local_run": "local_data/verification/ss20a-on-town",
+          "state_sha256": "02d9e152396ad5406015641b057870a10d0daa78ac2593448cd0b4ccde983547",
+          "ram_sha256": "0807c1e341f4849a70acd66af0cab22a65e8b91ccefeb88b99d970bf0644cd97",
+          "report_sha256": "31422052fb89c97210c9c4a4645d31e89e1c0fd0a0e6d522d124fd039882a958",
+          "frames": 1000,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "UP",
+                50,
+                54
+              ],
+              [
+                "UP",
+                90,
+                94
+              ],
+              [
+                "UP",
+                130,
+                134
+              ],
+              [
+                "RIGHT",
+                170,
+                174
+              ],
+              [
+                "DOWN",
+                210,
+                214
+              ],
+              [
+                "A",
+                250,
+                254
+              ],
+              [
+                "RIGHT",
+                400,
+                432
+              ],
+              [
+                "SELECT",
+                700,
+                704
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307480,
+            "manager": 36314724,
+            "known": 1,
+            "hidden": 0,
+            "removed": 0,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a258c",
+            "object": {
+              "flags": 537716321,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1e64",
+              "position": [
+                677,
+                2,
+                401
+              ],
+              "parameters": [
+                152,
+                0,
+                2
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 13,
+          "settings_writes": 2,
+          "map": 60,
+          "player": [
+            677,
+            2,
+            401
+          ],
+          "wilds": 0,
+          "wild_walk_commands": 0,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/ss20a-off-town/state.bin",
+            "sha256": "7f82f9a7a3e53814f74048e86532c64f543fe1d3aa0804ee1f356f67f3616b6a"
+          }
+        },
+        "on-return": {
+          "local_run": "local_data/verification/ss20a-on-return",
+          "state_sha256": "f8b5e9771c4867d1d4608d5cb9b15a10284ed23017b89478e91cbd2077092c32",
+          "ram_sha256": "da8b8f8ca94701a856234796df4f96e390bbff8ea215ccf476bd832b91077029",
+          "report_sha256": "e3108d0b05fa5e8b7ec8a4f9cffbf1156e3e2aeb22ab7220f4fdf5a7e8c0d620",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "LEFT",
+                50,
+                550
+              ],
+              [
+                "SELECT",
+                850,
+                854
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "follower": {
+            "field": 36307480,
+            "manager": 36314724,
+            "known": 1,
+            "hidden": 0,
+            "removed": 0,
+            "restored": 1,
+            "blocked": 1,
+            "native_active": true,
+            "native_pending": 0,
+            "species": 152,
+            "gender": 0,
+            "shiny": false,
+            "form": 0,
+            "native_object": "0x22a258c",
+            "object": {
+              "flags": 538240065,
+              "id": 253,
+              "sprite": 581,
+              "manager": "0x22a1e64",
+              "position": [
+                653,
+                2,
+                401
+              ],
+              "parameters": [
+                152,
+                0,
+                0
+              ]
+            }
+          },
+          "settings_hidden": 0,
+          "settings_sequence": 13,
+          "settings_writes": 2,
+          "map": 33,
+          "player": [
+            652,
+            2,
+            401
+          ],
+          "wilds": 0,
+          "wild_walk_commands": 0,
+          "native_battle": false,
+          "loaded_state": {
+            "path": "local_data/verification/ss20a-on-town/state.bin",
+            "sha256": "02d9e152396ad5406015641b057870a10d0daa78ac2593448cd0b4ccde983547"
+          }
+        }
+      },
+      "off_apply_changes_only_one_journal_page": {
+        "changed_bytes": 8,
+        "page_offset": "0x3f000"
+      },
+      "native_saves_preserve_both_journal_pages": true,
+      "strict_party_comparisons": [
+        {
+          "case": "off",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        },
+        {
+          "case": "on",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        },
+        {
+          "case": "off-cold",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        },
+        {
+          "case": "on-cold",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        },
+        {
+          "case": "on-return",
+          "all_five_party_identities_hp_status_ivs_moves_unchanged": true,
+          "strict_private_getters_preserve_all_bytes": true,
+          "native_roamer_records_and_flags_unchanged": true
+        }
+      ],
+      "party_rewards_exp_ev_moves_pp_preserved_in_both_cold_modes_and_roundtrip": true,
+      "talk_observation": "Restored Chikorita responds with native follower dialogue in frame000700; no native battle starts.",
+      "screenshots": [
+        {
+          "path": "local_data/verification/ss20a-off/frame-000150.png",
+          "sha256": "9f437f0a923e119b5c1aa09ad0e64d008823208d19f929f8b13dcea7a178ac0b"
+        },
+        {
+          "path": "local_data/verification/ss20a-off/frame-000450.png",
+          "sha256": "b557b8b7b057610b74b28e436c46dd534a7b6e357d8b9d89c9ea66ff1a56fe2b"
+        },
+        {
+          "path": "local_data/verification/ss20a-on/frame-000650.png",
+          "sha256": "e6a03b529b6ae7a7051466cf360e47ed46f5c14cea92848055f3602276326c34"
+        },
+        {
+          "path": "local_data/verification/ss20a-talk/frame-000700.png",
+          "sha256": "92739b445881a4bd32cc64fbaa27a74b672fd4ef43961c756c73c3bc403704b4"
+        },
+        {
+          "path": "local_data/verification/ss20a-on-return/frame-000800.png",
+          "sha256": "917bb1ffdb461db5e5e7ef602184fe97dd5e8e4000e113512a6ad0c623933a6d"
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Mac melonDS DS1.3.1, software renderer, builtin BIOS; isolated existing project progress. SoulSilver uses HG-derived progress, not a fresh SS playthrough or a general save interchange guarantee.",
+    "Native deferred-refresh instructions execute in ARM tests with controlled factory/render APIs. Emulator acceptance executes the full original native creation/removal/render path.",
+    "Runtime follower acceptance covers ordinary male Chikorita on foot, Route29 and New Bark. All species/forms/shiny leads, cycling/Surf, restricted maps, story/partner/HM cutscenes, all-fainted/egg-only and long-play acceptance remain pending.",
+    "Transition cases use saved Encounter rate Off through the normal UI to isolate map behavior. Independent wild movement is separately verified with the rate Normal and five visible wilds.",
+    "No RAM fixtures or Pokemon edits are used in these runs. They inherit the declared project progress and prior milestone19 fixture ancestry.",
+    "Item-finding differences and all other outstanding inventory enhancements remain in the full active goal. These candidates are experimental."
+  ]
+}

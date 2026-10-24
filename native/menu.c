@@ -11,7 +11,7 @@ struct MenuState {
     u32 paused_before[2];
 };
 struct MenuState gEnhancedMenu;
-_Static_assert(sizeof(struct MenuState) == 96, "Menu diagnostic ABI");
+_Static_assert(sizeof(struct MenuState) == 100, "Menu diagnostic ABI");
 static void *ptr(void *p, unsigned offset) { return *(void **)((u8 *)p + offset); }
 static void print(const char *text, u32 x, u32 y) {
     EnhancedDrawText(&gEnhancedMenu.window, gEnhancedMenu.string, text, x, y);
@@ -46,6 +46,8 @@ static void render(void) {
         print(rates[gEnhancedMenu.extra.encounter_rate], 172, 76);
         print("Shiny odds", 16, 92);
         print(odds[gEnhancedMenu.extra.shiny_odds], 160, 92);
+        print("Party follower", 16, 108);
+        print(gEnhancedMenu.extra.hide_follower ? "Off" : "On", 172, 108);
     }
     print("Save and close", 16, 124);
     print("Cancel", 16, 140);
@@ -83,7 +85,7 @@ int EnhancedMenuTask(void *task) {
     if (keys & 2) return close_menu();
     int redraw = 0;
     if (keys & 0x700) { gEnhancedMenu.page ^= 1; gEnhancedMenu.row = 0; redraw = 1; }
-    u32 count = gEnhancedMenu.page ? 5 : 6;
+    u32 count = 6;
     if (keys & 0x40) {
         gEnhancedMenu.row = gEnhancedMenu.row == 0 ? 7 :
             gEnhancedMenu.row == 6 ? count - 1 : gEnhancedMenu.row - 1;
@@ -103,10 +105,10 @@ int EnhancedMenuTask(void *task) {
                 else if (gEnhancedMenu.row == 3) {
                     u32 rate = gEnhancedMenu.extra.encounter_rate + ((keys & 0x20) ? 4 : 1);
                     gEnhancedMenu.extra.encounter_rate = rate >= 5 ? rate - 5 : rate;
-                } else {
+                } else if (gEnhancedMenu.row == 4) {
                     u32 odds = gEnhancedMenu.extra.shiny_odds + ((keys & 0x20) ? 5 : 1);
                     gEnhancedMenu.extra.shiny_odds = odds >= 6 ? odds - 6 : odds;
-                }
+                } else gEnhancedMenu.extra.hide_follower ^= 1;
             }
             else if (gEnhancedMenu.row == 0)
                 gEnhancedMenu.visible = (gEnhancedMenu.visible + ((keys & 0x20) ? 3 : 1)) & 3;
@@ -141,6 +143,7 @@ int EnhancedMenuOpen(void *field) {
     gEnhancedMenu.extra.iv_ev_viewer = gEnhancedExtraOptions.iv_ev_viewer;
     gEnhancedMenu.extra.encounter_rate = gEnhancedExtraOptions.encounter_rate;
     gEnhancedMenu.extra.shiny_odds = gEnhancedExtraOptions.shiny_odds;
+    gEnhancedMenu.extra.hide_follower = gEnhancedExtraOptions.hide_follower;
     EnhancedNpcPause(field, gEnhancedMenu.paused_before, 1);
     FieldSystem_CreateTask(field, EnhancedMenuTask, 0);
     return 1;

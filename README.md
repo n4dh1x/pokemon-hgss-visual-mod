@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 19.**
+**Current stage: experimental gameplay milestone 20.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -12,7 +12,7 @@ checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
 settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. 176 tests pass. The repeat-Repel option offers another Repel of the
+connected-map changes remove old-map wilds. 184 tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
@@ -60,6 +60,10 @@ plus shiny selection on new native releases. Both games pass retained shiny
 Raikou contact, capture, rewards and native save/cold reload. See
 [visible-legendaries.md](docs/visible-legendaries.md). Wider legendary species,
 full capacity/transition coverage, other enhancements and final validation remain.
+Milestone 20 adds saved Party follower On/Off on page 2. Native lifecycle and
+permission checks control the lead follower independently of roaming wilds.
+Both games pass native walking/dialogue, On/Off save/cold reload and a connected
+map round trip. See [follower-control.md](docs/follower-control.md).
 These candidates are not the final release.
 
 - [Complete 59-row feature inventory](docs/emerald-parity.md)
