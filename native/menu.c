@@ -12,7 +12,7 @@ struct MenuState {
     u32 paused_before[2];
 };
 struct MenuState gEnhancedMenu;
-_Static_assert(sizeof(struct MenuState) == 124, "Menu diagnostic ABI");
+_Static_assert(sizeof(struct MenuState) == 128, "Menu diagnostic ABI");
 static void *ptr(void *p, unsigned offset) { return *(void **)((u8 *)p + offset); }
 static void print(const char *text, u32 x, u32 y) {
     EnhancedDrawText(&gEnhancedMenu.window, gEnhancedMenu.string, text, x, y);
@@ -71,6 +71,8 @@ static void render(void) {
         print(gEnhancedMenu.extra.always_catch ? "On" : "Off", 172, 28);
         print("Instant victory", 16, 44);
         print(gEnhancedMenu.extra.instant_victory ? "On" : "Off", 172, 44);
+        print("Fast egg hatching", 16, 60);
+        print(gEnhancedMenu.extra.fast_eggs ? "On" : "Off", 172, 60);
     }
     print("Save and close", 16, 124);
     print("Cancel", 16, 140);
@@ -87,6 +89,8 @@ static void render(void) {
         print("Wild catches; native balls", 8, 158);
     else if (gEnhancedMenu.page == 3 && gEnhancedMenu.row == 1)
         print("Native faints and rewards", 8, 158);
+    else if (gEnhancedMenu.page == 3 && gEnhancedMenu.row == 2)
+        print("One egg every five steps", 8, 158);
     else print("Left/Right value  X page", 8, 158);
     CopyWindowToVram(&gEnhancedMenu.window);
 }
@@ -119,7 +123,7 @@ int EnhancedMenuTask(void *task) {
         gEnhancedMenu.page = (gEnhancedMenu.page + ((keys & 0x200) ? 3 : 1)) & 3;
         gEnhancedMenu.row = 0; redraw = 1;
     }
-    static const u32 page_counts[4] = {6, 6, 4, 2};
+    static const u32 page_counts[4] = {6, 6, 4, 3};
     u32 count = page_counts[gEnhancedMenu.page];
     if (keys & 0x40) {
         gEnhancedMenu.row = gEnhancedMenu.row == 0 ? 7 :
@@ -135,7 +139,8 @@ int EnhancedMenuTask(void *task) {
         if (gEnhancedMenu.row < count) {
             if (gEnhancedMenu.page == 3) {
                 if (!gEnhancedMenu.row) gEnhancedMenu.extra.always_catch ^= 1;
-                else gEnhancedMenu.extra.instant_victory ^= 1;
+                else if (gEnhancedMenu.row == 1) gEnhancedMenu.extra.instant_victory ^= 1;
+                else gEnhancedMenu.extra.fast_eggs ^= 1;
             }
             else if (gEnhancedMenu.page == 2) {
                 if (gEnhancedMenu.row == 0) {
@@ -202,6 +207,7 @@ int EnhancedMenuOpen(void *field) {
     gEnhancedMenu.extra.camera_zoom = gEnhancedExtraOptions.camera_zoom;
     gEnhancedMenu.extra.always_catch = gEnhancedExtraOptions.always_catch;
     gEnhancedMenu.extra.instant_victory = gEnhancedExtraOptions.instant_victory;
+    gEnhancedMenu.extra.fast_eggs = gEnhancedExtraOptions.fast_eggs;
     EnhancedNpcPause(field, gEnhancedMenu.paused_before, 1);
     FieldSystem_CreateTask(field, EnhancedMenuTask, 0);
     return 1;

@@ -192,3 +192,6 @@ NativeReplaceFainted = 0x0224d541;
 NativeBattleContextInit = 0x02250f45;
 NativeResetTurn = 0x02251711;
 NativeBattleOverlayMode = 0x02237ED1;
+
+NativeDaycareStep = 0x0206CD1D;
+SetMonData = 0x0206EC41;

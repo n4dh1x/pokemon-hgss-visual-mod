@@ -1,9 +1,10 @@
 # Native enhancement settings
 
-Current milestone 24: press SELECT during free field play. X/R advances through
+Current milestone 25: press SELECT during free field play. X/R advances through
 four pages; L goes back. Up/Down selects a row, Left/Right or A changes its value,
 and A on Save and close applies all pages together. B/Cancel discards staged
-changes. Always catch and Instant victory are on Cheats, page 4, and default Off. Game progress still
+changes. Always catch, Instant victory and Fast egg hatching are on Cheats, page 4,
+and default Off. Game progress still
 uses the native Save command. The sections below retain each milestone’s storage
 and verification history.
 
@@ -230,3 +231,26 @@ victory staged at offset 104, page at 108 and error at 112. The fixed loader and
 native save layout remain unchanged. Both games retain saved On/Off, full native
 trainer rewards and previous seventeen-option saves. Cancel preserves the entire
 cartridge save. See [instant-victory.md](instant-victory.md).
+
+
+## Milestone 25: five-step egg hatching
+
+Cheats page 4 now has Always catch, Instant victory and Fast egg hatching,
+then skips three empty rows before Save/Cancel. Nineteen options occupy 6/6/4/3
+rows. Fast egg hatching defaults Off, including for earlier eighteen-option
+journals and absent presence bits with arbitrary padding.
+
+Value slot 23/presence bit 65536 stores the choice. Auxiliary options occupy
+52 bytes; menu state is 128 bytes. Staged fast eggs is at offset 108, page at
+112 and error at 116. The fixed 32-byte loader header, 256-byte journal, version 1,
+48 value slots and native save layout are unchanged. Unknown slots 24..47 and
+unknown presence bits survive writes. Save applies all pages only after flash
+readback; B/Cancel and failed writes retain the old applied settings.
+
+The five-step walking counter is session state, matching Emerald's static
+counter; it is not saved. Cold boot starts it at zero while retaining the egg and
+choice. Menus do not count steps. Off, no valid egg or ownership mismatch resets
+progress on the next native daycare update. Party reordering retains progress.
+Native events such as map transitions can precede the original daycare update;
+only eligible steps reaching that update count. Original normal-cycle ready eggs
+can still hatch before the fast threshold. See [fast-eggs.md](fast-eggs.md).

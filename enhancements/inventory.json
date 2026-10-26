@@ -713,11 +713,22 @@
       "category": "custom",
       "base_heartgold": "Original egg cycles and ability effects.",
       "visual_plus": "Not added.",
-      "required_work": "Optional one-cycle/fast-hatch behavior through native daycare and hatch queue, without modifying non-eggs.",
+      "required_work": "Milestone 25 adds saved default-Off five-step hatching through the original daycare step, valid-egg selector and hatch sequence. Both games pass native gift-egg four/five-step controls, animation/naming, native save/cold, Cancel and older journals. Finish actual daycare breeding, multiple species and special walking/event contexts.",
       "evidence": [
-        "patches/pokeemerald/0026-fast-eggs.patch"
+        "patches/pokeemerald/0026-fast-eggs.patch",
+        "native/eggs.c",
+        "gameplay/eggs.py",
+        "tests/test_fast_eggs.py",
+        "docs/fast-eggs.md",
+        "enhancements/milestone-25-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "compiled_original_daycare_calendar_ability_breeding_and_selector": "passed_bounded_external_services",
+        "both_Mac_native_gift_egg_On_Off_exact_five_steps_animation_naming": "passed_declared_16_byte_native_script_fixture",
+        "both_Mac_native_save_cold_session_counter_reset_cancel_legacy": "passed_bounded",
+        "actual_daycare_multiple_species_special_walking_events_longplay": "pending"
+      }
     },
     {
       "id": "infinite_money",

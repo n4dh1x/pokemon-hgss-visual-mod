@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 237 tests pass, including compiled ARM field logic and independently checked
+- 247 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 23,680-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 24,120-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -576,3 +576,36 @@ full-party/level/evolution and long-play acceptance remain pending. See
 [Instant victory](instant-victory.md) and
 [exact evidence](../enhancements/milestone-24-verification.json).
 Other unfinished enhancements remain in the full goal.
+
+
+## Milestone 25: saved five-step egg hatching
+
+Cheats page 4 adds default-Off Fast egg hatching. A guarded overlay-1 call wraps
+the original daycare update, which still runs on every eligible step. Every fifth
+step with a valid egg sets only the first valid egg's native cycle field to zero,
+then the existing field caller starts the original hatch script and application.
+No Pokemon is created or marked hatched by the enhancement itself.
+
+247 tests pass. Eight new compiled ARM tests cover threshold/selection, invalid
+eggs, ownership, multiple eggs/reordering, native calendar and ability cycles,
+parent steps/breeding notification, the original hatch selector and guarded
+installation. The original daycare body executes with controlled external
+services in these instruction tests; wider actual daycare/breeding play remains.
+43 settings checks cover legacy defaults, atomic saving, Cancel and validation.
+
+Both exact Mac candidates pass matching native gift-egg On/Off controls, four
+steps unchanged and the fifth native hatch prompt, animation, nickname decline
+and custom name entry. Native hatch count increases once and score by 27. PID,
+OT, IVs, ability, moves, PP and shininess survive; native friendship/memo/Pokedex
+processing and field return stay in the original hatch task. Native saves/cold
+reloads retain eggs, hatch results, custom names and choices. Cold boot resets
+only the session fast counter; four new steps still leave an egg and step five
+opens the hatch sequence. Cancel preserves the entire cartridge save.
+
+The declared gift fixture changes 12 unused native script-stack bytes and one
+four-byte script pointer to execute GiveEgg(Togepi), then the original follower
+script. Native code creates all Pokemon data. This is a bounded VM fixture, not
+a fresh-story daycare playthrough. Multiple species, actual parents/daycare,
+cycling/Surf/forced-movement and event/transition edge cases remain pending.
+Other enhancements remain in scope. See [fast-eggs.md](fast-eggs.md) and
+[exact evidence](../enhancements/milestone-25-verification.json).

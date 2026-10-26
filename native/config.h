@@ -34,6 +34,7 @@ struct EnhancedExtraOptions {
     u32 camera_zoom; /* 90/100/110/120 percent; default index 1. */
     u32 always_catch; /* Optional native wild-catch guarantee, default Off. */
     u32 instant_victory; /* Optional native opponent fainting, default Off. */
+    u32 fast_eggs; /* One valid egg every five actual steps; default Off. */
 };
 extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 
