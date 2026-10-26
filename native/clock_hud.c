@@ -1,4 +1,5 @@
 #include "clock.h"
+#include "camera.h"
 #include "ui.h"
 extern void *String_New(u32 length, int heap);
 extern void String_Delete(void *string);
@@ -53,6 +54,7 @@ void EnhancedClockHudForget(void *manager) {
 void *EnhancedClockCreateTask(void *field, int (*callback)(void *), void *environment) {
     if (ptr(field, 0x10)) NativeClockAssert();
     if (gClockHudState.active && gClockHudState.field == field) EnhancedClockHudClose();
+    EnhancedCameraSuspend(field);
     void *task = NativeClockTaskNew(field, callback, environment);
     *(void **)((u8 *)field + 0x10) = task;
     return task;

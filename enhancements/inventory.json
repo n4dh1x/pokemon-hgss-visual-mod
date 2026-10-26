@@ -807,12 +807,23 @@
       "category": "partial",
       "base_heartgold": "Native camera.",
       "visual_plus": "Full or 50%-blended camera table chosen at build time.",
-      "required_work": "Preserve Visual+ camera; runtime angle selector and map-specific corrections are additional work.",
+      "required_work": "Milestone 22 integrates saved native camera angle (Visual+ default, 34/37/40/43/46 degrees) and relative zoom (90/100 default/110/120 percent). Native tasks receive restored owned base parameters; busy controllers/foreign cameras defer. Both games pass bounded outdoor/lab/party, Cancel, reset and native save/cold checks. Finish runtime orthographic fields, wider culling/maps, story/legendary camera, Surf/cycling, wild-model and long-play acceptance.",
       "evidence": [
         "3ds_port/src/3ds_settings.c",
-        "scripts/port.py"
+        "scripts/port.py",
+        "native/camera.c",
+        "gameplay/camera.py",
+        "tests/test_camera.py",
+        "docs/camera-controls.md",
+        "enhancements/milestone-22-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "original_native_geometry_all_pitch_zoom_combinations_and_task_deletion_guards": "passed",
+        "original_native_orthographic_projection_with_controlled_output_APIs": "passed_instruction_scope",
+        "both_Mac_actual_view_lab_roundtrip_party_cancel_reset_save_cold": "passed_bounded",
+        "wider_orthographic_maps_culling_cinematics_movement_wilds_longplay": "pending"
+      }
     },
     {
       "id": "camera_zoom",
@@ -824,12 +835,23 @@
       "category": "custom",
       "base_heartgold": "Native fixed/game-controlled distances.",
       "visual_plus": "No independent zoom setting.",
-      "required_work": "Add bounded camera distances and field-menu control; test culling and map transitions.",
+      "required_work": "Milestone 22 integrates saved native camera angle (Visual+ default, 34/37/40/43/46 degrees) and relative zoom (90/100 default/110/120 percent). Native tasks receive restored owned base parameters; busy controllers/foreign cameras defer. Both games pass bounded outdoor/lab/party, Cancel, reset and native save/cold checks. Finish runtime orthographic fields, wider culling/maps, story/legendary camera, Surf/cycling, wild-model and long-play acceptance.",
       "evidence": [
         "3ds_port/src/3ds_settings.c",
-        "scripts/port.py"
+        "scripts/port.py",
+        "native/camera.c",
+        "gameplay/camera.py",
+        "tests/test_camera.py",
+        "docs/camera-controls.md",
+        "enhancements/milestone-22-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "original_native_geometry_all_pitch_zoom_combinations_and_task_deletion_guards": "passed",
+        "original_native_orthographic_projection_with_controlled_output_APIs": "passed_instruction_scope",
+        "both_Mac_actual_view_lab_roundtrip_party_cancel_reset_save_cold": "passed_bounded",
+        "wider_orthographic_maps_culling_cinematics_movement_wilds_longplay": "pending"
+      }
     },
     {
       "id": "tilt_shift",

@@ -355,7 +355,7 @@ class TestSettings(unittest.TestCase):
         self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
         for page in (1,2,0):
             self.put(0x021D1154,0x400);self.execute('EnhancedMenuTask',0)
-            self.assertEqual(self.get(self.menu+92),page)
+            self.assertEqual(self.get(self.menu+100),page)
         self.put(0x021D1154,2);self.assertEqual(self.execute('EnhancedMenuTask',0),1)
         self.assertEqual(self.writes,[])
 
@@ -365,7 +365,7 @@ class TestSettings(unittest.TestCase):
         self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
         self.assertEqual(self.get(self.menu+44),2)
         self.put(0x021D1154,0x100);self.execute('EnhancedMenuTask',0)
-        self.assertEqual(self.get(self.menu+92),1)
+        self.assertEqual(self.get(self.menu+100),1)
         self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
         self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0)
         self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
@@ -407,7 +407,7 @@ class TestSettings(unittest.TestCase):
         self.fail_write=True;self.put(0x021D1154,0);self.execute('EnhancedMenuTask',0)
         extra=self.payload.symbols['gEnhancedExtraOptions']
         self.assertEqual((self.get(extra),self.get(extra+4)),(1,0))
-        self.assertEqual(self.get(self.menu+24),1);self.assertEqual(self.get(self.menu+96),1);self.assertEqual(self.get(extra+8),1)
+        self.assertEqual(self.get(self.menu+24),1);self.assertEqual(self.get(self.menu+104),1);self.assertEqual(self.get(extra+8),1)
         self.fail_write=False;self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0)
         self.put(0x021D1154,0);self.assertEqual(self.execute('EnhancedMenuTask',0),1)
         self.assertEqual((self.get(extra),self.get(extra+4)),(0,1));self.assertEqual(self.get(extra+8),0)
@@ -560,7 +560,7 @@ class TestSettings(unittest.TestCase):
         extra=self.payload.symbols['gEnhancedExtraOptions']
         self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
         for _ in range(2):self.put(0x021D1154,0x400);self.execute('EnhancedMenuTask',0)
-        self.assertEqual(self.get(self.menu+92),2)
+        self.assertEqual(self.get(self.menu+100),2)
         self.put(0x021D1154,0x20);self.execute('EnhancedMenuTask',0)
         self.assertEqual(self.get(self.menu+84),5)
         self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0)
@@ -576,6 +576,48 @@ class TestSettings(unittest.TestCase):
         self.put(0x02220000+28,2)
         for i,value in enumerate((1,0,1,0,0,0,1)):self.put(0x02220000+4*i,value)
         self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,0x02220000),0)
+
+    def test_camera_legacy_padding_all_choices_and_unknown_later_values(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions'];at=0x02220000
+        values=[1,1,1]+[0]*45;values[19]=999;values[20]=999;values[31]=98765
+        self.install(0,record(self.owner,9,values));self.reload()
+        self.assertEqual((self.get(extra+32),self.get(extra+36)),(0,1))
+        for pitch in range(6):
+            for zoom in range(4):
+                for i,value in enumerate((1,0,1,0,0,0,0,0,pitch,zoom)):self.put(at+4*i,value)
+                self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,at),1)
+                self.reload();self.assertEqual((self.get(extra+32),self.get(extra+36)),(pitch,zoom))
+                self.assertEqual(struct.unpack_from('<I',self.writes[-1][1],20+31*4)[0],98765)
+        self.assertEqual(self.execute('EnhancedSettingsStore',1,1,1,1,1,1),1)
+        self.reload();self.assertEqual((self.get(extra+32),self.get(extra+36)),(5,3))
+        before=len(self.writes)
+        for offset,value in ((32,6),(36,4)):
+            self.put(at+32,0);self.put(at+36,1);self.put(at+offset,value)
+            self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,at),0)
+        self.assertEqual(len(self.writes),before)
+    def test_camera_explicit_presence_rejects_invalid_fields(self):
+        r=bytearray(record(self.owner,2));struct.pack_into('<I',r,212,4096|8192)
+        for slot,value in ((19,6),(20,4)):
+            bad=bytearray(r);struct.pack_into('<I',bad,20+slot*4,value);struct.pack_into('<I',bad,252,zlib.crc32(bad[:252])&0xffffffff)
+            self.uc.mem_write(0x02220000,bytes(bad));self.assertEqual(self.execute('EnhancedSettingsValid',0x02220000,self.owner),0)
+    def test_camera_menu_cancel_then_failed_save_keeps_applied_options_before_retry(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions']
+        self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
+        for _ in range(2):self.put(0x021D1154,0x400);self.execute('EnhancedMenuTask',0)
+        self.put(self.menu+32,2);self.put(0x021D1154,0x20);self.execute('EnhancedMenuTask',0)
+        self.assertEqual(self.get(self.menu+92),5)
+        self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0x20);self.execute('EnhancedMenuTask',0);self.assertEqual(self.get(self.menu+96),0)
+        self.put(0x021D1154,2);self.execute('EnhancedMenuTask',0)
+        self.assertEqual((self.get(extra+32),self.get(extra+36)),(0,1));self.assertEqual(self.writes,[])
+        self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
+        self.put(self.menu+92,4);self.put(self.menu+96,3);self.put(self.menu+32,6)
+        self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0)
+        self.fail_write=True;self.put(0x021D1154,0);self.execute('EnhancedMenuTask',0)
+        self.assertEqual((self.get(extra+32),self.get(extra+36)),(0,1));self.assertEqual(self.get(self.menu+104),1)
+        self.fail_write=False;self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0);self.execute('EnhancedMenuTask',0);self.reload()
+        self.assertEqual((self.get(extra+32),self.get(extra+36)),(4,3))
 
 
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for save layout audit.')

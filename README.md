@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 21.**
+**Current stage: experimental gameplay milestone 22.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -12,7 +12,7 @@ checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
 settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. 203 tests pass. The repeat-Repel option offers another Repel of the
+connected-map changes remove old-map wilds. 216 tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
@@ -68,6 +68,10 @@ Milestone 21 adds a saved accelerated world clock and optional field time/speed
 HUD on page 3. Lighting, timed readers and active-session Berry growth follow
 world time; native RTC/calendar/daily events stay separate. New seeds receive
 only time after planting. See [world-clock.md](docs/world-clock.md).
+Milestone 22 adds saved Camera angle and Camera zoom on page 3. Visual+/100%
+retain each map's defaults; custom views yield to native tasks and menus. Both
+games pass lab round trips, native saving/cold reload, reset and Cancel checks.
+See [camera-controls.md](docs/camera-controls.md).
 These candidates are not the final release.
 
 - [Complete 59-row feature inventory](docs/emerald-parity.md)

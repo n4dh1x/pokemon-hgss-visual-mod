@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 203 tests pass, including compiled ARM field logic and independently checked
+- 216 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 21,260-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 22,536-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -507,3 +507,19 @@ See [world-clock.md](world-clock.md) and the bounded native acceptance recorded
 in [milestone-21 evidence](../enhancements/milestone-21-verification.json).
 Broader time/evolution/Berry/layout/long-play acceptance and the remaining full
 feature inventory stay in scope.
+
+## Milestone 22: saved camera angle and zoom
+
+Page 3 adds Visual+/34/37/40/43/46-degree pitch and 90/100/110/120-percent zoom.
+Visual+/100% preserve native map parameters; custom views restore still-owned
+parameters before task creation, defer native controller/foreign camera activity
+and forget before native deletion. Orthographic projection refresh is supported
+without overwriting another active camera's graphics.
+
+216 tests pass. Both exact candidates pass bounded actual outdoor/lab/party
+views, map round trips, Cancel, reset, native saving and cold reload on Mac.
+The Visual+ lab is perspective-based; runtime orthographic fields and broader
+map/culling/story/Surf/cycling/wilds/long-play acceptance stay pending.
+See [camera controls](camera-controls.md) and
+[milestone-22 evidence](../enhancements/milestone-22-verification.json).
+All other unfinished inventory work remains in the full goal.

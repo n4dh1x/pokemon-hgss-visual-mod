@@ -170,3 +170,8 @@ NativeHudClear = 0x0201D8C9;
 
 NativeClockTaskNew = 0x020504C1;
 NativeClockAssert = 0x0202551D;
+
+NativeCameraAngle = 0x02023559;
+NativeCameraDistance = 0x020235D5;
+NativeCameraDelete = 0x02023121;
+NativeCameraProjection = 0x020233D9;

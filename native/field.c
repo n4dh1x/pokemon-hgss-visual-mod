@@ -13,6 +13,8 @@ struct ObjectEvent {
 };
 _Static_assert(sizeof(struct ObjectEvent) == 32, "Object event ABI");
 
+#include "camera.h"
+
 extern void EnhancedFollowerUpdate(void *field);
 extern void EnhancedClockHudBefore(void *field);
 extern void EnhancedClockHudShow(void *field);
@@ -259,11 +261,13 @@ void EnhancedFieldControl(void *field) {
     pause_wilds(!FieldMovementAllowed(field));
     OriginalFieldControl(field);
     pause_wilds(!FieldMovementAllowed(field));
+    EnhancedCameraUpdate(field);
     EnhancedClockHudShow(field);
 }
 
 void EnhancedManagerDelete(void *manager) {
     EnhancedClockHudForget(manager);
+    EnhancedCameraForget(manager);
     if (manager == gVisibleState.manager)
         forget();
     /* Exact original destructor; no graphics calls after the field unload. */

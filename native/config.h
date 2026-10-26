@@ -30,6 +30,8 @@ struct EnhancedExtraOptions {
     u32 hide_follower; /* Default zero preserves the native party follower. */
     u32 clock_speed; /* 1x, 6x, 12x, 24x, 60x, 120x; calendar stays native. */
     u32 clock_hud; /* Optional field clock, default Off. */
+    u32 camera_pitch; /* Visual+ default, then 34/37/40/43/46 degrees. */
+    u32 camera_zoom; /* 90/100/110/120 percent; default index 1. */
 };
 extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 

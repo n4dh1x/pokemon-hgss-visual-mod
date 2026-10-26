@@ -124,6 +124,17 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['clock_hud']={'field':hex(hud[0]),'string':hex(hud[5]),'active':bool(hud[6]),'opens':hud[7],'closes':hud[8],'draws':hud[9],'seconds':hud[10],'rate':hud[11]}
         result['settings']['clock_hud'] = extra[7]
         result['enhancement_menu']['staged_clock_hud'] = menu[22]
+    if 'gCameraState' in symbols:
+        values=resident_words('gCameraState',15)
+        result['camera']={'field':hex(values[0]),'manager':hex(values[1]),'camera':hex(values[2]),
+            'base_angle':list(struct.unpack('<4H',struct.pack('<2I',*values[3:5]))),
+            'applied_angle':list(struct.unpack('<4H',struct.pack('<2I',*values[5:7]))),
+            'base_distance':values[7],'applied_distance':values[8],
+            **dict(zip(('active','updates','restored','deferred','replaced','projection_pending'),values[9:15]))}
+        result['settings']['camera_pitch']=extra[8]
+        result['settings']['camera_zoom']=extra[9]
+        result['enhancement_menu']['staged_camera_pitch']=menu[23]
+        result['enhancement_menu']['staged_camera_zoom']=menu[24]
     if 'gShinyState' in symbols:
         result['settings']['shiny_odds'] = extra[4]
         result['enhancement_menu']['staged_shiny_odds'] = menu[19]
@@ -194,6 +205,21 @@ def inspect_run(run: Path, report_path: Path) -> dict:
     # battle setup, avoiding a broad memory-pattern match as identity evidence.
     field = word(0x021D4158)
     if field:
+        if 'gCameraState' in symbols:
+            camera=word(field+0x24);controller=word(field+0x28)
+            result['camera']['native_static']=hex(word(0x021D2204))
+            if 0x02000000<=camera<=0x02400000-104:
+                result['camera']['native']={'pointer':hex(camera),
+                    'angle':list(struct.unpack('<4H',read(camera+60,8))),
+                    'distance':word(camera+56),'projection_type':read(camera+68,1)[0],
+                    'perspective_angle':struct.unpack('<H',read(camera+70,2))[0],
+                    'position':list(struct.unpack('<3i',read(camera+20,12))),
+                    'target':list(struct.unpack('<3i',read(camera+32,12))),
+                    'up':list(struct.unpack('<3i',read(camera+44,12))),
+                    'near_far':list(struct.unpack('<2i',read(camera+12,8))),
+                    'tracking':hex(word(camera+84)),'history':hex(word(camera+100))}
+            if 0x02000000<=controller<=0x02400000-52:
+                result['camera']['controller_busy']=word(controller+0x28)
         location = word(field + 0x20)
         if location:
             result['current_map'] = word(location)

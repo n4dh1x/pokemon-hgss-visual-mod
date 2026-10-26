@@ -176,3 +176,13 @@ is 32 bytes and menu state 108 bytes; the loader header remains 32 bytes.
 Slot 12/bit 512 stores speed, 13..17/bit 1024 store the clock anchor/bonus, and
 18/bit 2048 stores the HUD. The original journal format stays unchanged.
 The live preview shows applied time. See [world-clock.md](world-clock.md).
+
+## Milestone 22 camera options
+
+Page 3 now has World clock, Show clock, Camera angle and Camera zoom. The four-row
+page skips two empty rows before Save/Cancel. Camera choices apply after Save and
+close; native menus temporarily use the map's original view. Values 19/20 and
+presence bits 4096/8192 store pitch/zoom. Defaults are Visual+ and 100%; legacy
+padding without the presence bits is ignored. The auxiliary structure grows to
+40 bytes and menu to 116 bytes. The journal and loader header retain their
+formats. See [camera-controls.md](camera-controls.md).
