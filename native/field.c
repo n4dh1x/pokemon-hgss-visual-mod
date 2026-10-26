@@ -14,6 +14,9 @@ struct ObjectEvent {
 _Static_assert(sizeof(struct ObjectEvent) == 32, "Object event ABI");
 
 extern void EnhancedFollowerUpdate(void *field);
+extern void EnhancedClockHudBefore(void *field);
+extern void EnhancedClockHudShow(void *field);
+extern void EnhancedClockHudForget(void *manager);
 extern int OriginalFieldInput(void *input, void *field);
 extern void OriginalFieldControl(void *field);
 extern int FieldMovementAllowed(void *field);
@@ -251,13 +254,16 @@ static void pause_wilds(int paused) {
 }
 
 void EnhancedFieldControl(void *field) {
+    EnhancedClockHudBefore(field);
     EnhancedSettingsEnsure(field);
     pause_wilds(!FieldMovementAllowed(field));
     OriginalFieldControl(field);
     pause_wilds(!FieldMovementAllowed(field));
+    EnhancedClockHudShow(field);
 }
 
 void EnhancedManagerDelete(void *manager) {
+    EnhancedClockHudForget(manager);
     if (manager == gVisibleState.manager)
         forget();
     /* Exact original destructor; no graphics calls after the field unload. */

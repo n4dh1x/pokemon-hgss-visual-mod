@@ -1,5 +1,6 @@
 #include "settings.h"
 #include "ui.h"
+#include "clock.h"
 
 struct MenuState {
     void *field;
@@ -11,17 +12,19 @@ struct MenuState {
     u32 paused_before[2];
 };
 struct MenuState gEnhancedMenu;
-_Static_assert(sizeof(struct MenuState) == 100, "Menu diagnostic ABI");
+_Static_assert(sizeof(struct MenuState) == 108, "Menu diagnostic ABI");
 static void *ptr(void *p, unsigned offset) { return *(void **)((u8 *)p + offset); }
 static void print(const char *text, u32 x, u32 y) {
     EnhancedDrawText(&gEnhancedMenu.window, gEnhancedMenu.string, text, x, y);
 }
 static void render(void) {
+    static const char *speeds[6] = {"1x", "6x", "12x", "24x", "60x", "120x"};
     static const char *odds[6] = {"1/8192", "1/4096", "1/1024", "1/256", "1/64", "Always"};
     static const char *rates[5] = {"Normal", "Off", "1/4", "1/2", "2x"};
     static const char *modes[4] = {"Off", "Few", "Some", "Many"};
     FillWindowPixelBuffer(&gEnhancedMenu.window, 15);
-    print(gEnhancedMenu.page ? "ENHANCEMENTS 2/2" : "ENHANCEMENTS 1/2", 8, 2);
+    static const char *titles[3] = {"ENHANCEMENTS 1/3", "ENHANCEMENTS 2/3", "ENHANCEMENTS 3/3"};
+    print(titles[gEnhancedMenu.page], 8, 2);
     if (!gEnhancedMenu.page) {
         print("Visible wilds", 16, 28);
         print(modes[gEnhancedMenu.visible], 172, 28);
@@ -35,7 +38,7 @@ static void render(void) {
         print(gEnhancedMenu.capture ? "On" : "Off", 172, 92);
         print("Party EXP Share", 16, 108);
         print(gEnhancedMenu.party ? "On" : "Off", 172, 108);
-    } else {
+    } else if (gEnhancedMenu.page == 1) {
         print("Field HMs", 16, 28);
         print(gEnhancedMenu.extra.field_hms ? "On" : "Off", 172, 28);
         print("Grass battles", 16, 44);
@@ -49,12 +52,21 @@ static void render(void) {
         print("Party follower", 16, 108);
         print(gEnhancedMenu.extra.hide_follower ? "Off" : "On", 172, 108);
     }
+    if (gEnhancedMenu.page == 2) {
+        char text[9]; EnhancedClockText(text);
+        print("World clock", 16, 28);
+        print(speeds[gEnhancedMenu.extra.clock_speed], 172, 28);
+        print("Show clock", 16, 44);
+        print(gEnhancedMenu.extra.clock_hud ? "On" : "Off", 172, 44);
+        print(text, 16, 76);
+        print("Calendar stays native", 16, 100);
+    }
     print("Save and close", 16, 124);
     print("Cancel", 16, 140);
     print("-", 2, 28 + 16 * gEnhancedMenu.row);
     if (gEnhancedMenu.phase == 2) print("Saving settings", 8, 158);
     else if (gEnhancedMenu.error) print("Settings storage unavailable", 8, 158);
-    else if (gEnhancedMenu.page && gEnhancedMenu.row == 2)
+    else if (gEnhancedMenu.page == 1 && gEnhancedMenu.row == 2)
         print("Summary: Y cycle / L/R", 8, 158);
     else print("Left/Right value  X page", 8, 158);
     CopyWindowToVram(&gEnhancedMenu.window);
@@ -84,8 +96,12 @@ int EnhancedMenuTask(void *task) {
     u32 keys = *(volatile u32 *)0x021D1154;
     if (keys & 2) return close_menu();
     int redraw = 0;
-    if (keys & 0x700) { gEnhancedMenu.page ^= 1; gEnhancedMenu.row = 0; redraw = 1; }
-    u32 count = 6;
+    if (keys & 0x700) {
+        gEnhancedMenu.page += (keys & 0x200) ? 2 : 1;
+        if (gEnhancedMenu.page >= 3) gEnhancedMenu.page -= 3;
+        gEnhancedMenu.row = 0; redraw = 1;
+    }
+    u32 count = gEnhancedMenu.page == 2 ? 2 : 6;
     if (keys & 0x40) {
         gEnhancedMenu.row = gEnhancedMenu.row == 0 ? 7 :
             gEnhancedMenu.row == 6 ? count - 1 : gEnhancedMenu.row - 1;
@@ -98,7 +114,12 @@ int EnhancedMenuTask(void *task) {
     }
     if (keys & (0x10 | 0x20 | 1)) {
         if (gEnhancedMenu.row < count) {
-            if (gEnhancedMenu.page) {
+            if (gEnhancedMenu.page == 2) {
+                if (gEnhancedMenu.row == 0) {
+                    u32 speed = gEnhancedMenu.extra.clock_speed + ((keys & 0x20) ? 5 : 1);
+                    gEnhancedMenu.extra.clock_speed = speed >= 6 ? speed - 6 : speed;
+                } else gEnhancedMenu.extra.clock_hud ^= 1;
+            } else if (gEnhancedMenu.page == 1) {
                 if (gEnhancedMenu.row == 0) gEnhancedMenu.extra.field_hms ^= 1;
                 else if (gEnhancedMenu.row == 1) gEnhancedMenu.extra.roaming_only_grass ^= 1;
                 else if (gEnhancedMenu.row == 2) gEnhancedMenu.extra.iv_ev_viewer ^= 1;
@@ -123,6 +144,7 @@ int EnhancedMenuTask(void *task) {
             redraw = 1;
         } else if ((keys & 1) && gEnhancedMenu.row == 7) return close_menu();
     }
+    if (gEnhancedMenu.page == 2) redraw = 1;
     if (redraw) render();
     return 0;
 }
@@ -144,6 +166,8 @@ int EnhancedMenuOpen(void *field) {
     gEnhancedMenu.extra.encounter_rate = gEnhancedExtraOptions.encounter_rate;
     gEnhancedMenu.extra.shiny_odds = gEnhancedExtraOptions.shiny_odds;
     gEnhancedMenu.extra.hide_follower = gEnhancedExtraOptions.hide_follower;
+    gEnhancedMenu.extra.clock_speed = gEnhancedExtraOptions.clock_speed;
+    gEnhancedMenu.extra.clock_hud = gEnhancedExtraOptions.clock_hud;
     EnhancedNpcPause(field, gEnhancedMenu.paused_before, 1);
     FieldSystem_CreateTask(field, EnhancedMenuTask, 0);
     return 1;

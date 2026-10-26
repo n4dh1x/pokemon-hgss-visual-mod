@@ -115,6 +115,15 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['follower'] = dict(zip(('field','manager','known','hidden','removed','restored','blocked'),resident_words('gFollowerState',7)))
         result['settings']['hide_follower'] = extra[5]
         result['enhancement_menu']['staged_hide_follower'] = menu[20]
+    if 'gClockState' in symbols:
+        result['clock'] = dict(zip(('owner','ready','restored','shifted','seconds','wall','bonus_minutes','bonus_seconds','updates','backwards','saves','save_failures','berry_minutes','light_reads','encounter_reads'),resident_words('gClockState',15)))
+        result['settings']['clock_speed'] = extra[6]
+        result['enhancement_menu']['staged_clock_speed'] = menu[21]
+    if 'gClockHudState' in symbols:
+        hud=resident_words('gClockHudState',12)
+        result['clock_hud']={'field':hex(hud[0]),'string':hex(hud[5]),'active':bool(hud[6]),'opens':hud[7],'closes':hud[8],'draws':hud[9],'seconds':hud[10],'rate':hud[11]}
+        result['settings']['clock_hud'] = extra[7]
+        result['enhancement_menu']['staged_clock_hud'] = menu[22]
     if 'gShinyState' in symbols:
         result['settings']['shiny_odds'] = extra[4]
         result['enhancement_menu']['staged_shiny_odds'] = menu[19]

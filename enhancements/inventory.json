@@ -470,13 +470,26 @@
       "category": "custom",
       "base_heartgold": "Uses real RTC; no independent accelerated world clock.",
       "visual_plus": "Not added.",
-      "required_work": "Add separate clock with save-safe persistence. Specify effects on lighting, encounter tables and Berry Pots without triggering RTC tamper penalties or fast-forwarding daily events.",
+      "required_work": "Milestone 21 integrates saved 1x/6x/12x/24x/60x/120x world time for native lighting, timed encounter/evolution readers and active-session Berry Pots bonus growth. Native RTC/calendar/daily/penalty code remains intact; shifted time resumes offline at 1x. Bonus settles before native planting so new seeds do not receive prior elapsed time. Complete broader timed-area/evolution, Berry varieties/mulches/harvest and long-play acceptance.",
       "evidence": [
         "3ds_port/src/3ds_daynight.c",
         "patches/pokeemerald/0053-accelerated-berry-clock.patch",
-        "local_data/reference/pokeheartgold/src/gf_rtc.c"
+        "local_data/reference/pokeheartgold/src/gf_rtc.c",
+        "native/clock.c",
+        "gameplay/clock.py",
+        "tests/test_clock.py",
+        "docs/world-clock.md",
+        "enhancements/milestone-21-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "compiled_ARM_all_rates_rollover_owner_photo_resume_rollback_bounds_save_and_seed_chronology": "passed",
+        "broader_timed_evolution_Berry_and_longplay": "pending",
+        "native_Oran_seed_to_sprout_game_save_cold_both_mac": "passed_bounded; ten-byte supply-registration fixtures declared",
+        "native_Route29_day_species_with_midnight_RTC_both_mac": "passed_bounded",
+        "native_120x_offline_one_x_resume_and_saved_one_x_controls_both_mac": "passed_bounded",
+        "native_calendar_day_count_and_penalty_separation_listed_runs": "passed_bounded"
+      }
     },
     {
       "id": "timed_encounters",
@@ -505,12 +518,24 @@
       "category": "partial",
       "base_heartgold": "Clock exists in Pokegear; not Emerald's always-visible map clock.",
       "visual_plus": "Not added.",
-      "required_work": "Add optional field/map HUD clock and speed indication; retain Pokegear clock.",
+      "required_work": "Milestone 21 adds saved optional top-field-screen time/speed HUD, default Off, and a live third-page preview. Native Pokegear clock remains real RTC. Retained native resources close before field tasks/menu/battle/teardown and defer during area-name scrolling. Complete wider screen/layout/special-menu and long-play acceptance.",
       "evidence": [
         "3ds_port/src/3ds_extras.c",
-        "local_data/reference/pokeheartgold/src/application/pokegear"
+        "local_data/reference/pokeheartgold/src/application/pokegear",
+        "native/clock_hud.c",
+        "native/menu.c",
+        "tests/test_clock.py",
+        "docs/world-clock.md",
+        "enhancements/milestone-21-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "compiled_ARM_retained_window_string_task_constructor_banner_and_NPC_independence": "passed",
+        "wider_layout_special_contexts_longplay": "pending",
+        "native_visible_HUD_party_map_Berry_save_and_cold_both_mac": "passed_bounded",
+        "native_ordinary_battle_flee_HUD_cleanup_SoulSilver": "passed_bounded",
+        "native_saved_Off_cold_no_HUD_allocation_and_Cancel_both_mac": "passed_bounded"
+      }
     },
     {
       "id": "follower",

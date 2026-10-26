@@ -152,3 +152,21 @@ NativeFollowerField = 0x0205F1E5;
 NativeFollowerPermission = 0x02069FF5;
 NativeFollowerRefresh = 0x022059AD;
 NativePartyAlive = 0x02054359;
+
+NativeRtcWall = 0x020147DD;
+NativeRtcSeconds = 0x020147A5;
+NativeRtcDayByHour = 0x02014845;
+NativeRtcWildByHour = 0x0201485D;
+NativeRtcCopyTime = 0x0201474D;
+NativeSysRtc = 0x02028D3D;
+NativeSaveGame = 0x020273F1;
+NativeBerryUpdate = 0x022037C9;
+NativeBerryPlant = 0x02201611;
+NativeBerryAdvance = 0x02201761;
+NativeBerryStatus = 0x0220387D;
+NativeBerryRedraw = 0x02203929;
+
+NativeHudClear = 0x0201D8C9;
+
+NativeClockTaskNew = 0x020504C1;
+NativeClockAssert = 0x0202551D;

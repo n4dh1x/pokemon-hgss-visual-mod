@@ -94,6 +94,15 @@ class TestSettings(unittest.TestCase):
             self.writes.append((a, data))
             self.flash[a:a + (128 if self.fail_write else c)] = data[:128 if self.fail_write else c]
             result = int(not self.fail_write)
+        elif address == 0x020147DC:
+            uc.reg_write(UC_ARM_REG_R1,0)
+            result = 1000*86400+12*3600
+        elif address == 0x020147A4:
+            result = 12 * 3600
+        elif address == 0x020F2BA4:
+            self.assertNotEqual(b,0)
+            uc.reg_write(UC_ARM_REG_R1,a%b)
+            result = a//b
         elif address in (0x0201A4BC, 0x0201A4CC):
             self.assertEqual(a, 1)
         elif address == 0x02078434:
@@ -292,14 +301,14 @@ class TestSettings(unittest.TestCase):
 
     def test_extra_legacy_defaults_atomic_roundtrip_and_unknown_fields(self):
         extra=self.payload.symbols['gEnhancedExtraOptions'];at=0x02220000
-        self.install(0,record(self.owner,10,(0,1,3,1,1,1,99,77,0x12345678,999,999,999,0xDEADBEEF)))
+        self.install(0,record(self.owner,10,(0,1,3,1,1,1,99,77,0x12345678,999,999,999,999,0xDEADBEEF)))
         self.reload()
         self.assertEqual((self.get(extra),self.get(extra+4)),(1,0))
         self.put(at,0);self.put(at+4,1);self.put(at+8,0)
         self.assertEqual(self.execute('EnhancedSettingsStoreAll',0,1,3,1,1,1,at),1)
         self.reload();self.assertEqual((self.get(extra),self.get(extra+4)),(0,1))
         data=self.writes[-1][1]
-        self.assertEqual(struct.unpack_from('<I',data,20+12*4)[0],0xDEADBEEF)
+        self.assertEqual(struct.unpack_from('<I',data,20+13*4)[0],0xDEADBEEF)
         self.assertEqual(struct.unpack_from('<I',data,212)[0]&255,255)
         self.assertEqual(self.execute('EnhancedSettingsStore',1,0,2,0,0,0),1)
         self.reload();self.assertEqual((self.get(extra),self.get(extra+4)),(0,1))
@@ -344,9 +353,9 @@ class TestSettings(unittest.TestCase):
     def test_x_changes_pages_with_native_l_equals_a_mode(self):
         self.put(0x021D1140,3)
         self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
-        for page in (1,0):
+        for page in (1,2,0):
             self.put(0x021D1154,0x400);self.execute('EnhancedMenuTask',0)
-            self.assertEqual(self.get(self.menu+84),page)
+            self.assertEqual(self.get(self.menu+92),page)
         self.put(0x021D1154,2);self.assertEqual(self.execute('EnhancedMenuTask',0),1)
         self.assertEqual(self.writes,[])
 
@@ -356,7 +365,7 @@ class TestSettings(unittest.TestCase):
         self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
         self.assertEqual(self.get(self.menu+44),2)
         self.put(0x021D1154,0x100);self.execute('EnhancedMenuTask',0)
-        self.assertEqual(self.get(self.menu+84),1)
+        self.assertEqual(self.get(self.menu+92),1)
         self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
         self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0)
         self.put(0x021D1154,0x10);self.execute('EnhancedMenuTask',0)
@@ -398,21 +407,21 @@ class TestSettings(unittest.TestCase):
         self.fail_write=True;self.put(0x021D1154,0);self.execute('EnhancedMenuTask',0)
         extra=self.payload.symbols['gEnhancedExtraOptions']
         self.assertEqual((self.get(extra),self.get(extra+4)),(1,0))
-        self.assertEqual(self.get(self.menu+24),1);self.assertEqual(self.get(self.menu+88),1);self.assertEqual(self.get(extra+8),1)
+        self.assertEqual(self.get(self.menu+24),1);self.assertEqual(self.get(self.menu+96),1);self.assertEqual(self.get(extra+8),1)
         self.fail_write=False;self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0)
         self.put(0x021D1154,0);self.assertEqual(self.execute('EnhancedMenuTask',0),1)
         self.assertEqual((self.get(extra),self.get(extra+4)),(0,1));self.assertEqual(self.get(extra+8),0)
 
     def test_encounter_rate_legacy_default_all_choices_roundtrip_and_unknown_preservation(self):
         extra=self.payload.symbols['gEnhancedExtraOptions'];at=0x02220000
-        self.install(0,record(self.owner,5,(1,1,1,1,1,1,1,0,1,999,999,999,0xDEADBEEF)))
+        self.install(0,record(self.owner,5,(1,1,1,1,1,1,1,0,1,999,999,999,999,0xDEADBEEF)))
         self.reload();self.assertEqual(self.get(extra+12),0)
         for choice in range(5):
             for i,value in enumerate((1,0,1,choice)):self.put(at+i*4,value)
             self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,at),1)
             self.reload();self.assertEqual(self.get(extra+12),choice)
             data=self.writes[-1][1]
-            self.assertEqual(struct.unpack_from('<I',data,20+12*4)[0],0xDEADBEEF)
+            self.assertEqual(struct.unpack_from('<I',data,20+13*4)[0],0xDEADBEEF)
             self.assertEqual(struct.unpack_from('<I',data,212)[0]&255,255)
         before=len(self.writes);self.put(at+12,5)
         self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,at),0)
@@ -451,13 +460,13 @@ class TestSettings(unittest.TestCase):
 
     def test_shiny_legacy_default_all_choices_and_unknowns_survive_reload(self):
         extra=self.payload.symbols['gEnhancedExtraOptions'];at=0x02220000
-        self.install(0,record(self.owner,5,(1,1,1,1,1,1,1,0,1,0,999,999,0xDEADBEEF)))
+        self.install(0,record(self.owner,5,(1,1,1,1,1,1,1,0,1,0,999,999,999,0xDEADBEEF)))
         self.reload();self.assertEqual(self.get(extra+16),0)
         for choice in range(6):
             for i,value in enumerate((1,0,1,0,choice)):self.put(at+i*4,value)
             self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,at),1)
             self.reload();self.assertEqual(self.get(extra+16),choice)
-            self.assertEqual(struct.unpack_from('<I',self.writes[-1][1],20+12*4)[0],0xDEADBEEF)
+            self.assertEqual(struct.unpack_from('<I',self.writes[-1][1],20+13*4)[0],0xDEADBEEF)
             self.assertEqual(struct.unpack_from('<I',self.writes[-1][1],212)[0]&255,255)
         before=len(self.writes);self.put(at+16,6)
         self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,at),0)
@@ -498,7 +507,7 @@ class TestSettings(unittest.TestCase):
 
     def test_follower_legacy_default_validation_atomic_failure_and_reload(self):
         extra=self.payload.symbols['gEnhancedExtraOptions'];at=0x02220000
-        self.install(0,record(self.owner,5,(1,1,1,1,1,1,1,0,1,0,0,999,0xDEADBEEF)))
+        self.install(0,record(self.owner,5,(1,1,1,1,1,1,1,0,1,0,0,999,999,0xDEADBEEF)))
         self.reload();self.assertEqual(self.get(extra+20),0)
         for i,v in enumerate((1,0,1,0,0,1)):self.put(at+4*i,v)
         self.fail_write=True
@@ -507,7 +516,7 @@ class TestSettings(unittest.TestCase):
         self.fail_write=False
         self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,at),1)
         self.reload();self.assertEqual(self.get(extra+20),1)
-        self.assertEqual(struct.unpack_from('<I',self.writes[-1][1],20+12*4)[0],0xDEADBEEF)
+        self.assertEqual(struct.unpack_from('<I',self.writes[-1][1],20+13*4)[0],0xDEADBEEF)
         self.assertEqual(struct.unpack_from('<I',self.writes[-1][1],212)[0]&511,511)
         self.assertEqual(self.execute('EnhancedSettingsStore',1,1,1,1,1,1),1)
         self.reload();self.assertEqual(self.get(extra+20),1)
@@ -531,6 +540,42 @@ class TestSettings(unittest.TestCase):
         self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0)
         self.put(0x021D1154,0);self.execute('EnhancedMenuTask',0)
         self.reload();self.assertEqual(self.get(extra+20),1)
+
+    def test_world_clock_choices_snapshot_and_legacy_padding_validation(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions'];at=0x02220000
+        self.install(0,record(self.owner,4,(1,1,1,1,1,1,1,0,1,0,0,0,999)))
+        self.reload();self.assertEqual(self.get(extra+24),0)
+        for i,value in enumerate((1,0,1,0,0,0,5,0)):self.put(at+4*i,value)
+        self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,at),1)
+        self.reload();self.assertEqual(self.get(extra+24),5)
+        data=self.writes[-1][1]
+        self.assertEqual(struct.unpack_from('<I',data,212)[0]&1536,1536)
+        self.assertEqual(struct.unpack_from('<I',data,20+13*4)[0],43200)
+        self.assertEqual(self.execute('EnhancedSettingsStore',1,1,1,1,1,1),1)
+        self.reload();self.assertEqual(self.get(extra+24),5)
+        before=len(self.writes);self.put(at+24,6)
+        self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,at),0)
+        self.assertEqual(len(self.writes),before)
+    def test_third_page_clock_and_hud_cancel_then_atomic_save(self):
+        extra=self.payload.symbols['gEnhancedExtraOptions']
+        self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
+        for _ in range(2):self.put(0x021D1154,0x400);self.execute('EnhancedMenuTask',0)
+        self.assertEqual(self.get(self.menu+92),2)
+        self.put(0x021D1154,0x20);self.execute('EnhancedMenuTask',0)
+        self.assertEqual(self.get(self.menu+84),5)
+        self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0)
+        self.assertEqual(self.get(self.menu+88),1)
+        self.put(0x021D1154,2);self.execute('EnhancedMenuTask',0)
+        self.assertEqual((self.get(extra+24),self.get(extra+28)),(0,0));self.assertEqual(self.writes,[])
+        self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
+        self.put(self.menu+84,1);self.put(self.menu+88,1);self.put(self.menu+32,6)
+        self.put(0x021D1154,1);self.execute('EnhancedMenuTask',0)
+        self.put(0x021D1154,0);self.execute('EnhancedMenuTask',0)
+        self.reload();self.assertEqual((self.get(extra+24),self.get(extra+28)),(1,1))
+        self.put(0x02220000+28,2)
+        for i,value in enumerate((1,0,1,0,0,0,1)):self.put(0x02220000+4*i,value)
+        self.assertEqual(self.execute('EnhancedSettingsStoreAll',1,1,1,1,1,1,0x02220000),0)
 
 
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for save layout audit.')

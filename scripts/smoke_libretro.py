@@ -103,7 +103,7 @@ def apply_ram_fixture(ram: bytes, fixture: dict, rom_sha256: str) -> bytes:
     return bytes(result)
 
 
-def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tuple], captures: set[int], load_state: Path | None = None, touches: list[tuple] | None = None, load_save: Path | None = None, ram_fixture: Path | None = None, record_audio: bool = False):
+def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tuple], captures: set[int], load_state: Path | None = None, touches: list[tuple] | None = None, load_save: Path | None = None, ram_fixture: Path | None = None, record_audio: bool = False, rtc_hour: int | None = None):
     core_path, rom, output = core_path.resolve(), rom.resolve(), output.resolve()
     load_state = load_state.resolve() if load_state else None
     load_save = load_save.resolve() if load_save else None
@@ -136,6 +136,9 @@ def run(core_path: Path, rom: Path, output: Path, frames: int, presses: list[tup
         buffer = C.create_string_buffer(os.fsencode(value))
         held.append(buffer)
         C.cast(data, C.POINTER(C.c_char_p))[0] = C.cast(buffer, C.c_char_p)
+
+    if rtc_hour is not None:
+        overrides['melonds_start_time_absolute_hour'] = str(rtc_hour)
 
     @C.CFUNCTYPE(C.c_bool, C.c_uint, C.c_void_p)
     def environment(command, data):
@@ -358,6 +361,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--frames', type=int, default=600)
     parser.add_argument('--capture', type=int, action='append', default=[])
+    parser.add_argument('--rtc-hour', type=int, choices=range(24), help='Initial RTC hour for an isolated cold-boot test')
     parser.add_argument('--record-audio', action='store_true', help='Keep stereo PCM audio for local sound verification')
     parser.add_argument('--load-state', type=Path)
     parser.add_argument('--load-save', type=Path, help='Copy an exact 512 KiB cartridge save into the isolated test core')
@@ -367,6 +371,8 @@ def main():
     args = parser.parse_args()
     if args.frames < 1:
         parser.error('--frames must be positive')
+    if args.load_state and args.rtc_hour is not None:
+        parser.error('--rtc-hour requires a cold boot, not --load-state')
     if args.load_state and args.load_save:
         parser.error('--load-state and --load-save are mutually exclusive')
     if args.ram_fixture and not args.load_state:
@@ -387,7 +393,7 @@ def main():
             parser.error(f'Invalid touch interval: {event}')
         touches.append((x, y, start, end))
     print(json.dumps(run(args.core, args.rom, args.output, args.frames, presses,
-                         set(args.capture) | {args.frames}, args.load_state, touches, args.load_save, args.ram_fixture, args.record_audio), indent=2))
+                         set(args.capture) | {args.frames}, args.load_state, touches, args.load_save, args.ram_fixture, args.record_audio, args.rtc_hour), indent=2))
 
 
 if __name__ == '__main__':

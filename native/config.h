@@ -28,6 +28,8 @@ struct EnhancedExtraOptions {
     u32 encounter_rate; /* Normal, Off, quarter, half, double. */
     u32 shiny_odds; /* Native, 2/8/32/128 rolls, always. */
     u32 hide_follower; /* Default zero preserves the native party follower. */
+    u32 clock_speed; /* 1x, 6x, 12x, 24x, 60x, 120x; calendar stays native. */
+    u32 clock_hud; /* Optional field clock, default Off. */
 };
 extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 

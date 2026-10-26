@@ -1,0 +1,5781 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 21,
+  "verified_on": "2026-10-26",
+  "final_release": false,
+  "scope": "Saved independent world clock, retained optional field HUD, native timed tables, pre-plant bonus ordering, actual Oran growth, native saving/cold resume and calendar separation.",
+  "regression": {
+    "passed": 203,
+    "skipped": 0,
+    "log_sha256": "573cb3ec114b22fce8df0cce5753250500f05e036d70f1dccda9d95f696b4798",
+    "clock_hud_tests": 17,
+    "clock_hud_log_sha256": "3cb0898201a5fc311906648a4081fb49db5ea89ec7c97eb9f41c03037f6451bf",
+    "inventory_audit": {
+      "path": "local_data/milestone-21-inventory-audit.log",
+      "sha256": "22f339abee5ff04100dd78348ac080c6327c79ff054ef3cb8f46e27e1a3feeae"
+    },
+    "rows": 59,
+    "emerald_keys": 41
+  },
+  "candidates": {
+    "heartgold": {
+      "local_rom": "build/candidates/heartgold-visual-plus-gameplay-milestone-21.nds",
+      "output_sha256": "5dfdcfcce21fbcdbd0c5ae373ae6ee8b7f98c06870e0c6c53b81568072eb766c",
+      "patch_sha256": "57f370947f70f0d522abeffaa347e74afe25e43c55674ba4cba94e0729a0020c",
+      "report_sha256": "171850d1bcf9ff9b3620ed1a9da71324aec540103b8efff7d8e8077c68b823b1",
+      "payload_bytes": 21260,
+      "payload_end": "0x1ffe30c",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15/17/101 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    },
+    "soulsilver": {
+      "local_rom": "build/candidates/soulsilver-visual-plus-gameplay-milestone-21.nds",
+      "output_sha256": "ba527c5bed6adbb650abb8924089af6b03b9d7f160ca74bda37304451cdfe484",
+      "patch_sha256": "f394399edfabc1e624de72cb092e981557f3c12b62a02745aca64255ad3c94ad",
+      "report_sha256": "4c6624df899f95672292946c5342fcdc0f59086cb7d253c9b2686b3bbcb13181",
+      "payload_bytes": 21260,
+      "payload_end": "0x1ffe30c",
+      "reproduced_tested_experiment": true,
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code section round-trip",
+        "recorded overlay 1/2/12/15/17/101 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ]
+    }
+  },
+  "games": {
+    "heartgold": {
+      "cases": {
+        "field": {
+          "local_run": "local_data/verification/hg21e-field",
+          "state_sha256": "1e1cf45994e23f48ad2b6bf0db534e6d23f840af55d424c39bcb7fb3eccfdf8b",
+          "ram_sha256": "b9fa82c67c6d8947b9cd7d715dee733cb34a9b96b12b9f44eec4f0591731cbb0",
+          "smoke_report_sha256": "7937fdc9924da56522664630cd7b88b596587a04f15021d53ea8f1cc5447a0d6",
+          "frames": 3400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 31771,
+            "wall": 126230487,
+            "bonus_minutes": 523,
+            "bonus_seconds": 36,
+            "updates": 1522,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 724,
+            "encounter_reads": 798
+          },
+          "hud": {
+            "field": "0x22a0238",
+            "string": "0x2359704",
+            "active": true,
+            "opens": 1,
+            "closes": 0,
+            "draws": 11,
+            "seconds": 31771,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 17,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              1,
+              27
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_native_save": {
+            "path": "local_data/verification/hg21d-clock-save/cartridge.sav",
+            "sha256": "1da7633ea7f1c20a94dcba68a734341533dd162bf57e56508841ce3d791a2671"
+          }
+        },
+        "berry-open": {
+          "local_run": "local_data/verification/hg21e-berry-open",
+          "state_sha256": "d0f9e14e3b31f59139c87e50e87ef78615c5020b1f18ba5cb6a1352dc152f03c",
+          "ram_sha256": "89741a0161e3eccebe75a913a4d174e7b07028b68153e2752146ff65864b66ad",
+          "smoke_report_sha256": "99cf7b8f9b83e2bb2380bea42f2c682d6632771cc59158c4bcd56a64e16641dc",
+          "frames": 1500,
+          "inputs": {
+            "buttons": [
+              [
+                "Y",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": {
+            "fixture_sha256": "4ee82a65be8cb907a890c9ecc65a563e8fd797c2d90d2fe860a952272d5e3353",
+            "source_ram_sha256": "b9fa82c67c6d8947b9cd7d715dee733cb34a9b96b12b9f44eec4f0591731cbb0",
+            "applied_ram_sha256": "f544be66138ce98f91ed4ac7de04a8557f02f8df5e5b8ed07216867ca2338e5a",
+            "changes": [
+              {
+                "address": 36162360,
+                "before": "00000000",
+                "after": "d6010100",
+                "reason": "Isolated native clock test Berry Pots; no Pokemon, RTC or pot state changes."
+              },
+              {
+                "address": 36163172,
+                "before": "00000000",
+                "after": "9b000500",
+                "reason": "Isolated native clock test Oran supply; no Pokemon, RTC or pot state changes."
+              },
+              {
+                "address": 36163644,
+                "before": "0000",
+                "after": "d601",
+                "reason": "Register supplied Berry Pots in empty native shortcut for normal Y use."
+              }
+            ]
+          },
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 34771,
+            "wall": 126230512,
+            "bonus_minutes": 0,
+            "bonus_seconds": 11,
+            "updates": 2280,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 573,
+            "light_reads": 742,
+            "encounter_reads": 824
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 31771,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 17,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              1,
+              52
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-field/state.bin",
+            "sha256": "1e1cf45994e23f48ad2b6bf0db534e6d23f840af55d424c39bcb7fb3eccfdf8b"
+          },
+          "fixture_definition": {
+            "kind": "hgss-verification-ram-fixture",
+            "rom_sha256": "5dfdcfcce21fbcdbd0c5ae373ae6ee8b7f98c06870e0c6c53b81568072eb766c",
+            "source_ram_sha256": "b9fa82c67c6d8947b9cd7d715dee733cb34a9b96b12b9f44eec4f0591731cbb0",
+            "changes": [
+              {
+                "address": 36162360,
+                "before": "00000000",
+                "after": "d6010100",
+                "reason": "Isolated native clock test Berry Pots; no Pokemon, RTC or pot state changes."
+              },
+              {
+                "address": 36163172,
+                "before": "00000000",
+                "after": "9b000500",
+                "reason": "Isolated native clock test Oran supply; no Pokemon, RTC or pot state changes."
+              },
+              {
+                "address": 36163644,
+                "before": "0000",
+                "after": "d601",
+                "reason": "Register supplied Berry Pots in empty native shortcut for normal Y use."
+              }
+            ]
+          },
+          "fixture_file": {
+            "path": "local_data/hg21e-berry-supply-fixture.json",
+            "sha256": "4ee82a65be8cb907a890c9ecc65a563e8fd797c2d90d2fe860a952272d5e3353"
+          }
+        },
+        "berry-prompt": {
+          "local_run": "local_data/verification/hg21e-berry-prompt",
+          "state_sha256": "01ff19c3344ad928309e0d869e4e82b287c9ff85885de45e4f4496ed67206ee3",
+          "ram_sha256": "568b2262a8e32ae5d546cf1160f449f948a1a6e151ade24aec654859082c4ea2",
+          "smoke_report_sha256": "b216a3c2cbbd24ba36119396ebec67eae8628cf465caed5703a907385fa41644",
+          "frames": 700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 34891,
+            "wall": 126230513,
+            "bonus_minutes": 0,
+            "bonus_seconds": 10,
+            "updates": 2285,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 575,
+            "light_reads": 742,
+            "encounter_reads": 824
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 31771,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 17,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              4
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-berry-open/state.bin",
+            "sha256": "d0f9e14e3b31f59139c87e50e87ef78615c5020b1f18ba5cb6a1352dc152f03c"
+          }
+        },
+        "berry-select": {
+          "local_run": "local_data/verification/hg21e-berry-select",
+          "state_sha256": "ac87dfde8db2939f2bf00ec82d26aa791503ddf7c40cea14b7f42c6407070b35",
+          "ram_sha256": "5ab7e372c15ab60860e8ec0eb1508f5d170a8d14b2d992fdcd5e6dea9e82fc34",
+          "smoke_report_sha256": "ff790d8c18f5ca3b7a8507b955b77b101e51d9cdd6ee379df994fc28eb91d58c",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "DOWN",
+                10,
+                14
+              ],
+              [
+                "A",
+                100,
+                104
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 34891,
+            "wall": 126230513,
+            "bonus_minutes": 0,
+            "bonus_seconds": 10,
+            "updates": 2285,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 575,
+            "light_reads": 742,
+            "encounter_reads": 824
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 31771,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 17,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              22
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-berry-prompt/state.bin",
+            "sha256": "01ff19c3344ad928309e0d869e4e82b287c9ff85885de45e4f4496ed67206ee3"
+          }
+        },
+        "berry-context": {
+          "local_run": "local_data/verification/hg21e-berry-context",
+          "state_sha256": "b94c24188e46d47692ce45ab4c314edc9beeaaedc20725032867b768e72d024b",
+          "ram_sha256": "443f44c84d772b0b12f9ed4e870e6a95af6725eb5d66b6073a907be363cb1c7e",
+          "smoke_report_sha256": "5a26e45419d918373ec62c01028275730baf779dd92ef5241e32c45e578c63c7",
+          "frames": 1500,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 34891,
+            "wall": 126230513,
+            "bonus_minutes": 0,
+            "bonus_seconds": 10,
+            "updates": 2285,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 575,
+            "light_reads": 742,
+            "encounter_reads": 824
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 31771,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 17,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              47
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-berry-select/state.bin",
+            "sha256": "ac87dfde8db2939f2bf00ec82d26aa791503ddf7c40cea14b7f42c6407070b35"
+          }
+        },
+        "berry-seed": {
+          "local_run": "local_data/verification/hg21e-berry-seed",
+          "state_sha256": "7f49962d40f84216b46fb70045a18eebbb9e46dea05cdcb3f7a9bbb6d3658f75",
+          "ram_sha256": "21fd2ea78653575b8cfd2427c4a2e2d4760834d7a8d7e9eb92db89490d44864d",
+          "smoke_report_sha256": "282743f8554c6438a1259ce1285bee527e93abb57114cc6345669822c66a324f",
+          "frames": 1700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                900,
+                904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 43171,
+            "wall": 126230582,
+            "bonus_minutes": 0,
+            "bonus_seconds": 1,
+            "updates": 2631,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 712,
+            "light_reads": 742,
+            "encounter_reads": 824
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 31771,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 17,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 7,
+                "stage": 1,
+                "minutes_to_next_stage": 211,
+                "moisture_minute_remainder": 29,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 100,
+                "yield_factor": 5,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              3,
+              16
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-berry-context/state.bin",
+            "sha256": "b94c24188e46d47692ce45ab4c314edc9beeaaedc20725032867b768e72d024b"
+          }
+        },
+        "berry-idle": {
+          "local_run": "local_data/verification/hg21e-berry-idle",
+          "state_sha256": "37f53dd598e202dec102881cdddc08da3bd2ac7fd99e78067ebb893ec26dd139",
+          "ram_sha256": "ffe88c9e9cd70d656b3d0b32c7a5a9ae4025af39063149fde99b1a568b3b7775",
+          "smoke_report_sha256": "0d189a44c06deba3fdf3a18d27e90900cc9b11f88da67d7bbea0827d0281a5fe",
+          "frames": 7400,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 59731,
+            "wall": 126230720,
+            "bonus_minutes": 0,
+            "bonus_seconds": 43,
+            "updates": 6326,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 985,
+            "light_reads": 742,
+            "encounter_reads": 824
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 31771,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 17,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 7,
+                "stage": 2,
+                "minutes_to_next_stage": 176,
+                "moisture_minute_remainder": 4,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 25,
+                "yield_factor": 5,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              5,
+              20
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-berry-seed/state.bin",
+            "sha256": "7f49962d40f84216b46fb70045a18eebbb9e46dea05cdcb3f7a9bbb6d3658f75"
+          }
+        },
+        "berry-save": {
+          "local_run": "local_data/verification/hg21e-berry-save",
+          "state_sha256": "c0b111b67b2c2bc3fe106fe743206d803c40df0621cf47bbb92faab7a9ea82df",
+          "ram_sha256": "f8e3415343a450be2a5b857f64c0c1f9d1e0c443abf41ac8d0b3260aafa7e288",
+          "smoke_report_sha256": "2d215fffe3db662233a026c14501343dba127b23be9a5986c68a7d4f96b522a1",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "SELECT",
+                2100,
+                2104
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                250,
+                254
+              ],
+              [
+                231,
+                96,
+                800,
+                804
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 64891,
+            "wall": 126230763,
+            "bonus_minutes": 86,
+            "bonus_seconds": 0,
+            "updates": 9733,
+            "backwards": 0,
+            "saves": 1,
+            "save_failures": 0,
+            "berry_minutes": 985,
+            "light_reads": 2096,
+            "encounter_reads": 2872
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 3,
+            "closes": 3,
+            "draws": 25,
+            "seconds": 63931,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 18,
+            "successful_writes": 1
+          },
+          "enhancement_menu": true,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 7,
+                "stage": 2,
+                "minutes_to_next_stage": 176,
+                "moisture_minute_remainder": 4,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 25,
+                "yield_factor": 5,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              6,
+              3
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              5,
+              21
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-berry-idle/state.bin",
+            "sha256": "37f53dd598e202dec102881cdddc08da3bd2ac7fd99e78067ebb893ec26dd139"
+          }
+        },
+        "berry-cold": {
+          "local_run": "local_data/verification/hg21e-berry-cold",
+          "state_sha256": "2a7a8655f8a35c2a5ecafa6e2418a33be9d81e2cceef68d05f384232cef7d6f1",
+          "ram_sha256": "acc7826d75055bca5c14a7e0c5141fa114081cd1a3d1f8d2db26bdeb8c541df6",
+          "smoke_report_sha256": "f5260306b78c04e89d5efd566793020a2b4e5f19d36780f261d953a3d41927a4",
+          "frames": 3400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                3100,
+                3104
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 66803,
+            "wall": 126234103,
+            "bonus_minutes": 62,
+            "bonus_seconds": 12,
+            "updates": 1361,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 567,
+            "encounter_reads": 794
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 6,
+            "seconds": 66203,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 18,
+            "successful_writes": 0
+          },
+          "enhancement_menu": true,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 7,
+                "stage": 2,
+                "minutes_to_next_stage": 176,
+                "moisture_minute_remainder": 4,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 25,
+                "yield_factor": 5,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              1,
+              1,
+              43
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              1,
+              1,
+              28
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_native_save": {
+            "path": "local_data/verification/hg21e-berry-save/cartridge.sav",
+            "sha256": "92866147abc1f5532d484c989d5f0aeea7ec9bc768d95c5468a91727559c1cbe"
+          }
+        },
+        "day-grass": {
+          "local_run": "local_data/verification/hg21e-day-grass",
+          "state_sha256": "f2a69b05d116b492c29c29239aa4260e5e8d86f2f58b7e142c276e0cda84ab36",
+          "ram_sha256": "e578184933f1ddfa8abd635790f9b78b03ab2d5171aea9d277e5f428b00abeae",
+          "smoke_report_sha256": "7a46413420c4358373168801987d033654c92cca37ca4498907495fee1343555",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "UP",
+                10,
+                42
+              ],
+              [
+                "LEFT",
+                60,
+                92
+              ],
+              [
+                "SELECT",
+                700,
+                704
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 34051,
+            "wall": 126230506,
+            "bonus_minutes": 561,
+            "bonus_seconds": 17,
+            "updates": 3509,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 1620,
+            "encounter_reads": 1884
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 23,
+            "seconds": 33211,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 17,
+            "successful_writes": 0
+          },
+          "enhancement_menu": true,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            16,
+            161,
+            161,
+            16,
+            16
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              1,
+              46
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-field/state.bin",
+            "sha256": "1e1cf45994e23f48ad2b6bf0db534e6d23f840af55d424c39bcb7fb3eccfdf8b"
+          }
+        },
+        "town": {
+          "local_run": "local_data/verification/hg21e-town",
+          "state_sha256": "0491bf9a2396712dc52cd4dfb37198e632a5bf3066e29c37d681fc07660d02d8",
+          "ram_sha256": "64640c01029c721a778a64d7571556e899af97a180684150df65c6c6cd2f4cd6",
+          "smoke_report_sha256": "bdfd43896f0684d918f6bd5a2de1f347adcd7a598585e557a7759be2db455a43",
+          "frames": 1700,
+          "inputs": {
+            "buttons": [
+              [
+                "SELECT",
+                10,
+                14
+              ],
+              [
+                "X",
+                50,
+                54
+              ],
+              [
+                "DOWN",
+                90,
+                94
+              ],
+              [
+                "DOWN",
+                130,
+                134
+              ],
+              [
+                "DOWN",
+                170,
+                174
+              ],
+              [
+                "RIGHT",
+                210,
+                214
+              ],
+              [
+                "DOWN",
+                250,
+                254
+              ],
+              [
+                "DOWN",
+                290,
+                294
+              ],
+              [
+                "DOWN",
+                330,
+                334
+              ],
+              [
+                "A",
+                370,
+                374
+              ],
+              [
+                "UP",
+                450,
+                482
+              ],
+              [
+                "RIGHT",
+                550,
+                1050
+              ],
+              [
+                "SELECT",
+                1600,
+                1604
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 35251,
+            "wall": 126230516,
+            "bonus_minutes": 581,
+            "bonus_seconds": 7,
+            "updates": 4550,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 2103,
+            "encounter_reads": 2446
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 3,
+            "closes": 3,
+            "draws": 31,
+            "seconds": 35011,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 1,
+            "sequence": 18,
+            "successful_writes": 1
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              1,
+              56
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-field/state.bin",
+            "sha256": "1e1cf45994e23f48ad2b6bf0db534e6d23f840af55d424c39bcb7fb3eccfdf8b"
+          }
+        },
+        "off": {
+          "local_run": "local_data/verification/hg21e-off",
+          "state_sha256": "86995cebad2fe3d53be1ae244ed61688d93fc269c3d985faaa05293aea222357",
+          "ram_sha256": "8a4931ceb1e61a58dc414d1e3fdb7f159c42e889a17aacbf676e937ebd74dde3",
+          "smoke_report_sha256": "c9b9c7e7b0577b0b55d7ccaf69dfba317d7f7f7acfc1e5bbbb5c3a6a9d6b3c65",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "X",
+                50,
+                54
+              ],
+              [
+                "RIGHT",
+                90,
+                94
+              ],
+              [
+                "DOWN",
+                130,
+                134
+              ],
+              [
+                "LEFT",
+                170,
+                174
+              ],
+              [
+                "UP",
+                210,
+                214
+              ],
+              [
+                "UP",
+                250,
+                254
+              ],
+              [
+                "UP",
+                290,
+                294
+              ],
+              [
+                "A",
+                330,
+                334
+              ],
+              [
+                "SELECT",
+                700,
+                704
+              ],
+              [
+                "X",
+                740,
+                744
+              ],
+              [
+                "X",
+                780,
+                784
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 35863,
+            "wall": 126230533,
+            "bonus_minutes": 591,
+            "bonus_seconds": 2,
+            "updates": 5755,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 2585,
+            "encounter_reads": 3168
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 3,
+            "closes": 3,
+            "draws": 31,
+            "seconds": 35011,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 0,
+            "clock_hud": 0,
+            "encounter_rate": 1,
+            "sequence": 19,
+            "successful_writes": 2
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              13
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-town/state.bin",
+            "sha256": "0491bf9a2396712dc52cd4dfb37198e632a5bf3066e29c37d681fc07660d02d8"
+          }
+        },
+        "cancel": {
+          "local_run": "local_data/verification/hg21e-cancel",
+          "state_sha256": "afc963feae8e6e2cd9a06bf541f45af34cd6d564be0e2f093ee6f85962b48581",
+          "ram_sha256": "c79ae032c3657230769727031952aee44be940f2e220457b443a479917730b8e",
+          "smoke_report_sha256": "b82958a77278651ed742fb334bffe30a1673c4399c5f92810a7d0efcd717deb6",
+          "frames": 650,
+          "inputs": {
+            "buttons": [
+              [
+                "RIGHT",
+                10,
+                14
+              ],
+              [
+                "DOWN",
+                50,
+                54
+              ],
+              [
+                "RIGHT",
+                90,
+                94
+              ],
+              [
+                "B",
+                130,
+                134
+              ],
+              [
+                "SELECT",
+                300,
+                304
+              ],
+              [
+                "X",
+                340,
+                344
+              ],
+              [
+                "X",
+                380,
+                384
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 35875,
+            "wall": 126230545,
+            "bonus_minutes": 591,
+            "bonus_seconds": 2,
+            "updates": 6436,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 2865,
+            "encounter_reads": 3569
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 3,
+            "closes": 3,
+            "draws": 31,
+            "seconds": 35011,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 0,
+            "clock_hud": 0,
+            "encounter_rate": 1,
+            "sequence": 19,
+            "successful_writes": 2
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              25
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              2,
+              16
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-off/state.bin",
+            "sha256": "86995cebad2fe3d53be1ae244ed61688d93fc269c3d985faaa05293aea222357"
+          }
+        },
+        "off-save": {
+          "local_run": "local_data/verification/hg21e-off-save",
+          "state_sha256": "ecebc8b46d12b3495249dee8172ec13a16af04ee62f9aaeba623043f59d763ff",
+          "ram_sha256": "342bfdc447afac0a09e2616e56b9033afc7a5473cf7bd1d55f5fdac4e744e707",
+          "smoke_report_sha256": "c07d10de5df6bb48c4f3697ea90653bb28e6e8eb7ed75b747565ef5624d27bf0",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                2000,
+                2004
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                100,
+                104
+              ],
+              [
+                231,
+                96,
+                600,
+                604
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 35907,
+            "wall": 126230577,
+            "bonus_minutes": 591,
+            "bonus_seconds": 2,
+            "updates": 8957,
+            "backwards": 0,
+            "saves": 1,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 3653,
+            "encounter_reads": 5301
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 3,
+            "closes": 3,
+            "draws": 31,
+            "seconds": 35011,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 0,
+            "clock_hud": 0,
+            "encounter_rate": 1,
+            "sequence": 20,
+            "successful_writes": 3
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              57
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              2,
+              14
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-off/state.bin",
+            "sha256": "86995cebad2fe3d53be1ae244ed61688d93fc269c3d985faaa05293aea222357"
+          }
+        },
+        "off-cold": {
+          "local_run": "local_data/verification/hg21e-off-cold",
+          "state_sha256": "db3f50c645bb5dcd9ae5b8839aefdffad402214cd1ccd0a06f4f0f94a88f22a1",
+          "ram_sha256": "bb88feb5ceafb64983e841824dd980b9b06a24f3fc8a508c5e291a5d46cd1e2f",
+          "smoke_report_sha256": "6fa58c969923c65a6a9af2149fcf98c9a38eacc0fb79743af109fa2af7d31200",
+          "frames": 3400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                3100,
+                3104
+              ],
+              [
+                "X",
+                3150,
+                3154
+              ],
+              [
+                "X",
+                3190,
+                3194
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 39432,
+            "wall": 126234102,
+            "bonus_minutes": 591,
+            "bonus_seconds": 2,
+            "updates": 1035,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 372,
+            "encounter_reads": 663
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 0,
+            "closes": 0,
+            "draws": 0,
+            "seconds": 0,
+            "rate": 0
+          },
+          "settings": {
+            "clock_speed": 0,
+            "clock_hud": 0,
+            "encounter_rate": 1,
+            "sequence": 20,
+            "successful_writes": 0
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              1,
+              1,
+              42
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              1,
+              1,
+              27
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_native_save": {
+            "path": "local_data/verification/hg21e-off-save/cartridge.sav",
+            "sha256": "ec4a1c2fabdb3a6a6bfc28d09616d3b2eaeaa8addb3e822e33fcd29162ea0e2a"
+          }
+        },
+        "party": {
+          "local_run": "local_data/verification/hg21e-party",
+          "state_sha256": "69b917150b3347593e7c82aac0c1624b371b5f2cd0da12556c40b8fc1082d685",
+          "ram_sha256": "f698277653fdd6ef5d6f6df25117bf107f38c1a1abffebd5ec56b99cbf3ed263",
+          "smoke_report_sha256": "186959428fbc531556a5f543b31b8cc82f82b3c7d3d9021e5090d0d7c0ebc864",
+          "frames": 1700,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "B",
+                1000,
+                1004
+              ],
+              [
+                "SELECT",
+                1500,
+                1504
+              ]
+            ],
+            "touches": [
+              [
+                40,
+                75,
+                100,
+                104
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 38611,
+            "wall": 126230544,
+            "bonus_minutes": 636,
+            "bonus_seconds": 39,
+            "updates": 5691,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 2513,
+            "encounter_reads": 3177
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 4,
+            "closes": 4,
+            "draws": 33,
+            "seconds": 35371,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 1,
+            "sequence": 18,
+            "successful_writes": 1
+          },
+          "enhancement_menu": false,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              24
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              12
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-town/state.bin",
+            "sha256": "0491bf9a2396712dc52cd4dfb37198e632a5bf3066e29c37d681fc07660d02d8"
+          }
+        },
+        "party-close": {
+          "local_run": "local_data/verification/hg21e-party-close",
+          "state_sha256": "bd81171fe40c901eba94b0d1b452e5b1df26b564a84449e391b08152aacd027c",
+          "ram_sha256": "0ebd8cf744c9152d045220c04cb8e1953ff4e508d9658f43d110f1a732d6b394",
+          "smoke_report_sha256": "f49a71f0ff72f427efa57e41f9a737b3ee73d00e51a83d739af3bf8031369f3d",
+          "frames": 1300,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "B",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                1000,
+                1004
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 41251,
+            "wall": 126230566,
+            "bonus_minutes": 680,
+            "bonus_seconds": 17,
+            "updates": 8145,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 3672,
+            "encounter_reads": 4472
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 5,
+            "closes": 5,
+            "draws": 51,
+            "seconds": 40651,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 1,
+            "sequence": 18,
+            "successful_writes": 1
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              46
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              2,
+              24
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/hg21e-party/state.bin",
+            "sha256": "69b917150b3347593e7c82aac0c1624b371b5f2cd0da12556c40b8fc1082d685"
+          }
+        }
+      },
+      "checks": {
+        "native_RTC_date_days_penalty_separate_in_all_listed_runs": true,
+        "native_RTC_and_daily_routines_byte_identical_to_baseline": true,
+        "fresh_daytime_species_while_native_RTC_midnight": [
+          16,
+          161
+        ],
+        "Oran_seed_fresh_interval_then_native_sprout_in_active_real_seconds": 124,
+        "native_save_cold_preserves_all_four_pots": true,
+        "strict_private_native_getters_preserve_all_five_party_identities_rewards_and_roamer_records": true,
+        "120x_offline_resume": {
+          "saved_world_seconds": 61651,
+          "saved_RTC_anchor": 126230736,
+          "saved_bonus_minutes_seconds": [
+            32,
+            27
+          ],
+          "cold_world_seconds": 66803,
+          "cold_RTC_wall": 126234103,
+          "inferred_active_120x_seconds_from_bonus_delta": 15,
+          "offline_1x_seconds": 3352,
+          "exact_resume_equation_matches": true,
+          "no_accelerated_offline_bonus": true
+        },
+        "one_x_resume_exact_no_new_bonus_and_no_HUD_allocation": true,
+        "Cancel_preserves_entire_cartridge_save": true,
+        "map_transition_and_party_menu_HUD_resources_balanced": true
+      },
+      "screenshots": [
+        {
+          "path": "local_data/verification/hg21e-field/frame-003300.png",
+          "sha256": "98a9578b23e2bea94cccfc25c879981ae351a57b7348c2d1eac185bf17ac5e37"
+        },
+        {
+          "path": "local_data/verification/hg21e-berry-seed/frame-001600.png",
+          "sha256": "37e05e2a696c6a82e3b8f9d2899c230368537c353baf41e6889b61e1bda06065"
+        },
+        {
+          "path": "local_data/verification/hg21e-berry-idle/frame-007300.png",
+          "sha256": "e5bac7356524fb493799c23e6cb71b2fd147f8d51202894b681a058ef412cae7"
+        },
+        {
+          "path": "local_data/verification/hg21e-day-grass/frame-000650.png",
+          "sha256": "0babe6dd3b5b2e4105d36e56c5abc062a403b0a81bb6dc1f673c1cc764c310b9"
+        },
+        {
+          "path": "local_data/verification/hg21e-town/frame-001500.png",
+          "sha256": "704a10ff8b06b32e2c1dce3c752b223333f138174355b37194fb81759019ba3e"
+        },
+        {
+          "path": "local_data/verification/hg21e-party/frame-000800.png",
+          "sha256": "6570e69b60724d85c7dcb1dcda94450b616c017e8504b470e5218398e017924a"
+        },
+        {
+          "path": "local_data/verification/hg21e-party-close/frame-000800.png",
+          "sha256": "e7aeb34f6051b6d4399dd13b15c1a606ec6517940358de67ee9cbe337ad97b1b"
+        },
+        {
+          "path": "local_data/verification/hg21e-off/frame-001000.png",
+          "sha256": "9fc87c5ad00956ff0f34464c37d9b082508db1ba8b8e1e148181216803409c2d"
+        },
+        {
+          "path": "local_data/verification/hg21e-off-cold/frame-003300.png",
+          "sha256": "9c4f522129bc9b4bb32dc7571f22c6a44bbc5d37a94c7cf7fdf7667d78d3e214"
+        }
+      ]
+    },
+    "soulsilver": {
+      "cases": {
+        "field": {
+          "local_run": "local_data/verification/ss21e-field",
+          "state_sha256": "7189545f3a2a11fcd3d78eabd0a6949c67de8f6212629fe3a3c19be00700f046",
+          "ram_sha256": "0dc1b48c0151c69b820ef9e82b2da3e5d69e79df508105682372c9fed422926e",
+          "smoke_report_sha256": "028841b1aaafeaa3006302d9a5324ca354e8f1ba5912b26d46d8e0a10d2d6766",
+          "frames": 3400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 6454,
+            "wall": 126230486,
+            "bonus_minutes": 105,
+            "bonus_seconds": 7,
+            "updates": 1494,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 704,
+            "encounter_reads": 784
+          },
+          "hud": {
+            "field": "0x22a01f0",
+            "string": "0x235995c",
+            "active": true,
+            "opens": 1,
+            "closes": 0,
+            "draws": 11,
+            "seconds": 6454,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 14,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163,
+            19
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              1,
+              26
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              11
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_native_save": {
+            "path": "local_data/verification/ss21d-clock-save/cartridge.sav",
+            "sha256": "21628084ba36d1d483c11a86673f985e4686188aea7f9f6808b7933d61b6c3f1"
+          }
+        },
+        "berry-open": {
+          "local_run": "local_data/verification/ss21e-berry-open",
+          "state_sha256": "bb48b5b68cab77f34720e798bcaa81a30cd603bd1c8611803c9afe956a039e7d",
+          "ram_sha256": "cd84455c07bda24b9803c77d5ceeb26a2be9bd3159f8ac133eb5a1cc7f1fe213",
+          "smoke_report_sha256": "4e3a0b2055ebf8e92160dbce07a3961cc9e3020fddf7a132534a07fd19a06a68",
+          "frames": 1500,
+          "inputs": {
+            "buttons": [
+              [
+                "Y",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": {
+            "fixture_sha256": "1680543bce05303903607a7366d36ad3a802f9b6b00208b65d6db0cf170f8e54",
+            "source_ram_sha256": "0dc1b48c0151c69b820ef9e82b2da3e5d69e79df508105682372c9fed422926e",
+            "applied_ram_sha256": "c6d245bc061a4ad970269bdb6c8ce2ebdb5037c395309b38deff7178b4e74cb5",
+            "changes": [
+              {
+                "address": 36162288,
+                "before": "00000000",
+                "after": "d6010100",
+                "reason": "Isolated native clock test Berry Pots; no Pokemon, RTC or pot state changes."
+              },
+              {
+                "address": 36163100,
+                "before": "00000000",
+                "after": "9b000500",
+                "reason": "Isolated native clock test Oran supply; no Pokemon, RTC or pot state changes."
+              },
+              {
+                "address": 36163572,
+                "before": "0000",
+                "after": "d601",
+                "reason": "Register supplied Berry Pots in empty native shortcut for normal Y use."
+              }
+            ]
+          },
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 9454,
+            "wall": 126230511,
+            "bonus_minutes": 0,
+            "bonus_seconds": 42,
+            "updates": 2252,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 154,
+            "light_reads": 722,
+            "encounter_reads": 810
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 6454,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 14,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163,
+            19
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              1,
+              51
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              11
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-field/state.bin",
+            "sha256": "7189545f3a2a11fcd3d78eabd0a6949c67de8f6212629fe3a3c19be00700f046"
+          },
+          "fixture_definition": {
+            "kind": "hgss-verification-ram-fixture",
+            "rom_sha256": "ba527c5bed6adbb650abb8924089af6b03b9d7f160ca74bda37304451cdfe484",
+            "source_ram_sha256": "0dc1b48c0151c69b820ef9e82b2da3e5d69e79df508105682372c9fed422926e",
+            "changes": [
+              {
+                "address": 36162288,
+                "before": "00000000",
+                "after": "d6010100",
+                "reason": "Isolated native clock test Berry Pots; no Pokemon, RTC or pot state changes."
+              },
+              {
+                "address": 36163100,
+                "before": "00000000",
+                "after": "9b000500",
+                "reason": "Isolated native clock test Oran supply; no Pokemon, RTC or pot state changes."
+              },
+              {
+                "address": 36163572,
+                "before": "0000",
+                "after": "d601",
+                "reason": "Register supplied Berry Pots in empty native shortcut for normal Y use."
+              }
+            ]
+          },
+          "fixture_file": {
+            "path": "local_data/ss21e-berry-supply-fixture.json",
+            "sha256": "1680543bce05303903607a7366d36ad3a802f9b6b00208b65d6db0cf170f8e54"
+          }
+        },
+        "berry-prompt": {
+          "local_run": "local_data/verification/ss21e-berry-prompt",
+          "state_sha256": "fb793ef02f7e774245ff9f5f449bc8378fcd3581e950245939bc594ecb6ae2c2",
+          "ram_sha256": "56ba52e20305a4790b46842f50434066e2bfcf6cfaa0d668c7efcda2cfde2885",
+          "smoke_report_sha256": "d318e691ada7e924697b9711ce8e93567d25aafe29940efa81f38d17ca5f3cfa",
+          "frames": 700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 9454,
+            "wall": 126230511,
+            "bonus_minutes": 0,
+            "bonus_seconds": 42,
+            "updates": 2256,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 154,
+            "light_reads": 722,
+            "encounter_reads": 810
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 6454,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 14,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163,
+            19
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              3
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              11
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-berry-open/state.bin",
+            "sha256": "bb48b5b68cab77f34720e798bcaa81a30cd603bd1c8611803c9afe956a039e7d"
+          }
+        },
+        "berry-select": {
+          "local_run": "local_data/verification/ss21e-berry-select",
+          "state_sha256": "f0bbff0168d92127b1b9c691051e8cc400c721869bb4cb73fd44e471ba8b07be",
+          "ram_sha256": "ca2b448e53d818c9cf69132a179029d7917ee42f0efed604b760240bd27d4aa9",
+          "smoke_report_sha256": "d2c4e2a5bef1b31442568b704449fee25f7343fd9a1f12de22285eb51e45a026",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "DOWN",
+                10,
+                14
+              ],
+              [
+                "A",
+                100,
+                104
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 9454,
+            "wall": 126230511,
+            "bonus_minutes": 0,
+            "bonus_seconds": 42,
+            "updates": 2256,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 154,
+            "light_reads": 722,
+            "encounter_reads": 810
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 6454,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 14,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163,
+            19
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              21
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              11
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-berry-prompt/state.bin",
+            "sha256": "fb793ef02f7e774245ff9f5f449bc8378fcd3581e950245939bc594ecb6ae2c2"
+          }
+        },
+        "berry-context": {
+          "local_run": "local_data/verification/ss21e-berry-context",
+          "state_sha256": "92576b3a1869331883d13b541fb5f436c6ffc1da9b1eb115cd2022d745608d6e",
+          "ram_sha256": "9d3655ce1deebc59c953af61adc760f0d3cd1f5f8f7e054b6e878f22ecc67896",
+          "smoke_report_sha256": "bec835001b114d0ec6fde7f794b7ab736f892a7b757647d30c478e00b9c48bf5",
+          "frames": 1500,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 9454,
+            "wall": 126230511,
+            "bonus_minutes": 0,
+            "bonus_seconds": 42,
+            "updates": 2256,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 154,
+            "light_reads": 722,
+            "encounter_reads": 810
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 6454,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 14,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163,
+            19
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              46
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              11
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-berry-select/state.bin",
+            "sha256": "f0bbff0168d92127b1b9c691051e8cc400c721869bb4cb73fd44e471ba8b07be"
+          }
+        },
+        "berry-seed": {
+          "local_run": "local_data/verification/ss21e-berry-seed",
+          "state_sha256": "67eb25e5b9672a982769ffa24943578090463e630fc9ae13f46c76ccead2d33e",
+          "ram_sha256": "2f87a605aa92d016a248f2ad07b254281be3d62e902a0e9a00c73953d17ad4d4",
+          "smoke_report_sha256": "300c1a221d2cfbecc7af59b824ddfdf572b351eb85f6096fe91899f084d546f9",
+          "frames": 1700,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                10,
+                14
+              ],
+              [
+                "A",
+                900,
+                904
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 17854,
+            "wall": 126230581,
+            "bonus_minutes": 0,
+            "bonus_seconds": 32,
+            "updates": 2602,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 293,
+            "light_reads": 722,
+            "encounter_reads": 810
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 6454,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 14,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163,
+            19
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 7,
+                "stage": 1,
+                "minutes_to_next_stage": 211,
+                "moisture_minute_remainder": 29,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 100,
+                "yield_factor": 5,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              3,
+              15
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              11
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-berry-context/state.bin",
+            "sha256": "92576b3a1869331883d13b541fb5f436c6ffc1da9b1eb115cd2022d745608d6e"
+          }
+        },
+        "berry-idle": {
+          "local_run": "local_data/verification/ss21e-berry-idle",
+          "state_sha256": "a23777da5b5ea2e8c5c5885d2be18d77499dc1866e664f3f309f6b992a42ed70",
+          "ram_sha256": "797343d634772def31158f6bcf7be6f53fd1fd789bdcf5ed9b268954ed0dc66d",
+          "smoke_report_sha256": "137fece4cb9da3558e01c85644b5c12acbc63a8b867c9f71352bf9c849373461",
+          "frames": 7400,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 34414,
+            "wall": 126230719,
+            "bonus_minutes": 0,
+            "bonus_seconds": 14,
+            "updates": 6296,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 567,
+            "light_reads": 722,
+            "encounter_reads": 810
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 11,
+            "seconds": 6454,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 14,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163,
+            19
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 7,
+                "stage": 2,
+                "minutes_to_next_stage": 175,
+                "moisture_minute_remainder": 5,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 25,
+                "yield_factor": 5,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              5,
+              19
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              1,
+              11
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-berry-seed/state.bin",
+            "sha256": "67eb25e5b9672a982769ffa24943578090463e630fc9ae13f46c76ccead2d33e"
+          }
+        },
+        "berry-save": {
+          "local_run": "local_data/verification/ss21e-berry-save",
+          "state_sha256": "ea4ba58112c16599464f333602ba7bfe3950c395765880b929ff9690d2c6cd9c",
+          "ram_sha256": "982b379a5fb15996a0502ce21e8c0ee5d68298962e3b7b92c1ca1a4abcc118e2",
+          "smoke_report_sha256": "3d07d1ed82236b133dca001b4782ca7f29edfb299f3fd770da8a32484b4fd35f",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                500,
+                504
+              ],
+              [
+                "SELECT",
+                2100,
+                2104
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                250,
+                254
+              ],
+              [
+                231,
+                96,
+                800,
+                804
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 39574,
+            "wall": 126230762,
+            "bonus_minutes": 85,
+            "bonus_seconds": 31,
+            "updates": 9695,
+            "backwards": 0,
+            "saves": 1,
+            "save_failures": 0,
+            "berry_minutes": 567,
+            "light_reads": 2071,
+            "encounter_reads": 2854
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 3,
+            "closes": 3,
+            "draws": 24,
+            "seconds": 38614,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 15,
+            "successful_writes": 1
+          },
+          "enhancement_menu": true,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163,
+            19
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 7,
+                "stage": 2,
+                "minutes_to_next_stage": 175,
+                "moisture_minute_remainder": 5,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 25,
+                "yield_factor": 5,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              6,
+              2
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              5,
+              21
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-berry-idle/state.bin",
+            "sha256": "a23777da5b5ea2e8c5c5885d2be18d77499dc1866e664f3f309f6b992a42ed70"
+          }
+        },
+        "berry-cold": {
+          "local_run": "local_data/verification/ss21e-berry-cold",
+          "state_sha256": "6b5a18afac90a94b6eb36287b4ce789dd01761cbea84354ba02ee73daa38e6fc",
+          "ram_sha256": "16e79819ca1721f32bb8b8ae78a822cd7e7d8f695ac1dc6c63ae03dadf2791f2",
+          "smoke_report_sha256": "7401fb1ca0048e3a7fe73cf1ecaad79221d673acc5d587229d30044cdcb9dd79",
+          "frames": 3400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                3100,
+                3104
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 41366,
+            "wall": 126234101,
+            "bonus_minutes": 59,
+            "bonus_seconds": 44,
+            "updates": 1347,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 557,
+            "encounter_reads": 787
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 6,
+            "seconds": 40766,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 15,
+            "successful_writes": 0
+          },
+          "enhancement_menu": true,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            16,
+            16,
+            16
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 7,
+                "stage": 2,
+                "minutes_to_next_stage": 175,
+                "moisture_minute_remainder": 5,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 25,
+                "yield_factor": 5,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              1,
+              1,
+              41
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              1,
+              1,
+              26
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_native_save": {
+            "path": "local_data/verification/ss21e-berry-save/cartridge.sav",
+            "sha256": "cb75982ff094ae3c5ff728c7fe173bbb77c46dc40d3b21f48f56dcc5e70bbbe0"
+          }
+        },
+        "day-grass": {
+          "local_run": "local_data/verification/ss21e-day-grass",
+          "state_sha256": "a58840a053181e47f93623624ee746668c5dcf1faf2b6dd9d50270d78118a746",
+          "ram_sha256": "84a58f97f1076a58942a3838c41b41b65cd9fa06a08ce7cad0c6ad17e30f6b32",
+          "smoke_report_sha256": "617243a3b95592319b40cd91d2cd3a88357b366f66f72c3c879697b0bccd7d4d",
+          "frames": 1300,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "RIGHT",
+                50,
+                54
+              ],
+              [
+                "UP",
+                90,
+                94
+              ],
+              [
+                "UP",
+                130,
+                134
+              ],
+              [
+                "A",
+                170,
+                174
+              ],
+              [
+                "SELECT",
+                350,
+                354
+              ],
+              [
+                "RIGHT",
+                390,
+                394
+              ],
+              [
+                "UP",
+                430,
+                434
+              ],
+              [
+                "UP",
+                470,
+                474
+              ],
+              [
+                "A",
+                510,
+                514
+              ],
+              [
+                "SELECT",
+                1000,
+                1004
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 25294,
+            "wall": 126230643,
+            "bonus_minutes": 416,
+            "bonus_seconds": 30,
+            "updates": 12136,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 5849,
+            "encounter_reads": 6275
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 4,
+            "closes": 4,
+            "draws": 74,
+            "seconds": 24694,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 16,
+            "successful_writes": 2
+          },
+          "enhancement_menu": true,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            161,
+            16
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              4,
+              3
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              3,
+              44
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-run-clock/state.bin",
+            "sha256": "6c5dfb78bd87b635afa2f570ad77398189f69e1bdbd13a3955622be160f59bdf"
+          }
+        },
+        "town": {
+          "local_run": "local_data/verification/ss21e-town",
+          "state_sha256": "b287145fa66bea2242c8dc93ebb47d141b10d75ebb8211a7c8b0434b93978033",
+          "ram_sha256": "0cb959d15440fe53a6b1486285a41836f766e1ec20f1e39035276589fa934470",
+          "smoke_report_sha256": "0bbb21862c8450f4c4a4068f5ca83e133a9b97d687be0631def14d4bda0fa529",
+          "frames": 1700,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "DOWN",
+                50,
+                54
+              ],
+              [
+                "DOWN",
+                90,
+                94
+              ],
+              [
+                "DOWN",
+                130,
+                134
+              ],
+              [
+                "RIGHT",
+                170,
+                174
+              ],
+              [
+                "DOWN",
+                210,
+                214
+              ],
+              [
+                "DOWN",
+                250,
+                254
+              ],
+              [
+                "DOWN",
+                290,
+                294
+              ],
+              [
+                "A",
+                330,
+                334
+              ],
+              [
+                "UP",
+                400,
+                464
+              ],
+              [
+                "RIGHT",
+                500,
+                1000
+              ],
+              [
+                "SELECT",
+                1600,
+                1604
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 28774,
+            "wall": 126230672,
+            "bonus_minutes": 474,
+            "bonus_seconds": 1,
+            "updates": 15185,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 7245,
+            "encounter_reads": 7927
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 6,
+            "closes": 6,
+            "draws": 94,
+            "seconds": 28534,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 1,
+            "sequence": 17,
+            "successful_writes": 3
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              4,
+              32
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              3,
+              44
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-day-grass/state.bin",
+            "sha256": "a58840a053181e47f93623624ee746668c5dcf1faf2b6dd9d50270d78118a746"
+          }
+        },
+        "off": {
+          "local_run": "local_data/verification/ss21e-off",
+          "state_sha256": "4f26004d121ef783e58dafd1f86cb06103b147d2b82638e0dfc0018cbbc7b86d",
+          "ram_sha256": "635b3a8a4ce51ada51be7b7ba81cc501dcc8fa3038f260707b2dfd8a3c92ff53",
+          "smoke_report_sha256": "69ca40e3e1a195fe7110a06a93aba9d1661fe6279afb772c59db04c812a04679",
+          "frames": 1100,
+          "inputs": {
+            "buttons": [
+              [
+                "X",
+                10,
+                14
+              ],
+              [
+                "X",
+                50,
+                54
+              ],
+              [
+                "RIGHT",
+                90,
+                94
+              ],
+              [
+                "DOWN",
+                130,
+                134
+              ],
+              [
+                "LEFT",
+                170,
+                174
+              ],
+              [
+                "UP",
+                210,
+                214
+              ],
+              [
+                "UP",
+                250,
+                254
+              ],
+              [
+                "UP",
+                290,
+                294
+              ],
+              [
+                "A",
+                330,
+                334
+              ],
+              [
+                "SELECT",
+                700,
+                704
+              ],
+              [
+                "X",
+                740,
+                744
+              ],
+              [
+                "X",
+                780,
+                784
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 29386,
+            "wall": 126230689,
+            "bonus_minutes": 483,
+            "bonus_seconds": 56,
+            "updates": 16390,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 7727,
+            "encounter_reads": 8649
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 6,
+            "closes": 6,
+            "draws": 94,
+            "seconds": 28534,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 0,
+            "clock_hud": 0,
+            "encounter_rate": 1,
+            "sequence": 18,
+            "successful_writes": 4
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              4,
+              49
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              3,
+              44
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-town/state.bin",
+            "sha256": "b287145fa66bea2242c8dc93ebb47d141b10d75ebb8211a7c8b0434b93978033"
+          }
+        },
+        "cancel": {
+          "local_run": "local_data/verification/ss21e-cancel",
+          "state_sha256": "9c83a7badf355c67662d0ea8a0518922ce93b510cd3420dc9a8a929802932efb",
+          "ram_sha256": "d83215cee2d86fdc6b8f511c644d63ad061a6f08ed4c692c844c683f2d8d0953",
+          "smoke_report_sha256": "96a9f5d617f1eeba378547d7227be604e54392333a08f86874842c00c34bad01",
+          "frames": 650,
+          "inputs": {
+            "buttons": [
+              [
+                "RIGHT",
+                10,
+                14
+              ],
+              [
+                "DOWN",
+                50,
+                54
+              ],
+              [
+                "RIGHT",
+                90,
+                94
+              ],
+              [
+                "B",
+                130,
+                134
+              ],
+              [
+                "SELECT",
+                300,
+                304
+              ],
+              [
+                "X",
+                340,
+                344
+              ],
+              [
+                "X",
+                380,
+                384
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 29398,
+            "wall": 126230701,
+            "bonus_minutes": 483,
+            "bonus_seconds": 56,
+            "updates": 17071,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 8007,
+            "encounter_reads": 9050
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 6,
+            "closes": 6,
+            "draws": 94,
+            "seconds": 28534,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 0,
+            "clock_hud": 0,
+            "encounter_rate": 1,
+            "sequence": 18,
+            "successful_writes": 4
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              5,
+              1
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              4,
+              52
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-off/state.bin",
+            "sha256": "4f26004d121ef783e58dafd1f86cb06103b147d2b82638e0dfc0018cbbc7b86d"
+          }
+        },
+        "off-save": {
+          "local_run": "local_data/verification/ss21e-off-save",
+          "state_sha256": "2390283fe85b03d54be05afacc63b7561c42e208e91096b56d58942573103dd3",
+          "ram_sha256": "d16932359ee569c237d7e05494c3bebdd8d557ee8d058021181c4890e9bb4843",
+          "smoke_report_sha256": "c9af97ab41c79c2de06498dc125f44a638668d44ededd2d61c43a5ceaed95f4b",
+          "frames": 2600,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "A",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                2000,
+                2004
+              ]
+            ],
+            "touches": [
+              [
+                127,
+                75,
+                100,
+                104
+              ],
+              [
+                231,
+                96,
+                600,
+                604
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 29430,
+            "wall": 126230733,
+            "bonus_minutes": 483,
+            "bonus_seconds": 56,
+            "updates": 19592,
+            "backwards": 0,
+            "saves": 1,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 8795,
+            "encounter_reads": 10782
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 6,
+            "closes": 6,
+            "draws": 94,
+            "seconds": 28534,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 0,
+            "clock_hud": 0,
+            "encounter_rate": 1,
+            "sequence": 19,
+            "successful_writes": 5
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              5,
+              33
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              4,
+              50
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-off/state.bin",
+            "sha256": "4f26004d121ef783e58dafd1f86cb06103b147d2b82638e0dfc0018cbbc7b86d"
+          }
+        },
+        "off-cold": {
+          "local_run": "local_data/verification/ss21e-off-cold",
+          "state_sha256": "296d04bbfeab219799ac1d1f7a1c43f40255366f4161626da529dd99a70f162f",
+          "ram_sha256": "8520d3c6a0fe57dc2e0e9b522f82f5de1614699c456628589d86d5f8ed24ac82",
+          "smoke_report_sha256": "40e51872d540cb18de963386e4e2280d9a1885fc7dc971389fbd9e21de8c51f9",
+          "frames": 3400,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                1810,
+                1814
+              ],
+              [
+                "START",
+                1970,
+                1974
+              ],
+              [
+                "A",
+                2450,
+                2454
+              ],
+              [
+                "SELECT",
+                3100,
+                3104
+              ],
+              [
+                "X",
+                3150,
+                3154
+              ],
+              [
+                "X",
+                3190,
+                3194
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 32801,
+            "wall": 126234104,
+            "bonus_minutes": 483,
+            "bonus_seconds": 56,
+            "updates": 1033,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 371,
+            "encounter_reads": 662
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 0,
+            "closes": 0,
+            "draws": 0,
+            "seconds": 0,
+            "rate": 0
+          },
+          "settings": {
+            "clock_speed": 0,
+            "clock_hud": 0,
+            "encounter_rate": 1,
+            "sequence": 19,
+            "successful_writes": 0
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              1,
+              1,
+              44
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              1,
+              1,
+              29
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_native_save": {
+            "path": "local_data/verification/ss21e-off-save/cartridge.sav",
+            "sha256": "638bb829eea0b3432c1d72c0551db231032ae90b783fd28209ed0d7e2914eb67"
+          }
+        },
+        "party": {
+          "local_run": "local_data/verification/ss21e-party",
+          "state_sha256": "c45dd275e4aeb4c51b9c37ce8c90c781878b1aa07ba45e6d56b2271188bd46da",
+          "ram_sha256": "869cd222030c391a559f67cb29ebbb75a3ef5662a1edb801bc15f22fc65f52f6",
+          "smoke_report_sha256": "c281e035a303d685057088039dcbbfa21d5129e9354279fea091a10853e2a94f",
+          "frames": 1700,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "B",
+                1000,
+                1004
+              ],
+              [
+                "SELECT",
+                1500,
+                1504
+              ]
+            ],
+            "touches": [
+              [
+                40,
+                75,
+                100,
+                104
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 32134,
+            "wall": 126230700,
+            "bonus_minutes": 529,
+            "bonus_seconds": 33,
+            "updates": 16326,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 7655,
+            "encounter_reads": 8658
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 7,
+            "closes": 7,
+            "draws": 96,
+            "seconds": 28894,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 1,
+            "sequence": 17,
+            "successful_writes": 3
+          },
+          "enhancement_menu": false,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              5,
+              0
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              3,
+              44
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-town/state.bin",
+            "sha256": "b287145fa66bea2242c8dc93ebb47d141b10d75ebb8211a7c8b0434b93978033"
+          }
+        },
+        "party-close": {
+          "local_run": "local_data/verification/ss21e-party-close",
+          "state_sha256": "7c499bc1142765a80e0bacdaffea0b53167559fd0f7ffa1e3b9c94ed9feb4e14",
+          "ram_sha256": "5bbe976619afe06080f5f1c93ed7680fdbe8e87856138d2fdd79cc24e3279ebd",
+          "smoke_report_sha256": "d9cb6d123fa28e9113205f370292f661f5aa9804ce5aa3571aa1028efe4a5e86",
+          "frames": 1300,
+          "inputs": {
+            "buttons": [
+              [
+                "B",
+                10,
+                14
+              ],
+              [
+                "B",
+                300,
+                304
+              ],
+              [
+                "SELECT",
+                1000,
+                1004
+              ]
+            ],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 34774,
+            "wall": 126230722,
+            "bonus_minutes": 573,
+            "bonus_seconds": 11,
+            "updates": 18780,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 8814,
+            "encounter_reads": 9953
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 8,
+            "closes": 8,
+            "draws": 114,
+            "seconds": 34174,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 1,
+            "sequence": 17,
+            "successful_writes": 3
+          },
+          "enhancement_menu": true,
+          "map": 60,
+          "native_battle": false,
+          "owned_species": [],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              5,
+              22
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              5,
+              0
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-party/state.bin",
+            "sha256": "c45dd275e4aeb4c51b9c37ce8c90c781878b1aa07ba45e6d56b2271188bd46da"
+          }
+        },
+        "dawn": {
+          "local_run": "local_data/verification/ss21e-dawn",
+          "state_sha256": "a6994ad4c3213e8f2a882fa770a55003d5a2b7c35f03b6e69fb7f6b331c07968",
+          "ram_sha256": "a2b587352b66607a53ece90af7f19e391ea1bce5ba4ec6ba09949f4f3492894e",
+          "smoke_report_sha256": "4a85d9d4ec5707d2676bde019e33a2085bc02f56604db9c231e24920e7972f50",
+          "frames": 5000,
+          "inputs": {
+            "buttons": [],
+            "touches": []
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 12574,
+            "wall": 126230537,
+            "bonus_minutes": 206,
+            "bonus_seconds": 16,
+            "updates": 7603,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 3754,
+            "encounter_reads": 3842
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 1,
+            "closes": 1,
+            "draws": 60,
+            "seconds": 12334,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 14,
+            "successful_writes": 0
+          },
+          "enhancement_menu": false,
+          "map": 33,
+          "native_battle": true,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              2,
+              50
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              2,
+              11
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-field/state.bin",
+            "sha256": "7189545f3a2a11fcd3d78eabd0a6949c67de8f6212629fe3a3c19be00700f046"
+          }
+        },
+        "run-clock": {
+          "local_run": "local_data/verification/ss21e-run-clock",
+          "state_sha256": "6c5dfb78bd87b635afa2f570ad77398189f69e1bdbd13a3955622be160f59bdf",
+          "ram_sha256": "9bc3845b52af46255317ae39429c8e5e0db848ea39571e16f9ca6825823ce24f",
+          "smoke_report_sha256": "3fcb60d20dca1471150590e9bcbf42c62068fbb1de741a1a1ec46b7ef0dc6cf4",
+          "frames": 3100,
+          "inputs": {
+            "buttons": [
+              [
+                "A",
+                150,
+                154
+              ],
+              [
+                "SELECT",
+                350,
+                354
+              ],
+              [
+                "X",
+                400,
+                404
+              ],
+              [
+                "X",
+                440,
+                444
+              ]
+            ],
+            "touches": [
+              [
+                128,
+                165,
+                10,
+                14
+              ]
+            ]
+          },
+          "developer_ram_fixture": null,
+          "clock": {
+            "owner": 2836379921,
+            "ready": 1,
+            "restored": 1,
+            "shifted": 1,
+            "seconds": 22654,
+            "wall": 126230621,
+            "bonus_minutes": 372,
+            "bonus_seconds": 52,
+            "updates": 9932,
+            "backwards": 0,
+            "saves": 0,
+            "save_failures": 0,
+            "berry_minutes": 0,
+            "light_reads": 4892,
+            "encounter_reads": 5032
+          },
+          "hud": {
+            "field": "0x0",
+            "string": "0x0",
+            "active": false,
+            "opens": 2,
+            "closes": 2,
+            "draws": 61,
+            "seconds": 17134,
+            "rate": 5
+          },
+          "settings": {
+            "clock_speed": 5,
+            "clock_hud": 1,
+            "encounter_rate": 0,
+            "sequence": 14,
+            "successful_writes": 0
+          },
+          "enhancement_menu": true,
+          "map": 33,
+          "native_battle": false,
+          "owned_species": [
+            163,
+            163,
+            19,
+            163,
+            163,
+            16
+          ],
+          "native": {
+            "pots": [
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              },
+              {
+                "berry": 0,
+                "stage": 0,
+                "minutes_to_next_stage": 0,
+                "moisture_minute_remainder": 0,
+                "yield": 0,
+                "regrowths": 0,
+                "moisture": 0,
+                "yield_factor": 0,
+                "mulch": 0
+              }
+            ],
+            "rtc_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "rtc_time": [
+              0,
+              3,
+              41
+            ],
+            "native_saved_date": [
+              4,
+              1,
+              1,
+              4
+            ],
+            "native_saved_time": [
+              0,
+              2,
+              11
+            ],
+            "native_days": 1461,
+            "native_penalty_minutes": 0
+          },
+          "loaded_state": {
+            "path": "local_data/verification/ss21e-dawn/state.bin",
+            "sha256": "a6994ad4c3213e8f2a882fa770a55003d5a2b7c35f03b6e69fb7f6b331c07968"
+          }
+        }
+      },
+      "checks": {
+        "native_RTC_date_days_penalty_separate_in_all_listed_runs": true,
+        "native_RTC_and_daily_routines_byte_identical_to_baseline": true,
+        "fresh_daytime_species_while_native_RTC_midnight": [
+          16,
+          161
+        ],
+        "Oran_seed_fresh_interval_then_native_sprout_in_active_real_seconds": 124,
+        "native_save_cold_preserves_all_four_pots": true,
+        "strict_private_native_getters_preserve_all_five_party_identities_rewards_and_roamer_records": true,
+        "120x_offline_resume": {
+          "saved_world_seconds": 36334,
+          "saved_RTC_anchor": 126230735,
+          "saved_bonus_minutes_seconds": [
+            31,
+            58
+          ],
+          "cold_world_seconds": 41366,
+          "cold_RTC_wall": 126234101,
+          "inferred_active_120x_seconds_from_bonus_delta": 14,
+          "offline_1x_seconds": 3352,
+          "exact_resume_equation_matches": true,
+          "no_accelerated_offline_bonus": true
+        },
+        "one_x_resume_exact_no_new_bonus_and_no_HUD_allocation": true,
+        "Cancel_preserves_entire_cartridge_save": true,
+        "map_transition_and_party_menu_HUD_resources_balanced": true
+      },
+      "screenshots": [
+        {
+          "path": "local_data/verification/ss21e-field/frame-003300.png",
+          "sha256": "278d784b7fb64666968b12a294032acbc754b530e3a69b3073d896e4211093de"
+        },
+        {
+          "path": "local_data/verification/ss21e-berry-seed/frame-001600.png",
+          "sha256": "37e05e2a696c6a82e3b8f9d2899c230368537c353baf41e6889b61e1bda06065"
+        },
+        {
+          "path": "local_data/verification/ss21e-berry-idle/frame-007300.png",
+          "sha256": "e5bac7356524fb493799c23e6cb71b2fd147f8d51202894b681a058ef412cae7"
+        },
+        {
+          "path": "local_data/verification/ss21e-day-grass/frame-000900.png",
+          "sha256": "5719f925ac6f6ce713123953aa4682b10c66e03d2d28e99db0dd088a9ea0d2fe"
+        },
+        {
+          "path": "local_data/verification/ss21e-town/frame-001500.png",
+          "sha256": "c0912606b7e1013ad7fdc265599ec3f9b6fe64cb6bac986ac08a661b499da626"
+        },
+        {
+          "path": "local_data/verification/ss21e-party/frame-000800.png",
+          "sha256": "6570e69b60724d85c7dcb1dcda94450b616c017e8504b470e5218398e017924a"
+        },
+        {
+          "path": "local_data/verification/ss21e-party-close/frame-000800.png",
+          "sha256": "d96528fa8a6646175caef7513abef7e45bac4b8f477259f12debba468476c27f"
+        },
+        {
+          "path": "local_data/verification/ss21e-off/frame-001000.png",
+          "sha256": "068087f20010da000f1622b6097ba6ab0c38cad2958769d09e61e5457330ff30"
+        },
+        {
+          "path": "local_data/verification/ss21e-off-cold/frame-003300.png",
+          "sha256": "d0db15cf1a598c0424977667d41630382ca1cdd02e926b9819bda661ce4266b1"
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Mac melonDS DS1.3.1 software/builtin BIOS; isolated project progress, SoulSilver HG-derived, not a fresh story playthrough or general save-interchange claim.",
+    "Ten-byte supply/registration fixtures add only Berry Pots and five Oran Berries to exact ROM/RAM-matched isolated copies. Native UI plants and exits; no RTC, Pokemon, pot or growth state is edited. All fixture definitions and ancestry are recorded.",
+    "Actual native growth covers one unmulched Oran seed to sprout per game and its native save/cold preservation. Other berries, mulch, harvest/regrowth and broad long-play acceptance remain pending.",
+    "Runtime timed-table acceptance covers new Route29 visible Pidgey/Sentret at world daytime with native RTC at midnight. SS also starts with native night Hoothoot/Rattata and passes retained-Rattata contact and flee while HUD is disabled. Wider tables/special encounters and time-based evolution UI remain pending.",
+    "HUD runtime covers free field, enhancement/party/native-save menus, Berry Pots app, Route29-NewBark connection and SS ordinary battle/flee. Broader layouts/maps/menus/special tasks and long-session acceptance remain pending.",
+    "Offline 120x resume equation is checked against saved journal anchor, native RTC and exact extra-bonus delta; active elapsed seconds are inferred from that delta. Cold 1x resume is exact and adds no extra Berry bonus.",
+    "The independent clock deliberately leaves native Pokegear RTC, calendar/daily events and penalty bookkeeping under native rules. It is a DS adaptation, not a 3DS renderer or DSP implementation.",
+    "All other unfinished inventory work remains in the full goal. These candidates are experimental, not final releases."
+  ]
+}

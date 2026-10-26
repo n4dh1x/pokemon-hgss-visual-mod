@@ -34,9 +34,9 @@ Baseline: [Emerald v0.4.0](https://github.com/ZallaxDev/emerald-3ds/tree/v0.4.0)
 | Running indoors | Indoor running is native; map-header runningAllowed is unused. Scripted movement restrictions still apply. | Retained. | **Already in base HGSS**. Retain HGSS behavior; do not bypass cutscene or movement locks to imitate the Emerald switch. |
 | Physical / special move split | Native Gen IV mechanic, with move categories. | Retained. | **Already in base HGSS**. Keep HGSS mechanics; no conversion needed. Emerald's optional Gen III fallback is not needed for baseline HGSS. |
 | Day / night outdoor lighting | Native time-of-day lighting and windows; its artwork differs from Emerald's lighting. | Retained. | **Already in base HGSS**. Keep HGSS native lighting. An Off/Auto override and exact Emerald-style extra lighting would be new optional work. |
-| World clock: 1x / 6x / 12x / 24x / 60x / 120x | Uses real RTC; no independent accelerated world clock. | Not added. | **Needs custom implementation**. Add separate clock with save-safe persistence. Specify effects on lighting, encounter tables and Berry Pots without triggering RTC tamper penalties or fast-forwarding daily events. |
+| World clock: 1x / 6x / 12x / 24x / 60x / 120x | Uses real RTC; no independent accelerated world clock. | Not added. | **Needs custom implementation**. Milestone 21 integrates saved world time, native lighting/timed readers and active-session Berry growth. Native calendar stays separate. Broader gameplay acceptance remains; see [world-clock.md](world-clock.md). |
 | Morning / day / night wild encounter tables | Native time-dependent HGSS encounters. | Retained. | **Already in base HGSS**. Preserve Johto/Kanto tables and modifiers; do not copy Hoenn species tables. Off/Timed override would be additional UI. |
-| Show clock on map / bottom-screen HUD | Clock exists in Pokegear; not Emerald's always-visible map clock. | Not added. | **Partly present / adaptation needed**. Add optional field/map HUD clock and speed indication; retain Pokegear clock. |
+| Show clock on map / bottom-screen HUD | Clock exists in Pokegear; not Emerald's always-visible map clock. | Not added. | **Partly present / adaptation needed**. Milestone 21 integrates optional top-field time/speed HUD and live menu preview. Native Pokegear RTC retained; wider layout/context acceptance remains. |
 | Lead Pokemon follower | Native follower, interaction, cries, animations and held leaves/accessory-related behavior. | Retained. | **Partly present / adaptation needed**. Milestone 20 adds saved native Party follower On/Off, default On with legacy journal compatibility. Native permission and deferred lifecycle preserve party species/form/shiny initialization and wild-model independence. Both games pass walking/dialogue, On/Off native save/cold reload and Route29-NewBark round trip. Finish wider species/forms, cycling/Surf, story/partner/HM and long-play acceptance; audit item-finding differences separately. |
 
 ## Cheats
@@ -123,7 +123,7 @@ These are additions of Visual+ itself, not extra Emerald enhancement settings: r
 2. Implement and test visible grass encounters in HeartGold, then caves/water and the persistence/shiny/repel edge cases. A portable policy test alone does not count as an NDS implementation.
 3. Integrate selected capture EXP, IV/EV viewer, reusable TMs and the adapted Repel prompt; resolve shared ARM9/overlay ownership before adding more hooks.
 4. Add runtime settings/persistence, party EXP, trade evolution and badge-gated field moves. Keep feature changes configurable.
-5. Add cheats, independent accelerated clock, map clock and quick ball controls with single-player restrictions.
+5. Finish cheats and quick ball controls, and broader acceptance of the integrated world clock/HUD, with single-player restrictions.
 6. Audit/implement runtime camera and rendering features individually. Stereo/native 400x240 are recorded platform limits, not silently marked complete.
 7. Revalidate SoulSilver against its own symbols/offsets and ROM; never apply HeartGold-only hg-engine hooks blindly.
 

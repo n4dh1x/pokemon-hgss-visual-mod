@@ -166,3 +166,13 @@ native On even if legacy padding is nonzero. Unknown later fields remain intact.
 The journal stays version 1 with 48 slots and the original 256-byte layout.
 Native On/Off saving and cold reload pass in both games. See
 [follower-control.md](follower-control.md).
+
+## Milestone 21 clock options
+
+The current menu has fourteen options on three pages. X/R advance and L goes
+back; page 3 has World clock and Show clock, then skips unused rows before
+Save/Cancel. All three pages apply atomically. The auxiliary runtime structure
+is 32 bytes and menu state 108 bytes; the loader header remains 32 bytes.
+Slot 12/bit 512 stores speed, 13..17/bit 1024 store the clock anchor/bonus, and
+18/bit 2048 stores the HUD. The original journal format stays unchanged.
+The live preview shows applied time. See [world-clock.md](world-clock.md).
