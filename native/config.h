@@ -32,6 +32,7 @@ struct EnhancedExtraOptions {
     u32 clock_hud; /* Optional field clock, default Off. */
     u32 camera_pitch; /* Visual+ default, then 34/37/40/43/46 degrees. */
     u32 camera_zoom; /* 90/100/110/120 percent; default index 1. */
+    u32 always_catch; /* Optional native wild-catch guarantee, default Off. */
 };
 extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 

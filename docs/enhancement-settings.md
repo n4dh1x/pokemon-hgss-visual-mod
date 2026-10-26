@@ -1,4 +1,13 @@
-# Native enhancement settings — milestone 04
+# Native enhancement settings
+
+Current milestone 23: press SELECT during free field play. X/R advances through
+four pages; L goes back. Up/Down selects a row, Left/Right or A changes its value,
+and A on Save and close applies all pages together. B/Cancel discards staged
+changes. Always catch is on Cheats, page 4, and defaults Off. Game progress still
+uses the native Save command. The sections below retain each milestone’s storage
+and verification history.
+
+## Original menu and integration
 
 Press SELECT while normal field input is available. The native DS window offers
 Visible wilds (Off/Few/Some/Many), Trade evolution and Reusable TMs. Use Up/Down
@@ -186,3 +195,20 @@ presence bits 4096/8192 store pitch/zoom. Defaults are Visual+ and 100%; legacy
 padding without the presence bits is ignored. The auxiliary structure grows to
 40 bytes and menu to 116 bytes. The journal and loader header retain their
 formats. See [camera-controls.md](camera-controls.md).
+
+
+## Milestone 23: fourth page and Always catch
+
+The menu exposes seventeen options across four pages with 6/6/4/1 option rows.
+The fourth page, Cheats, starts with Always catch. It skips five empty rows before
+Save/Cancel. X/R advances with wraparound; L goes back. X also works with native
+L=A enabled. Save applies all four pages atomically.
+
+Always catch uses value 21 and reserved-word-0 presence bit 16384. Missing presence
+ignores legacy padding and defaults Off. Unknown slots 22..47 and future reserved
+bits survive; invalid choices and failed readback never apply. Old six-argument
+settings callers preserve the extra option. The auxiliary options occupy 44 bytes,
+menu state 120 bytes and catch diagnostics 20 bytes. The fixed loader header,
+version-1 journal, 48 values, ownership, CRC and native save allocation are unchanged.
+Both games pass explicit On/Off native saving and cold reload, and cancelling
+staged changes preserves the entire cartridge save. See [always-catch.md](always-catch.md).

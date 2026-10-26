@@ -53,6 +53,7 @@ static int valid_format(const struct EnhancedJournal *r) {
         (!(r->reserved[0] & 2048) || r->values[18] <= 1) &&
         (!(r->reserved[0] & 4096) || r->values[19] <= 5) &&
         (!(r->reserved[0] & 8192) || r->values[20] <= 3) &&
+        (!(r->reserved[0] & 16384) || r->values[21] <= 1) &&
         r->checksum == EnhancedSettingsCRC(r, 252);
 }
 int EnhancedSettingsValid(const struct EnhancedJournal *r, u32 owner) {
@@ -97,6 +98,7 @@ void EnhancedSettingsEnsure(void *field) {
     gEnhancedExtraOptions.clock_hud = 0;
     gEnhancedExtraOptions.camera_pitch = 0;
     gEnhancedExtraOptions.camera_zoom = 1;
+    gEnhancedExtraOptions.always_catch = 0;
     for (int i = 0; i < 2; ++i) {
         struct EnhancedJournal *r = &gSettingsState.pages[i];
         int read = FlashLoadChunk(journal_offsets[i], r, sizeof(*r));
@@ -125,6 +127,7 @@ void EnhancedSettingsEnsure(void *field) {
             gEnhancedExtraOptions.clock_hud = (r->reserved[0] & 2048) ? r->values[18] : 0;
             gEnhancedExtraOptions.camera_pitch = (r->reserved[0] & 4096) ? r->values[19] : 0;
             gEnhancedExtraOptions.camera_zoom = (r->reserved[0] & 8192) ? r->values[20] : 1;
+            gEnhancedExtraOptions.always_catch = (r->reserved[0] & 16384) ? r->values[21] : 0;
         }
     }
     EnhancedClockRestore(gSettingsState.last_slot >= 0 ? &gSettingsState.pages[gSettingsState.last_slot] : 0, owner);
@@ -151,7 +154,7 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         u32 capture, u32 party, const struct EnhancedExtraOptions *extra) {
     if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3 || repel > 1 || capture > 1 || party > 1)
         return 0;
-    if (extra && (extra->field_hms > 1 || extra->roaming_only_grass > 1 || extra->iv_ev_viewer > 1 || extra->encounter_rate > 4 || extra->shiny_odds > 5 || extra->hide_follower > 1 || extra->clock_speed > 5 || extra->clock_hud > 1 || extra->camera_pitch > 5 || extra->camera_zoom > 3)) return 0;
+    if (extra && (extra->field_hms > 1 || extra->roaming_only_grass > 1 || extra->iv_ev_viewer > 1 || extra->encounter_rate > 4 || extra->shiny_odds > 5 || extra->hide_follower > 1 || extra->clock_speed > 5 || extra->clock_hud > 1 || extra->camera_pitch > 5 || extra->camera_zoom > 3 || extra->always_catch > 1)) return 0;
     int target = gSettingsState.last_slot < 0 ? 0 : 1 - gSettingsState.last_slot;
     if (gSettingsState.last_slot < 0 && !gSettingsState.writable[target])
         target = 1;
@@ -192,7 +195,8 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         r->values[18] = extra->clock_hud;
         r->values[19] = extra->camera_pitch;
         r->values[20] = extra->camera_zoom;
-        r->reserved[0] |= 15352;
+        r->values[21] = extra->always_catch;
+        r->reserved[0] |= 31736;
     }
     EnhancedClockSnapshot(r);
     r->checksum = EnhancedSettingsCRC(r, 252);
@@ -236,6 +240,7 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         gEnhancedExtraOptions.clock_hud = extra->clock_hud;
         gEnhancedExtraOptions.camera_pitch = extra->camera_pitch;
         gEnhancedExtraOptions.camera_zoom = extra->camera_zoom;
+        gEnhancedExtraOptions.always_catch = extra->always_catch;
     }
     return 1;
 }

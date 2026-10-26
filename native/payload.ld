@@ -175,3 +175,5 @@ NativeCameraAngle = 0x02023559;
 NativeCameraDistance = 0x020235D5;
 NativeCameraDelete = 0x02023121;
 NativeCameraProjection = 0x020233D9;
+
+NativeBattleRandom = 0x0223BD99;

@@ -12,7 +12,7 @@ struct MenuState {
     u32 paused_before[2];
 };
 struct MenuState gEnhancedMenu;
-_Static_assert(sizeof(struct MenuState) == 116, "Menu diagnostic ABI");
+_Static_assert(sizeof(struct MenuState) == 120, "Menu diagnostic ABI");
 static void *ptr(void *p, unsigned offset) { return *(void **)((u8 *)p + offset); }
 static void print(const char *text, u32 x, u32 y) {
     EnhancedDrawText(&gEnhancedMenu.window, gEnhancedMenu.string, text, x, y);
@@ -23,7 +23,7 @@ static void render(void) {
     static const char *rates[5] = {"Normal", "Off", "1/4", "1/2", "2x"};
     static const char *modes[4] = {"Off", "Few", "Some", "Many"};
     FillWindowPixelBuffer(&gEnhancedMenu.window, 15);
-    static const char *titles[3] = {"ENHANCEMENTS 1/3", "ENHANCEMENTS 2/3", "ENHANCEMENTS 3/3"};
+    static const char *titles[4] = {"ENHANCEMENTS 1/4", "ENHANCEMENTS 2/4", "ENHANCEMENTS 3/4", "CHEATS 4/4"};
     print(titles[gEnhancedMenu.page], 8, 2);
     if (!gEnhancedMenu.page) {
         print("Visible wilds", 16, 28);
@@ -66,6 +66,10 @@ static void render(void) {
         print(zooms[gEnhancedMenu.extra.camera_zoom], 172, 76);
         print(text, 16, 100);
     }
+    if (gEnhancedMenu.page == 3) {
+        print("Always catch", 16, 28);
+        print(gEnhancedMenu.extra.always_catch ? "On" : "Off", 172, 28);
+    }
     print("Save and close", 16, 124);
     print("Cancel", 16, 140);
     print("-", 2, 28 + 16 * gEnhancedMenu.row);
@@ -77,6 +81,8 @@ static void render(void) {
         print("Calendar stays native", 8, 158);
     else if (gEnhancedMenu.page == 2 && (gEnhancedMenu.row == 2 || gEnhancedMenu.row == 3))
         print("Scenes keep native camera", 8, 158);
+    else if (gEnhancedMenu.page == 3 && gEnhancedMenu.row == 0)
+        print("Wild catches; native balls", 8, 158);
     else print("Left/Right value  X page", 8, 158);
     CopyWindowToVram(&gEnhancedMenu.window);
 }
@@ -106,11 +112,11 @@ int EnhancedMenuTask(void *task) {
     if (keys & 2) return close_menu();
     int redraw = 0;
     if (keys & 0x700) {
-        gEnhancedMenu.page += (keys & 0x200) ? 2 : 1;
-        if (gEnhancedMenu.page >= 3) gEnhancedMenu.page -= 3;
+        gEnhancedMenu.page = (gEnhancedMenu.page + ((keys & 0x200) ? 3 : 1)) & 3;
         gEnhancedMenu.row = 0; redraw = 1;
     }
-    u32 count = gEnhancedMenu.page == 2 ? 4 : 6;
+    static const u32 page_counts[4] = {6, 6, 4, 1};
+    u32 count = page_counts[gEnhancedMenu.page];
     if (keys & 0x40) {
         gEnhancedMenu.row = gEnhancedMenu.row == 0 ? 7 :
             gEnhancedMenu.row == 6 ? count - 1 : gEnhancedMenu.row - 1;
@@ -123,7 +129,8 @@ int EnhancedMenuTask(void *task) {
     }
     if (keys & (0x10 | 0x20 | 1)) {
         if (gEnhancedMenu.row < count) {
-            if (gEnhancedMenu.page == 2) {
+            if (gEnhancedMenu.page == 3) gEnhancedMenu.extra.always_catch ^= 1;
+            else if (gEnhancedMenu.page == 2) {
                 if (gEnhancedMenu.row == 0) {
                     u32 speed = gEnhancedMenu.extra.clock_speed + ((keys & 0x20) ? 5 : 1);
                     gEnhancedMenu.extra.clock_speed = speed >= 6 ? speed - 6 : speed;
@@ -186,6 +193,7 @@ int EnhancedMenuOpen(void *field) {
     gEnhancedMenu.extra.clock_hud = gEnhancedExtraOptions.clock_hud;
     gEnhancedMenu.extra.camera_pitch = gEnhancedExtraOptions.camera_pitch;
     gEnhancedMenu.extra.camera_zoom = gEnhancedExtraOptions.camera_zoom;
+    gEnhancedMenu.extra.always_catch = gEnhancedExtraOptions.always_catch;
     EnhancedNpcPause(field, gEnhancedMenu.paused_before, 1);
     FieldSystem_CreateTask(field, EnhancedMenuTask, 0);
     return 1;

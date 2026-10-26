@@ -3,7 +3,7 @@
 import argparse,hashlib,json,struct
 from pathlib import Path
 
-def inspect_wilds(run:Path,report_path:Path,rom_path:Path):
+def inspect_wilds(run:Path,report_path:Path,rom_path:Path,include_capture_metadata:bool=False):
     import ndspy.rom
     from unicorn import Uc,UC_ARCH_ARM,UC_MODE_THUMB
     from unicorn.arm_const import UC_ARM_REG_SP,UC_ARM_REG_LR,UC_ARM_REG_PC,UC_ARM_REG_R0,UC_ARM_REG_R1,UC_ARM_REG_R2
@@ -31,6 +31,9 @@ def inspect_wilds(run:Path,report_path:Path,rom_path:Path):
                 'level':get(161),'hp':get(163),'max_hp':get(164),'status':get(160),'nature':pid%25,'form':get(112),'ability':get(10),
                 'ivs':[get(i) for i in (70,71,72,74,75,73)],'moves':[get(i) for i in range(54,58)],
                 'pokemon_sha256':hashlib.sha256(data).hexdigest()}
+        if include_capture_metadata:
+            result['friendship']=get(9)
+            result['pokeball']=get(155)
         if native_shiny!=(xor<8):raise ValueError('Native shininess differs from the unmodified Gen IV rule.')
         if bytes(uc.mem_read(at,236))!=data:raise ValueError('Private getter calls modified Pokemon data.')
         result['private_getters_preserve_all_bytes']=True
@@ -85,4 +88,5 @@ def inspect_wilds(run:Path,report_path:Path,rom_path:Path):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run',required=True,type=Path);p.add_argument('--report',required=True,type=Path);p.add_argument('--rom',required=True,type=Path)
-    a=p.parse_args();print(json.dumps(inspect_wilds(a.run,a.report,a.rom),indent=2))
+    p.add_argument('--capture-metadata',action='store_true',help='Include native friendship and stored ball fields')
+    a=p.parse_args();print(json.dumps(inspect_wilds(a.run,a.report,a.rom,a.capture_metadata),indent=2))

@@ -652,11 +652,25 @@
       "category": "custom",
       "base_heartgold": "Normal catch calculations.",
       "visual_plus": "Not added.",
-      "required_work": "Optional guaranteed catch restricted to eligible wild battles; never steal trainer Pokemon or bypass special battle rules.",
+      "required_work": "Milestone 23 integrates saved default-Off Always catch on Cheats page 4 at the guarded native shake-RNG call. Native eligibility, RNG advancement, ball effects/consumption, capture storage/Dex and rewards remain. Both Mac games pass shiny Raikou Friend Ball success versus failed Off controls, native friendship 200, captured-record/flag updates, shared/capture EXP and moves, native save/cold and Cancel. Finish broader ordinary/Safari/contest/partner/storage-full and story acceptance.",
       "evidence": [
-        "patches/pokeemerald/0023-always-catch.patch"
+        "patches/pokeemerald/0023-always-catch.patch",
+        "native/cheats.c",
+        "gameplay/cheats.py",
+        "native/settings.c",
+        "native/menu.c",
+        "tests/test_always_catch.py",
+        "tests/test_settings.py",
+        "docs/always-catch.md",
+        "enhancements/milestone-23-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "both_original_native_calculators_rng_sdk_division_friendball_and_format_guards": "passed_instruction_scope",
+        "journal_legacy_default_unknown_atomic_cancel_and_four_page_menu": "passed_compiled_arm",
+        "both_Mac_FriendBall_Raikou_On_success_Off_failure_native_rewards_save_cold_cancel": "passed_bounded_declared_nine_byte_location_and_ball_fixture",
+        "broader_ordinary_special_formats_balls_capacity_story_longplay": "pending"
+      }
     },
     {
       "id": "instant_victory",
