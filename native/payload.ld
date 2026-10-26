@@ -177,3 +177,18 @@ NativeCameraDelete = 0x02023121;
 NativeCameraProjection = 0x020233D9;
 
 NativeBattleRandom = 0x0223BD99;
+
+NativeSelectionInput = 0x02248849;
+NativeGetBattleMon = 0x0224873d;
+NativeBattleSpecial = 0x0223b515;
+NativeMaxBattlers = 0x0223a7f1;
+NativeFieldSide = 0x0223ab1d;
+NativeBattleOutcome = 0x0223bd15;
+NativeReadBattleScript = 0x0224eb9d;
+NativeTryFaint = 0x0224dc75;
+NativeGrantExperience = 0x0224dd19;
+NativeCheckBattleOutcome = 0x0224d7ed;
+NativeReplaceFainted = 0x0224d541;
+NativeBattleContextInit = 0x02250f45;
+NativeResetTurn = 0x02251711;
+NativeBattleOverlayMode = 0x02237ED1;

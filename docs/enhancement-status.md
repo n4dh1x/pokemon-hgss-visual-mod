@@ -1,6 +1,6 @@
 # Enhancement implementation status
 
-## Verified on 26 October 2026
+## Verified on 27 October 2026
 
 - Fork: https://github.com/n4dh1x/pokemon-hgss-visual-mod
 - Branch: `emerald-feature-parity`.
@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 226 tests pass, including compiled ARM field logic and independently checked
+- 237 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 22,860-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 23,680-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -547,3 +547,32 @@ Broader ordinary/Safari/contest/partner/storage-full and story acceptance remain
 pending. Other unfinished enhancements and wider integrated verification remain
 part of the full goal. See [Always catch](always-catch.md) and
 [milestone-23 evidence](../enhancements/milestone-23-verification.json).
+
+
+## Milestone 24: saved native Instant victory
+
+Cheats page 4 adds default-Off Instant victory. The native selection path restores
+the battle overlay before the original HP-update script, then runs original faint,
+EXP, outcome and replacement helpers. Normal trainer replacement prompts and entry
+abilities remain in sequence. Link, facilities, Safari, Pal Park, tutorial,
+recordings and unknown formats retain ordinary behavior. No win result, Pokemon
+stats, payout or story flag is fabricated by the enhancement.
+
+237 tests pass after the overlay fix. Both exact candidates reproduce the tested
+experiments and pass xdelta round trips. Mac acceptance covers actual retained
+wild On/Off controls and native-VM-initiated two-Pokemon Youngster Mikey battles in
+both games. Enabled battles preserve HP/PP and grant the same native trainer
+rewards as ordinary Razor Leaf controls: 70 participant EXP, 34 each for four
+bench members and 64 money. The declared verification bytecode sets Mikey's flag
+through the native script command only after the native battle reports a win.
+Native saving/cold reload preserves rewards and explicit choices; Cancel and older
+seventeen-option saves pass.
+
+The trainer fixture changes 35 unused script-stack bytes and one four-byte script
+pointer per isolated run. Trainer teams, Pokemon, HP, moves, money and save flags
+are generated or updated by native code. This does not establish a real NPC story
+playthrough. Wider trainers/story, doubles/partners, roamer/contest/status/ability,
+full-party/level/evolution and long-play acceptance remain pending. See
+[Instant victory](instant-victory.md) and
+[exact evidence](../enhancements/milestone-24-verification.json).
+Other unfinished enhancements remain in the full goal.

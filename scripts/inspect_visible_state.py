@@ -124,6 +124,10 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['clock_hud']={'field':hex(hud[0]),'string':hex(hud[5]),'active':bool(hud[6]),'opens':hud[7],'closes':hud[8],'draws':hud[9],'seconds':hud[10],'rate':hud[11]}
         result['settings']['clock_hud'] = extra[7]
         result['enhancement_menu']['staged_clock_hud'] = menu[22]
+    if 'gInstantVictoryState' in symbols:
+        result['instant_victory']=dict(zip(('battle','ctx','pending','target','started','faints','grants','replacements','completed','denied','deferred','abandoned'),resident_words('gInstantVictoryState',12)))
+        result['settings']['instant_victory']=extra[11]
+        result['enhancement_menu']['staged_instant_victory']=menu[26]
     if 'gAlwaysCatchState' in symbols:
         result['always_catch']=dict(zip(('calls','forced','native_roll','battle_type','denied'),resident_words('gAlwaysCatchState',5)))
         result['settings']['always_catch']=extra[10]

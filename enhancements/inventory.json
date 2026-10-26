@@ -682,11 +682,26 @@
       "category": "custom",
       "base_heartgold": "Normal battle flow.",
       "visual_plus": "Not added.",
-      "required_work": "Optional instant fainting via normal battle bookkeeping; exclude link/facility/tutorial battles and preserve rewards/scripts.",
+      "required_work": "Milestone 24 integrates saved default-Off opponent faints before native selection, with the original menu-to-battle overlay handoff, HP/faint/EXP/outcome/replacement scripts and native rewards. Both games pass retained wild controls and declared native-VM-initiated two-Pokemon Mikey battles versus ordinary Off controls, payout, win-only trainer flag, native save/cold, Cancel and legacy options. Finish wider actual NPC/story, doubles/partners, roamer/contest, volatile/status/ability, capacity, leveling/evolution and long-play acceptance.",
       "evidence": [
-        "patches/pokeemerald/0024-instant-victory.patch"
+        "patches/pokeemerald/0024-instant-victory.patch",
+        "native/victory.c",
+        "gameplay/victory.py",
+        "native/settings.c",
+        "native/menu.c",
+        "tests/test_instant_victory.py",
+        "tests/test_settings.py",
+        "docs/instant-victory.md",
+        "enhancements/milestone-24-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "guards_native_faint_EXP_overlay_handoff_and_context_reuse": "passed_instruction_scope",
+        "both_Mac_retained_wild_On_Off_native_rewards": "passed_bounded",
+        "both_Mac_two_Pokemon_trainer_replacement_native_bonus_payout_win_flag": "passed_declared_39_byte_native_script_fixture",
+        "both_Mac_native_save_cold_cancel_and_previous_17_option_journal": "passed_bounded",
+        "wider_actual_NPC_story_formats_status_ability_capacity_level_evolution_longplay": "pending"
+      }
     },
     {
       "id": "fast_eggs",

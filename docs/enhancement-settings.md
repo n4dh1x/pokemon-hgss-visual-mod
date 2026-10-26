@@ -1,9 +1,9 @@
 # Native enhancement settings
 
-Current milestone 23: press SELECT during free field play. X/R advances through
+Current milestone 24: press SELECT during free field play. X/R advances through
 four pages; L goes back. Up/Down selects a row, Left/Right or A changes its value,
 and A on Save and close applies all pages together. B/Cancel discards staged
-changes. Always catch is on Cheats, page 4, and defaults Off. Game progress still
+changes. Always catch and Instant victory are on Cheats, page 4, and default Off. Game progress still
 uses the native Save command. The sections below retain each milestone’s storage
 and verification history.
 
@@ -212,3 +212,21 @@ menu state 120 bytes and catch diagnostics 20 bytes. The fixed loader header,
 version-1 journal, 48 values, ownership, CRC and native save allocation are unchanged.
 Both games pass explicit On/Off native saving and cold reload, and cancelling
 staged changes preserves the entire cartridge save. See [always-catch.md](always-catch.md).
+
+
+## Milestone 24: Instant victory
+
+Cheats page 4 now has Always catch and Instant victory, then skips four empty
+rows before Save/Cancel. The menu exposes eighteen options across 6/6/4/2 rows.
+All pages apply together. Instant victory defaults Off; when On, an eligible
+opponent faints before normal action selection, so disable it when you want to
+catch wild Pokemon or choose ordinary battle commands.
+
+Value 22 and presence bit 32768 store the choice in the original journal. Legacy
+padding without presence is ignored; unknown slots 23..47 and future bits survive.
+Invalid choices and failed readback do not apply; older settings callers preserve
+the value. Auxiliary options occupy 48 bytes and menu state 124 bytes, with instant
+victory staged at offset 104, page at 108 and error at 112. The fixed loader and
+native save layout remain unchanged. Both games retain saved On/Off, full native
+trainer rewards and previous seventeen-option saves. Cancel preserves the entire
+cartridge save. See [instant-victory.md](instant-victory.md).
