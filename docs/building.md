@@ -76,3 +76,46 @@ hard** on any mismatch — HeartGold and SoulSilver are verified independently.
 2. Run the analysis scripts against the upstream Korean patch for that game.
 3. Extend `GAMES` in [scripts/port.py](../scripts/port.py) — then re-verify
    every component offset independently. **Never assume offsets carry over.**
+
+
+## Automatic build cleanup
+
+The baseline and enhanced ROM builders run cleanup after every build attempt,
+including failures. The nested baseline step shares the enhanced build's final
+cleanup so it does not run twice. Other/manual build commands must finish with:
+
+```bash
+.venv/bin/python -B scripts/cleanup_builds.py --apply
+```
+
+Cleanup keeps the two newest gameplay milestones, the newest verified milestone,
+baselines, all patches/reports, original input ROMs/ZIPs and all saves. Generated
+ROMs with companion saves are retained too. Before
+removing an older generated ROM it checks both hashes and actually reconstructs
+that ROM from its retained patch and unchanged original input. Unknown, changed
+or unreproducible files stay in place. Input paths are recorded locally under
+`local_data/cleanup/`; no ROM data or local registry is committed.
+
+On macOS, completed RAM/savestate snapshots use transparent filesystem
+compression. Their original paths, sizes as read by programs and SHA-256 values
+stay unchanged. Each compressed copy is verified before atomic replacement.
+Cleanup skips ROM pruning and snapshot compression while emulator verification
+is running or process inventory cannot be checked. Saves are never compressed
+or removed. Temporary compiler objects and Finder metadata are removed.
+
+Preview without changing files, or register both supplied clean inputs:
+
+```bash
+.venv/bin/python -B scripts/cleanup_builds.py
+.venv/bin/python -B scripts/cleanup_builds.py --apply --rom /path/to/HeartGold.zip --rom /path/to/SoulSilver.zip
+```
+
+Recreate an older ROM before replaying historical verification scripts:
+
+```bash
+.venv/bin/python -B scripts/cleanup_builds.py --restore-rom build/candidates/heartgold-visual-plus-gameplay-milestone-24.json
+```
+
+Restore checks the source, patch and reconstructed-ROM hashes and refuses to
+replace different existing data. The last cleanup summary is
+`local_data/cleanup/last-run.json`. The durable rule is in [AGENTS.md](../AGENTS.md).

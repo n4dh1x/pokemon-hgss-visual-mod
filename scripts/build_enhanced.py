@@ -16,6 +16,11 @@ import sys
 import tempfile
 from pathlib import Path
 
+if __package__:
+    from .cleanup_builds import after_build
+else:
+    from cleanup_builds import after_build
+
 import ndspy.rom
 import ndspy.fnt
 
@@ -52,9 +57,9 @@ def verify_unchanged_data(original, patched, overlay_changes, file_changes=()) -
     verify_field_files(original, patched, overlay_changes, file_changes)
 
 
-def build(source: Path, decoder: str, output_dir: Path) -> dict:
+def _build(source: Path, decoder: str, output_dir: Path) -> dict:
     baseline_dir = ROOT / 'build/baseline'
-    info = build_baseline(source, 'full', decoder, baseline_dir)
+    info = build_baseline(source, 'full', decoder, baseline_dir, post_cleanup=False)
     baseline = baseline_dir / info['output']
     original = ndspy.rom.NintendoDSRom.fromFile(baseline)
     arm9 = bytearray(original.arm9)
@@ -192,6 +197,11 @@ def build(source: Path, decoder: str, output_dir: Path) -> dict:
     }
     report_output.write_text(json.dumps(report, indent=2) + '\n')
     return report
+
+
+def build(source: Path, decoder: str, output_dir: Path) -> dict:
+    with after_build(source, decoder):
+        return _build(source, decoder, output_dir)
 
 
 def main() -> int:

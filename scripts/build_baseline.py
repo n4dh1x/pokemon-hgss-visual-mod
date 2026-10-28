@@ -17,6 +17,11 @@ import tempfile
 import zipfile
 from pathlib import Path
 
+if __package__:
+    from .cleanup_builds import after_build
+else:
+    from cleanup_builds import after_build
+
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -49,7 +54,7 @@ def select_build(rom: bytes, variant: str, manifest: dict) -> dict:
     raise ValueError('ROM checksum is not a supported clean USA HeartGold/SoulSilver dump.')
 
 
-def build_baseline(source: Path, variant: str, decoder: str, output_dir: Path) -> dict:
+def _build_baseline(source: Path, variant: str, decoder: str, output_dir: Path) -> dict:
     rom = read_rom(source)
     manifest = json.loads((ROOT / 'release/release_manifest.json').read_text())
     build = select_build(rom, variant, manifest)
@@ -83,6 +88,13 @@ def build_baseline(source: Path, variant: str, decoder: str, output_dir: Path) -
     }
     output.with_suffix('.json').write_text(json.dumps(result, indent=2) + '\n')
     return result
+
+
+def build_baseline(source: Path, variant: str, decoder: str, output_dir: Path, *, post_cleanup: bool = True) -> dict:
+    if not post_cleanup:
+        return _build_baseline(source, variant, decoder, output_dir)
+    with after_build(source, decoder):
+        return _build_baseline(source, variant, decoder, output_dir)
 
 
 def main() -> int:
