@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 256 tests pass, including compiled ARM field logic and independently checked
+- 280 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 24,556-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 26,072-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -638,3 +638,29 @@ project lineage. Full bag/insufficient-funds UI, further shop categories,
 losses/blackouts, Mom purchases and wider story/link/Frontier acceptance remain.
 See [behavior and verification](infinite-money.md) and
 [exact assertion evidence](../enhancements/milestone-26-verification.json).
+
+## Milestone 27: native Pokédex progress actions
+
+Cheats page 4 opens a confirmed action list for Johto completion, National unlock
+and National completion. Exact native Johto membership covers 256 species,
+including its five Gen-IV additions; National covers all 493 base HGSS species.
+Original caught/seen, form, gender and language routines operate on deterministic
+private native-created Pokemon that never enter party/storage. National actions
+mirror both original upgrade flags; native Pokédex ownership and story variables
+remain untouched. Normal game saving retains confirmed progress.
+
+280 regression tests pass, including eight Dex instruction/UI tests and sixteen
+cleanup tests; 45 settings tests also pass separately. Both final candidates and
+patches exactly reproduce fixed experiments. The payload is 26,072 bytes with
+2,600 ITCM bytes left.
+
+Both games pass exact native counts, unchanged action-control party bytes,
+economy, story variables/flags and gameplay RNG; default-No/B cancellation;
+native save/cold with exact Dex/profile/story bytes; and retained earlier choices.
+Separate declared native ownership fixtures expose the original Pokédex app in
+the early project lineage: Johto 256/256, National 493/493, entry/area views and
+field return. The feature itself never sets those ownership flags. Original
+alternate-form/language history tests run with bounded external metadata services;
+wider actual forms/languages, fresh stories and long-play acceptance remain.
+See [behavior and fixture scope](pokedex-actions.md) and
+[exact evidence](../enhancements/milestone-27-verification.json).

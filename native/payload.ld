@@ -195,3 +195,9 @@ NativeBattleOverlayMode = 0x02237ED1;
 
 NativeDaycareStep = 0x0206CD1D;
 SetMonData = 0x0206EC41;
+
+NativeSavePokedex = 0x0202A635;
+NativeDexNational = 0x0202A53D;
+NativeProfileNational = 0x020290A9;
+NativeDexCaught = 0x0202A435;
+NativeJohtoList = 0x0207187D;

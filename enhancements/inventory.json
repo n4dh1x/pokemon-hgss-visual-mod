@@ -770,12 +770,26 @@
       "category": "custom",
       "base_heartgold": "Normal Johto Pokedex progression.",
       "visual_plus": "Not added.",
-      "required_work": "Adapt Hoenn action to Johto seen/caught entries using native form/dex bookkeeping; label it Johto, not Hoenn.",
+      "required_work": "Milestone 27 adds confirmed Complete Johto Dex using exact native membership for 256 species and original seen/caught/form/gender/language bookkeeping. Both games pass exact membership, untouched party/economy/story/RNG, No/B cancellation, native save/cold and original Dex app totals/entry/return in declared ownership fixtures. Finish wider forms/languages, fresh stories and long play.",
       "evidence": [
         "3ds_port/src/3ds_extras.c",
-        "local_data/reference/pokeheartgold/src/pokedex.c"
+        "local_data/reference/pokeheartgold/src/pokedex.c",
+        "native/dex.c",
+        "native/dex_ui.c",
+        "gameplay/dex.py",
+        "tests/test_pokedex_actions.py",
+        "scripts/inspect_dex_state.py",
+        "scripts/verify_dex_milestone.py",
+        "docs/pokedex-actions.md",
+        "enhancements/milestone-27-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "original_native_registration_forms_languages_and_profile_upgrade_instructions": "passed_bounded_external_metadata_services",
+        "both_Mac_exact_actions_No_B_cancel_save_cold_unchanged_progress": "passed_native_inputs_without_RAM_fixtures",
+        "both_Mac_original_Dex_app_totals_entry_and_field_return": "passed_declared_native_ownership_fixture",
+        "wider_forms_languages_fresh_story_longplay": "pending"
+      }
     },
     {
       "id": "unlock_national",
@@ -787,12 +801,26 @@
       "category": "custom",
       "base_heartgold": "Normal story unlock.",
       "visual_plus": "Not added.",
-      "required_work": "Optional action using HGSS dex upgrade API; avoid altering story completion flags.",
+      "required_work": "Milestone 27 adds confirmed Unlock National Dex, mirroring both original Dex and profile upgrade flags without caught entries or story-completion/ownership flags. Both games pass exact flag-only change, No/B cancellation, native save/cold and retained prior choices. Finish fresh-story and broader acquisition acceptance.",
       "evidence": [
         "3ds_port/src/3ds_extras.c",
-        "local_data/reference/pokeheartgold/src/pokedex.c"
+        "local_data/reference/pokeheartgold/src/pokedex.c",
+        "native/dex.c",
+        "native/dex_ui.c",
+        "gameplay/dex.py",
+        "tests/test_pokedex_actions.py",
+        "scripts/inspect_dex_state.py",
+        "scripts/verify_dex_milestone.py",
+        "docs/pokedex-actions.md",
+        "enhancements/milestone-27-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "original_native_registration_forms_languages_and_profile_upgrade_instructions": "passed_bounded_external_metadata_services",
+        "both_Mac_exact_actions_No_B_cancel_save_cold_unchanged_progress": "passed_native_inputs_without_RAM_fixtures",
+        "both_Mac_original_Dex_app_totals_entry_and_field_return": "passed_declared_native_ownership_fixture",
+        "wider_forms_languages_fresh_story_longplay": "pending"
+      }
     },
     {
       "id": "national_dex",
@@ -804,12 +832,26 @@
       "category": "custom",
       "base_heartgold": "Normal progression.",
       "visual_plus": "Not added.",
-      "required_work": "Optional native seen/caught operation for HGSS species; no automatic expansion beyond the base dex.",
+      "required_work": "Milestone 27 adds confirmed Complete National Dex: both original upgrade flags and 493 seen/caught entries through original form/gender/language bookkeeping. Both games pass untouched party/economy/story/RNG, No/B cancellation, native save/cold and original Dex app totals/entry/return in declared ownership fixtures. Every alternate form/language is not filled; finish broader forms/languages, fresh stories and long play.",
       "evidence": [
         "3ds_port/src/3ds_extras.c",
-        "local_data/reference/pokeheartgold/src/pokedex.c"
+        "local_data/reference/pokeheartgold/src/pokedex.c",
+        "native/dex.c",
+        "native/dex_ui.c",
+        "gameplay/dex.py",
+        "tests/test_pokedex_actions.py",
+        "scripts/inspect_dex_state.py",
+        "scripts/verify_dex_milestone.py",
+        "docs/pokedex-actions.md",
+        "enhancements/milestone-27-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "original_native_registration_forms_languages_and_profile_upgrade_instructions": "passed_bounded_external_metadata_services",
+        "both_Mac_exact_actions_No_B_cancel_save_cold_unchanged_progress": "passed_native_inputs_without_RAM_fixtures",
+        "both_Mac_original_Dex_app_totals_entry_and_field_return": "passed_declared_native_ownership_fixture",
+        "wider_forms_languages_fresh_story_longplay": "pending"
+      }
     },
     {
       "id": "give_items",

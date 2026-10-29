@@ -1,6 +1,7 @@
 #include "settings.h"
 #include "ui.h"
 #include "clock.h"
+#include "dex.h"
 
 struct MenuState {
     void *field;
@@ -75,6 +76,7 @@ static void render(void) {
         print(gEnhancedMenu.extra.fast_eggs ? "On" : "Off", 172, 60);
         print("Infinite money", 16, 76);
         print(gEnhancedMenu.extra.infinite_money ? "On" : "Off", 172, 76);
+        print("Pokedex actions", 16, 92);
     }
     print("Save and close", 16, 124);
     print("Cancel", 16, 140);
@@ -95,6 +97,8 @@ static void render(void) {
         print("One egg every five steps", 8, 158);
     else if (gEnhancedMenu.page == 3 && gEnhancedMenu.row == 3)
         print("Wallet refills when read", 8, 158);
+    else if (gEnhancedMenu.page == 3 && gEnhancedMenu.row == 4)
+        print("A opens actions", 8, 158);
     else print("Left/Right value  X page", 8, 158);
     CopyWindowToVram(&gEnhancedMenu.window);
 }
@@ -121,13 +125,19 @@ int EnhancedMenuTask(void *task) {
         return 0;
     }
     u32 keys = *(volatile u32 *)0x021D1154;
+    if (gEnhancedMenu.phase == 3) {
+        if (EnhancedDexUi(gEnhancedMenu.field, &gEnhancedMenu.window, gEnhancedMenu.string, keys)) {
+            gEnhancedMenu.phase = 1; render();
+        }
+        return 0;
+    }
     if (keys & 2) return close_menu();
     int redraw = 0;
     if (keys & 0x700) {
         gEnhancedMenu.page = (gEnhancedMenu.page + ((keys & 0x200) ? 3 : 1)) & 3;
         gEnhancedMenu.row = 0; redraw = 1;
     }
-    static const u32 page_counts[4] = {6, 6, 4, 4};
+    static const u32 page_counts[4] = {6, 6, 4, 5};
     u32 count = page_counts[gEnhancedMenu.page];
     if (keys & 0x40) {
         gEnhancedMenu.row = gEnhancedMenu.row == 0 ? 7 :
@@ -145,7 +155,12 @@ int EnhancedMenuTask(void *task) {
                 if (!gEnhancedMenu.row) gEnhancedMenu.extra.always_catch ^= 1;
                 else if (gEnhancedMenu.row == 1) gEnhancedMenu.extra.instant_victory ^= 1;
                 else if (gEnhancedMenu.row == 2) gEnhancedMenu.extra.fast_eggs ^= 1;
-                else gEnhancedMenu.extra.infinite_money ^= 1;
+                else if (gEnhancedMenu.row == 3) gEnhancedMenu.extra.infinite_money ^= 1;
+                else if (keys & 1) {
+                    EnhancedDexUiReset(); gEnhancedMenu.phase = 3;
+                    EnhancedDexUi(gEnhancedMenu.field, &gEnhancedMenu.window, gEnhancedMenu.string, 0);
+                    return 0;
+                }
             }
             else if (gEnhancedMenu.page == 2) {
                 if (gEnhancedMenu.row == 0) {

@@ -1,6 +1,6 @@
 # Native enhancement settings
 
-Current milestone 26: press SELECT during free field play. X/R advances through
+Current milestone 27: press SELECT during free field play. X/R advances through
 four pages; L goes back. Up/Down selects a row, Left/Right or A changes its value,
 and A on Save and close applies all pages together. B/Cancel discards staged
 changes. Always catch, Instant victory, Fast egg hatching and Infinite money are on Cheats, page 4,
@@ -273,3 +273,24 @@ The actual wallet refills on an eligible native read. Turning Off stops refills;
 it does not restore an earlier balance. Native Save retains game balances;
 settings Save and close alone applies the enhancement choices. See
 [infinite-money.md](infinite-money.md) for exact behavior and bounded acceptance.
+
+## Milestone 27: confirmed Pokédex actions
+
+Cheats page 4 adds a fifth row, Pokedex actions. A opens a separate list:
+Complete Johto Dex, Unlock National Dex, Complete National Dex and Back.
+Each action asks for confirmation, default No; A confirms, direction buttons
+change Yes/No, and B cancels. Back/B returns to Cheats with staged settings
+retained. Work progresses while the menu pauses field NPCs. After completion,
+A/B acknowledges the result; use the normal game Save command to retain progress.
+
+These are game-progress actions, separate from the twenty saved switches.
+Settings Save/Cancel does not undo an already confirmed Pokédex action. Earlier
+journal sizes, values and presence bits are unchanged. Normal acquisition of
+the Pokédex itself remains part of the story; these actions never grant its
+ownership flag. Native form/language rules apply; every alternate form or
+language is not automatically registered.
+
+Menu rows are 6/6/4/5 plus Save/Cancel; the remaining blank row is skipped. Menu
+and auxiliary option sizes remain 132/56 bytes. Dex action/UI diagnostics are
+44/16 bytes. The payload is 26,072 bytes, ends at `0x01FFF5D8`, and leaves 2,600
+reserved ITCM bytes. See [pokedex-actions.md](pokedex-actions.md).

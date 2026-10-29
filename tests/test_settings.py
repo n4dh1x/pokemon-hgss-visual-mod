@@ -639,8 +639,9 @@ class TestSettings(unittest.TestCase):
         self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0);self.assertEqual(self.get(self.menu+32),1)
         self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0);self.assertEqual(self.get(self.menu+32),2)
         self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0);self.assertEqual(self.get(self.menu+32),3)
+        self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0);self.assertEqual(self.get(self.menu+32),4)
         self.put(0x021D1154,0x80);self.execute('EnhancedMenuTask',0);self.assertEqual(self.get(self.menu+32),6)
-        self.put(0x021D1154,0x40);self.execute('EnhancedMenuTask',0);self.assertEqual(self.get(self.menu+32),3)
+        self.put(0x021D1154,0x40);self.execute('EnhancedMenuTask',0);self.assertEqual(self.get(self.menu+32),4)
         self.put(0x021D1154,2);self.execute('EnhancedMenuTask',0);self.assertEqual(self.get(extra+40),0);self.assertEqual(self.writes,[])
     def test_cheat_failed_menu_save_and_explicit_record_validation(self):
         extra=self.payload.symbols['gEnhancedExtraOptions'];self.execute('EnhancedMenuOpen',self.field);self.execute('EnhancedMenuTask',0)
