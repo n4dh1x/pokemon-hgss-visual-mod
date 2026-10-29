@@ -1,6 +1,6 @@
 # Enhancement implementation status
 
-## Verified on 29 October 2026
+## Verified on 30 October 2026
 
 - Fork: https://github.com/n4dh1x/pokemon-hgss-visual-mod
 - Branch: `emerald-feature-parity`.
@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 280 tests pass, including compiled ARM field logic and independently checked
+- 294 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 26,072-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 28,012-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -664,3 +664,31 @@ alternate-form/language history tests run with bounded external metadata service
 wider actual forms/languages, fresh stories and long-play acceptance remain.
 See [behavior and fixture scope](pokedex-actions.md) and
 [exact evidence](../enhancements/milestone-27-verification.json).
+
+## Milestone 28: native all-pocket item giver
+
+Cheats page 4 adds an item giver for all eight native pockets and quantities
+1/5/10/50/99. Native names, Bag capacity, stack arithmetic and machine/Berry
+sorting remain. Keys are forced to quantity one and checked for duplicates.
+A ROM-derived 269-byte pocket lookup avoids repeated file scans; the lookup is
+checked in the payload, while generated metadata stays private and ignored.
+Twenty-three unused mappings and placeholder names are skipped.
+
+294 regression tests pass, including twelve item-giver instruction/UI/resource
+checks and 47 settings checks. Both final candidates/patches reproduce fixed
+28b experiments exactly. The payload is 28,012 bytes with 660 ITCM bytes left.
+Earlier 28a pocket scanning missed rapid inputs and is excluded from acceptance;
+the corrected lookup passes the same real-input sequence in both games.
+
+Both Mac games pass actual giving in every pocket, five quantity choices,
+unique-key rejection, native 999 general/99 machine caps, unchanged direct-action
+party/currencies/Dex/profile/story/RNG, staged preference Save/Cancel, native
+inventory save/cold and original Bag access. Normal Potion use restores 28→36 HP
+and consumes one item; identity, the consumed stack and healing survive native
+saving/cold boot. All accepted runs use real inputs without RAM fixtures.
+
+Legal full-pocket rejection, sorting and native Bag permissions also pass native
+instruction tests with controlled metadata/flag services. Wider actual restricted
+maps, full-pocket saturation, item/quest effects, TM teaching and broader story
+acceptance remain. See [behavior and source/evidence scope](item-giver.md) and
+[exact assertions](../enhancements/milestone-28-verification.json).

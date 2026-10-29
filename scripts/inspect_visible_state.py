@@ -124,6 +124,10 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['clock_hud']={'field':hex(hud[0]),'string':hex(hud[5]),'active':bool(hud[6]),'opens':hud[7],'closes':hud[8],'draws':hud[9],'seconds':hud[10],'rate':hud[11]}
         result['settings']['clock_hud'] = extra[7]
         result['enhancement_menu']['staged_clock_hud'] = menu[22]
+    if 'gItemUi' in symbols:
+        result['item_giver']=dict(zip(('row','result','gives','denied','last_item','last_quantity','ready'),resident_words('gItemUi',7)))
+        result['settings'].update(dict(zip(('give_pocket','give_item','give_count'),extra[14:17])))
+        result['enhancement_menu'].update(dict(zip(('staged_give_pocket','staged_give_item','staged_give_count'),menu[29:32])))
     if 'gDexAction' in symbols:
         result['pokedex_action']=dict(zip(('field','save','dex','profile','owner','action','status','species','registered','mon','johto'),resident_words('gDexAction',11)))
         result['pokedex_ui']=dict(zip(('phase','row','action','yes'),resident_words('gDexUi',4)))

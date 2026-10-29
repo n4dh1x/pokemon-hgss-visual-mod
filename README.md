@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 27.**
+**Current stage: experimental gameplay milestone 28.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -12,7 +12,7 @@ checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
 settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. 280 tests pass. The repeat-Repel option offers another Repel of the
+connected-map changes remove old-map wilds. 294 tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
@@ -97,6 +97,12 @@ Milestone 27 adds confirmed Pokédex actions on Cheats, page 4: complete Johto
 form/language records use HGSS routines, with story flags, party and currencies
 retained. Both games pass Cancel, native save/cold, original Pokédex UI counts
 and field return. See [pokedex-actions.md](docs/pokedex-actions.md).
+Milestone 28 adds an item giver on Cheats, page 4, covering all eight HGSS
+pockets and quantities 1/5/10/50/99. Native limits and sorting remain; keys come
+one at a time and duplicates are rejected. Picker choices save with settings;
+normal game saving retains given items. Both games pass all-pocket giving,
+stack caps, Cancel, native save/cold and normal Potion use. See
+[item-giver.md](docs/item-giver.md).
 These candidates are not the final release.
 
 - [Complete 59-row feature inventory](docs/emerald-parity.md)

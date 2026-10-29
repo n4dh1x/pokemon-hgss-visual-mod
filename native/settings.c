@@ -57,6 +57,9 @@ static int valid_format(const struct EnhancedJournal *r) {
         (!(r->reserved[0] & 32768) || r->values[22] <= 1) &&
         (!(r->reserved[0] & 65536) || r->values[23] <= 1) &&
         (!(r->reserved[0] & 131072) || r->values[24] <= 1) &&
+        (!(r->reserved[0] & 262144) || r->values[25] <= 7) &&
+        (!(r->reserved[0] & 524288) || r->values[26] <= 536) &&
+        (!(r->reserved[0] & 1048576) || r->values[27] <= 4) &&
         r->checksum == EnhancedSettingsCRC(r, 252);
 }
 int EnhancedSettingsValid(const struct EnhancedJournal *r, u32 owner) {
@@ -105,6 +108,7 @@ void EnhancedSettingsEnsure(void *field) {
     gEnhancedExtraOptions.instant_victory = 0;
     gEnhancedExtraOptions.fast_eggs = 0;
     gEnhancedExtraOptions.infinite_money = 0;
+    gEnhancedExtraOptions.give_pocket = gEnhancedExtraOptions.give_item = gEnhancedExtraOptions.give_count = 0;
     for (int i = 0; i < 2; ++i) {
         struct EnhancedJournal *r = &gSettingsState.pages[i];
         int read = FlashLoadChunk(journal_offsets[i], r, sizeof(*r));
@@ -137,6 +141,9 @@ void EnhancedSettingsEnsure(void *field) {
             gEnhancedExtraOptions.instant_victory = (r->reserved[0] & 32768) ? r->values[22] : 0;
             gEnhancedExtraOptions.fast_eggs = (r->reserved[0] & 65536) ? r->values[23] : 0;
             gEnhancedExtraOptions.infinite_money = (r->reserved[0] & 131072) ? r->values[24] : 0;
+            gEnhancedExtraOptions.give_pocket = (r->reserved[0] & 262144) ? r->values[25] : 0;
+            gEnhancedExtraOptions.give_item = (r->reserved[0] & 524288) ? r->values[26] : 0;
+            gEnhancedExtraOptions.give_count = (r->reserved[0] & 1048576) ? r->values[27] : 0;
         }
     }
     EnhancedClockRestore(gSettingsState.last_slot >= 0 ? &gSettingsState.pages[gSettingsState.last_slot] : 0, owner);
@@ -163,7 +170,7 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         u32 capture, u32 party, const struct EnhancedExtraOptions *extra) {
     if (!gSettingsState.loaded || trade > 1 || tms > 1 || visible > 3 || repel > 1 || capture > 1 || party > 1)
         return 0;
-    if (extra && (extra->field_hms > 1 || extra->roaming_only_grass > 1 || extra->iv_ev_viewer > 1 || extra->encounter_rate > 4 || extra->shiny_odds > 5 || extra->hide_follower > 1 || extra->clock_speed > 5 || extra->clock_hud > 1 || extra->camera_pitch > 5 || extra->camera_zoom > 3 || extra->always_catch > 1 || extra->instant_victory > 1 || extra->fast_eggs > 1 || extra->infinite_money > 1)) return 0;
+    if (extra && (extra->field_hms > 1 || extra->roaming_only_grass > 1 || extra->iv_ev_viewer > 1 || extra->encounter_rate > 4 || extra->shiny_odds > 5 || extra->hide_follower > 1 || extra->clock_speed > 5 || extra->clock_hud > 1 || extra->camera_pitch > 5 || extra->camera_zoom > 3 || extra->always_catch > 1 || extra->instant_victory > 1 || extra->fast_eggs > 1 || extra->infinite_money > 1 || extra->give_pocket > 7 || extra->give_item > 536 || extra->give_count > 4)) return 0;
     int target = gSettingsState.last_slot < 0 ? 0 : 1 - gSettingsState.last_slot;
     if (gSettingsState.last_slot < 0 && !gSettingsState.writable[target])
         target = 1;
@@ -208,7 +215,10 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         r->values[22] = extra->instant_victory;
         r->values[23] = extra->fast_eggs;
         r->values[24] = extra->infinite_money;
-        r->reserved[0] |= 261112;
+        r->values[25] = extra->give_pocket;
+        r->values[26] = extra->give_item;
+        r->values[27] = extra->give_count;
+        r->reserved[0] |= 2096120;
     }
     EnhancedClockSnapshot(r);
     r->checksum = EnhancedSettingsCRC(r, 252);
@@ -256,6 +266,9 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         gEnhancedExtraOptions.instant_victory = extra->instant_victory;
         gEnhancedExtraOptions.fast_eggs = extra->fast_eggs;
         gEnhancedExtraOptions.infinite_money = extra->infinite_money;
+        gEnhancedExtraOptions.give_pocket = extra->give_pocket;
+        gEnhancedExtraOptions.give_item = extra->give_item;
+        gEnhancedExtraOptions.give_count = extra->give_count;
     }
     return 1;
 }

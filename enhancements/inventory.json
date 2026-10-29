@@ -868,12 +868,26 @@
       "category": "custom",
       "base_heartgold": "Normal bag acquisition.",
       "visual_plus": "Not added.",
-      "required_work": "Add field-only item UI, valid item filtering, capacities and unique key-item checks; adapt all HGSS pockets. Quantities 1/5/10/50/99.",
+      "required_work": "Milestone 28 adds native all-eight-pocket giving, quantities 1/5/10/50/99, unique keys, capacities/sorting, valid native mapping/name filtering and saved staged picker choices. Both games pass all-pocket giving, 999/99 caps, key duplicates, unchanged direct-action progress, Cancel, settings-vs-game saving, native save/cold and normal Potion use/save. A verified ROM-derived lookup keeps pocket selection responsive. Finish wider actual restricted-map/full-pocket UI, item/quest effects, TM teaching and story acceptance.",
       "evidence": [
         "3ds_port/src/3ds_extras.c",
-        "local_data/reference/pokeheartgold/src/bag.c"
+        "local_data/reference/pokeheartgold/src/bag.c",
+        "native/items.c",
+        "native/items.h",
+        "native/items_data.S",
+        "gameplay/items.py",
+        "tests/test_item_giver.py",
+        "scripts/verify_item_milestone.py",
+        "docs/item-giver.md",
+        "enhancements/milestone-28-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "original_native_Bag_caps_sorting_full_legal_pockets_owner_permissions_and_lookup": "passed_bounded_metadata_flag_services",
+        "both_Mac_actual_all_pockets_quantities_caps_unique_keys_and_Cancel": "passed_real_inputs_without_RAM_fixtures",
+        "both_Mac_picker_preferences_game_inventory_native_Save_cold_and_Potion_use": "passed_bounded",
+        "wider_native_restricted_maps_full_pocket_UI_item_quest_TM_story_acceptance": "pending"
+      }
     },
     {
       "id": "native_world",

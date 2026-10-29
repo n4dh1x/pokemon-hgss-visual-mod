@@ -59,7 +59,7 @@ def find_linker() -> str:
     raise FileNotFoundError('Install LLD or set HGSS_LLD to an ARM-capable ld.lld/rust-lld.')
 
 
-def build_payload() -> Payload:
+def build_payload(item_pockets: bytes | None = None) -> Payload:
     clang = os.environ.get('HGSS_CLANG') or shutil.which('clang')
     if not clang:
         raise FileNotFoundError('Install clang or set HGSS_CLANG.')
@@ -67,13 +67,27 @@ def build_payload() -> Payload:
     linker_command = [linker, '-flavor', 'gnu'] if Path(linker).name in ('lld', 'rust-lld') else [linker]
     output = ROOT / 'build/native'
     output.mkdir(parents=True, exist_ok=True)
+    if item_pockets is None:
+        # Standalone instruction tests can compile without proprietary data.
+        # Real ROM builds always supply their independently audited table.
+        item_pockets = bytes([255])*269
+        for game in ('heartgold', 'soulsilver'):
+            baseline = ROOT / f'build/baseline/{game}-visual-plus-full-baseline.nds'
+            if baseline.is_file():
+                import ndspy.rom
+                from .items import item_pocket_table
+                item_pockets = item_pocket_table(ndspy.rom.NintendoDSRom.fromFile(baseline))
+                break
+    if len(item_pockets) != 269:
+        raise PatchMismatch('Item pocket lookup must contain exactly 269 bytes.')
     flags = ['--target=arm-none-eabi', '-mcpu=arm946e-s', '-mthumb']
     with tempfile.TemporaryDirectory(prefix='.compile-', dir=output) as temporary:
         temp = Path(temporary)
+        (temp / 'item_pockets.bin').write_bytes(item_pockets)
         objects = []
-        for filename in ('evolution.c', 'evolution_trampoline.S', 'field.c', 'settings.c', 'ui.c', 'menu.c', 'repel.c', 'capture.c', 'party_exp.c', 'party_exp_divide.S', 'field_hms.c', 'field_hm_bag.c', 'summary_viewer.c', 'shiny.c', 'follower.c', 'clock.c', 'clock_hud.c', 'camera.c', 'cheats.c', 'victory.c', 'eggs.c', 'money.c', 'money_original.S', 'dex.c', 'dex_ui.c'):
+        for filename in ('evolution.c', 'evolution_trampoline.S', 'field.c', 'settings.c', 'ui.c', 'menu.c', 'repel.c', 'capture.c', 'party_exp.c', 'party_exp_divide.S', 'field_hms.c', 'field_hm_bag.c', 'summary_viewer.c', 'shiny.c', 'follower.c', 'clock.c', 'clock_hud.c', 'camera.c', 'cheats.c', 'victory.c', 'eggs.c', 'money.c', 'money_original.S', 'dex.c', 'dex_ui.c', 'items.c', 'items_data.S'):
             target = temp / (filename + '.o')
-            args = [clang, *flags]
+            args = [clang, *flags, '-I', str(temp)]
             if filename.endswith('.c'):
                 args += ['-ffreestanding', '-fno-builtin', '-fno-unwind-tables',
                          '-fno-asynchronous-unwind-tables', '-fno-stack-protector',
@@ -114,6 +128,9 @@ def build_payload() -> Payload:
         start = address - PAYLOAD_BASE
         if address % 4 or data[start:start + len(expected) // 2] != bytes.fromhex(expected):
             raise PatchMismatch('Original money routine relocation changed: ' + name)
+    table_at = symbols['gItemPocketTable'] - PAYLOAD_BASE
+    if data[table_at:table_at+269] != item_pockets:
+        raise PatchMismatch('Resident item pocket lookup differs from the audited ROM.')
     (output / 'payload.bin').write_bytes(data)
     return Payload(bytes(data), symbols,
                    subprocess.check_output([clang, '--version'], text=True).splitlines()[0],

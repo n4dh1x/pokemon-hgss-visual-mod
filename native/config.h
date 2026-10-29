@@ -36,6 +36,7 @@ struct EnhancedExtraOptions {
     u32 instant_victory; /* Optional native opponent fainting, default Off. */
     u32 fast_eggs; /* One valid egg every five actual steps; default Off. */
     u32 infinite_money; /* Refill owned wallet reads, default Off. */
+    u32 give_pocket, give_item, give_count; /* Staged item-picker preferences. */
 };
 extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 

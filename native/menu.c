@@ -2,6 +2,7 @@
 #include "ui.h"
 #include "clock.h"
 #include "dex.h"
+#include "items.h"
 
 struct MenuState {
     void *field;
@@ -13,7 +14,7 @@ struct MenuState {
     u32 paused_before[2];
 };
 struct MenuState gEnhancedMenu;
-_Static_assert(sizeof(struct MenuState) == 132, "Menu diagnostic ABI");
+_Static_assert(sizeof(struct MenuState) == 144, "Menu diagnostic ABI");
 static void *ptr(void *p, unsigned offset) { return *(void **)((u8 *)p + offset); }
 static void print(const char *text, u32 x, u32 y) {
     EnhancedDrawText(&gEnhancedMenu.window, gEnhancedMenu.string, text, x, y);
@@ -77,6 +78,7 @@ static void render(void) {
         print("Infinite money", 16, 76);
         print(gEnhancedMenu.extra.infinite_money ? "On" : "Off", 172, 76);
         print("Pokedex actions", 16, 92);
+        print("Item giver", 16, 108);
     }
     print("Save and close", 16, 124);
     print("Cancel", 16, 140);
@@ -97,7 +99,7 @@ static void render(void) {
         print("One egg every five steps", 8, 158);
     else if (gEnhancedMenu.page == 3 && gEnhancedMenu.row == 3)
         print("Wallet refills when read", 8, 158);
-    else if (gEnhancedMenu.page == 3 && gEnhancedMenu.row == 4)
+    else if (gEnhancedMenu.page == 3 && gEnhancedMenu.row >= 4)
         print("A opens actions", 8, 158);
     else print("Left/Right value  X page", 8, 158);
     CopyWindowToVram(&gEnhancedMenu.window);
@@ -131,13 +133,19 @@ int EnhancedMenuTask(void *task) {
         }
         return 0;
     }
+    if (gEnhancedMenu.phase == 4) {
+        if (EnhancedItemUi(gEnhancedMenu.field, &gEnhancedMenu.window, gEnhancedMenu.string, &gEnhancedMenu.extra, keys)) {
+            gEnhancedMenu.phase = 1; render();
+        }
+        return 0;
+    }
     if (keys & 2) return close_menu();
     int redraw = 0;
     if (keys & 0x700) {
         gEnhancedMenu.page = (gEnhancedMenu.page + ((keys & 0x200) ? 3 : 1)) & 3;
         gEnhancedMenu.row = 0; redraw = 1;
     }
-    static const u32 page_counts[4] = {6, 6, 4, 5};
+    static const u32 page_counts[4] = {6, 6, 4, 6};
     u32 count = page_counts[gEnhancedMenu.page];
     if (keys & 0x40) {
         gEnhancedMenu.row = gEnhancedMenu.row == 0 ? 7 :
@@ -157,8 +165,13 @@ int EnhancedMenuTask(void *task) {
                 else if (gEnhancedMenu.row == 2) gEnhancedMenu.extra.fast_eggs ^= 1;
                 else if (gEnhancedMenu.row == 3) gEnhancedMenu.extra.infinite_money ^= 1;
                 else if (keys & 1) {
-                    EnhancedDexUiReset(); gEnhancedMenu.phase = 3;
-                    EnhancedDexUi(gEnhancedMenu.field, &gEnhancedMenu.window, gEnhancedMenu.string, 0);
+                    if (gEnhancedMenu.row == 4) {
+                        EnhancedDexUiReset(); gEnhancedMenu.phase = 3;
+                        EnhancedDexUi(gEnhancedMenu.field, &gEnhancedMenu.window, gEnhancedMenu.string, 0);
+                    } else {
+                        EnhancedItemUiReset(); gEnhancedMenu.phase = 4;
+                        EnhancedItemUi(gEnhancedMenu.field, &gEnhancedMenu.window, gEnhancedMenu.string, &gEnhancedMenu.extra, 0);
+                    }
                     return 0;
                 }
             }
@@ -229,6 +242,9 @@ int EnhancedMenuOpen(void *field) {
     gEnhancedMenu.extra.instant_victory = gEnhancedExtraOptions.instant_victory;
     gEnhancedMenu.extra.fast_eggs = gEnhancedExtraOptions.fast_eggs;
     gEnhancedMenu.extra.infinite_money = gEnhancedExtraOptions.infinite_money;
+    gEnhancedMenu.extra.give_pocket = gEnhancedExtraOptions.give_pocket;
+    gEnhancedMenu.extra.give_item = gEnhancedExtraOptions.give_item;
+    gEnhancedMenu.extra.give_count = gEnhancedExtraOptions.give_count;
     EnhancedNpcPause(field, gEnhancedMenu.paused_before, 1);
     FieldSystem_CreateTask(field, EnhancedMenuTask, 0);
     return 1;

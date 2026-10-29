@@ -201,3 +201,9 @@ NativeDexNational = 0x0202A53D;
 NativeProfileNational = 0x020290A9;
 NativeDexCaught = 0x0202A435;
 NativeJohtoList = 0x0207187D;
+
+NativeItemName = 0x02077D41;
+NativeBagSpace = 0x02078385;
+NativeBagAdd = 0x02078399;
+
+NativeItemMapping = 0x02100194;

@@ -1,6 +1,6 @@
 # Native enhancement settings
 
-Current milestone 27: press SELECT during free field play. X/R advances through
+Current milestone 28: press SELECT during free field play. X/R advances through
 four pages; L goes back. Up/Down selects a row, Left/Right or A changes its value,
 and A on Save and close applies all pages together. B/Cancel discards staged
 changes. Always catch, Instant victory, Fast egg hatching and Infinite money are on Cheats, page 4,
@@ -294,3 +294,26 @@ Menu rows are 6/6/4/5 plus Save/Cancel; the remaining blank row is skipped. Menu
 and auxiliary option sizes remain 132/56 bytes. Dex action/UI diagnostics are
 44/16 bytes. The payload is 26,072 bytes, ends at `0x01FFF5D8`, and leaves 2,600
 reserved ITCM bytes. See [pokedex-actions.md](pokedex-actions.md).
+
+## Milestone 28: all-pocket item giver
+
+Cheats page 4 adds Item giver as its sixth row. A opens Pocket, Item, Quantity,
+Give item and Back. Up/Down selects; Left/Right or A changes the first three rows.
+A on Give adds the selected amount immediately through native Bag rules. B/Back
+returns with picker choices staged. B/Cancel on the main enhancement menu discards
+those staged choices; already given items remain in game progress.
+
+Twenty switches and three picker preferences now use four pages with 6/6/4/6
+entries plus Save/Cancel. Picker pocket/item/count use journal values 25/26/27,
+presence bits 262144/524288/1048576 and defaults 0/0/0. Item 0 means choose the
+first valid item when opening the picker. Earlier padding is ignored without its
+presence bit; unknown later values remain preserved. Save and close applies all
+staged preferences/switches together. The game's normal Save command separately
+retains given inventory. A cold boot of a settings-only save correctly loads the
+picker choices and the older game inventory.
+
+Extra options/menu diagnostics grow to 68/144 bytes; item-giver diagnostics are
+28 bytes. Earlier option offsets remain unchanged; menu page/error move to
+128/132. Journal version 1, 48 values, 256-byte pages, 1,060-byte settings state and
+32-byte loader header stay fixed. The 28,012-byte payload ends at `0x01FFFD6C`,
+leaving 660 bytes in the current ITCM reserve. See [item-giver.md](item-giver.md).
