@@ -740,11 +740,25 @@
       "category": "custom",
       "base_heartgold": "Normal balance.",
       "visual_plus": "Not added.",
-      "required_work": "Optional full balance through native capped money API; do not alter casino coins/Battle Points.",
+      "required_work": "Milestone 26 adds saved default-Off owned wallet refill on native read through the exact original capped setter. Both games pass native buy/sell/Cancel, quantity limits, Trainer Card, native Mom trainer payout, save/cold and older journals. Copied/opponent profiles and internal Mom ledger reads remain native; coins/Battle Points stay separate. Finish wider shop/full-bag/insufficient-funds UI, losses/blackouts, Mom purchases and story/link/Frontier acceptance.",
       "evidence": [
-        "patches/pokeemerald/0027-infinite-money.patch"
+        "patches/pokeemerald/0027-infinite-money.patch",
+        "native/money.c",
+        "native/money_original.S",
+        "gameplay/money.py",
+        "tests/test_infinite_money.py",
+        "scripts/inspect_wallet_state.py",
+        "scripts/verify_money_milestone.py",
+        "docs/infinite-money.md",
+        "enhancements/milestone-26-verification.json"
       ],
-      "implementation": "not_integrated"
+      "implementation": "integrated_untested",
+      "verification": {
+        "original_wallet_set_add_sub_caps_copied_profile_owner_and_Mom_ledger_instructions": "passed_bounded_external_services",
+        "both_Mac_native_buy_sell_cancel_quantity_and_Mom_trainer_payout": "passed_declared_native_script_fixtures",
+        "both_Mac_native_Trainer_Card_save_cold_cancel_legacy": "passed_bounded",
+        "wider_shop_story_link_Frontier_blackouts_full_bag_UI": "pending"
+      }
     },
     {
       "id": "regional_dex",

@@ -1,9 +1,9 @@
 # Native enhancement settings
 
-Current milestone 25: press SELECT during free field play. X/R advances through
+Current milestone 26: press SELECT during free field play. X/R advances through
 four pages; L goes back. Up/Down selects a row, Left/Right or A changes its value,
 and A on Save and close applies all pages together. B/Cancel discards staged
-changes. Always catch, Instant victory and Fast egg hatching are on Cheats, page 4,
+changes. Always catch, Instant victory, Fast egg hatching and Infinite money are on Cheats, page 4,
 and default Off. Game progress still
 uses the native Save command. The sections below retain each milestone’s storage
 and verification history.
@@ -254,3 +254,22 @@ progress on the next native daycare update. Party reordering retains progress.
 Native events such as map transitions can precede the original daycare update;
 only eligible steps reaching that update count. Original normal-cycle ready eggs
 can still hatch before the fast threshold. See [fast-eggs.md](fast-eggs.md).
+
+## Milestone 26: wallet refill
+
+Cheats page 4 adds Infinite money as its fourth row. Twenty options occupy
+6/6/4/4 rows; navigation skips the remaining two empty rows before Save/Cancel.
+The default is Off. Save and close applies the switch; B/Cancel preserves the
+old choice and the entire cartridge save. Existing nineteen-option journals
+retain all earlier choices and default this switch Off.
+
+Value 24/presence bit 131072 stores the choice. Later unknown values remain
+preserved. Journal version 1, 48 values, 256-byte pages and the 32-byte loader
+configuration are unchanged. Auxiliary options/menu diagnostics grow to 56/132
+bytes; wallet diagnostics occupy 36 bytes. The 24,556-byte payload ends at
+`0x01FFEFEC`, leaving 4,116 bytes in the current ITCM reserve.
+
+The actual wallet refills on an eligible native read. Turning Off stops refills;
+it does not restore an earlier balance. Native Save retains game balances;
+settings Save and close alone applies the enhancement choices. See
+[infinite-money.md](infinite-money.md) for exact behavior and bounded acceptance.

@@ -71,7 +71,7 @@ def build_payload() -> Payload:
     with tempfile.TemporaryDirectory(prefix='.compile-', dir=output) as temporary:
         temp = Path(temporary)
         objects = []
-        for filename in ('evolution.c', 'evolution_trampoline.S', 'field.c', 'settings.c', 'ui.c', 'menu.c', 'repel.c', 'capture.c', 'party_exp.c', 'party_exp_divide.S', 'field_hms.c', 'field_hm_bag.c', 'summary_viewer.c', 'shiny.c', 'follower.c', 'clock.c', 'clock_hud.c', 'camera.c', 'cheats.c', 'victory.c', 'eggs.c'):
+        for filename in ('evolution.c', 'evolution_trampoline.S', 'field.c', 'settings.c', 'ui.c', 'menu.c', 'repel.c', 'capture.c', 'party_exp.c', 'party_exp_divide.S', 'field_hms.c', 'field_hm_bag.c', 'summary_viewer.c', 'shiny.c', 'follower.c', 'clock.c', 'clock_hud.c', 'camera.c', 'cheats.c', 'victory.c', 'eggs.c', 'money.c', 'money_original.S'):
             target = temp / (filename + '.o')
             args = [clang, *flags]
             if filename.endswith('.c'):
@@ -108,6 +108,12 @@ def build_payload() -> Payload:
         raise PatchMismatch('Original evolution trampoline moved.')
     if data[0x20:0x30] != bytes.fromhex('f0b591b00f1c009001920026381c0521'):
         raise PatchMismatch('Relocated evolution prologue differs from the original.')
+    for name, expected in (('OriginalMoneyRead', '40697047'),
+                           ('OriginalMoneySet', '034a914200d9111c4161081c7047c0463f420f00')):
+        address = symbols[name] & ~1
+        start = address - PAYLOAD_BASE
+        if address % 4 or data[start:start + len(expected) // 2] != bytes.fromhex(expected):
+            raise PatchMismatch('Original money routine relocation changed: ' + name)
     (output / 'payload.bin').write_bytes(data)
     return Payload(bytes(data), symbols,
                    subprocess.check_output([clang, '--version'], text=True).splitlines()[0],

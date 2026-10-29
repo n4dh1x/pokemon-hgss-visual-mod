@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 25.**
+**Current stage: experimental gameplay milestone 26.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -12,7 +12,7 @@ checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
 settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. 247 tests pass. The repeat-Repel option offers another Repel of the
+connected-map changes remove old-map wilds. 256 tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
@@ -86,6 +86,12 @@ One valid party egg enters the original hatch sequence every five eligible
 walking steps. Daycare breeding and normal egg-cycle rules still run. Both games
 pass exact four/five-step controls, native animation/naming, save/cold reload,
 Cancel and older journals. See [fast-eggs.md](docs/fast-eggs.md).
+Milestone 26 adds saved Infinite money on Cheats, page 4, default Off.
+Native wallet reads refill the actual balance to ₽999,999. Both games pass
+buy/sell and Cancel controls, Mom's normal trainer deposit, Trainer Card access,
+native save/cold reload and older journals. Coins and Battle Points stay separate.
+Turning it Off stops refills and keeps the actual balance. See
+[infinite-money.md](docs/infinite-money.md).
 These candidates are not the final release.
 
 - [Complete 59-row feature inventory](docs/emerald-parity.md)

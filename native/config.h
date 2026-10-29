@@ -35,6 +35,7 @@ struct EnhancedExtraOptions {
     u32 always_catch; /* Optional native wild-catch guarantee, default Off. */
     u32 instant_victory; /* Optional native opponent fainting, default Off. */
     u32 fast_eggs; /* One valid egg every five actual steps; default Off. */
+    u32 infinite_money; /* Refill owned wallet reads, default Off. */
 };
 extern volatile struct EnhancedExtraOptions gEnhancedExtraOptions;
 

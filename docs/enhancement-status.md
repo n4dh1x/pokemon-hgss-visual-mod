@@ -1,6 +1,6 @@
 # Enhancement implementation status
 
-## Verified on 27 October 2026
+## Verified on 29 October 2026
 
 - Fork: https://github.com/n4dh1x/pokemon-hgss-visual-mod
 - Branch: `emerald-feature-parity`.
@@ -10,12 +10,12 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 247 tests pass, including compiled ARM field logic and independently checked
+- 256 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 24,120-byte resident payload, recorded ARM9/overlay changes and xdelta
+- The current 24,556-byte resident payload, recorded ARM9/overlay changes and xdelta
   round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
@@ -609,3 +609,32 @@ a fresh-story daycare playthrough. Multiple species, actual parents/daycare,
 cycling/Surf/forced-movement and event/transition edge cases remain pending.
 Other enhancements remain in scope. See [fast-eggs.md](fast-eggs.md) and
 [exact evidence](../enhancements/milestone-25-verification.json).
+
+## Milestone 26: saved Infinite money
+
+Default-Off Infinite money is the fourth row on Cheats, page 4. Wallet access
+refills the actual saved player balance to 999999 through the exact original
+capped setter. Copied/opponent profiles and HGSS's internal Mom reward comparison
+remain native. Turning Off retains the current balance and stops further refills.
+Casino coins, Battle Points, Mom's bank and item inventories are separate.
+
+256 regression tests pass; seven native money instruction tests and 45 settings
+tests also pass individually. Both final candidates/patches exactly reproduce
+the fixed experiments. The payload is 24,556 bytes with 4,116 ITCM bytes left.
+Sixteen separately run cleanup tests pass; the ROM builders now run safe cleanup
+after success or failure, preserving originals, saves, patches and evidence.
+
+Both Mac games pass actual native Potion purchase (300), sale (150), cancelled
+transactions, quantity limits 99 On/10 Off from the same 3064 starting wallet,
+Trainer Card refill, native save/cold and settings Cancel. A normal native trainer
+prize of 64 leaves 48 in the wallet and deposits 16 with Mom in both On/Off
+controls; reopening the Trainer Card then refills only the On wallet. Party EXP
+and native level screens complete, with PID/OT/IV/ability/names retained.
+
+The declared VM fixtures call original MartBuy/MartSell/TrainerBattle and return
+to the follower script; the trainer fixture also sets the native Mom savings flag.
+They inject no economic or Pokemon data. Source saves are the declared HG-derived
+project lineage. Full bag/insufficient-funds UI, further shop categories,
+losses/blackouts, Mom purchases and wider story/link/Frontier acceptance remain.
+See [behavior and verification](infinite-money.md) and
+[exact assertion evidence](../enhancements/milestone-26-verification.json).

@@ -124,6 +124,10 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['clock_hud']={'field':hex(hud[0]),'string':hex(hud[5]),'active':bool(hud[6]),'opens':hud[7],'closes':hud[8],'draws':hud[9],'seconds':hud[10],'rate':hud[11]}
         result['settings']['clock_hud'] = extra[7]
         result['enhancement_menu']['staged_clock_hud'] = menu[22]
+    if 'gMoneyState' in symbols:
+        result['money']=dict(zip(('calls','refills','full','denied','bookkeeping','profile','before','after','caller'),resident_words('gMoneyState',9)))
+        result['settings']['infinite_money']=extra[13]
+        result['enhancement_menu']['staged_infinite_money']=menu[28]
     if 'gFastEggState' in symbols:
         result['fast_eggs']=dict(zip(('save','owner','steps','calls','forced','native_ready','empty','denied'),resident_words('gFastEggState',8)))
         result['settings']['fast_eggs']=extra[12]
