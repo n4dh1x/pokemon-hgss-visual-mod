@@ -50,7 +50,9 @@
         "3ds_port/src/3ds_extras.c",
         "3ds_port/src/3ds_settings.c"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "emulator_provided",
+      "release_scope_note": "Use Mac emulator fast-forward, normal audio/timing and FPS controls; no matching ROM menu or 3DS pacing transplant required."
     },
     {
       "id": "real_time_pacing",
@@ -68,7 +70,9 @@
         "3ds_port/src/3ds_platform.c",
         "3ds_port/src/3ds_audio.c"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "emulator_provided",
+      "release_scope_note": "Use Mac emulator fast-forward, normal audio/timing and FPS controls; no matching ROM menu or 3DS pacing transplant required."
     },
     {
       "id": "capture_exp",
@@ -105,7 +109,8 @@
         "full_movesets_evolution_and_extended_capture_cases": "pending",
         "native_Raikou_visible_contact_capture_save_cold_both_mac": "passed_bounded; native_release_VM/location/one_MasterBall_fixtures_declared",
         "native_full_moveset_Synthesis_replacement_both_mac": "passed_bounded_Chikorita_level12"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "party_exp",
@@ -148,7 +153,8 @@
         "bench_moves_evolution_and_extended_battle_acceptance": "pending",
         "native_Raikou_visible_contact_capture_save_cold_both_mac": "passed_bounded; native_release_VM/location/one_MasterBall_fixtures_declared",
         "native_bench_moves_capture_rewards_save_cold_both_mac": "passed_bounded_Rattata_Hoothoot"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "trade_evolution",
@@ -180,7 +186,8 @@
         "resident_payload_startup": "passed",
         "evolution_and_cancellation_in_melonds": "pending",
         "runtime_toggle_and_persistence": "passed"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "field_hms",
@@ -225,7 +232,8 @@
         "contextual_cut_no_badge_on_off_historical_milestone12_heartgold": "passed_exact_old_rom; not current all-HM acceptance",
         "actual_flash_cave_alph_effects": "Dark Cave passed both Mac games; Alph effects pending",
         "native_surf_no_learned_move_both_mac": "passed_declared_one_byte_Fog_Badge_fixture"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "visible_wild",
@@ -281,7 +289,8 @@
         "shiny_palettes_glints_one_chime_mixed_and_off_both_mac": "passed_bounded_Hoothoot_Rattata",
         "native_cave_surf_contact_shore_save_reload_both_mac": "passed_bounded_Dark_Cave_Zubat_Geodude_Magikarp; declared_one_byte_badge_fixture_for_Surf_entry",
         "native_Raikou_visible_contact_capture_save_cold_both_mac": "passed_bounded; native_release_VM/location/one_MasterBall_fixtures_declared"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "roaming_only_grass",
@@ -307,7 +316,8 @@
         "saved_cold_reload_both_games": "passed",
         "retained_contact_and_walking_mac": "passed",
         "native_legendary_roamer_sprites": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "iv_ev_viewer",
@@ -341,7 +351,8 @@
         "saved_on_off_cancel_and_cold_reload_both_mac": "passed",
         "actual_pc_storage_ui_eggs_special_contexts": "pending",
         "runtime_l_equals_a_x_pages_y_cycle_both_mac": "passed_isolated_4_byte_input_mode_fixture; native saved-option UI selection not claimed"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "repel_prompt",
@@ -373,7 +384,8 @@
         "native_bag_locked_expiry_both_games": "passed_isolated_control",
         "permission_revoked_at_acceptance_heartgold": "passed_isolated_control",
         "full_special_area_story_visits": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "infinite_tms",
@@ -405,7 +417,8 @@
         "opening_smoke": "passed",
         "teaching_flow_in_melonds": "pending",
         "runtime_toggle": "passed"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "run_indoors",
@@ -423,7 +436,8 @@
         "local_data/reference/pokeheartgold/include/map_header.h",
         "local_data/reference/pokeheartgold/src/player_avatar.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "physical_special",
@@ -440,7 +454,8 @@
         "patches/pokeemerald/0046-physical-special-split.patch",
         "local_data/reference/pokeheartgold/include/constants/battle.h"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "day_night",
@@ -458,7 +473,8 @@
         "local_data/reference/pokeheartgold/src/field_system_rtc_weather.c",
         "local_data/reference/pokeheartgold/src/gf_rtc.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "clock_speed",
@@ -489,7 +505,8 @@
         "native_Route29_day_species_with_midnight_RTC_both_mac": "passed_bounded",
         "native_120x_offline_one_x_resume_and_saved_one_x_controls_both_mac": "passed_bounded",
         "native_calendar_day_count_and_penalty_separation_listed_runs": "passed_bounded"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "timed_encounters",
@@ -506,7 +523,8 @@
         "patches/pokeemerald/0052-timed-wild-encounters.patch",
         "local_data/reference/pokeheartgold/src/field/encounter_check.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "clock_hud",
@@ -535,7 +553,8 @@
         "native_visible_HUD_party_map_Berry_save_and_cold_both_mac": "passed_bounded",
         "native_ordinary_battle_flee_HUD_cleanup_SoulSilver": "passed_bounded",
         "native_saved_Off_cold_no_HUD_allocation_and_Cancel_both_mac": "passed_bounded"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "follower",
@@ -566,7 +585,8 @@
         "off_independent_wilds_on_native_walking_dialogue_both_mac": "passed_bounded_Chikorita_Route29",
         "native_save_cold_On_Off_and_connected_roundtrip_both_mac": "passed_bounded_Route29_NewBark",
         "all_species_forms_cycling_surf_story_partner_HM_longplay": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "encounter_rate",
@@ -598,7 +618,8 @@
         "visible_intervals_off_cleanup_and_cancel_both_mac": "passed",
         "ordinary_off_real_walking_both_mac": "passed_11_checks_each",
         "actual_surf_cave_special_areas_active_legendary": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "shiny_odds",
@@ -640,7 +661,8 @@
         "overworld_palette_and_sparkle": "passed_bounded_both_mac; full species/form/capacity acceptance pending",
         "full_starter_gift_egg_trade_species_forms_new_roamers": "pending",
         "native_Raikou_visible_contact_capture_save_cold_both_mac": "passed_bounded; native_release_VM/location/one_MasterBall_fixtures_declared"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "always_catch",
@@ -670,7 +692,8 @@
         "journal_legacy_default_unknown_atomic_cancel_and_four_page_menu": "passed_compiled_arm",
         "both_Mac_FriendBall_Raikou_On_success_Off_failure_native_rewards_save_cold_cancel": "passed_bounded_declared_nine_byte_location_and_ball_fixture",
         "broader_ordinary_special_formats_balls_capacity_story_longplay": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "instant_victory",
@@ -701,7 +724,8 @@
         "both_Mac_two_Pokemon_trainer_replacement_native_bonus_payout_win_flag": "passed_declared_39_byte_native_script_fixture",
         "both_Mac_native_save_cold_cancel_and_previous_17_option_journal": "passed_bounded",
         "wider_actual_NPC_story_formats_status_ability_capacity_level_evolution_longplay": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "fast_eggs",
@@ -728,7 +752,8 @@
         "both_Mac_native_gift_egg_On_Off_exact_five_steps_animation_naming": "passed_declared_16_byte_native_script_fixture",
         "both_Mac_native_save_cold_session_counter_reset_cancel_legacy": "passed_bounded",
         "actual_daycare_multiple_species_special_walking_events_longplay": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "infinite_money",
@@ -758,7 +783,8 @@
         "both_Mac_native_buy_sell_cancel_quantity_and_Mom_trainer_payout": "passed_declared_native_script_fixtures",
         "both_Mac_native_Trainer_Card_save_cold_cancel_legacy": "passed_bounded",
         "wider_shop_story_link_Frontier_blackouts_full_bag_UI": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "regional_dex",
@@ -789,7 +815,8 @@
         "both_Mac_exact_actions_No_B_cancel_save_cold_unchanged_progress": "passed_native_inputs_without_RAM_fixtures",
         "both_Mac_original_Dex_app_totals_entry_and_field_return": "passed_declared_native_ownership_fixture",
         "wider_forms_languages_fresh_story_longplay": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "unlock_national",
@@ -820,7 +847,8 @@
         "both_Mac_exact_actions_No_B_cancel_save_cold_unchanged_progress": "passed_native_inputs_without_RAM_fixtures",
         "both_Mac_original_Dex_app_totals_entry_and_field_return": "passed_declared_native_ownership_fixture",
         "wider_forms_languages_fresh_story_longplay": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "national_dex",
@@ -851,7 +879,8 @@
         "both_Mac_exact_actions_No_B_cancel_save_cold_unchanged_progress": "passed_native_inputs_without_RAM_fixtures",
         "both_Mac_original_Dex_app_totals_entry_and_field_return": "passed_declared_native_ownership_fixture",
         "wider_forms_languages_fresh_story_longplay": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "give_items",
@@ -887,7 +916,8 @@
         "both_Mac_actual_all_pockets_quantities_caps_unique_keys_and_Cancel": "passed_real_inputs_without_RAM_fixtures",
         "both_Mac_picker_preferences_game_inventory_native_Save_cold_and_Potion_use": "passed_bounded",
         "wider_native_restricted_maps_full_pocket_UI_item_quest_TM_story_acceptance": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "native_world",
@@ -905,7 +935,9 @@
         "3ds_port/src/voxel/ctr_voxel.c",
         "scripts/port.py"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "excluded",
+      "release_scope_note": "Keep native HGSS 3D maps; no voxel renderer or classic/3D toggle."
     },
     {
       "id": "camera_angle",
@@ -933,7 +965,8 @@
         "original_native_orthographic_projection_with_controlled_output_APIs": "passed_instruction_scope",
         "both_Mac_actual_view_lab_roundtrip_party_cancel_reset_save_cold": "passed_bounded",
         "wider_orthographic_maps_culling_cinematics_movement_wilds_longplay": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "camera_zoom",
@@ -961,7 +994,8 @@
         "original_native_orthographic_projection_with_controlled_output_APIs": "passed_instruction_scope",
         "both_Mac_actual_view_lab_roundtrip_party_cancel_reset_save_cold": "passed_bounded",
         "wider_orthographic_maps_culling_cinematics_movement_wilds_longplay": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "tilt_shift",
@@ -978,7 +1012,9 @@
         "3ds_port/src/3ds_settings.c",
         "3ds_port/src/3ds_video.c"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "excluded",
+      "release_scope_note": "User excludes Emerald-specific blur/postprocessing."
     },
     {
       "id": "world_battles",
@@ -996,7 +1032,9 @@
         "3ds_port/src/3ds_video.c",
         "scripts/port.py"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "excluded",
+      "release_scope_note": "User excludes renderer changes; retain native HGSS battle scenes."
     },
     {
       "id": "stereoscopic_world",
@@ -1012,7 +1050,9 @@
       "evidence": [
         "3ds_port/src/3ds_extras.c"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "excluded",
+      "release_scope_note": "3DS-specific graphics excluded from this English NDS release."
     },
     {
       "id": "stereoscopic_depth",
@@ -1028,7 +1068,9 @@
       "evidence": [
         "3ds_port/src/3ds_extras.c"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "excluded",
+      "release_scope_note": "3DS-specific graphics excluded from this English NDS release."
     },
     {
       "id": "fps",
@@ -1044,7 +1086,9 @@
       "evidence": [
         "3ds_port/src/3ds_settings.c"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "emulator_provided",
+      "release_scope_note": "Use Mac emulator fast-forward, normal audio/timing and FPS controls; no matching ROM menu or 3DS pacing transplant required."
     },
     {
       "id": "run_toggle",
@@ -1062,7 +1106,8 @@
         "local_data/reference/pokeheartgold/src/player_avatar.c",
         "local_data/reference/pokeheartgold/src/field/field_control.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "quick_ball",
@@ -1076,7 +1121,8 @@
       "evidence": [
         "patches/pokeemerald/0006-quick-ball.patch"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "enhancement"
     },
     {
       "id": "bottom_menus",
@@ -1092,7 +1138,8 @@
         "local_data/reference/pokeheartgold/src/bag_view.c",
         "3ds_port/src/3ds_bottom_ui.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "battle_touch",
@@ -1107,7 +1154,8 @@
         "local_data/reference/pokeheartgold/src/battle/battle_controller_player.c",
         "3ds_port/src/3ds_bottom_ui.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "touch_shops",
@@ -1122,7 +1170,8 @@
         "local_data/reference/pokeheartgold/src/overlay_03/shop_menu.c",
         "3ds_port/src/3ds_bottom_ui.c"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "enhancement"
     },
     {
       "id": "save_panel",
@@ -1137,7 +1186,8 @@
         "local_data/reference/pokeheartgold/src/touch_save_app.c",
         "3ds_port/src/3ds_bottom_ui.c"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "enhancement"
     },
     {
       "id": "map_dex",
@@ -1152,7 +1202,8 @@
         "local_data/reference/pokeheartgold/src/application/pokegear",
         "local_data/reference/pokeheartgold/src/pokedex.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "hd_battle_ui",
@@ -1167,7 +1218,9 @@
         "3ds_port/src/3ds_bottom_ui.c",
         "scripts/port.py"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "excluded",
+      "release_scope_note": "No 3DS-resolution UI conversion; retain native HGSS UI."
     },
     {
       "id": "widescreen",
@@ -1182,7 +1235,9 @@
         "3ds_port/src/3ds_video.c",
         "patches/pokeemerald/0048-move-backgrounds-widescreen.patch"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "excluded",
+      "release_scope_note": "No 400-pixel field/effect/cutscene conversion."
     },
     {
       "id": "wireless",
@@ -1197,7 +1252,8 @@
         "patches/pokeemerald/0055-local-wireless.patch",
         "local_data/reference/pokeheartgold/src/overlay_03/communication_club.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "soft_reset",
@@ -1212,7 +1268,8 @@
         "patches/pokeemerald/0037-soft-reset.patch",
         "local_data/reference/pokeheartgold/src/main.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "persistent_options",
@@ -1239,7 +1296,8 @@
         "cancel_and_native_save_preservation_heartgold": "passed",
         "damaged_newer_journal_fallback_heartgold": "passed",
         "remaining_options_and_older_save_compatibility": "pending"
-      }
+      },
+      "release_scope": "enhancement"
     },
     {
       "id": "follower_interactions",
@@ -1254,7 +1312,9 @@
         "patches/pokeemerald/0056-follower-pokemon.patch",
         "local_data/reference/pokeheartgold/src/follow_mon.c"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "native_retained",
+      "release_scope_note": "Retain and verify HGSS follower talk, cries, animations and native item rules. No Emerald-specific item-finding implementation required."
     },
     {
       "id": "languages",
@@ -1270,7 +1330,9 @@
         "scripts/port.py",
         "docs/compatibility.md"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "excluded",
+      "release_scope_note": "English only; additional language ROM variants are excluded."
     },
     {
       "id": "pack_builder",
@@ -1286,7 +1348,8 @@
         "scripts/port.py",
         "scripts/profiles.py"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "delivery"
     },
     {
       "id": "save_compatibility",
@@ -1301,7 +1364,8 @@
         "docs/faq.md",
         "local_data/reference/hg-engine/include/config.h"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "delivery"
     },
     {
       "id": "home_shortcut",
@@ -1316,7 +1380,9 @@
         "docs/INSTALLATION.md",
         "docs/setup-macos-linux.md"
       ],
-      "implementation": "not_integrated"
+      "implementation": "not_integrated",
+      "release_scope": "excluded",
+      "release_scope_note": "Mac NDS target; no Emerald 3DS launcher/forwarder."
     },
     {
       "id": "text_speed",
@@ -1331,7 +1397,8 @@
         "3ds_port/src/3ds_bottom_ui.c",
         "local_data/reference/pokeheartgold/src/options.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "battle_scene",
@@ -1346,7 +1413,8 @@
         "3ds_port/src/3ds_bottom_ui.c",
         "local_data/reference/pokeheartgold/src/options.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "battle_style",
@@ -1361,7 +1429,8 @@
         "3ds_port/src/3ds_bottom_ui.c",
         "local_data/reference/pokeheartgold/src/options.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "sound",
@@ -1376,7 +1445,8 @@
         "3ds_port/src/3ds_bottom_ui.c",
         "local_data/reference/pokeheartgold/src/options.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "button_mode",
@@ -1391,7 +1461,8 @@
         "3ds_port/src/3ds_bottom_ui.c",
         "local_data/reference/pokeheartgold/src/options.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     },
     {
       "id": "frame",
@@ -1406,7 +1477,21 @@
         "3ds_port/src/3ds_bottom_ui.c",
         "local_data/reference/pokeheartgold/src/options.c"
       ],
-      "implementation": "existing"
+      "implementation": "existing",
+      "release_scope": "native_retained"
     }
-  ]
+  ],
+  "release_scope": {
+    "updated_on": "2026-11-06",
+    "decision": "English USA HGSS + Visual+: actual gameplay and useful interface enhancements. Retain native HGSS 3D and existing functionality; omit Emerald-only renderer, platform and language work.",
+    "checklist": "docs/release-checklist.md",
+    "classification_counts": {
+      "enhancement": 28,
+      "native_retained": 17,
+      "emulator_provided": 3,
+      "delivery": 2,
+      "excluded": 9
+    },
+    "implementation_states": "Historical audit integration states are preserved; filter release_scope before counting remaining release work."
+  }
 }

@@ -1,8 +1,8 @@
 # Emerald 3DS v0.4.0 → HGSS + English Visual+ inventory
 
-Audited 22 October 2026. Scope: every user-facing option in Emerald v0.4.0's SETTINGS, ENHANCEMENTS and CHEATS pages, plus its published interface/platform features. Historical bug fixes, tooling internals and Hoenn story content are not new HGSS gameplay enhancements. All 41 distinct serialized option keys are covered; item-giver subcontrols are grouped into one feature.
+Audited 22 October 2026. This preserves the complete historical comparison with Emerald v0.4.0: 59 rows and all 41 serialized option keys. **The release scope was narrowed by the user on 6 November 2026 to English HGSS gameplay and useful interface enhancements.** See the authoritative [release checklist](release-checklist.md). Emerald-only renderer, stereo/resolution, launcher and additional-language work is excluded; native HGSS equivalents are retained.
 
-The fork contains upstream Visual+, this audit, native roaming grass encounters, reusable TMs, trade alternatives, repeat Repel, capture EXP, party-wide EXP Share and an eleven-option saved settings menu over two pages. **The final enhancement set is not complete.** Donor availability does not mean a feature is installed; the machine-readable inventory tracks integration and verification separately. Native HGSS equivalents are retained; differences in runtime toggles and presentation are called out.
+The implementation has 25 integrated enhancement rows with targeted verification and wider acceptance pending. Three scoped feature rows remain unfinished: quick ball controls (development work in progress), improved shop quantities and a combined save overview. Release packaging and save compatibility remain acceptance work. **The final release is not complete.** The tables below describe the original audit; excluded items are not release requirements. Each machine-readable row now has a separate `release_scope` classification, while historical integration states and evidence are preserved.
 
 Baseline: [Emerald v0.4.0](https://github.com/ZallaxDev/emerald-3ds/tree/v0.4.0), [Visual+](https://github.com/DosukaSOL/pokemon-hgss-visual-mod), [HGSS source](https://github.com/pret/pokeheartgold), [hg-engine](https://github.com/BluRosie/hg-engine). Exact audited revisions and source fingerprints are in [sources.lock.json](../enhancements/sources.lock.json).
 
@@ -124,7 +124,7 @@ These are additions of Visual+ itself, not extra Emerald enhancement settings: r
 3. Integrate selected capture EXP, IV/EV viewer, reusable TMs and the adapted Repel prompt; resolve shared ARM9/overlay ownership before adding more hooks.
 4. Add runtime settings/persistence, party EXP, trade evolution and badge-gated field moves. Keep feature changes configurable.
 5. Finish cheats and quick ball controls, and broader acceptance of the integrated world clock/HUD, with single-player restrictions.
-6. Audit/implement runtime camera and rendering features individually. Stereo/native 400x240 are recorded platform limits, not silently marked complete.
+6. Verify the integrated camera controls. Renderer replacement, tilt-shift, stereo/native 400x240 and other excluded items are not release work; use the current release checklist above.
 7. Revalidate SoulSilver against its own symbols/offsets and ROM; never apply HeartGold-only hg-engine hooks blindly.
 
 ## Integration constraints

@@ -1,5 +1,7 @@
 # Enhancement implementation status
 
+Current scope: [English HGSS release checklist](release-checklist.md), revised by the user on 6 November 2026. The historical 59-row audit is not the remaining release backlog. Renderer/platform conversions and additional languages are excluded. Native HGSS follower interactions are retained.
+
 ## Verified on 6 November 2026
 
 - Fork: https://github.com/n4dh1x/pokemon-hgss-visual-mod
@@ -36,9 +38,9 @@
   effects remain pending. No complete visible-encounter parity claim is made.
 - Reusable TMs and trade evolution now have saved runtime controls; full teaching
   and evolution/cancellation flows and bag quantity labels remain pending.
-- All remaining new enhancements are still included in the persistent goal.
+- Remaining practical gameplay/interface enhancements and their verification are tracked in the current release checklist.
 - No hardware test has been performed. Mac melonDS/RetroArch is the priority.
-- The persistent goal covers the full audited scope, not only easy features.
+- The goal covers all practical enhancements in the revised English HGSS scope, not only easy features.
 
 ## Local reference outputs
 
