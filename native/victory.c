@@ -1,3 +1,4 @@
+#include "quick_ball.h"
 #include "settings.h"
 extern void NativeSelectionInput(void *battle, void *ctx);
 extern void NativeGetBattleMon(void *battle, void *ctx);
@@ -28,6 +29,7 @@ static int alive(void *ctx, u32 battler) {
     return hp && hp <= word(ctx, 0x2D90 + 192 * battler);
 }
 void EnhancedVictoryGetBattleMon(void *battle, void *ctx) {
+    EnhancedQuickBegin(battle, ctx);
     /* A fresh native battle always starts at controller command zero. Clear
      * an interrupted handoff even if the native allocator reuses both pointers. */
     if (gInstantVictoryState.pending) ++gInstantVictoryState.abandoned;

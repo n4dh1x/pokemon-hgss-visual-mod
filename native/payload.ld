@@ -239,3 +239,16 @@ NativeBagSpace = 0x02078385;
 NativeBagAdd = 0x02078399;
 
 NativeItemMapping = 0x02100194;
+
+NativeQuickCursor = 0x02269A25;
+NativePCFirstEmpty = 0x02073D55;
+NativeQuickBag = 0x02263139;
+NativeBattleBufferClear = 0x0224EDC1;
+NativeSelectedBagItem = 0x022632C1;
+NativeQuickText = 0x02268551;
+NativeFontDelete = 0x02013661;
+NativeCharFree = 0x02021B5D;
+
+NativeSavePC = 0x020270D9;
+
+NativeQuickTouchRect = 0x02025225;

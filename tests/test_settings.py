@@ -767,6 +767,45 @@ class TestSettings(unittest.TestCase):
                 self.uc.mem_write(at,bytes(raw));self.assertEqual(self.execute('EnhancedSettingsValid',at,self.owner),expected)
 
 
+    def test_shortcut_requires_physical_SELECT_and_L_with_a_new_edge(self):
+        for held, pressed in ((4,4),(0x200,0x200),(0x204,0)):
+            self.put(0x021D1144,held);self.put(0x021D1148,pressed)
+            self.assertEqual(self.execute('EnhancedMenuShortcut',self.field),0)
+            self.assertEqual(self.get(self.menu+24),0)
+        self.put(0x021D1144,0x204);self.put(0x021D1148,0x200)
+        self.assertEqual(self.execute('EnhancedMenuShortcut',self.field),1)
+        self.assertEqual(self.get(self.menu+28),5)
+        self.execute('EnhancedMenuTask',0)
+        self.assertEqual(self.get(self.menu+28),6)
+        initial=(self.get(self.menu+44),self.get(self.menu+128))
+        self.put(0x021D1154,0x201) # L repeat and remapped A cannot change page/value.
+        for held in (0x204,0x200,4):
+            self.put(0x021D1144,held);self.execute('EnhancedMenuTask',0)
+            self.assertEqual((self.get(self.menu+44),self.get(self.menu+128)),initial)
+            self.assertEqual(self.get(self.menu+28),6)
+        self.put(0x021D1144,0);self.execute('EnhancedMenuTask',0)
+        self.assertEqual(self.get(self.menu+28),1)
+        self.put(0x021D1154,2);self.assertEqual(self.execute('EnhancedMenuTask',0),1)
+        self.put(0x021D1144,0x204);self.put(0x021D1148,2)
+        self.assertEqual(self.execute('EnhancedMenuShortcut',self.field),0)
+
+    def test_shortcut_also_opens_with_SELECT_second_and_L_equal_A(self):
+        self.put(0x021D1144,0x204);self.put(0x021D1148,4)
+        self.put(0x021D1154,1)
+        self.assertEqual(self.execute('EnhancedMenuShortcut',self.field),1)
+        self.assertEqual(self.get(self.menu+24),1)
+        self.assertEqual(self.get(self.menu+28),5)
+        self.assertEqual(self.execute('EnhancedMenuShortcut',self.field),0)
+
+    def test_shortcut_respects_active_native_field_tasks(self):
+        self.put(0x021D1144,0x204);self.put(0x021D1148,0x204)
+        self.put(self.field+0x10,0x02230000)
+        before=bytes(self.uc.mem_read(self.objects,0x258))
+        self.assertEqual(self.execute('EnhancedMenuShortcut',self.field),0)
+        self.assertEqual(self.get(self.menu+24),0)
+        self.assertEqual(bytes(self.uc.mem_read(self.objects,0x258)),before)
+
+
 @unittest.skipUnless(AVAILABLE, 'Install requirements-dev.txt for save layout audit.')
 class TestSaveLayout(unittest.TestCase):
     def test_both_native_layouts_reserve_journal_pages_and_reject_table_edits(self):

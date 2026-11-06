@@ -1,6 +1,9 @@
 # Native enhancement settings
 
-Current milestone 28: press SELECT during free field play. X/R advances through
+From milestone 30, hold physical **SELECT + L** during free field play, then
+release both buttons to use the menu. Either press order works, including with
+L=A enabled. SELECT alone uses normal field handling. Existing milestone 29 and
+earlier builds use SELECT alone. X/R advances through
 four pages; L goes back. Up/Down selects a row, Left/Right or A changes its value,
 and A on Save and close applies all pages together. B/Cancel discards staged
 changes. Always catch, Instant victory, Fast egg hatching and Infinite money are on Cheats, page 4,

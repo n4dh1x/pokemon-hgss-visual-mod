@@ -1,3 +1,4 @@
+#include "quick_ball.h"
 #include "clock.h"
 
 typedef unsigned long long u64;
@@ -131,12 +132,15 @@ void EnhancedClockSnapshot(struct EnhancedJournal *record) {
 }
 int EnhancedClockSave(void *save) {
     int result = NativeSaveGame(save);
+    int clock = gEnhancedExtraOptions.clock_speed || gClockState.shifted;
     if (result == 2 && save == EnhancedSettingsSaveData() &&
-        (gEnhancedExtraOptions.clock_speed || gClockState.shifted)) {
-        if (EnhancedSettingsStore(gEnhancedOptions.trade_evolutions, gEnhancedOptions.reusable_tms,
+        (clock || EnhancedQuickNeedsSave(save))) {
+        EnhancedQuickSaving(save);
+        int stored = EnhancedSettingsStore(gEnhancedOptions.trade_evolutions, gEnhancedOptions.reusable_tms,
                 gEnhancedOptions.visible_encounters, gEnhancedOptions.repel_prompt,
-                gEnhancedOptions.capture_exp, gEnhancedOptions.party_exp)) ++gClockState.saves;
-        else ++gClockState.save_failures;
+                gEnhancedOptions.capture_exp, gEnhancedOptions.party_exp);
+        EnhancedQuickSaved(stored);
+        if (clock) { if (stored) ++gClockState.saves; else ++gClockState.save_failures; }
     }
     return result;
 }

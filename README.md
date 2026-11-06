@@ -9,8 +9,9 @@ Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
 checks. Reusable TMs and level-40 trade alternatives remain integrated.
-Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
-settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
+From the next milestone (30), hold **SELECT + L** in the field and release both
+buttons to open Enhancements. Milestone 29 and earlier use SELECT alone. The menu
+contains saved visible-wild, trade-evolution and reusable-TM settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
 connected-map changes remove old-map wilds. 298 tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
@@ -107,6 +108,7 @@ Milestone 29 relocates immutable tables into an audited unused ITCM gap, freeing
 2,528 more bytes for subsequent enhancements. Both games pass saved-option/item,
 clock/camera and native contact-battle reward/save/cold controls. See
 [native-integration.md](docs/native-integration.md#milestone-29-immutable-tables-in-the-audited-itcm-gap).
+Milestone 30 adds native quick ball controls and SELECT + L menu access; both games pass capture and native save/cold checks, with 314 automated regressions. See [quick-ball.md](docs/quick-ball.md).
 These candidates are not the final release.
 
 - [Complete 59-row feature inventory](docs/emerald-parity.md)

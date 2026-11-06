@@ -26,6 +26,7 @@ import ndspy.fnt
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
+from gameplay.quick_ball import install_quick_ball
 from gameplay.patches import reusable_tms
 from gameplay.native import build_payload, inject_evolution, verify_arm9_changes, PAYLOAD_BASE
 from gameplay.field import install_field, verify_field_files
@@ -104,8 +105,9 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
     overlay_changes.extend(install_victory(patched,payload))
     overlay_changes.extend(install_eggs(patched,payload))
     results.extend(install_money(patched,payload))
+    overlay_changes.extend(install_quick_ball(patched,payload))
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-29'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-30'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -182,18 +184,21 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
         'grass_battles': {'choices': ['Normal', 'Roaming only'], 'default': 'Normal',
                           'scope': 'Regular grass while visible wilds are enabled; other contexts remain native'},
         'diagnostics': {'visible_state_bytes': 1644, 'settings_state_bytes': 1060,
-                        'menu_state_bytes': 144, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 68, 'shiny_state_bytes': 40, 'visible_visual_state_bytes': 56, 'visible_habitat_state_bytes': 44, 'visible_roamer_state_bytes': 192, 'follower_state_bytes': 28, 'always_catch_state_bytes': 20, 'instant_victory_state_bytes': 48, 'fast_egg_state_bytes': 32, 'money_state_bytes': 36, 'dex_action_state_bytes': 44, 'dex_ui_state_bytes': 16, 'item_giver_state_bytes': 28, 'camera_state_bytes': 60, 'clock_state_bytes': 60, 'clock_hud_state_bytes': 48, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
+                        'menu_state_bytes': 144, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 68, 'shiny_state_bytes': 40, 'visible_visual_state_bytes': 56, 'visible_habitat_state_bytes': 44, 'visible_roamer_state_bytes': 192, 'follower_state_bytes': 28, 'always_catch_state_bytes': 20, 'instant_victory_state_bytes': 48, 'fast_egg_state_bytes': 32, 'money_state_bytes': 36, 'dex_action_state_bytes': 44, 'dex_ui_state_bytes': 16, 'item_giver_state_bytes': 28, 'quick_ball_state_bytes': 100, 'camera_state_bytes': 60, 'clock_state_bytes': 60, 'clock_hud_state_bytes': 48, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'total_size': payload.total_size,
                              'immutable_data': {'address': payload.segments[0][0], 'size': len(payload.cold_data), 'sha256': sha256(payload.cold_data)},
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', 'gVisibleHabitatState', 'gVisibleRoamerState', 'gFollowerState', 'gClockState', 'gClockHudState', 'gCameraState', 'gAlwaysCatchState', 'gInstantVictoryState', 'gFastEggState', 'gMoneyState', 'gDexAction', 'gDexUi', 'gItemUi', 'gItemPocketTable', 'OriginalMoneyRead', 'OriginalMoneySet', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', 'gVisibleHabitatState', 'gVisibleRoamerState', 'gFollowerState', 'gClockState', 'gClockHudState', 'gCameraState', 'gAlwaysCatchState', 'gInstantVictoryState', 'gFastEggState', 'gMoneyState', 'gDexAction', 'gDexUi', 'gItemUi', 'gQuickBall', 'gItemPocketTable', 'OriginalMoneyRead', 'OriginalMoneySet', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code and immutable-data sections round-trip',
                    'recorded overlay 1/2/12/15/17/101 changes only', 'audited native flash allocation',
                    'one guarded appended battle message; other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
+        'quick_ball': {'trigger': 'R or top plate on eligible wild main menu', 'cycle': 'L forward / Y backward or plate sides',
+                       'last_ball': 'owned journal value 28, presence bit 2097152, committed after native Save succeeds',
+                       'consumption': 'original native ball ItemInput consumes once; original capture bookkeeping'},
         'runtime_gameplay_tested': False,
         'limitations': ['Shiny odds cover new wild/starters/script gifts and native roamer release; existing stored identities are unchanged. Wider gift/starter/egg/trade/roamer-species acceptance remains pending.',
                        'Shiny visible wilds use native alternate palettes and brief native glints; one chime plays per new shiny spawn. Full species/form acceptance remains pending.',

@@ -112,10 +112,15 @@ static int close_menu(void) {
 }
 int EnhancedMenuTask(void *task) {
     (void)task;
-    if (gEnhancedMenu.phase == 0) {
+    if (gEnhancedMenu.phase == 0 || gEnhancedMenu.phase == 5) {
+        int shortcut = gEnhancedMenu.phase == 5;
         gEnhancedMenu.string = EnhancedWindowOpen(gEnhancedMenu.field, &gEnhancedMenu.window, 1, 22);
-        gEnhancedMenu.phase = 1;
+        gEnhancedMenu.phase = shortcut ? 6 : 1;
         render();
+        return 0;
+    }
+    if (gEnhancedMenu.phase == 6) {
+        if (!(*(volatile u32 *)0x021D1144 & 0x204)) gEnhancedMenu.phase = 1;
         return 0;
     }
     if (gEnhancedMenu.phase == 2) {
@@ -247,5 +252,15 @@ int EnhancedMenuOpen(void *field) {
     gEnhancedMenu.extra.give_count = gEnhancedExtraOptions.give_count;
     EnhancedNpcPause(field, gEnhancedMenu.paused_before, 1);
     FieldSystem_CreateTask(field, EnhancedMenuTask, 0);
+    return 1;
+}
+
+int EnhancedMenuShortcut(void *field) {
+    u32 held = *(volatile u32 *)0x021D1144;
+    u32 pressed = *(volatile u32 *)0x021D1148;
+    /* Physical SELECT + L, either order, independent of L=A. An edge opens
+     * once; the task waits for both buttons to be released before navigation. */
+    if ((held & 0x204) != 0x204 || !(pressed & 0x204) || !EnhancedMenuOpen(field)) return 0;
+    gEnhancedMenu.phase = 5;
     return 1;
 }

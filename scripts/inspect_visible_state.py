@@ -124,6 +124,13 @@ def inspect_run(run: Path, report_path: Path) -> dict:
         result['clock_hud']={'field':hex(hud[0]),'string':hex(hud[5]),'active':bool(hud[6]),'opens':hud[7],'closes':hud[8],'draws':hud[9],'seconds':hud[10],'rate':hud[11]}
         result['settings']['clock_hud'] = extra[7]
         result['enhancement_menu']['staged_clock_hud'] = menu[22]
+    if 'gQuickBall' in symbols:
+        words=report['diagnostics'].get('quick_ball_state_bytes',92)//4
+        labels=('battle','ctx','input','owner','selected','queued','last','saved','dirty','committing',
+            'storage_frame','storage_full','storage_ready','ui_ball','ui_quantity')
+        labels+=tuple('text'+str(i) for i in range(words-21))
+        labels+=('requests','denied','throws','cycles','saves','save_failures')
+        result['quick_ball']=dict(zip(labels,resident_words('gQuickBall',words)))
     if 'gItemUi' in symbols:
         result['item_giver']=dict(zip(('row','result','gives','denied','last_item','last_quantity','ready'),resident_words('gItemUi',7)))
         result['settings'].update(dict(zip(('give_pocket','give_item','give_count'),extra[14:17])))

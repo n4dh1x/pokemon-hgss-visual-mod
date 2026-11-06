@@ -645,11 +645,10 @@ int EnhancedFieldInput(void *input, void *field) {
         gVisibleState.manager = manager;
     }
     EnhancedFollowerUpdate(field);
+    if (EnhancedMenuShortcut(field)) return 1;
     int result = OriginalFieldInput(input, field);
     if (result)
         return result;
-    if ((*(u16 *)((u8 *)input + 6) & 4) && EnhancedMenuOpen(field))
-        return 1;
     void *player = ptr(ptr(field, 0x40), 0x30);
     int px = word(player, 0x64), pz = word(player, 0x6C);
     u32 mode = gEnhancedOptions.visible_encounters;

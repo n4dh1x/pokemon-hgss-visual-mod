@@ -1117,12 +1117,24 @@
       "category": "custom",
       "base_heartgold": "Bag/battle item interface, not Emerald's R-button + dedicated cycling plate.",
       "visual_plus": "Not added.",
-      "required_work": "Add optional one-button throw and ball selection; single eligible wild battles only; retain last choice, validate bag stock and storage.",
+      "required_work": "Milestone 30 integrates native R/touch throw, L/Y and touch cycling, native Bag last-ball tracking and native-save-only remembered selection. Both Mac games pass real Ultra Ball capture, native PC identity/ball/stock and native save/cold restart; HG passes failed Poke Ball and next-turn/touch controls, SS ordinary Bag tracking. Broader special formats, storage/capacity and long-play acceptance remain.",
       "evidence": [
-        "patches/pokeemerald/0006-quick-ball.patch"
+        "patches/pokeemerald/0006-quick-ball.patch",
+        "native/quick_ball.c",
+        "gameplay/quick_ball.py",
+        "tests/test_quick_ball.py",
+        "docs/quick-ball.md",
+        "enhancements/milestone-30-verification.json"
       ],
-      "implementation": "not_integrated",
-      "release_scope": "enhancement"
+      "implementation": "integrated_untested",
+      "release_scope": "enhancement",
+      "verification": {
+        "full_314_tests": "passed",
+        "both_native_capture_save_cold_and_stock": "passed_bounded",
+        "HG_failed_throw_and_touch": "passed_bounded",
+        "SS_native_Bag_use_tracks_last": "passed_bounded",
+        "extended_formats_and_capacity_native": "pending"
+      }
     },
     {
       "id": "bottom_menus",

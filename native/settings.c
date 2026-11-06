@@ -1,3 +1,4 @@
+#include "quick_ball.h"
 #include "settings.h"
 #include "clock.h"
 
@@ -60,6 +61,7 @@ static int valid_format(const struct EnhancedJournal *r) {
         (!(r->reserved[0] & 262144) || r->values[25] <= 7) &&
         (!(r->reserved[0] & 524288) || r->values[26] <= 536) &&
         (!(r->reserved[0] & 1048576) || r->values[27] <= 4) &&
+        (!(r->reserved[0] & 2097152) || r->values[28] <= 536) &&
         r->checksum == EnhancedSettingsCRC(r, 252);
 }
 int EnhancedSettingsValid(const struct EnhancedJournal *r, u32 owner) {
@@ -147,6 +149,7 @@ void EnhancedSettingsEnsure(void *field) {
         }
     }
     EnhancedClockRestore(gSettingsState.last_slot >= 0 ? &gSettingsState.pages[gSettingsState.last_slot] : 0, owner);
+    EnhancedQuickRestore(gSettingsState.last_slot >= 0 ? &gSettingsState.pages[gSettingsState.last_slot] : 0, owner);
 }
 
 void *EnhancedSettingsSaveData(void) {
@@ -221,6 +224,7 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
         r->reserved[0] |= 2096120;
     }
     EnhancedClockSnapshot(r);
+    EnhancedQuickSnapshot(r);
     r->checksum = EnhancedSettingsCRC(r, 252);
     Sys_SetSleepDisableFlag(1);
     int result = FlashWriteChunk(journal_offsets[target], r, sizeof(*r));

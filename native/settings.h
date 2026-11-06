@@ -21,6 +21,7 @@ int EnhancedSettingsStoreAll(u32 trade, u32 tms, u32 visible, u32 repel,
 void *EnhancedSettingsSaveData(void);
 int EnhancedSettingsOwner(u32 *owner);
 int EnhancedMenuOpen(void *field);
+int EnhancedMenuShortcut(void *field);
 u32 EnhancedSettingsCRC(const void *data, u32 size);
 int EnhancedSettingsValid(const struct EnhancedJournal *record, u32 owner);
 #endif

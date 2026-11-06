@@ -2,7 +2,11 @@
 
 Current scope: [English HGSS release checklist](release-checklist.md), revised by the user on 6 November 2026. The historical 59-row audit is not the remaining release backlog. Renderer/platform conversions and additional languages are excluded. Native HGSS follower interactions are retained.
 
-## Verified on 6 November 2026
+## Latest accepted milestone 30
+
+Quick-ball R/touch throws, cycling, native Bag tracking and native-save-only last-ball history pass bounded Mac capture/save/cold checks in both games. The full suite passes 314 tests. SELECT + L field menu access is included. See [quick-ball.md](quick-ball.md) and its evidence/reproducer. The release remains unfinished, including the newly requested event stories/Mythical and unique gifts.
+
+## Milestone-29 and historical verification on 6 November 2026
 
 - Fork: https://github.com/n4dh1x/pokemon-hgss-visual-mod
 - Branch: `emerald-feature-parity`.
