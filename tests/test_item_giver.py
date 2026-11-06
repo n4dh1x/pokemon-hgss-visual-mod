@@ -200,8 +200,7 @@ class TestItemGiver(unittest.TestCase):
                 actual=(table[item//2]>>((item&1)*4))&15
                 self.assertEqual(actual,self.pockets[item] if self.mapping[item] else 15)
             self.assertEqual(table[-1]>>4,15)
-        at=self.payload.symbols['gItemPocketTable']-api.PAYLOAD_BASE
-        self.assertEqual(self.payload.data[at:at+269],expected)
+        self.assertEqual(self.payload.read(self.payload.symbols['gItemPocketTable'],269),expected)
         self.assertFalse((ROOT/'native/item_pockets.bin').exists())
         with self.assertRaises(api.PatchMismatch):api.build_payload(item_pockets=bytes(268))
 

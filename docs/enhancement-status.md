@@ -1,6 +1,6 @@
 # Enhancement implementation status
 
-## Verified on 30 October 2026
+## Verified on 6 November 2026
 
 - Fork: https://github.com/n4dh1x/pokemon-hgss-visual-mod
 - Branch: `emerald-feature-parity`.
@@ -10,13 +10,14 @@
 - All eight upstream patch binaries match their recorded checksums.
 - Inventory contains 59 feature rows and covers all 41 distinct Emerald option
   keys across `3ds_extras.c` and `3ds_settings.c`.
-- 294 tests pass, including compiled ARM field logic and independently checked
+- 298 tests pass, including compiled ARM field logic and independently checked
   field hooks for both games, plus the prior TM/evolution/loader tests.
 - Milestone 03 adds native grass spawns that roam with follower model animations.
   Both games reach visible contact battles with the exact stored 236-byte Pokemon
   in the native enemy party. In HeartGold, a wild contacted a stationary player.
-- The current 28,012-byte resident payload, recorded ARM9/overlay changes and xdelta
-  round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
+- The current 28,012-byte resident payload uses separate immutable-data and code/state
+  sections, leaving 3,188 ITCM bytes for further work. Recorded ARM9/overlay changes
+  and xdelta round trips are checked. Unrelated NitroFS, ARM7 and banner data are unchanged.
 - HeartGold wild positions and movement phases stay identical across 600 frames
   in the party menu and resume afterward. Native saving filters the two transient
   objects; a cold reload recreates wilds without saved NPC ghosts.
@@ -692,3 +693,26 @@ instruction tests with controlled metadata/flag services. Wider actual restricte
 maps, full-pocket saturation, item/quest effects, TM teaching and broader story
 acceptance remain. See [behavior and source/evidence scope](item-giver.md) and
 [exact assertions](../enhancements/milestone-28-verification.json).
+
+
+## Milestone 29: resident memory capacity and native regression
+
+The linker now puts 2,528 bytes of immutable tables/strings in the audited gap
+after the original ITCM section. Code/state retains its configuration/trampoline
+addresses. The total resident bytes remain 28,012; the end is now `0x01FFF38C`,
+leaving 3,188 bytes for further enhancements. No feature was removed.
+
+298 tests pass, including nine loader checks and the unchanged settings/item
+regressions. Both games pass 27 combined native checkpoints: import of the
+previous native save, all saved choices, duplicate-key rejection, native item
+giving, normal Save/cold reload, clock/camera menu controls, retained-identity
+visible contact, native victory/party EXP, and saving/cold reload of all six
+recipients' rewards. Every accepted state checks the complete relocated data,
+original ITCM bytes and live SDK arena-low reservation. See
+[native-integration.md](native-integration.md#milestone-29-immutable-tables-in-the-audited-itcm-gap)
+and [exact evidence](../enhancements/milestone-29-verification.json).
+
+Acceptance retains the prior declared HG-derived test-save lineage. It does not
+prove a fresh SoulSilver story, universal save interchange, all species/maps or
+physical-console behavior. Quick-ball controls and the other audited enhancements
+remain in the active goal; this capacity milestone is not the final release.

@@ -1,5 +1,37 @@
 ENTRY(EnhancedEvolution)
 SECTIONS {
+    /* Audited gap after the original 0x620-byte ITCM image. Keep future
+     * objects in the main payload unless explicitly assigned here. */
+    . = 0x01FF8620;
+    .cold_rodata : {
+        *evolution.c.o(.rodata .rodata.*)
+        *field.c.o(.rodata .rodata.*)
+        *settings.c.o(.rodata .rodata.*)
+        *ui.c.o(.rodata .rodata.*)
+        *menu.c.o(.rodata .rodata.*)
+        *repel.c.o(.rodata .rodata.*)
+        *capture.c.o(.rodata .rodata.*)
+        *party_exp.c.o(.rodata .rodata.*)
+        *field_hms.c.o(.rodata .rodata.*)
+        *field_hm_bag.c.o(.rodata .rodata.*)
+        *summary_viewer.c.o(.rodata .rodata.*)
+        *shiny.c.o(.rodata .rodata.*)
+        *follower.c.o(.rodata .rodata.*)
+        *clock.c.o(.rodata .rodata.*)
+        *clock_hud.c.o(.rodata .rodata.*)
+        *camera.c.o(.rodata .rodata.*)
+        *cheats.c.o(.rodata .rodata.*)
+        *victory.c.o(.rodata .rodata.*)
+        *eggs.c.o(.rodata .rodata.*)
+        *money.c.o(.rodata .rodata.*)
+        *dex.c.o(.rodata .rodata.*)
+        *dex_ui.c.o(.rodata .rodata.*)
+        *items.c.o(.rodata .rodata.*)
+        *items_data.S.o(.rodata .rodata.*)
+        . = ALIGN(4);
+        __enhanced_cold_end = .;
+    }
+    ASSERT(__enhanced_cold_end <= 0x01FF9000, "Read-only payload exceeds audited ITCM gap")
     . = 0x01FF9000;
     .enhanced_config : { KEEP(*(.enhanced_config)) }
     ASSERT(SIZEOF(.enhanced_config) == 32, "Enhanced options ABI changed")

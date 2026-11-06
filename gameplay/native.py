@@ -2,7 +2,8 @@
 
 The original image already autoloads 0x620 bytes at 0x01ff8000. The SDK's
 ITCM arena starts immediately after that image. We add a distinct autoload
-section at 0x01ff9000 and move the arena start past the new code. Main-memory
+read-only section in the audited 0x01ff8620..0x01ff9000 gap and a code/state
+section at 0x01ff9000, moving the arena start past the new code. Main-memory
 heaps, existing overlays and the Visual+ code cave are left in place.
 """
 from __future__ import annotations
@@ -29,6 +30,7 @@ EVOLUTION_CONTEXT_LENGTH = 0x41C
 EVOLUTION_SHA256 = 'f71fa4e8a0f05b359f7642e33f42cb8a0efc81c73a703971cca6eeccfe626d48'
 ITCM_ARENA_LITERAL = 0x020D2C68
 ORIGINAL_ITCM_END = 0x01FF8620
+COLD_BASE = ORIGINAL_ITCM_END
 
 
 @dataclass
@@ -37,6 +39,27 @@ class Payload:
     symbols: dict[str, int]
     compiler: str
     linker: str
+    cold_data: bytes = b''
+
+    @property
+    def segments(self):
+        return ((COLD_BASE, self.cold_data), (PAYLOAD_BASE, self.data))
+
+    @property
+    def total_size(self):
+        return len(self.cold_data) + len(self.data)
+
+    def read(self, address: int, size: int) -> bytes:
+        for base, data in self.segments:
+            if size >= 0 and base <= address <= base + len(data) - size:
+                return data[address-base:address-base+size]
+        raise PatchMismatch('Resident read crosses a payload boundary.')
+
+    def install_into(self, emulator):
+        validate_payload_layout(self)
+        for base, data in self.segments:
+            if data:
+                emulator.mem_write(base, data)
 
 
 @dataclass
@@ -105,16 +128,25 @@ def build_payload(item_pockets: bytes | None = None) -> Payload:
             end = symbols['__enhanced_end']
             if not PAYLOAD_BASE < end <= ITCM_END or end % 4:
                 raise PatchMismatch('Payload does not fit its reserved ITCM region.')
+            cold_end = symbols['__enhanced_cold_end']
+            if not COLD_BASE < cold_end <= PAYLOAD_BASE or cold_end % 4:
+                raise PatchMismatch('Read-only payload exceeds the audited ITCM gap.')
             data = bytearray(end - PAYLOAD_BASE)
+            cold_data = bytearray(cold_end - COLD_BASE)
             for section in parsed.iter_sections():
                 if not section['sh_flags'] & 2 or not section['sh_size']:
                     continue
-                offset = section['sh_addr'] - PAYLOAD_BASE
-                size = section['sh_size']
-                if offset < 0 or offset + size > len(data):
-                    raise PatchMismatch('Allocated ELF section falls outside the payload.')
+                address, size = section['sh_addr'], section['sh_size']
+                if COLD_BASE <= address and address+size <= cold_end:
+                    if section['sh_flags'] & 1 or section['sh_type'] == 'SHT_NOBITS':
+                        raise PatchMismatch('Only immutable initialized data belongs in the ITCM gap.')
+                    target, offset = cold_data, address-COLD_BASE
+                elif PAYLOAD_BASE <= address and address+size <= end:
+                    target, offset = data, address-PAYLOAD_BASE
+                else:
+                    raise PatchMismatch('Allocated ELF section falls outside the payload segments.')
                 if section['sh_type'] != 'SHT_NOBITS':
-                    data[offset:offset + size] = section.data()
+                    target[offset:offset+size] = section.data()
         shutil.copy2(elf, output / 'payload.elf')
     if data[:16] != struct.pack('<4I', 0x48534745, 1, 1, 1):
         raise PatchMismatch('Resident options ABI does not match the injector.')
@@ -128,13 +160,15 @@ def build_payload(item_pockets: bytes | None = None) -> Payload:
         start = address - PAYLOAD_BASE
         if address % 4 or data[start:start + len(expected) // 2] != bytes.fromhex(expected):
             raise PatchMismatch('Original money routine relocation changed: ' + name)
-    table_at = symbols['gItemPocketTable'] - PAYLOAD_BASE
-    if data[table_at:table_at+269] != item_pockets:
+    payload = Payload(bytes(data), symbols,
+                      subprocess.check_output([clang, '--version'], text=True).splitlines()[0],
+                      subprocess.check_output([*linker_command, '--version'], text=True).splitlines()[0],
+                      bytes(cold_data))
+    if payload.read(symbols['gItemPocketTable'],269) != item_pockets:
         raise PatchMismatch('Resident item pocket lookup differs from the audited ROM.')
     (output / 'payload.bin').write_bytes(data)
-    return Payload(bytes(data), symbols,
-                   subprocess.check_output([clang, '--version'], text=True).splitlines()[0],
-                   subprocess.check_output([*linker_command, '--version'], text=True).splitlines()[0])
+    (output / 'cold-rodata.bin').write_bytes(cold_data)
+    return payload
 
 
 def thumb_veneer(destination: int) -> bytes:
@@ -144,7 +178,20 @@ def thumb_veneer(destination: int) -> bytes:
     return bytes.fromhex('08b4024b9c4608bc6047c046') + struct.pack('<I', destination)
 
 
+
+def validate_payload_layout(payload: Payload) -> None:
+    if (not payload.cold_data or len(payload.cold_data) % 4 or
+            COLD_BASE + len(payload.cold_data) > PAYLOAD_BASE or
+            payload.symbols.get('__enhanced_cold_end') != COLD_BASE + len(payload.cold_data)):
+        raise PatchMismatch('Read-only payload is outside the audited ITCM gap.')
+    if (not payload.data or len(payload.data) % 4 or
+            PAYLOAD_BASE + len(payload.data) > ITCM_END or
+            payload.symbols.get('__enhanced_end') != PAYLOAD_BASE + len(payload.data)):
+        raise PatchMismatch('Mutable/code payload is outside the reserved ITCM region.')
+
+
 def inject_evolution(arm9: bytes, ram_address: int, payload: Payload) -> Injection:
+    validate_payload_layout(payload)
     code = ndspy.code.MainCodeFile(arm9, ram_address)
     if ram_address != 0x02000000 or code.codeSettingsOffs != 0xBA0 or len(code.sections) != 3:
         raise PatchMismatch('Unexpected USA ARM9/autoload layout.')
@@ -165,11 +212,15 @@ def inject_evolution(arm9: bytes, ram_address: int, payload: Payload) -> Injecti
     prologue = bytes(first.data[offset:offset + 16])
     first.data[offset:offset + 16] = veneer
     struct.pack_into('<I', first.data, arena_offset, end)
-    code.sections.append(ndspy.code.MainCodeFile.Section(payload.data, PAYLOAD_BASE, 0))
+    for address, data in payload.segments:
+        code.sections.append(ndspy.code.MainCodeFile.Section(data, address, 0))
     image = bytes(code.save(compress=False))
     check = ndspy.code.MainCodeFile(image, ram_address)
-    if len(check.sections) != 4 or bytes(check.sections[-1].data) != payload.data:
-        raise PatchMismatch('Resident section did not survive serialization.')
+    if len(check.sections) != 5:
+        raise PatchMismatch('Resident section count did not survive serialization.')
+    for section, (address, data) in zip(check.sections[3:], payload.segments):
+        if section.ramAddress != address or section.bssSize or bytes(section.data) != data:
+            raise PatchMismatch('Resident segment did not survive serialization.')
     for old, new in zip(code.sections[1:3], check.sections[1:3]):
         if old.ramAddress != new.ramAddress or old.bssSize != new.bssSize or old.data != new.data:
             raise PatchMismatch('An existing resident section changed during injection.')
@@ -183,9 +234,10 @@ def inject_evolution(arm9: bytes, ram_address: int, payload: Payload) -> Injecti
 
 def verify_arm9_changes(original_image: bytes, patched_image: bytes, ram_address: int,
                        changes: list[PatchResult], payload: Payload) -> None:
+    validate_payload_layout(payload)
     before = ndspy.code.MainCodeFile(original_image, ram_address)
     after = ndspy.code.MainCodeFile(patched_image, ram_address)
-    if len(before.sections) != 3 or len(after.sections) != 4:
+    if len(before.sections) != 3 or len(after.sections) != 5:
         raise PatchMismatch('Unexpected section count after gameplay patching.')
     expected = bytearray(before.sections[0].data)
     for change in changes:
@@ -202,6 +254,6 @@ def verify_arm9_changes(original_image: bytes, patched_image: bytes, ram_address
     for old, new in zip(before.sections[1:], after.sections[1:3]):
         if (old.ramAddress, old.bssSize, old.data) != (new.ramAddress, new.bssSize, new.data):
             raise PatchMismatch('Original ITCM/DTCM sections changed.')
-    resident = after.sections[-1]
-    if resident.ramAddress != PAYLOAD_BASE or resident.bssSize or bytes(resident.data) != payload.data:
-        raise PatchMismatch('Enhanced resident section differs from its compiled payload.')
+    for resident, (address, data) in zip(after.sections[3:], payload.segments):
+        if resident.ramAddress != address or resident.bssSize or bytes(resident.data) != data:
+            raise PatchMismatch('Enhanced resident segment differs from its compiled payload.')

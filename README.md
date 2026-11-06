@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 28.**
+**Current stage: experimental gameplay milestone 29.**
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -12,7 +12,7 @@ checks. Reusable TMs and level-40 trade alternatives remain integrated.
 Press SELECT in the field for saved visible-wild, trade-evolution and reusable-TM
 settings, plus the repeat-Repel prompt. Off removes wilds; Some supports four and Many six in the tested grass
 area. Repel now blocks unsolicited low-level wild contact after spawning;
-connected-map changes remove old-map wilds. 294 tests pass. The repeat-Repel option offers another Repel of the
+connected-map changes remove old-map wilds. 298 tests pass. The repeat-Repel option offers another Repel of the
 same last-used type; both games pass native save/reload and full 200-step expiry.
 The prompt respects native bag restrictions and rechecks access before use.
 A fifth saved option adds capture EXP through the native EXP/EV task. Both games
@@ -103,6 +103,10 @@ one at a time and duplicates are rejected. Picker choices save with settings;
 normal game saving retains given items. Both games pass all-pocket giving,
 stack caps, Cancel, native save/cold and normal Potion use. See
 [item-giver.md](docs/item-giver.md).
+Milestone 29 relocates immutable tables into an audited unused ITCM gap, freeing
+2,528 more bytes for subsequent enhancements. Both games pass saved-option/item,
+clock/camera and native contact-battle reward/save/cold controls. See
+[native-integration.md](docs/native-integration.md#milestone-29-immutable-tables-in-the-audited-itcm-gap).
 These candidates are not the final release.
 
 - [Complete 59-row feature inventory](docs/emerald-parity.md)

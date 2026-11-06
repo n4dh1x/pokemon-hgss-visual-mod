@@ -32,7 +32,7 @@ class TestReusableTMs(unittest.TestCase):
         emu.mem_write(0x02000000, bytes(code))
         if payload is not None:
             emu.mem_map(0x01FF8000, 0x8000)
-            emu.mem_write(PAYLOAD_BASE, payload.data)
+            payload.install_into(emu)
             emu.mem_write(PAYLOAD_BASE + 12, struct.pack('<I', enabled))
         menu, args, mon, bag = 0x02180000, 0x02181000, 0x02182000, 0x02183000
         stop = 0x02300000

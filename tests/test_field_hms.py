@@ -82,7 +82,7 @@ class TestFieldHms(unittest.TestCase):
             if not path.exists():self.skipTest('Build both local USA baselines first.')
             rom=api.ndspy.rom.NintendoDSRom.fromFile(path);self.f.uc.mem_write(rom.arm9RamAddress,bytes(rom.arm9))
             self.f.personal=api.ndspy.narc.NARC(rom.files[rom.filenames.idOf('a/0/0/2')]).files
-            self.f.uc.mem_write(api.PAYLOAD_BASE,self.payload.data)
+            self.payload.install_into(self.f.uc)
             for enabled in (0,1):
                 self.f.put(self.extra,enabled)
                 self.f.mons=[{5:129},{5:151}]

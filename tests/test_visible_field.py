@@ -29,7 +29,7 @@ class TestVisibleField(unittest.TestCase):
         self.uc = Uc(UC_ARCH_ARM, UC_MODE_THUMB)
         self.uc.mem_map(0x02000000, 0x400000)
         self.uc.mem_map(0x01FF8000, 0x8000)
-        self.uc.mem_write(PAYLOAD_BASE, self.payload.data)
+        self.payload.install_into(self.uc)
         self.state = self.payload.symbols['gVisibleState']
         self.field, self.manager, self.objects = 0x02210000, 0x02211000, 0x02212000
         self.avatar, self.location, self.save = 0x02218000, 0x02219000, 0x0221A000

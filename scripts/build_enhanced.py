@@ -105,7 +105,7 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
     overlay_changes.extend(install_eggs(patched,payload))
     results.extend(install_money(patched,payload))
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-28'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-29'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -185,11 +185,13 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
                         'menu_state_bytes': 144, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 68, 'shiny_state_bytes': 40, 'visible_visual_state_bytes': 56, 'visible_habitat_state_bytes': 44, 'visible_roamer_state_bytes': 192, 'follower_state_bytes': 28, 'always_catch_state_bytes': 20, 'instant_victory_state_bytes': 48, 'fast_egg_state_bytes': 32, 'money_state_bytes': 36, 'dex_action_state_bytes': 44, 'dex_ui_state_bytes': 16, 'item_giver_state_bytes': 28, 'camera_state_bytes': 60, 'clock_state_bytes': 60, 'clock_hud_state_bytes': 48, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
+                             'total_size': payload.total_size,
+                             'immutable_data': {'address': payload.segments[0][0], 'size': len(payload.cold_data), 'sha256': sha256(payload.cold_data)},
                              'symbols': {name: value for name, value in payload.symbols.items()
                                          if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', 'gVisibleHabitatState', 'gVisibleRoamerState', 'gFollowerState', 'gClockState', 'gClockHudState', 'gCameraState', 'gAlwaysCatchState', 'gInstantVictoryState', 'gFastEggState', 'gMoneyState', 'gDexAction', 'gDexUi', 'gItemUi', 'gItemPocketTable', 'OriginalMoneyRead', 'OriginalMoneySet', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
-                   'original ITCM/DTCM sections unchanged', 'resident code section round-trip',
+                   'original ITCM/DTCM sections unchanged', 'resident code and immutable-data sections round-trip',
                    'recorded overlay 1/2/12/15/17/101 changes only', 'audited native flash allocation',
                    'one guarded appended battle message; other NitroFS/ARM7/banner unchanged', 'xdelta round-trip'],
         'runtime_gameplay_tested': False,

@@ -11,7 +11,9 @@ section at `0x01FF8000` of size `0x620`, and a DTCM section at `0x027E0000` of
 size `0x60` plus `0x20` BSS. `gameplay/native.py` checks this layout and the
 code-settings offset `0xBA0` before modifying it.
 
-The new autoload section starts at `0x01FF9000`. The linker rejects growth past
+The code/state autoload section starts at `0x01FF9000`. Milestone 29 also
+loads explicitly selected immutable tables/strings at `0x01FF8620`, immediately
+after the unchanged original ITCM section; this data must end by `0x01FF9000`. The linker rejects growth past
 `0x02000000`. The injector also changes the audited SDK ITCM arena-start literal
 at `0x020D2C68` from `0x01FF8620` to the payload end, preventing SDK allocations
 from using the payload region. Original resident sections stay byte-identical.
@@ -158,3 +160,44 @@ Existing encrypted message bodies and other banks are unchanged. The component
 validator now permits only explicitly recorded, checksum-verified data edits.
 The original configuration size is fully occupied; later switches require new
 runtime storage and menu pagination. See [party-experience.md](party-experience.md).
+
+
+## Milestone 29: immutable tables in the audited ITCM gap
+
+Milestone 28 left 660 bytes above the payload. The loader now appends two
+separate autoload descriptors: 2,528 bytes of initialized immutable data at
+`0x01FF8620`, followed by 25,484 bytes of code/state at `0x01FF9000`.
+The total remains 28,012 bytes, but the new end `0x01FFF38C` leaves 3,188 bytes
+for further code. No existing feature or table was removed.
+
+The linker explicitly selects existing objects' read-only sections for the gap;
+future objects default to the code/state region. Each region has an independent
+linker bound. ELF extraction rejects writable or uninitialized data in the gap,
+and injection rejects empty, misaligned, oversized or inconsistent segments.
+Original ITCM and DTCM descriptors, bytes and BSS remain unchanged. The injector
+still reserves the whole enhancement area by moving the SDK arena-low literal.
+There is no new main-RAM allocation or overlay cave.
+
+The first 32 configuration bytes and evolution trampoline remain at their fixed
+addresses. Mutable diagnostics stay in the code/state section, so existing state
+inspectors keep their address/bounds checks. Settings format, native save data,
+all twenty switches and three picker preferences retain their previous ABI.
+Compile-time instruction fixtures now install both resident segments. The ROM
+builder records each segment's size/hash and the combined size, and checks both
+against the serialized ARM9. Generated tables remain private build artifacts.
+
+Acceptance is recorded in [milestone-29-verification.json](../enhancements/milestone-29-verification.json)
+and reproduced with `.venv/bin/python -B scripts/verify_layout_milestone.py`.
+Every accepted emulator snapshot checks the original ITCM bytes, all immutable
+bytes and runtime arena-low value. Both games load the preceding native save,
+retain the saved options, reject a duplicate key, give Guard Spec. through the
+native Bag API, and retain the item and picker choices through normal Save/cold
+reload. Clock/camera options render and the camera yields to the open menu.
+Visible contact battles retain the generated Pokémon, finish through native
+Instant victory/party EXP, and save/cold reload the six recipients' rewards.
+
+These are bounded integration controls using the declared HG-derived save
+lineage, not a new SoulSilver story or proof of every feature/map/species. Older
+savestates belong to their exact ROM hash; import native cartridge saves to
+move between milestones. Quick-ball controls and the rest of the goal remain
+pending. No physical console or long-play acceptance is claimed.
