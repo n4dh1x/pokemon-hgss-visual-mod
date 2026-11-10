@@ -95,6 +95,13 @@ class TestVisibleField(unittest.TestCase):
             result = int(self.allowed)
         elif address == 0x0203E15C:
             result = 0
+        elif address == 0x020270E4:
+            # This field fixture does not install a Mystery Gift block.
+            result = 0
+        elif address == 0x020F2BA4:
+            self.assertGreater(b, 0)
+            result, remainder = divmod(a, b)
+            uc.reg_write(UC_ARM_REG_R1, remainder)
         elif address == 0x02028E9C:
             result = self.save + 0x100
         elif address == 0x02028F84:

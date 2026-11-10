@@ -1,3 +1,4 @@
+#include "events.h"
 #include "config.h"
 #include "settings.h"
 
@@ -263,6 +264,7 @@ void EnhancedFieldControl(void *field) {
     pause_wilds(!FieldMovementAllowed(field));
     EnhancedCameraUpdate(field);
     EnhancedClockHudShow(field);
+    EnhancedEventsTick(field);
 }
 
 void EnhancedManagerDelete(void *manager) {

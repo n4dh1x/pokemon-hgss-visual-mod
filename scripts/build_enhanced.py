@@ -27,6 +27,7 @@ import ndspy.fnt
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from gameplay.quick_ball import install_quick_ball
+from gameplay.events import audit_events
 from gameplay.patches import reusable_tms
 from gameplay.native import build_payload, inject_evolution, verify_arm9_changes, PAYLOAD_BASE
 from gameplay.field import install_field, verify_field_files
@@ -70,6 +71,7 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
     settings_storage = audit_save_layout(original)
     audit_dex(original)
     audit_items(original)
+    audit_events(original)
     item_pockets = item_pocket_table(original)
     payload = build_payload(item_pockets=item_pockets)
     results = [reusable_tms(arm9, original.arm9RamAddress, payload.symbols['EnhancedTakeTm'])]
@@ -107,7 +109,7 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
     results.extend(install_money(patched,payload))
     overlay_changes.extend(install_quick_ball(patched,payload))
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-30'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-31'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -143,11 +145,19 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
         'file_changes': [r.summary() for r in file_changes],
         'settings_storage': settings_storage,
         'repel_storage': repel_storage,
-        'enhancement_menu': {'open_button': 'SELECT',
+        'enhancement_menu': {'open_button': 'SELECT + L',
             'options': ['visible_wild', 'trade_evo', 'infinite_tms', 'repel_prompt', 'capture_exp', 'party_exp', 'field_hms', 'roaming_only_grass', 'ivs_evs', 'encounter_rate', 'shiny_odds', 'follower', 'clock_speed', 'clock_hud', 'camera_pitch', 'camera_zoom', 'always_catch', 'instant_victory', 'fast_eggs', 'infinite_money'],
             'apply': 'Save and close', 'cancel': 'B or Cancel', 'page': 'X or L/R'},
         'item_giver': {'pockets': ['Items','Medicine','Poke Balls','TMs and HMs','Berries','Mail','Battle items','Key items'], 'counts': [1,5,10,50,99], 'key_items': 'Quantity one; duplicate keys denied', 'picker_preferences': 'Staged with settings; normal game Save retains given items', 'capacity': 'Original native Bag checks and sorting', 'pocket_lookup': {'bytes': 269, 'sha256': sha256(item_pockets), 'source': 'Audited native item mapping and item data; ignored build-only binary'}},
         'pokedex_actions': {'choices': ['Complete Johto Dex', 'Unlock National Dex', 'Complete National Dex'], 'regional_count': 256, 'national_count': 493, 'confirmation': 'Default No; changes game progress, native Save required'},
+        'event_gifts': {'activation': 'Cheats page 4 > Dex / event gifts > Unlock event gifts',
+                        'catalogue_entries': 28, 'native_queue_slots': 8,
+                        'delivery': 'Poké Mart delivery NPC with native capacity checks',
+                        'persistence': 'Native Mystery Gift received flags and normal Save',
+                        'verification': 'See enhancements/milestone-31-verification.json'},
+        'save_overview': {'button': 'Y in the enhancement menu',
+                          'contents': ['trainer name', 'badge count', 'party names and levels'],
+                          'persistence': 'Read-only preview. Use the original game Save.'},
         'infinite_money': {'choices': ['Off', 'On'], 'default': 'Off',
                            'scope': 'Owned saved wallet reads refill through relocated original capped setter; Mom bookkeeping and copied profiles stay native'},
         'fast_eggs': {'choices': ['Off', 'On'], 'default': 'Off',
@@ -184,13 +194,13 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
         'grass_battles': {'choices': ['Normal', 'Roaming only'], 'default': 'Normal',
                           'scope': 'Regular grass while visible wilds are enabled; other contexts remain native'},
         'diagnostics': {'visible_state_bytes': 1644, 'settings_state_bytes': 1060,
-                        'menu_state_bytes': 144, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 68, 'shiny_state_bytes': 40, 'visible_visual_state_bytes': 56, 'visible_habitat_state_bytes': 44, 'visible_roamer_state_bytes': 192, 'follower_state_bytes': 28, 'always_catch_state_bytes': 20, 'instant_victory_state_bytes': 48, 'fast_egg_state_bytes': 32, 'money_state_bytes': 36, 'dex_action_state_bytes': 44, 'dex_ui_state_bytes': 16, 'item_giver_state_bytes': 28, 'quick_ball_state_bytes': 100, 'camera_state_bytes': 60, 'clock_state_bytes': 60, 'clock_hud_state_bytes': 48, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
+                        'menu_state_bytes': 144, 'repel_dialog_bytes': 68, 'capture_exp_state_bytes': 56, 'party_exp_state_bytes': 68, 'field_hm_state_bytes': 36, 'extra_options_bytes': 68, 'shiny_state_bytes': 40, 'visible_visual_state_bytes': 56, 'visible_habitat_state_bytes': 44, 'visible_roamer_state_bytes': 192, 'follower_state_bytes': 28, 'always_catch_state_bytes': 20, 'instant_victory_state_bytes': 48, 'fast_egg_state_bytes': 32, 'money_state_bytes': 36, 'dex_action_state_bytes': 44, 'dex_ui_state_bytes': 16, 'item_giver_state_bytes': 28, 'quick_ball_state_bytes': 100, 'event_state_bytes': 20, 'camera_state_bytes': 60, 'clock_state_bytes': 60, 'clock_hud_state_bytes': 48, 'encounter_rate_state_bytes': 28, 'summary_view_state_bytes': 52, 'field_bag_state_bytes': 44},
         'resident_payload': {'address': PAYLOAD_BASE, 'size': len(payload.data),
                              'sha256': sha256(payload.data),
                              'total_size': payload.total_size,
                              'immutable_data': {'address': payload.segments[0][0], 'size': len(payload.cold_data), 'sha256': sha256(payload.cold_data)},
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', 'gVisibleHabitatState', 'gVisibleRoamerState', 'gFollowerState', 'gClockState', 'gClockHudState', 'gCameraState', 'gAlwaysCatchState', 'gInstantVictoryState', 'gFastEggState', 'gMoneyState', 'gDexAction', 'gDexUi', 'gItemUi', 'gQuickBall', 'gItemPocketTable', 'OriginalMoneyRead', 'OriginalMoneySet', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', 'gVisibleHabitatState', 'gVisibleRoamerState', 'gFollowerState', 'gClockState', 'gClockHudState', 'gCameraState', 'gAlwaysCatchState', 'gInstantVictoryState', 'gFastEggState', 'gMoneyState', 'gDexAction', 'gDexUi', 'gItemUi', 'gEventState', 'gQuickBall', 'gItemPocketTable', 'OriginalMoneyRead', 'OriginalMoneySet', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code and immutable-data sections round-trip',

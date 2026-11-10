@@ -1,0 +1,499 @@
+{
+  "milestone": 31,
+  "status": "bounded runtime verification",
+  "final_release": false,
+  "candidates": {
+    "heartgold": {
+      "source_rom_sha256": "65f02a56842b75aa92d775d56d657a56fe3fa993550b04dc20704ab82d760105",
+      "baseline_sha256": "eb0aaed35ba445f26a3fdfdc00c86ab8e1abac72b2191984f57290b383fb8379",
+      "output_sha256": "15b8661956da3720dd1aca445228f669da109fb57d0865f9838633c098ca7b8c",
+      "patch_sha256": "cbf5388f4c60b9ab3702e61095685df02b7cd2011ecc1e89c4320254c304943e",
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code and immutable-data sections round-trip",
+        "recorded overlay 1/2/12/15/17/101 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ],
+      "report": {
+        "path": "build/candidates/heartgold-visual-plus-gameplay-milestone-31.json",
+        "sha256": "ef6d4b7ef26024f366edf5431aac07cb9be19c8e5cd9dbd5ab3cb0502be883f3"
+      },
+      "reproduced_tested_bytes": true
+    },
+    "soulsilver": {
+      "source_rom_sha256": "51d0f94a16af7d77c067b4cb7d821ba890a13203a2e2c76049623332c0582e20",
+      "baseline_sha256": "5b3a377d20b2aa45fa1b9e6fbab842aaddc75e4fef38c38624662c9f5e48bf8e",
+      "output_sha256": "cf88c3231e072ec571831af168b3723fc1fe16ff79d60dc84b9e9170dbbd6b4c",
+      "patch_sha256": "be3fa45241387ba82fda399b6942ec721ceddf5c20cd481cbf2648259574cd5a",
+      "checks": [
+        "baseline checksum",
+        "patch-site fingerprints",
+        "recorded ARM9 edits only",
+        "original ITCM/DTCM sections unchanged",
+        "resident code and immutable-data sections round-trip",
+        "recorded overlay 1/2/12/15/17/101 changes only",
+        "audited native flash allocation",
+        "one guarded appended battle message; other NitroFS/ARM7/banner unchanged",
+        "xdelta round-trip"
+      ],
+      "report": {
+        "path": "build/candidates/soulsilver-visual-plus-gameplay-milestone-31.json",
+        "sha256": "934d94b848ccecf6ba6cba267dd0913d6f8b5fff3ef4047ab9595031ebd5dca9"
+      },
+      "reproduced_tested_bytes": true
+    }
+  },
+  "automated": {
+    "passed": 317,
+    "duration_seconds": 782.282,
+    "log": {
+      "path": "local_data/milestone-31b-full-rerun.log",
+      "sha256": "8ee9e3d359a9b56aaa5e558c03c131de39c5e5bf690403cd582625a1a3b1fcd0"
+    },
+    "cleanup": {
+      "path": "local_data/milestone-31b-full-rerun-cleanup.log",
+      "sha256": "7d0b59b5e842c58324afaffd91118c845fd6e630a879eb7b115b653ddb80dc62"
+    }
+  },
+  "native": {
+    "heartgold": {
+      "first_batch": {
+        "flags": "ff000000000035ec",
+        "queue": [
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 151,
+            "pid": 69647,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 5,
+            "checksum_failed": 0,
+            "moves": [
+              1,
+              144,
+              0,
+              0
+            ],
+            "pp": [
+              35,
+              10,
+              0,
+              0
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 251,
+            "pid": 135180,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 50,
+            "checksum_failed": 0,
+            "moves": [
+              345,
+              246,
+              226,
+              363
+            ],
+            "pp": [
+              20,
+              5,
+              40,
+              15
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 385,
+            "pid": 200717,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 5,
+            "checksum_failed": 0,
+            "moves": [
+              434,
+              93,
+              156,
+              0
+            ],
+            "pp": [
+              5,
+              25,
+              10,
+              0
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 386,
+            "pid": 266250,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 50,
+            "checksum_failed": 0,
+            "moves": [
+              282,
+              228,
+              94,
+              289
+            ],
+            "pp": [
+              20,
+              20,
+              10,
+              10
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 489,
+            "pid": 331787,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 1,
+            "checksum_failed": 0,
+            "moves": [
+              145,
+              346,
+              0,
+              0
+            ],
+            "pp": [
+              30,
+              15,
+              0,
+              0
+            ]
+          },
+          {
+            "tag": 7,
+            "card": 3
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 491,
+            "pid": 462857,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 50,
+            "checksum_failed": 0,
+            "moves": [
+              95,
+              185,
+              171,
+              104
+            ],
+            "pp": [
+              20,
+              20,
+              15,
+              15
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 492,
+            "pid": 528390,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 30,
+            "checksum_failed": 0,
+            "moves": [
+              74,
+              345,
+              73,
+              235
+            ],
+            "pp": [
+              40,
+              20,
+              10,
+              5
+            ]
+          }
+        ],
+        "wonder_cards_sha256": "5b2873e80d2b286828ddfb640a4a0f5dc23acae2e721eec34b47d0145ed8aad3"
+      },
+      "save_cold_queue_equal": true,
+      "wonder_cards_unchanged": true,
+      "runs": {
+        "overview": {
+          "path": "local_data/verification/hg31b-overview/smoke-report.json",
+          "sha256": "5e400931fe703e7ec2ea0308a1f5df77d8950951bafbb2c9d303b47f749bd1cb"
+        },
+        "enable": {
+          "path": "local_data/verification/hg31b-enable/smoke-report.json",
+          "sha256": "b477a3216541d4b4c59dc8c66508d70109c882fd64fde8200a47e8929e3f6273"
+        },
+        "native-save": {
+          "path": "local_data/verification/hg31b-native-save/smoke-report.json",
+          "sha256": "7c1fe8df75e6616a0757e9f44bcfe19724b73b4722556fad577c9ac8507c92a2"
+        },
+        "saved-cold": {
+          "path": "local_data/verification/hg31b-saved-cold/smoke-report.json",
+          "sha256": "8d1eda9b895a6c7be4114e2177952dfd2b5d1a5710aa0fa7e720e6fd030b0fd5"
+        }
+      },
+      "full_party_control": {
+        "native_rejection": true,
+        "queue_equal": true,
+        "fixture": {
+          "path": "local_data/verification/hg31b-mart-direct/smoke-report.json",
+          "sha256": "5fa46f449c0eb73f402a3b0bdb385112400519dac8edb26516ae69dad7ca246f"
+        },
+        "run": {
+          "path": "local_data/verification/hg31b-delivery-full/smoke-report.json",
+          "sha256": "e976e9925049e0797686637b061abf9a95c1fecb209224765b86a7160c91a68f"
+        }
+      }
+    },
+    "soulsilver": {
+      "first_batch": {
+        "flags": "ff000000000035ec",
+        "queue": [
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 151,
+            "pid": 69647,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 5,
+            "checksum_failed": 0,
+            "moves": [
+              1,
+              144,
+              0,
+              0
+            ],
+            "pp": [
+              35,
+              10,
+              0,
+              0
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 251,
+            "pid": 135180,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 50,
+            "checksum_failed": 0,
+            "moves": [
+              345,
+              246,
+              226,
+              363
+            ],
+            "pp": [
+              20,
+              5,
+              40,
+              15
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 385,
+            "pid": 200717,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 5,
+            "checksum_failed": 0,
+            "moves": [
+              434,
+              93,
+              156,
+              0
+            ],
+            "pp": [
+              5,
+              25,
+              10,
+              0
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 386,
+            "pid": 266250,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 50,
+            "checksum_failed": 0,
+            "moves": [
+              282,
+              228,
+              94,
+              289
+            ],
+            "pp": [
+              20,
+              20,
+              10,
+              10
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 489,
+            "pid": 331787,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 1,
+            "checksum_failed": 0,
+            "moves": [
+              145,
+              346,
+              0,
+              0
+            ],
+            "pp": [
+              30,
+              15,
+              0,
+              0
+            ]
+          },
+          {
+            "tag": 7,
+            "card": 3
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 491,
+            "pid": 462857,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 50,
+            "checksum_failed": 0,
+            "moves": [
+              95,
+              185,
+              171,
+              104
+            ],
+            "pp": [
+              20,
+              20,
+              15,
+              15
+            ]
+          },
+          {
+            "tag": 1,
+            "card": 3,
+            "species": 492,
+            "pid": 528390,
+            "ot": 2836379921,
+            "fateful": 1,
+            "ball": 16,
+            "level": 30,
+            "checksum_failed": 0,
+            "moves": [
+              74,
+              345,
+              73,
+              235
+            ],
+            "pp": [
+              40,
+              20,
+              10,
+              5
+            ]
+          }
+        ],
+        "wonder_cards_sha256": "5b2873e80d2b286828ddfb640a4a0f5dc23acae2e721eec34b47d0145ed8aad3"
+      },
+      "save_cold_queue_equal": true,
+      "wonder_cards_unchanged": true,
+      "runs": {
+        "overview": {
+          "path": "local_data/verification/ss31b-overview/smoke-report.json",
+          "sha256": "a0f495abbd1d5a4fdfb92388db635454dbe49ddbff4ab302fc498d8dfaccc26f"
+        },
+        "enable": {
+          "path": "local_data/verification/ss31b-enable/smoke-report.json",
+          "sha256": "e1511af7e79434216c17510205ef8c65a4ae9fade04c89b4028fa0e57bc13d2a"
+        },
+        "native-save": {
+          "path": "local_data/verification/ss31b-native-save/smoke-report.json",
+          "sha256": "78ac41ca4725a945f7897991b8f3f35a6db6da10fff510a2b20d558d40051b33"
+        },
+        "saved-cold": {
+          "path": "local_data/verification/ss31b-saved-cold/smoke-report.json",
+          "sha256": "deb21f9b141fc1ac390bff8ed5ae6104af247f126ef94c815c738e2840fbe7cd"
+        }
+      }
+    }
+  },
+  "openhome": {
+    "app_version": "1.17.1",
+    "heartgold": {
+      "title": "HeartGold",
+      "populated_pc": true,
+      "source_milestone": 30,
+      "save": {
+        "path": "local_data/verification/hg30h-saved-cold/cartridge.sav",
+        "sha256": "95735ed0ce302e0f7d7961000a37e041bc5cb48bc03a08d8ade9c943e517d2f4"
+      }
+    },
+    "soulsilver": {
+      "title": "SoulSilver",
+      "populated_pc": false,
+      "source_milestone": 31,
+      "native_version_banks": [
+        8,
+        8
+      ],
+      "source": "Independent new game and two in-game saves",
+      "save": {
+        "path": "local_data/verification/ss31b-fresh-second-save/cartridge.sav",
+        "sha256": "bc26e57f1a4582b60e47e1b7c93dec79fd4188f2ee9dac6ad107410f2b269785"
+      },
+      "run": {
+        "path": "local_data/verification/ss31b-fresh-second-save/smoke-report.json",
+        "sha256": "70e7a3da0c3290fb40a142e4703dd35c9cb4dc02fc68d0cec31eda2401291892"
+      }
+    }
+  },
+  "pending": [
+    "Native gift receipt and refill beyond the first queued batch",
+    "Native event story triggers",
+    "Populated SoulSilver box and event-gift OpenHome transfer/write-back",
+    "Wider release checklist coverage"
+  ]
+}

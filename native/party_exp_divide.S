@@ -16,3 +16,12 @@ EnhancedUnsignedDivide:
 .Lsdk_divide:
     .word NativeUnsignedDivide
 .size EnhancedUnsignedDivide, .-EnhancedUnsignedDivide
+
+/* Size-optimized C uses EABI unsigned divide helpers. Both signatures use
+ * the same native SDK quotient/remainder ABI; preserve Thumb/ARM interworking. */
+.global __aeabi_uidiv
+.global __aeabi_uidivmod
+.type __aeabi_uidiv, %function
+.type __aeabi_uidivmod, %function
+.thumb_set __aeabi_uidiv, EnhancedUnsignedDivide
+.thumb_set __aeabi_uidivmod, EnhancedUnsignedDivide

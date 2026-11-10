@@ -125,7 +125,7 @@ class TestPokedexActions(unittest.TestCase):
         self.assertEqual(bytes(self.f.uc.mem_read(self.dex+0x337,1)),b'\0')
 
     def test_invalid_context_and_owner_change_deny_or_stop_without_writing_another_save(self):
-        self.assertEqual(self.f.execute('EnhancedDexBegin',self.f.field,3),0)
+        self.assertEqual(self.f.execute('EnhancedDexBegin',self.f.field,4),0)
         self.f.put(self.dex,0);self.assertEqual(self.f.execute('EnhancedDexBegin',self.f.field,0),0)
         self.f.put(self.dex,0xBEEFCAFE)
         self.assertEqual(self.f.execute('EnhancedDexBegin',self.f.field,0),1)

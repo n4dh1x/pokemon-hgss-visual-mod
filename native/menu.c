@@ -4,6 +4,8 @@
 #include "dex.h"
 #include "items.h"
 
+extern void EnhancedOverview(struct Window *, void *);
+
 struct MenuState {
     void *field;
     struct Window window;
@@ -77,7 +79,7 @@ static void render(void) {
         print(gEnhancedMenu.extra.fast_eggs ? "On" : "Off", 172, 60);
         print("Infinite money", 16, 76);
         print(gEnhancedMenu.extra.infinite_money ? "On" : "Off", 172, 76);
-        print("Pokedex actions", 16, 92);
+        print("Dex / event gifts", 16, 92);
         print("Item giver", 16, 108);
     }
     print("Save and close", 16, 124);
@@ -101,7 +103,7 @@ static void render(void) {
         print("Wallet refills when read", 8, 158);
     else if (gEnhancedMenu.page == 3 && gEnhancedMenu.row >= 4)
         print("A opens actions", 8, 158);
-    else print("Left/Right value  X page", 8, 158);
+    else print("L/R value  X page  Y team", 8, 158);
     CopyWindowToVram(&gEnhancedMenu.window);
 }
 static int close_menu(void) {
@@ -142,6 +144,18 @@ int EnhancedMenuTask(void *task) {
         if (EnhancedItemUi(gEnhancedMenu.field, &gEnhancedMenu.window, gEnhancedMenu.string, &gEnhancedMenu.extra, keys)) {
             gEnhancedMenu.phase = 1; render();
         }
+        return 0;
+    }
+    if (gEnhancedMenu.phase == 7) {
+        if (keys & 3) {
+            gEnhancedMenu.phase = 1;
+            render();
+        }
+        return 0;
+    }
+    if (keys & 0x800) {
+        gEnhancedMenu.phase = 7;
+        EnhancedOverview(&gEnhancedMenu.window, gEnhancedMenu.string);
         return 0;
     }
     if (keys & 2) return close_menu();
@@ -233,23 +247,8 @@ int EnhancedMenuOpen(void *field) {
     gEnhancedMenu.repel = gEnhancedOptions.repel_prompt;
     gEnhancedMenu.capture = gEnhancedOptions.capture_exp;
     gEnhancedMenu.party = gEnhancedOptions.party_exp;
-    gEnhancedMenu.extra.field_hms = gEnhancedExtraOptions.field_hms;
-    gEnhancedMenu.extra.roaming_only_grass = gEnhancedExtraOptions.roaming_only_grass;
-    gEnhancedMenu.extra.iv_ev_viewer = gEnhancedExtraOptions.iv_ev_viewer;
-    gEnhancedMenu.extra.encounter_rate = gEnhancedExtraOptions.encounter_rate;
-    gEnhancedMenu.extra.shiny_odds = gEnhancedExtraOptions.shiny_odds;
-    gEnhancedMenu.extra.hide_follower = gEnhancedExtraOptions.hide_follower;
-    gEnhancedMenu.extra.clock_speed = gEnhancedExtraOptions.clock_speed;
-    gEnhancedMenu.extra.clock_hud = gEnhancedExtraOptions.clock_hud;
-    gEnhancedMenu.extra.camera_pitch = gEnhancedExtraOptions.camera_pitch;
-    gEnhancedMenu.extra.camera_zoom = gEnhancedExtraOptions.camera_zoom;
-    gEnhancedMenu.extra.always_catch = gEnhancedExtraOptions.always_catch;
-    gEnhancedMenu.extra.instant_victory = gEnhancedExtraOptions.instant_victory;
-    gEnhancedMenu.extra.fast_eggs = gEnhancedExtraOptions.fast_eggs;
-    gEnhancedMenu.extra.infinite_money = gEnhancedExtraOptions.infinite_money;
-    gEnhancedMenu.extra.give_pocket = gEnhancedExtraOptions.give_pocket;
-    gEnhancedMenu.extra.give_item = gEnhancedExtraOptions.give_item;
-    gEnhancedMenu.extra.give_count = gEnhancedExtraOptions.give_count;
+    for (u32 i=0;i<sizeof(gEnhancedExtraOptions)/4;++i)
+        ((volatile u32 *)&gEnhancedMenu.extra)[i]=((volatile const u32 *)&gEnhancedExtraOptions)[i];
     EnhancedNpcPause(field, gEnhancedMenu.paused_before, 1);
     FieldSystem_CreateTask(field, EnhancedMenuTask, 0);
     return 1;

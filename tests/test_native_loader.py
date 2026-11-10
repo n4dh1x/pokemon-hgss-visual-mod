@@ -84,7 +84,8 @@ class TestNativeLoader(unittest.TestCase):
             self.assertEqual(self.payload.total_size,len(self.payload.data)+len(self.payload.cold_data))
 
     def test_malformed_split_payload_is_rejected_before_injection(self):
-        for cold in (b'',self.payload.cold_data+b'X',self.payload.cold_data+bytes(4)):
+        overflow = bytes(PAYLOAD_BASE - COLD_BASE + 4)
+        for cold in (b'', self.payload.cold_data+b'X', overflow):
             symbols=dict(self.payload.symbols);symbols['__enhanced_cold_end']=COLD_BASE+len(cold)
             bad=replace(self.payload,cold_data=cold,symbols=symbols)
             with self.assertRaises(PatchMismatch):inject_evolution(self.rom.arm9,self.rom.arm9RamAddress,bad)

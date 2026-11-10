@@ -108,18 +108,18 @@ def build_payload(item_pockets: bytes | None = None) -> Payload:
         temp = Path(temporary)
         (temp / 'item_pockets.bin').write_bytes(item_pockets)
         objects = []
-        for filename in ('evolution.c', 'evolution_trampoline.S', 'field.c', 'settings.c', 'ui.c', 'menu.c', 'repel.c', 'capture.c', 'party_exp.c', 'party_exp_divide.S', 'field_hms.c', 'field_hm_bag.c', 'summary_viewer.c', 'shiny.c', 'follower.c', 'clock.c', 'clock_hud.c', 'camera.c', 'cheats.c', 'victory.c', 'eggs.c', 'money.c', 'money_original.S', 'dex.c', 'dex_ui.c', 'items.c', 'items_data.S', 'quick_ball.c'):
+        for filename in ('evolution.c', 'evolution_trampoline.S', 'field.c', 'settings.c', 'ui.c', 'menu.c', 'repel.c', 'capture.c', 'party_exp.c', 'party_exp_divide.S', 'field_hms.c', 'field_hm_bag.c', 'summary_viewer.c', 'shiny.c', 'follower.c', 'clock.c', 'clock_hud.c', 'camera.c', 'cheats.c', 'victory.c', 'eggs.c', 'money.c', 'money_original.S', 'dex.c', 'dex_ui.c', 'items.c', 'items_data.S', 'quick_ball.c', 'events.c', 'overview.c'):
             target = temp / (filename + '.o')
             args = [clang, *flags, '-I', str(temp)]
             if filename.endswith('.c'):
                 args += ['-ffreestanding', '-fno-builtin', '-fno-unwind-tables',
                          '-fno-asynchronous-unwind-tables', '-fno-stack-protector',
-                         '-Os', '-Wall', '-Wextra', '-Werror']
+                         '-Oz', '-Wall', '-Wextra', '-Werror']
             subprocess.run([*args, '-c', str(ROOT / 'native' / filename), '-o', str(target)], check=True)
             objects.append(str(target))
         elf = temp / 'payload.elf'
         subprocess.run([*linker_command, '-T', str(ROOT / 'native/payload.ld'),
-                        *objects, '-o', str(elf)], check=True)
+                        *objects, '-Map='+str(output/'payload.map'), '-o', str(elf)], check=True)
         with elf.open('rb') as source:
             parsed = ELFFile(source)
             if parsed['e_machine'] != 'EM_ARM':

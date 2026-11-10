@@ -40,7 +40,7 @@ SECTIONS {
     ASSERT(SIZEOF(.trampoline) == 32, "Evolution trampoline ABI changed")
     . = 0x01FF9040;
     .text : { *(.text .text.*) }
-    .rodata : { *(.rodata .rodata.*) }
+    .rodata : { *(.rodata .rodata.*) *(.event_ui) *(.overview_ui) }
     .data : { *(.data .data.*) }
     .bss : { *(.bss .bss.* COMMON) }
     . = ALIGN(4);
@@ -252,3 +252,10 @@ NativeCharFree = 0x02021B5D;
 NativeSavePC = 0x020270D9;
 
 NativeQuickTouchRect = 0x02025225;
+
+/* Native Mystery Gift APIs, checked against both USA baselines. */
+NativeMysteryGift = 0x020270E5;
+NativeInsertGift = 0x0202DC2D;
+NativeGiftFlagSet = 0x0202DFAD;
+NativeGiftMove = 0x020714E9;
+NativeBadgeCount = 0x02028FF1;

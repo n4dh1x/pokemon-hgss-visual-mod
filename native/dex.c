@@ -1,3 +1,4 @@
+#include "events.h"
 #include "settings.h"
 #include "dex.h"
 extern void *Save_PlayerData_GetProfile(void *save);
@@ -32,7 +33,11 @@ static int owned(void *field, u32 *owner) {
 int EnhancedDexBegin(void *field, u32 action) {
     struct DexAction *s = &gDexAction;
     u32 owner;
-    if (s->status == 1 || action > 2 || !owned(field, &owner)) return 0;
+    if (s->status == 1 || action > 3 || !owned(field, &owner)) return 0;
+    if (action == 3) {
+        s->action=action;s->status=EnhancedEventsEnable(field) ? 2 : 3;
+        return s->status==2;
+    }
     void *save = EnhancedSettingsSaveData();
     void *dex = NativeSavePokedex(save);
     if (!dex || *(u32 *)dex != 0xBEEFCAFEu) return 0;

@@ -40,6 +40,7 @@ class TestClock(unittest.TestCase):
                 elif owner.hud_mode and address==0x02026380:
                     owner.assertTrue(owner.live_string);owner.assertEqual(a,0x02238000);owner.hud_actions.append('delete');owner.live_string=False;result=0
                 elif address==0x0203E13C:result=int(owner.field_allowed)
+                elif address==0x020270E4:result=0  # No Mystery Gift block in this HUD fixture.
                 elif address==0x0203BE60:result=owner.inhibit
                 elif owner.hud_mode and address==0x0203E15C:
                     owner.original_steps+=1

@@ -2,7 +2,10 @@
 struct DexUi { u32 phase, row, action, yes; };
 struct DexUi gDexUi;
 _Static_assert(sizeof(struct DexUi) == 16, "Dex UI diagnostic ABI");
-static const char *const actions[3] = {"Complete Johto Dex", "Unlock National Dex", "Complete National Dex"};
+static const char event_name[] __attribute__((section(".event_ui")))="Unlock event gifts";
+static const char event_help[] __attribute__((section(".event_ui")))="Collect gifts at Poke Mart";
+static const char unavailable[] __attribute__((section(".event_ui")))="Action unavailable.";
+static const char *const actions[4] = {"Complete Johto Dex", "Unlock National Dex", "Complete National Dex", event_name};
 void EnhancedDexUiReset(void) {
     gDexUi.phase = gDexUi.row = gDexUi.action = gDexUi.yes = 0;
 }
@@ -12,10 +15,10 @@ static void text(struct Window *w, void *str, const char *s, u32 x, u32 y) {
 static void draw(struct Window *w, void *str) {
     struct DexUi *s = &gDexUi;
     FillWindowPixelBuffer(w, 15);
-    text(w, str, "POKEDEX ACTIONS", 8, 2);
+    text(w, str, "DEX / EVENT GIFTS", 8, 2);
     if (!s->phase) {
-        for (u32 i = 0; i < 3; ++i) text(w, str, actions[i], 16, 28 + 24 * i);
-        text(w, str, "Back", 16, 100);
+        for (u32 i = 0; i < 4; ++i) text(w, str, actions[i], 16, 28 + 24 * i);
+        text(w, str, "Back", 16, 124);
         text(w, str, "-", 2, 28 + 24 * s->row);
         text(w, str, "A choose   B back", 8, 158);
     } else {
@@ -28,7 +31,7 @@ static void draw(struct Window *w, void *str) {
         } else if (s->phase == 2) {
             text(w, str, "Working...", 8, 60);
         } else {
-            text(w, str, s->phase == 3 ? "Done. Save game to keep." : "Action unavailable.", 8, 60);
+            text(w, str, s->phase == 3 ? (s->action==3 ? event_help : "Done. Save game to keep.") : unavailable, 8, 60);
             text(w, str, "A or B to return", 8, 158);
         }
     }
@@ -50,10 +53,10 @@ int EnhancedDexUi(void *field, struct Window *w, void *str, u32 keys) {
         s->phase = 0; draw(w, str); return 0;
     }
     if (!s->phase) {
-        if (keys & 0x40) s->row = (s->row + 3) & 3;
-        if (keys & 0x80) s->row = (s->row + 1) & 3;
+        if (keys & 0x40) s->row = s->row ? s->row-1 : 4;
+        if (keys & 0x80) s->row = s->row == 4 ? 0 : s->row+1;
         if (keys & 1) {
-            if (s->row == 3) return 1;
+            if (s->row == 4) return 1;
             s->action = s->row; s->yes = 0; s->phase = 1;
         }
     } else {

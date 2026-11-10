@@ -109,6 +109,9 @@ Milestone 29 relocates immutable tables into an audited unused ITCM gap, freeing
 clock/camera and native contact-battle reward/save/cold controls. See
 [native-integration.md](docs/native-integration.md#milestone-29-immutable-tables-in-the-audited-itcm-gap).
 Milestone 30 adds native quick ball controls and SELECT + L menu access; both games pass capture and native save/cold checks, with 314 automated regressions. See [quick-ball.md](docs/quick-ball.md).
+Milestone 31 adds the event gift catalogue and a trainer, badges and party
+preview on Y in Enhancements. Both games pass queue activation and native
+save/restart checks. See [event gifts and save compatibility](docs/event-gifts.md).
 These candidates are not the final release.
 
 - [Complete 59-row feature inventory](docs/emerald-parity.md)
