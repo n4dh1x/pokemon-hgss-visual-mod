@@ -1177,12 +1177,14 @@
       "category": "partial",
       "base_heartgold": "Native DS shop/bag interfaces.",
       "visual_plus": "Retained, not redesigned.",
-      "required_work": "Functional shopping is present; Emerald's particular touch-drag quantity interaction would need a UI rewrite.",
+      "required_work": "Keep HGSS touchscreen digit arrows as the DS equivalent. Milestone 31 verified the native Buy arrows and wallet-limited purchase on both Mac games. The native Bag also has touch digits for Toss and shop Sell; those touch paths need runtime checks.",
       "evidence": [
         "local_data/reference/pokeheartgold/src/overlay_03/shop_menu.c",
-        "3ds_port/src/3ds_bottom_ui.c"
+        "3ds_port/src/3ds_bottom_ui.c",
+        "local_data/reference/pokeheartgold/src/application/bag/bag_app_main.c",
+        "enhancements/milestone-31-verification.json"
       ],
-      "implementation": "not_integrated",
+      "implementation": "integrated_untested",
       "release_scope": "enhancement"
     },
     {
@@ -1193,12 +1195,14 @@
       "category": "partial",
       "base_heartgold": "Native save confirmation and trainer/party screens.",
       "visual_plus": "Retained.",
-      "required_work": "Exact combined Emerald save card would be a new optional UI.",
+      "required_work": "Milestone 31 adds a read-only trainer, badge and current party overview on Y in the Enhancements menu. Both Mac games display the trainer, badges and six party entries. Keep the native Save flow and verify wider party and progress states.",
       "evidence": [
         "local_data/reference/pokeheartgold/src/touch_save_app.c",
-        "3ds_port/src/3ds_bottom_ui.c"
+        "3ds_port/src/3ds_bottom_ui.c",
+        "docs/event-gifts.md",
+        "enhancements/milestone-31-verification.json"
       ],
-      "implementation": "not_integrated",
+      "implementation": "integrated_untested",
       "release_scope": "enhancement"
     },
     {

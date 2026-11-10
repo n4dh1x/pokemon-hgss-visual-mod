@@ -43,8 +43,13 @@ The catalogue preserves an existing Enigma Stone delivery or story progress.
 - OpenHome 1.17.1 opened a populated milestone-30 HeartGold save and the
   milestone-31 SoulSilver save with the delivered Mew in Box 1. The app
   recognized both titles from copied raw 512 KiB cartridge saves. The
-  SoulSilver copy was byte-identical after import. Event-gift transfer and
-  write-back checks remain release work.
+  SoulSilver copy was byte-identical after import. A headless test of the
+  OpenHome v1.18.1 storage writer moved Mew in SoulSilver and Togepi in
+  HeartGold from slot 1 to slot 2 of Box 1. Both games cold-booted the edited
+  saves with the same party, queued gifts and Wonder Cards. The writer
+  changed only the two PC records and the storage checksum. The harness
+  kept each Pokémon's PK4 payload intact. GUI write-back and moving Pokémon
+  between saves remain release work.
 - Clean builds of both ROMs and their xdelta patches match the tested candidates
   byte for byte. See `enhancements/milestone-31-verification.json` for hashes
   and evidence references.

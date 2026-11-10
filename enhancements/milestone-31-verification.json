@@ -686,12 +686,190 @@
       },
       "format": "Raw 512 KiB cartridge save",
       "read_only_import_left_copy_unchanged": true
+    },
+    "headless_write_back": {
+      "source_release": "OpenHome v1.18.1",
+      "source_commit": "0f366daa89663e7c11ed1901a4dd3b6f818c5cb6",
+      "scope": "Headless upstream save-writer methods and Gen IV checksums/encryption with an unchanged PK4 payload adapter. App UI write-back and transfer between saves were not verified.",
+      "harness": {
+        "path": "local_data/verify-openhome-31b-writer.mjs",
+        "sha256": "cdb7fb95d92f6f03428c3acfe1190c8a39ef06fe134927f83d4ac596063cceab"
+      },
+      "games": {
+        "heartgold": {
+          "original_save": {
+            "path": "local_data/verification/hg31b-received-cold/cartridge.sav",
+            "sha256": "439959f39d710850838f6f773624518901b6d52e8e921210c7a5ce00663614e3"
+          },
+          "edited_save": {
+            "path": "local_data/verification/hg31b-openhome-writer-cold/cartridge.sav",
+            "sha256": "6e646d7360d47b70db68a37326cded4683e564bae872a33700e8002094170316"
+          },
+          "native_cold_boot": {
+            "path": "local_data/verification/hg31b-openhome-writer-cold/smoke-report.json",
+            "sha256": "6b428fb14249ae092eb57b81ddf3740fc70b0564d7a7e3b3d8a21b8e72e8f1ad"
+          },
+          "species": 175,
+          "box": 1,
+          "source_slot": 1,
+          "destination_slot": 2,
+          "box_pokemon_sha256": "3995d204b8217cbc19dc9a472cb508b434b4e38a572e1ecf62594522d696b4c2",
+          "party_gift_queue_and_wonder_cards_unchanged": true,
+          "save_differences_limited_to_two_pc_slots_and_storage_checksum": true
+        },
+        "soulsilver": {
+          "original_save": {
+            "path": "local_data/verification/ss31b-fresh-boxed-mew-cold-native/cartridge.sav",
+            "sha256": "af806c33205dac6bdf2b393434c7e08a44bb24301cc711b3640497ae366a8d8e"
+          },
+          "edited_save": {
+            "path": "local_data/verification/ss31b-openhome-writer-cold/cartridge.sav",
+            "sha256": "9543d97a63c4ed757e2712d8b04a1101df12bb1f91d647072385ce92bdc13a46"
+          },
+          "native_cold_boot": {
+            "path": "local_data/verification/ss31b-openhome-writer-cold/smoke-report.json",
+            "sha256": "27fbf7068e6d77325921f3a341e40c86fd04363b604a787264cbe3cbeecc3c95"
+          },
+          "species": 151,
+          "box": 1,
+          "source_slot": 1,
+          "destination_slot": 2,
+          "box_pokemon_sha256": "dec654f772c814ac6584a119e64f4b548b9fe0daf31b3d4e29efa9730b86662b",
+          "party_gift_queue_and_wonder_cards_unchanged": true,
+          "save_differences_limited_to_two_pc_slots_and_storage_checksum": true
+        }
+      }
     }
   },
   "pending": [
     "Native receipt and refill through later gift batches",
     "Native event story triggers",
-    "Event-gift transfer and OpenHome write-back",
+    "OpenHome GUI write-back and event-gift transfer between saves",
     "Wider release checklist coverage"
-  ]
+  ],
+  "shop_touch": {
+    "scope": "Original Cherrygrove Mart Buy flow, touchscreen quantity digits, wallet limit and confirmed purchase; no new RAM edits in the recorded inputs.",
+    "games": {
+      "heartgold": {
+        "initial": {
+          "wallet": 3112,
+          "potions": 9
+        },
+        "settled": {
+          "wallet": 112,
+          "potions": 19
+        },
+        "purchased_quantity": 10,
+        "paid": 3000,
+        "runs": {
+          "shop-item": {
+            "path": "local_data/verification/hg31b-shop-item/smoke-report.json",
+            "sha256": "183d917c50274767194c154d93fc6067f0e8d28e03d303c362f9f50364cdb1d9"
+          },
+          "shop-quantity": {
+            "path": "local_data/verification/hg31b-shop-quantity/smoke-report.json",
+            "sha256": "c38614384be036ddf94db9b1c047bfb5f6f8837a72babeb20c6c65d8ec546c65"
+          },
+          "shop-confirm-buy": {
+            "path": "local_data/verification/hg31b-shop-confirm-buy/smoke-report.json",
+            "sha256": "997bf24c7bbf7db4d837c417e19a06a551237ad7d1f98e92854647369ebd4dbc"
+          },
+          "shop-purchase-settled": {
+            "path": "local_data/verification/hg31b-shop-purchase-settled/smoke-report.json",
+            "sha256": "1e7907c927bbcfc3be1657aad3605dd6136cb86455f3262813d4105e3d1d5e0f"
+          }
+        },
+        "screenshots": [
+          {
+            "path": "local_data/verification/hg31b-shop-quantity/frame-000150.png",
+            "sha256": "459874ab162cb17b865fee3b4c9ed9a6ec46824dbf0245912abfecd99d504fc9"
+          },
+          {
+            "path": "local_data/verification/hg31b-shop-quantity/frame-000270.png",
+            "sha256": "663343c587f177b34736a6d4093f166fe628c09bff2bde9e0a20f02c71d11e5a"
+          },
+          {
+            "path": "local_data/verification/hg31b-shop-quantity/frame-000390.png",
+            "sha256": "91f0edf035ab90a1f2c14c19af9a5eb323dcf0bb089691249bc74137707350df"
+          },
+          {
+            "path": "local_data/verification/hg31b-shop-quantity/frame-000510.png",
+            "sha256": "663343c587f177b34736a6d4093f166fe628c09bff2bde9e0a20f02c71d11e5a"
+          },
+          {
+            "path": "local_data/verification/hg31b-shop-quantity/frame-000630.png",
+            "sha256": "91f0edf035ab90a1f2c14c19af9a5eb323dcf0bb089691249bc74137707350df"
+          },
+          {
+            "path": "local_data/verification/hg31b-shop-quantity/frame-000750.png",
+            "sha256": "663343c587f177b34736a6d4093f166fe628c09bff2bde9e0a20f02c71d11e5a"
+          },
+          {
+            "path": "local_data/verification/hg31b-shop-confirm-buy/frame-000250.png",
+            "sha256": "5bfeb8be7bff847bb05f62f846a70dfe31b95032b8d22ef6f146008832964f98"
+          }
+        ]
+      },
+      "soulsilver": {
+        "initial": {
+          "wallet": 3000,
+          "potions": 0
+        },
+        "settled": {
+          "wallet": 0,
+          "potions": 10
+        },
+        "purchased_quantity": 10,
+        "paid": 3000,
+        "runs": {
+          "shop-item": {
+            "path": "local_data/verification/ss31b-shop-item/smoke-report.json",
+            "sha256": "514a9733ec6847068f6992b243c9e6e6731eaafeb734fae9af5ec04a48d6222b"
+          },
+          "shop-quantity": {
+            "path": "local_data/verification/ss31b-shop-quantity/smoke-report.json",
+            "sha256": "01a35dcaf2279428ba4b0a0c38f27c968646c39c2fbfe51d19b5136e6a2c6a19"
+          },
+          "shop-confirm-buy": {
+            "path": "local_data/verification/ss31b-shop-confirm-buy/smoke-report.json",
+            "sha256": "385792c868c370a3f86d143c2616e444af90551a817184faef092cbf421bc5f9"
+          },
+          "shop-purchase-settled": {
+            "path": "local_data/verification/ss31b-shop-purchase-settled/smoke-report.json",
+            "sha256": "fcccf5be6fedbec74746ae597a437d9f627467707b4183234a75a1ffd0a5f5d4"
+          }
+        },
+        "screenshots": [
+          {
+            "path": "local_data/verification/ss31b-shop-quantity/frame-000150.png",
+            "sha256": "bd690fa078a108d83582b71c7d73f8857a5aad6d4d8e7cfd56904e06a6f80c83"
+          },
+          {
+            "path": "local_data/verification/ss31b-shop-quantity/frame-000270.png",
+            "sha256": "a590748e79ea8634f89e0e6b765bd374b5e1c8880897f37709918f40cdbc507f"
+          },
+          {
+            "path": "local_data/verification/ss31b-shop-quantity/frame-000390.png",
+            "sha256": "6f2deb6ff156165146abdf443e1224c99635590e5f3befdb27700f88e23edc09"
+          },
+          {
+            "path": "local_data/verification/ss31b-shop-quantity/frame-000510.png",
+            "sha256": "a590748e79ea8634f89e0e6b765bd374b5e1c8880897f37709918f40cdbc507f"
+          },
+          {
+            "path": "local_data/verification/ss31b-shop-quantity/frame-000630.png",
+            "sha256": "6f2deb6ff156165146abdf443e1224c99635590e5f3befdb27700f88e23edc09"
+          },
+          {
+            "path": "local_data/verification/ss31b-shop-quantity/frame-000750.png",
+            "sha256": "a590748e79ea8634f89e0e6b765bd374b5e1c8880897f37709918f40cdbc507f"
+          },
+          {
+            "path": "local_data/verification/ss31b-shop-confirm-buy/frame-000250.png",
+            "sha256": "f0740d09241ac2ebf744e07fccce33b06de2fd86885e1b8ae0136525bca299e9"
+          }
+        ]
+      }
+    }
+  }
 }

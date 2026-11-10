@@ -74,3 +74,12 @@ purchases and wider story/link/Frontier contexts remain pending. These candidate
 are experimental, and the full enhancement goal remains unfinished. See
 [exact evidence](../enhancements/milestone-26-verification.json). Recheck local
 accepted runs with `.venv/bin/python -B scripts/verify_money_milestone.py`.
+
+## Milestone 31 native touchscreen check
+
+Both Cherrygrove Marts accepted the touch arrows for the tens and ones digits.
+At ₽300 each, the Potion selector capped the order at 10 with balances of
+₽3,112 in HeartGold and ₽3,000 in SoulSilver. After confirming the order, native
+wallet and inventory reads showed exactly ₽3,000 spent and ten Potions added
+in each game. The recorded Buy actions used no RAM edits. Sell and Toss touch
+paths remain on the release checklist.

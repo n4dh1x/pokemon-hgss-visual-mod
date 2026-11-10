@@ -19,7 +19,7 @@ comparison, not a list of 59 features that must be newly implemented.
 
 ## Implemented enhancements: wider acceptance still required
 
-The inventory records 25 integrated rows. `integrated_untested` is the historical
+The inventory records 28 integrated rows, including the retained native shop controls. `integrated_untested` is the historical
 label for integration with incomplete full acceptance; targeted tests and native
 emulator checks are recorded separately. It does not mean every feature has no
 tests, or that all contexts have passed.
@@ -39,8 +39,7 @@ tests, or that all contexts have passed.
 - Johto Dex completion, National unlock/completion and item giver.
 - Persistent enhancement settings.
 
-Shiny field effects are part of the visible/shiny rows, not extra rows in the
-25-row count. Native HGSS options and functionality are retained separately.
+Shiny field effects are part of the visible/shiny rows. Native HGSS options and functionality are retained separately.
 
 ## Recent milestones and remaining feature work
 
@@ -49,8 +48,9 @@ Shiny field effects are part of the visible/shiny rows, not extra rows in the
 - Milestone 31 adds the read-only trainer, badge and party overview on Y and
   the event gift catalogue. Both builds passed native queue activation,
   save/restart and overview checks. See [Event gifts](event-gifts.md).
-- Verify native touchscreen shop quantity controls, including ±1, ±10 and
-  purchase limits, in both games.
+- The native Buy screen passed touchscreen ±1, ±10 and wallet-limited
+  purchases in both games. Exercise the native Bag's Sell and Toss touch
+  controls in the release builds.
 - Verify later event receipt/refill batches and native story triggers across
   both games. The catalogue includes all Gen I–IV Mythical species and selected
   unique event gifts. Continue checking unique-gift coverage against the scope.
@@ -69,8 +69,9 @@ Shiny field effects are part of the visible/shiny rows, not extra rows in the
   of arbitrary HG-to-SS interchange or GBA/Emerald save compatibility.
 - OpenHome 1.17.1 opens populated raw 512 KiB saves for both titles. The
   independent milestone-31 SoulSilver save shows the delivered Mew in Box 1.
-  Retest final builds and exercise event-gift transfer and write-back with
-  disposable save copies.
+  Both games cold-booted saves edited by the headless OpenHome v1.18.1
+  storage writer. Retest the final builds and check GUI write-back and
+  transfer between saves using disposable copies.
 - Finish independent SoulSilver story progression and general long-play checks.
   Most earlier SoulSilver runtime evidence uses a HeartGold-derived lineage.
 - Complete Mac melonDS/RetroArch checks and publish reproducible patches, build
@@ -86,7 +87,7 @@ or the final release complete.
 ## Audit accounting
 
 All 59 historical rows remain for traceability: 28 scoped enhancement rows
-(25 integrated, 3 unfinished), 17 retained-native rows, 3 emulator-provided rows,
+(28 integrated with broader acceptance still open), 17 retained-native rows, 3 emulator-provided rows,
 2 delivery/compatibility rows and 9 excluded rows. The follower-interaction row
 is retained-native even though its old audit state says `not_integrated` for
 Emerald-specific differences. Never count those excluded or retained differences
