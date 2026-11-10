@@ -35,11 +35,16 @@ The catalogue preserves an existing Enigma Stone delivery or story progress.
   at Lv. 5 and the queue added Arceus. The original Save and cold restart
   kept Mew, the other five party members, Togepi in the PC and the refilled
   queue. Wonder Cards and the other seven queued gifts matched exactly.
-- OpenHome 1.17.1 opened a milestone-30 HeartGold save with a populated box and
-  a separately started milestone-31 SoulSilver save with the correct title,
-  trainer and Box 1. These were copied raw 512 KiB saves. The fresh SoulSilver
-  box was empty at that checkpoint. Populated SoulSilver and event-gift
-  transfer and write-back checks remain release work.
+- In a separately started SoulSilver game, the original delivery NPC gave the
+  trainer a Lv. 5 Mew and the queue refilled with Arceus. The other seven gifts
+  and Wonder Cards matched exactly. After a normal PC deposit, Save and cold
+  restart, Chikorita remained in the party and the delivered Mew was in Box 1.
+  The test used the same kind of native warp fixture to reach the Poké Mart.
+- OpenHome 1.17.1 opened a populated milestone-30 HeartGold save and the
+  milestone-31 SoulSilver save with the delivered Mew in Box 1. The app
+  recognized both titles from copied raw 512 KiB cartridge saves. The
+  SoulSilver copy was byte-identical after import. Event-gift transfer and
+  write-back checks remain release work.
 - Clean builds of both ROMs and their xdelta patches match the tested candidates
   byte for byte. See `enhancements/milestone-31-verification.json` for hashes
   and evidence references.

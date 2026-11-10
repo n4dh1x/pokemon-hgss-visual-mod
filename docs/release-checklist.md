@@ -51,8 +51,8 @@ Shiny field effects are part of the visible/shiny rows, not extra rows in the
   save/restart and overview checks. See [Event gifts](event-gifts.md).
 - Verify native touchscreen shop quantity controls, including ±1, ±10 and
   purchase limits, in both games.
-- Complete event receipt/refill and native story-trigger checks across both
-  games. The catalogue includes all Gen I–IV Mythical species and selected
+- Verify later event receipt/refill batches and native story triggers across
+  both games. The catalogue includes all Gen I–IV Mythical species and selected
   unique event gifts. Continue checking unique-gift coverage against the scope.
 
 ## Remaining release verification and delivery
@@ -67,10 +67,10 @@ Shiny field effects are part of the visible/shiny rows, not extra rows in the
 - Verify normal save/cold restart, old enhancement journals and existing HGSS
   save compatibility without changing unrelated progress. This is not a promise
   of arbitrary HG-to-SS interchange or GBA/Emerald save compatibility.
-- OpenHome 1.17.1 displays the correct titles for the HeartGold milestone-30
-  save and an independently created milestone-31 SoulSilver save. Both were
-  opened as ordinary raw saves. Retest the final ROMs with populated PC boxes
-  and transferred event Pokémon. Run any write-back tests on separate copies.
+- OpenHome 1.17.1 opens populated raw 512 KiB saves for both titles. The
+  independent milestone-31 SoulSilver save shows the delivered Mew in Box 1.
+  Retest final builds and exercise event-gift transfer and write-back with
+  disposable save copies.
 - Finish independent SoulSilver story progression and general long-play checks.
   Most earlier SoulSilver runtime evidence uses a HeartGold-derived lineage.
 - Complete Mac melonDS/RetroArch checks and publish reproducible patches, build

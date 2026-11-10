@@ -536,6 +536,111 @@
           "path": "local_data/verification/ss31b-saved-cold/smoke-report.json",
           "sha256": "deb21f9b141fc1ac390bff8ed5ae6104af247f126ef94c815c738e2840fbe7cd"
         }
+      },
+      "receipt_and_refill": {
+        "source": "Independent SoulSilver new game; test-only native Warp to Poké Mart, then normal delivery, PC and save inputs",
+        "new_queue_entry": {
+          "tag": 1,
+          "card": 3,
+          "species": 493,
+          "pid": 599289,
+          "ot": 481638485,
+          "fateful": 1,
+          "ball": 16,
+          "level": 100,
+          "checksum_failed": 0,
+          "moves": [
+            105,
+            63,
+            195,
+            449
+          ],
+          "pp": [
+            10,
+            5,
+            5,
+            10
+          ]
+        },
+        "other_seven_gifts_and_wonder_cards_unchanged": true,
+        "native_cold_restart_preserved_party_queue_and_pc": true,
+        "party_after_cold": [
+          {
+            "species": 152,
+            "level": 5
+          }
+        ],
+        "boxed_pokemon": {
+          "box": 0,
+          "slot": 0,
+          "species": 151,
+          "box_pokemon_sha256": "dec654f772c814ac6584a119e64f4b548b9fe0daf31b3d4e29efa9730b86662b",
+          "pid": 74993,
+          "ot_id": 481638485,
+          "experience": 135,
+          "friendship": 100,
+          "ability": 28,
+          "is_egg": 0,
+          "form": 0,
+          "pokeball": 16,
+          "met_level": 5,
+          "ivs": [
+            2,
+            24,
+            8,
+            29,
+            1,
+            29
+          ],
+          "moves": [
+            1,
+            144,
+            0,
+            0
+          ],
+          "pp": [
+            35,
+            10,
+            0,
+            0
+          ]
+        },
+        "runs": {
+          "fresh-enable": {
+            "path": "local_data/verification/ss31b-fresh-enable/smoke-report.json",
+            "sha256": "a25e7a3e30d990b1079f1b80bd0980d94af967cacafc58f2a3cf0b89b0c4ff6e"
+          },
+          "fresh-mart-direct": {
+            "path": "local_data/verification/ss31b-fresh-mart-direct/smoke-report.json",
+            "sha256": "96f19d9165b38747c4f3fa5c49ae9a8e5433eedef9766735fa042f066231ce16"
+          },
+          "fresh-mew": {
+            "path": "local_data/verification/ss31b-fresh-mew/smoke-report.json",
+            "sha256": "881e0ec7c0a24f6a683efcb18e7f64e514fca3afae71630b8aac693af41b4795"
+          },
+          "fresh-deposit-mew": {
+            "path": "local_data/verification/ss31b-fresh-deposit-mew/smoke-report.json",
+            "sha256": "65f13bf312670cdd3296d8bba29893c75f7b0c0c9f32f1760a21c2e315b2a597"
+          },
+          "fresh-boxed-mew-save": {
+            "path": "local_data/verification/ss31b-fresh-boxed-mew-save/smoke-report.json",
+            "sha256": "37541545308be54627164ca66b34220530cb2af6294a01554eead7d0365ac60f"
+          },
+          "fresh-boxed-mew-cold-native": {
+            "path": "local_data/verification/ss31b-fresh-boxed-mew-cold-native/smoke-report.json",
+            "sha256": "d929d911f39c96e6892078fc16c37b9a23a08d3436d0ca9f6968828fb8cc437f"
+          }
+        },
+        "screenshots": [
+          {
+            "path": "local_data/verification/ss31b-fresh-mew/frame-000500.png",
+            "sha256": "7c6c586256764c318f303f129a0d7a5d0d70bce009f172690d5adfeb5bb7e839"
+          },
+          {
+            "path": "local_data/verification/ss31b-fresh-deposit-mew/frame-000350.png",
+            "sha256": "0de7047e6ed77cdf72dbb5fddef51c1499fd3424e3718d0ad4df8711ddeb3095"
+          }
+        ]
       }
     }
   },
@@ -567,12 +672,26 @@
         "path": "local_data/verification/ss31b-fresh-second-save/smoke-report.json",
         "sha256": "70e7a3da0c3290fb40a142e4703dd35c9cb4dc02fc68d0cec31eda2401291892"
       }
+    },
+    "soulsilver_populated": {
+      "title": "SoulSilver",
+      "source_milestone": 31,
+      "source": "Independent new game; event Mew delivered and deposited using native NPC and PC",
+      "box": 1,
+      "slot": 1,
+      "species": 151,
+      "save": {
+        "path": "local_data/verification/ss31b-fresh-boxed-mew-save/cartridge.sav",
+        "sha256": "af806c33205dac6bdf2b393434c7e08a44bb24301cc711b3640497ae366a8d8e"
+      },
+      "format": "Raw 512 KiB cartridge save",
+      "read_only_import_left_copy_unchanged": true
     }
   },
   "pending": [
-    "SoulSilver native receipt and native refill through later gift batches",
+    "Native receipt and refill through later gift batches",
     "Native event story triggers",
-    "Populated SoulSilver box and event-gift OpenHome transfer/write-back",
+    "Event-gift transfer and OpenHome write-back",
     "Wider release checklist coverage"
   ]
 }
