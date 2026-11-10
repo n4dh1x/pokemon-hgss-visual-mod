@@ -641,6 +641,142 @@
             "sha256": "0de7047e6ed77cdf72dbb5fddef51c1499fd3424e3718d0ad4df8711ddeb3095"
           }
         ]
+      },
+      "story_progress": {
+        "scope": "Original delivery NPC, native event entry and cutscenes in an independent SoulSilver run. Travel fixtures redirect the active VM to original Warp/End and make no gift, party, save or story edits.",
+        "delivery_and_refill": {
+          "received": [
+            493,
+            172
+          ],
+          "queue_head_sequence": [
+            493,
+            172,
+            243
+          ],
+          "other_seven_gifts_and_wonder_cards_unchanged": true
+        },
+        "sinjoh": {
+          "arceus_delivery_var": 1,
+          "stage_map": 522,
+          "exterior_map": 521,
+          "scene": 4,
+          "travel_fixture": {
+            "path": "local_data/ss31b-sinjoh-follower-travel.json",
+            "sha256": "30ac992b7a6d60658d78391a4f081b43088bfdadb1cdb4ed639a2233198c14ea"
+          }
+        },
+        "spiky_eared_pichu": {
+          "awarded": {
+            "species": 172,
+            "level": 30,
+            "pid": 3674210304,
+            "trainer": 481638485,
+            "fateful": 0,
+            "form": 1,
+            "is_egg": 0,
+            "checksum_failed": 0,
+            "game_of_origin": 8,
+            "egg_location": 0,
+            "met_location": 214,
+            "shiny": false
+          },
+          "story_var_before": 0,
+          "story_var_after_cold": 2,
+          "save": {
+            "path": "local_data/verification/ss31b-ilex-pichu-award-save/cartridge.sav",
+            "sha256": "97cafde21987590378ef90449c17358f3244cdde6a811568cd90df11c5cb8747"
+          },
+          "party_and_gift_queue_preserved": true,
+          "travel_fixture": {
+            "path": "local_data/ss31b-ilex-pichu-travel.json",
+            "sha256": "f0caafed4d9de6230e175ce68de9a47d6a1d795b37999c12e3666491994ee796"
+          }
+        },
+        "runs": {
+          "fresh-claim-arceus": {
+            "path": "local_data/verification/ss31b-fresh-claim-arceus/smoke-report.json",
+            "sha256": "e27f97928d42394a483b9ff317504261785f180a915e6305a678e3a6da8c1665"
+          },
+          "fresh-claim-celebi": {
+            "path": "local_data/verification/ss31b-fresh-claim-celebi/smoke-report.json",
+            "sha256": "d13c9ed475730471be274578932f982a1fc9fbb2cd05abf5f31267c58c968baf"
+          },
+          "sinjoh-arrival-confirmed-input": {
+            "path": "local_data/verification/ss31b-sinjoh-arrival-confirmed-input/smoke-report.json",
+            "sha256": "b15ce05c2c1fbfa837bedf846f934705aecfb569c4d8c4fa27f3aa5d7cf956f8"
+          },
+          "sinjoh-trigger": {
+            "path": "local_data/verification/ss31b-sinjoh-trigger/smoke-report.json",
+            "sha256": "575a2cef5e5402b41428d91698a6b814bb8ada7ec89bd18c1d126816ca52dce0"
+          },
+          "sinjoh-researcher": {
+            "path": "local_data/verification/ss31b-sinjoh-researcher/smoke-report.json",
+            "sha256": "244bef2cb18e416ec25c9bad03d78ac16afb4f5b771a9d18d3fa2bf4be8d0cc7"
+          },
+          "sinjoh-inner-route": {
+            "path": "local_data/verification/ss31b-sinjoh-inner-route/smoke-report.json",
+            "sha256": "3be4781cf55cf7c39976392d688150d33d24e6ea6dc2cea177e3dbf8f176dd72"
+          },
+          "sinjoh-native-warp": {
+            "path": "local_data/verification/ss31b-sinjoh-native-warp/smoke-report.json",
+            "sha256": "6929e78ee63bf61e0b5bf9f8354e7e975b5b51233c931a07d645a5029130bff2"
+          },
+          "sinjoh-exterior-npc": {
+            "path": "local_data/verification/ss31b-sinjoh-exterior-npc/smoke-report.json",
+            "sha256": "87a0c29533d9519ac9033d95f5584ed1dd57eceab4307cae81909915559f3242"
+          },
+          "fresh-pichu-outdoor-talk": {
+            "path": "local_data/verification/ss31b-fresh-pichu-outdoor-talk/smoke-report.json",
+            "sha256": "1e0d6fa2ef9be2699c8c446bd6a2c95123441c5534c10b386be22fc93b170926"
+          },
+          "ilex-pichu-arrival": {
+            "path": "local_data/verification/ss31b-ilex-pichu-arrival/smoke-report.json",
+            "sha256": "193cf81ed269d877a7f8364f24c2016f336afccbc9761d94dc056afd361518ac"
+          },
+          "ilex-pichu-trigger": {
+            "path": "local_data/verification/ss31b-ilex-pichu-trigger/smoke-report.json",
+            "sha256": "f66c76a6e75f9f7d9be6ed3e948442e8a5f55539629764d58f2d37019c5e8d79"
+          },
+          "ilex-pichu-award-field": {
+            "path": "local_data/verification/ss31b-ilex-pichu-award-field/smoke-report.json",
+            "sha256": "4774cc4a68abb922512d792c48d20b3f7d94dc67c9b9f079eac6319dccaa21a1"
+          },
+          "ilex-pichu-award-save": {
+            "path": "local_data/verification/ss31b-ilex-pichu-award-save/smoke-report.json",
+            "sha256": "757b8a0242c92c4a8f7d26362fdfa4a552d263a429caf55aa904dd5bec0f42f7"
+          },
+          "ilex-pichu-award-cold": {
+            "path": "local_data/verification/ss31b-ilex-pichu-award-cold/smoke-report.json",
+            "sha256": "99fc38cf9175d6319fc83b2bd76a10615022b5599a55ef858f04a714c20dcb25"
+          }
+        },
+        "screenshots": [
+          {
+            "path": "local_data/verification/ss31b-fresh-claim-arceus/frame-000680.png",
+            "sha256": "ba33bebbc4e911a8baa7a2df9a69607807319cd74e849c211c453846ac714a49"
+          },
+          {
+            "path": "local_data/verification/ss31b-fresh-claim-celebi/frame-000460.png",
+            "sha256": "fd70f11185c00ab3b33632f77044b59dce08641681078eaae23ca667b92d3b8d"
+          },
+          {
+            "path": "local_data/verification/ss31b-sinjoh-researcher/frame-002460.png",
+            "sha256": "c604ffa67f317c3a14fa6fb6092ef0dd16b1325dfc8176cc9fb8b4e2ce39f78e"
+          },
+          {
+            "path": "local_data/verification/ss31b-sinjoh-native-warp/frame-004430.png",
+            "sha256": "8052a83844b7390bdd456d54f28267f079708b7800d6798039aa0bb96d5bfbbc"
+          },
+          {
+            "path": "local_data/verification/ss31b-sinjoh-exterior-npc/frame-001450.png",
+            "sha256": "b1e4ea923fcee41cc2a579eef2c74a65435d97e3de69bd0633ab10d95556b0f0"
+          },
+          {
+            "path": "local_data/verification/ss31b-ilex-pichu-trigger/frame-001330.png",
+            "sha256": "0533e9a544e2ae335a57db52a56ba7aa0751d6adb98fb7b04a75e686d1407c50"
+          }
+        ]
       }
     }
   },
@@ -742,8 +878,9 @@
     }
   },
   "pending": [
-    "Native receipt and refill through later gift batches",
-    "Native event story triggers",
+    "Native later gifts beyond Arceus and shiny Pichu, including Enigma Stone and Pokewalker courses",
+    "Fix duplicate Pokewalker-course queue blockage on saves where an event course is already owned",
+    "HeartGold story checks, Sinjoh reward and remaining SoulSilver story triggers",
     "OpenHome GUI write-back and event-gift transfer between saves",
     "Wider release checklist coverage"
   ],

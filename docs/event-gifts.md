@@ -40,6 +40,15 @@ The catalogue preserves an existing Enigma Stone delivery or story progress.
   and Wonder Cards matched exactly. After a normal PC deposit, Save and cold
   restart, Chikorita remained in the party and the delivered Mew was in Box 1.
   The test used the same kind of native warp fixture to reach the Poké Mart.
+- In SoulSilver, the native delivery NPC then gave Arceus and shiny Pichu,
+  and the queue refilled through Raikou while preserving the other seven
+  gifts and Wonder Cards. Arceus as the lead activated the Ruins of Alph
+  researcher scene, which reached the Mystri Stage and Sinjoh exterior.
+  Shiny Pichu as the lead activated the Ilex Shrine scene, which awarded
+  Lv. 30 Spiky-eared Pichu. The reward and completed scene survived the
+  original Save and a cold restart. Travel fixtures used the original Warp
+  command to reach the event entrances. The player used the original party
+  menu, trigger tile and shrine interaction.
 - OpenHome 1.17.1 opened a populated milestone-30 HeartGold save and the
   milestone-31 SoulSilver save with the delivered Mew in Box 1. The app
   recognized both titles from copied raw 512 KiB cartridge saves. The

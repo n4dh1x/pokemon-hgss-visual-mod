@@ -51,9 +51,13 @@ Shiny field effects are part of the visible/shiny rows. Native HGSS options and 
 - The native Buy screen passed touchscreen ±1, ±10 and wallet-limited
   purchases in both games. Exercise the native Bag's Sell and Toss touch
   controls in the release builds.
-- Verify later event receipt/refill batches and native story triggers across
-  both games. The catalogue includes all Gen I–IV Mythical species and selected
-  unique event gifts. Continue checking unique-gift coverage against the scope.
+- SoulSilver's native event runs reached Sinjoh Ruins and completed the
+  Spiky-eared Pichu award through a cold reload. Verify the Sinjoh reward,
+  Celebi, the Enigma Stone, later catalogue batches and HeartGold story paths.
+- Skip already-owned Pokéwalker courses when filling the delivery queue. The
+  original NPC rejects an owned course and leaves that entry at the front.
+- The catalogue includes all Gen I–IV Mythical species and selected unique
+  event gifts. Continue checking unique-gift coverage against the scope.
 
 ## Remaining release verification and delivery
 
