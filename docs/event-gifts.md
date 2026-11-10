@@ -31,6 +31,10 @@ The catalogue preserves an existing Enigma Stone delivery or story progress.
   queue intact. A test-only native warp brought the trainer to the shop. The
   fixture edits the script pointer and unused script stack, while delivery uses
   the game's actual NPC and existing party and save data.
+  After a normal PC deposit and return to the mart, the NPC delivered Mew
+  at Lv. 5 and the queue added Arceus. The original Save and cold restart
+  kept Mew, the other five party members, Togepi in the PC and the refilled
+  queue. Wonder Cards and the other seven queued gifts matched exactly.
 - OpenHome 1.17.1 opened a milestone-30 HeartGold save with a populated box and
   a separately started milestone-31 SoulSilver save with the correct title,
   trainer and Box 1. These were copied raw 512 KiB saves. The fresh SoulSilver

@@ -264,6 +264,85 @@
           "path": "local_data/verification/hg31b-delivery-full/smoke-report.json",
           "sha256": "e976e9925049e0797686637b061abf9a95c1fecb209224765b86a7160c91a68f"
         }
+      },
+      "receipt_and_refill": {
+        "received_party": {
+          "slot": 5,
+          "species": 151,
+          "experience": 135,
+          "level": 5,
+          "hp": 25,
+          "hp_ev": 0,
+          "attack_ev": 0,
+          "defense_ev": 0,
+          "speed_ev": 0,
+          "spatk_ev": 0,
+          "spdef_ev": 0,
+          "move1": 1,
+          "move2": 144,
+          "move3": 0,
+          "move4": 0,
+          "move1_pp": 35,
+          "move2_pp": 10,
+          "move3_pp": 0,
+          "move4_pp": 0
+        },
+        "new_queue_entry": {
+          "tag": 1,
+          "card": 3,
+          "species": 493,
+          "pid": 593927,
+          "ot": 2836379921,
+          "fateful": 1,
+          "ball": 16,
+          "level": 100,
+          "checksum_failed": 0,
+          "moves": [
+            105,
+            63,
+            195,
+            449
+          ],
+          "pp": [
+            10,
+            5,
+            5,
+            10
+          ]
+        },
+        "native_cold_restart_preserved_party_queue_and_pc": true,
+        "screenshots": [
+          {
+            "path": "local_data/verification/hg31b-delivery-mew/frame-000800.png",
+            "sha256": "a7854b7846d07a5b323600becbde066c507f0ea94873642657c804e3b6b63272"
+          },
+          {
+            "path": "local_data/verification/hg31b-delivery-verified/frame-001070.png",
+            "sha256": "6ac04d08b89de286840e5486d4f01ada040bebffa9c45fde3ddb68e1ba64de12"
+          }
+        ],
+        "runs": {
+          "pc-deposit-one": {
+            "path": "local_data/verification/hg31b-pc-deposit-one/smoke-report.json",
+            "sha256": "e985d88e84d91719ed2c41e162844dd44489e2ed9fcd238dd4ba278ca96ad939"
+          },
+          "deposit-complete": {
+            "path": "local_data/verification/hg31b-deposit-complete/smoke-report.json",
+            "sha256": "74ebe786115192dc32904939563474fce77354f5aad708e1ce55184f35a68906"
+          },
+          "delivery-mew": {
+            "path": "local_data/verification/hg31b-delivery-mew/smoke-report.json",
+            "sha256": "acf7d605dc78f7075dba7042e0c542c0f0238afc53acc7613a87a77116ae80b2"
+          },
+          "received-save": {
+            "path": "local_data/verification/hg31b-received-save/smoke-report.json",
+            "sha256": "c76f3a2259ba626d30fd90a57ee4ffba66fccd6cb304f2d072be71b54edd335d"
+          },
+          "received-cold": {
+            "path": "local_data/verification/hg31b-received-cold/smoke-report.json",
+            "sha256": "99e68650b151778c57f918819a9e5f1e3f7ba2571d37b3241966387e4f3f1d1d"
+          }
+        }
       }
     },
     "soulsilver": {
@@ -491,7 +570,7 @@
     }
   },
   "pending": [
-    "Native gift receipt and refill beyond the first queued batch",
+    "SoulSilver native receipt and native refill through later gift batches",
     "Native event story triggers",
     "Populated SoulSilver box and event-gift OpenHome transfer/write-back",
     "Wider release checklist coverage"
