@@ -8,7 +8,6 @@ extern int NativeBagSpace(void *, u16, u16, int);
 extern int NativeBagAdd(void *, u16, u16, int);
 extern int EnhancedRepelCanUse(void *field);
 extern void PlaySE(u16 sequence);
-extern u8 AddTextPrinterParameterizedWithColor(struct Window *, int, void *, u32, u32, u32, u32, void *);
 /* Native String ABI, also used by the original item-name message reader. */
 struct ItemString { u16 capacity, size; u32 magic; u16 text[]; };
 struct ItemUi { u32 row, result, gives, denied, last_item, last_quantity, ready; };
@@ -63,7 +62,7 @@ static void draw(struct Window *w, void *str, struct EnhancedExtraOptions *e) {
     EnhancedDrawText(w,str,"Item",16,60);
     if (e->give_item) {
         NativeItemName(str,e->give_item,4);
-        AddTextPrinterParameterizedWithColor(w,0,str,80,60,0xFF,0x01020F,0);
+        EnhancedDrawString(w,str,80,60);
     }
     EnhancedDrawText(w,str,"Quantity",16,92);
     EnhancedDrawText(w,str,counts[e->give_pocket == 7 ? 0 : e->give_count],172,92);

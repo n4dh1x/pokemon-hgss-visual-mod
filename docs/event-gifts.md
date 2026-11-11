@@ -4,10 +4,15 @@ In the field, hold **SELECT + L** and release both buttons. Press **Y** in
 Enhancements to see the trainer, badges and the names and levels of the current
 party. Press **B** to return. Use the game's Save button to save your progress.
 
-To enable gifts, go to **Cheats, page 4 → Dex / event gifts → Unlock event gifts**
-and choose Yes. Talk to the delivery person in a Poké Mart with an open party
-slot. The original delivery queue holds eight entries and refills as slots
-become free. Save in-game to keep activation and delivery progress.
+Go to **Cheats, page 4 → Dex / event gifts → Choose event gifts**. Browse
+with Left/Right or L/R and press **A** to queue the displayed gift. Press
+**B** to go back. Claim it from the delivery person in a Poké Mart, then use
+the normal Save button to keep your progress. Pokémon and eggs need a free
+party slot. The queue can hold eight gifts at a time.
+
+Each catalogue gift can be queued once. Saves from the earlier bulk mode
+retain the gifts already queued and the catalogue entries already marked.
+Choose any remaining entries individually in the picker.
 
 The 28-entry catalogue includes Mew, Celebi, Jirachi, Deoxys, Phione, a Manaphy
 Egg, Darkrai, Shaymin and Arceus. Other entries include shiny Pichu, the shiny
@@ -16,6 +21,14 @@ Crobat, Regigigas, the Enigma Stone and six Pokéwalker courses. Pokémon are
 created in HGSS's native format for the current trainer. The existing event
 scripts still govern what happens when you bring a gift to its story location.
 The catalogue preserves an existing Enigma Stone delivery or story progress.
+
+## Milestone 33 picker verification
+
+Both games showed the original names in the picker. HeartGold queued Amity
+Meadow and SoulSilver queued Celebi. Each save contained exactly the selected
+entry after a normal Save and cold restart. The menu refused to queue a second
+copy. All 28 catalogue entries passed the compiled queue tests, including
+duplicate courses and a full queue. See [milestone 33 verification](../enhancements/milestone-33-verification.json).
 
 ## Milestone 31 verification
 

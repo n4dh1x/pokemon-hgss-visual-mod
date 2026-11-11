@@ -54,8 +54,9 @@ Shiny field effects are part of the visible/shiny rows. Native HGSS options and 
 - SoulSilver's native event runs reached Sinjoh Ruins and completed the
   Spiky-eared Pichu award through a cold reload. Verify the Sinjoh reward,
   Celebi, the Enigma Stone, later catalogue batches and HeartGold story paths.
-- Skip already-owned Pokéwalker courses when filling the delivery queue. The
-  original NPC rejects an owned course and leaves that entry at the front.
+- Milestone 33 lets players select one gift at a time. The picker rejects
+  already-owned and already-queued Pokéwalker courses. Verify native course
+  delivery and complete the wider event checklist.
 - The catalogue includes all Gen I–IV Mythical species and selected unique
   event gifts. Continue checking unique-gift coverage against the scope.
 

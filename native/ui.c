@@ -33,9 +33,12 @@ void EnhancedCopyText(void *string, const char *text) {
     encoded[n] = 0xFFFF;
     CopyU16ArrayToString(string, encoded);
 }
+__attribute__((noinline)) void EnhancedDrawString(struct Window *window, void *string, u32 x, u32 y) {
+    AddTextPrinterParameterizedWithColor(window, 0, string, x, y, 0xFF, 0x01020F, 0);
+}
 void EnhancedDrawText(struct Window *window, void *string, const char *text, u32 x, u32 y) {
     EnhancedCopyText(string, text);
-    AddTextPrinterParameterizedWithColor(window, 0, string, x, y, 0xFF, 0x01020F, 0);
+    EnhancedDrawString(window, string, x, y);
 }
 void *EnhancedWindowOpen(void *field, struct Window *window, u8 y, u8 height) {
     FieldDrawMapName_Reset(ptr(ptr(field, 4), 8));

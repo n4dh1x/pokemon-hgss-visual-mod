@@ -33,14 +33,14 @@ class TestEventGifts(unittest.TestCase):
             'NativeCreateMon', 'NativeGiftMove', 'SetMonData', 'Heap_Alloc', 'Heap_Free',
             'Save_VarsFlags_Get', 'CheckSafari', 'CheckContest', 'CheckPalPark',
             'FieldSystem_MapIsBattleTowerMultiPartnerSelectRoom', 'NativeNormalMenuInhibitFlags',
-            'FieldSystem_VarGet', 'Save_Bag_Get', 'Bag_HasItem')}
+            'FieldSystem_VarGet', 'Save_Bag_Get', 'Bag_HasItem', 'NativeSavePokewalker')}
         self.vm = FieldFixture(methodName='runTest')
         self.vm.payload = self.payload
         self.vm.setUp()
         self.vm.reload()
         self.block = 0x02222000
         self.allocation = 0x02224000
-        self.frame = 0
+        self.pokewalker = 0x02228000
         self.deliveries = []
         self.fail_insert = False
         self.story_progress = 0
@@ -118,32 +118,29 @@ class TestEventGifts(unittest.TestCase):
         self.assertEqual((bag, item, count, heap), (0x02227000, 536, 1, 4))
         return int(self.existing_stone)
 
-    def enable(self):
-        return self.vm.execute('EnhancedEventsEnable', self.vm.field)
+    def NativeSavePokewalker(self, save, *_):
+        self.assertEqual(save, self.vm.save)
+        return self.pokewalker
 
-    def tick(self):
-        self.frame += 60
-        self.vm.put(0x021D1138, self.frame)
-        self.vm.execute('EnhancedEventsTick', self.vm.field)
+    def queue(self, index):
+        result = self.vm.execute('EnhancedQueueEvent', self.vm.field, index)
         self.assertEqual(self.allocations, 0)
+        return result
 
     def empty_queue(self):
         # Model completed native receipts without clearing received flags.
         self.vm.uc.mem_write(self.block + 256, bytes(8 * 260))
 
-    def test_full_catalogue_refills_without_duplicates_and_keeps_wonder_cards(self):
+    def test_every_gift_can_be_selected_and_wonder_cards_are_preserved(self):
         sentinel = b'active Wonder Card'
         self.vm.uc.mem_write(self.block + 0x920, sentinel)
-        self.tick()
-        self.assertEqual(self.deliveries, [])
-        self.assertEqual(self.enable(), 1)
-        self.tick()
-        self.assertEqual(len(self.deliveries), 8)
-        self.tick()
-        self.assertEqual(len(self.deliveries), 8)
-        for _ in range(4):
-            self.empty_queue()
-            self.tick()
+        for index in range(28):
+            if index and index % 8 == 0:
+                self.assertEqual(self.queue(index), 3)
+                self.assertEqual(self.vm.get(self.block + 248), (1 << index) - 1)
+                self.empty_queue()
+            self.assertEqual(self.queue(index), 1)
+            self.assertEqual(self.queue(index), 2)
         tags = [struct.unpack_from('<I', row)[0] for row in self.deliveries]
         self.assertEqual(len(tags), 28)
         self.assertEqual(tags.count(7), 1)
@@ -159,26 +156,49 @@ class TestEventGifts(unittest.TestCase):
         self.assertEqual(bytes(self.vm.uc.mem_read(self.block + 0x920, len(sentinel))), sentinel)
         self.assertEqual(self.vm.writes, [])
 
-    def test_unsafe_or_conflicting_activation_keeps_native_bytes(self):
+    def test_selection_is_independent_and_respects_existing_save_flags(self):
+        # Keep a save previously enabled by the bulk queue.
+        self.vm.put(self.block + 252, 0xec350000)
+        self.vm.put(self.block + 248, 1)
+        self.assertEqual(self.queue(0), 2)
+        self.assertEqual(self.queue(8), 1)
+        self.assertEqual(self.vm.get(self.block + 248), 0x101)
+        self.assertEqual(len(self.deliveries), 1)
+        self.assertEqual(struct.unpack_from('<I', self.deliveries[0], 8)[0], 493)
+
+    def test_unsafe_or_conflicting_selection_keeps_native_bytes(self):
         self.bag_blocked = True
-        self.assertEqual(self.enable(), 0)
+        self.assertEqual(self.queue(1), 4)
         self.bag_blocked = False
         self.vm.put(self.block + 248, 1)
         before = bytes(self.vm.uc.mem_read(self.block, 0x1680))
-        self.assertEqual(self.enable(), 0)
-        self.tick()
+        self.assertEqual(self.queue(1), 4)
+        self.assertEqual(self.queue(28), 4)
         self.assertEqual(bytes(self.vm.uc.mem_read(self.block, 0x1680)), before)
 
-    def test_insert_failure_retries_and_existing_stone_progress_is_preserved(self):
-        self.assertEqual(self.enable(), 1)
+    def test_insert_failure_can_retry_and_keeps_enigma_stone_progress(self):
         self.fail_insert = True
-        self.tick()
+        self.assertEqual(self.queue(0), 4)
         self.assertEqual(self.vm.get(self.block + 248), 0)
+        self.assertEqual(self.vm.get(self.block + 252), 0)
         self.fail_insert = False
+        self.assertEqual(self.queue(0), 1)
         self.story_progress = 3
-        for _ in range(4):
-            self.empty_queue()
-            self.tick()
-        self.assertEqual(len(self.deliveries), 27)
-        self.assertEqual(self.vm.get(self.block + 248) & 0x0FFFFFFF, 0x0FFFFFFF)
-        self.assertNotIn(3, [struct.unpack_from('<I', row)[0] for row in self.deliveries])
+        self.assertEqual(self.queue(21), 2)
+        self.story_progress = 0
+        self.existing_stone = True
+        self.assertEqual(self.queue(21), 2)
+        self.assertEqual(len(self.deliveries), 1)
+
+    def test_owned_and_pending_courses_do_not_block_other_selections(self):
+        self.vm.put(self.pokewalker + 0x130, 1 << 21 | 1 << 25)
+        # Only the first byte of the retail course payload holds its ID.
+        original = struct.pack('<HHBBBB', 14, 1, 22, 0xa5, 0x72, 0x31) + bytes(252)
+        self.vm.uc.mem_write(self.block + 256, original)
+        for index in (22, 23, 26):
+            self.assertEqual(self.queue(index), 2)
+        for index in (24, 25, 27):
+            self.assertEqual(self.queue(index), 1)
+        self.assertEqual([row[4] for row in self.deliveries], [23, 24, 26])
+        self.assertEqual(bytes(self.vm.uc.mem_read(self.block + 256, 260)), original)
+        self.assertEqual(self.vm.get(self.pokewalker + 0x130), 1 << 21 | 1 << 25)

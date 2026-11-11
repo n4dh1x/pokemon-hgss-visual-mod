@@ -109,7 +109,7 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
     results.extend(install_money(patched,payload))
     overlay_changes.extend(install_quick_ball(patched,payload))
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-31'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-33'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -150,11 +150,13 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
             'apply': 'Save and close', 'cancel': 'B or Cancel', 'page': 'X or L/R'},
         'item_giver': {'pockets': ['Items','Medicine','Poke Balls','TMs and HMs','Berries','Mail','Battle items','Key items'], 'counts': [1,5,10,50,99], 'key_items': 'Quantity one; duplicate keys denied', 'picker_preferences': 'Staged with settings; normal game Save retains given items', 'capacity': 'Original native Bag checks and sorting', 'pocket_lookup': {'bytes': 269, 'sha256': sha256(item_pockets), 'source': 'Audited native item mapping and item data; ignored build-only binary'}},
         'pokedex_actions': {'choices': ['Complete Johto Dex', 'Unlock National Dex', 'Complete National Dex'], 'regional_count': 256, 'national_count': 493, 'confirmation': 'Default No; changes game progress, native Save required'},
-        'event_gifts': {'activation': 'Cheats page 4 > Dex / event gifts > Unlock event gifts',
+        'event_gifts': {'activation': 'Cheats page 4 > Dex / event gifts > Choose event gifts',
                         'catalogue_entries': 28, 'native_queue_slots': 8,
                         'delivery': 'Poké Mart delivery NPC with native capacity checks',
                         'persistence': 'Native Mystery Gift received flags and normal Save',
-                        'verification': 'See enhancements/milestone-31-verification.json'},
+                        'selection': 'D-pad or L/R to browse, A to queue one gift, B to return',
+                        'duplicate_courses': 'Reject already-owned or already-queued Pokéwalker courses',
+                        'verification': 'See the milestone 31 and 33 verification reports in enhancements/'},
         'save_overview': {'button': 'Y in the enhancement menu',
                           'contents': ['trainer name', 'badge count', 'party names and levels'],
                           'persistence': 'Read-only preview. Use the original game Save.'},
@@ -200,7 +202,7 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
                              'total_size': payload.total_size,
                              'immutable_data': {'address': payload.segments[0][0], 'size': len(payload.cold_data), 'sha256': sha256(payload.cold_data)},
                              'symbols': {name: value for name, value in payload.symbols.items()
-                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', 'gVisibleHabitatState', 'gVisibleRoamerState', 'gFollowerState', 'gClockState', 'gClockHudState', 'gCameraState', 'gAlwaysCatchState', 'gInstantVictoryState', 'gFastEggState', 'gMoneyState', 'gDexAction', 'gDexUi', 'gItemUi', 'gEventState', 'gQuickBall', 'gItemPocketTable', 'OriginalMoneyRead', 'OriginalMoneySet', '__enhanced_end')},
+                                         if name.startswith('Enhanced') or name in ('OriginalEvolution', 'gEnhancedOptions', 'gVisibleState', 'gSettingsState', 'gEnhancedMenu', 'gEnhancedRepelDialog', 'gCaptureExperience', 'gPartyExperience', 'gEnhancedExtraOptions', 'gFieldHmState', 'gFieldBagState', 'gSummaryViewState', 'gEncounterRateState', 'gShinyState', 'gVisibleVisualState', 'gVisibleHabitatState', 'gVisibleRoamerState', 'gFollowerState', 'gClockState', 'gClockHudState', 'gCameraState', 'gAlwaysCatchState', 'gInstantVictoryState', 'gFastEggState', 'gMoneyState', 'gDexAction', 'gDexUi', 'gItemUi', 'gQuickBall', 'gItemPocketTable', 'OriginalMoneyRead', 'OriginalMoneySet', '__enhanced_end')},
                              'compiler': payload.compiler, 'linker': payload.linker},
         'checks': ['baseline checksum', 'patch-site fingerprints', 'recorded ARM9 edits only',
                    'original ITCM/DTCM sections unchanged', 'resident code and immutable-data sections round-trip',

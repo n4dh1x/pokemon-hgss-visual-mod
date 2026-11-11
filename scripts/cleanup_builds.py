@@ -232,7 +232,7 @@ def cleanup(root=ROOT, *, sources=(), decoder=None, apply=False, compress=True):
             for run in sorted((root / 'local_data/verification').glob('*')):
                 if run.is_symlink() or not run.is_dir() or not (run / 'state.json').is_file():
                     continue
-                for name in ('state.bin', 'main-ram.bin'):
+                for name in ('state.bin', 'main-ram.bin', 'cartridge.sav'):
                     path = run / name
                     if within_regular(path, root / 'local_data/verification'):
                         saved = compress_copy(path, work_parent)

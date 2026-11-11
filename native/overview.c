@@ -8,25 +8,21 @@ extern void *Party_GetMonByIndex(void *party, int slot);
 extern u32 GetMonData(void *mon, int attribute, void *destination);
 extern u32 NativeBadgeCount(void *profile);
 extern void CopyU16ArrayToString(void *string, const u16 *characters);
-extern u8 AddTextPrinterParameterizedWithColor(struct Window *, int, void *, u32, u32, u32, u32, void *);
 
 #define LABEL(name, value) static const char name[] __attribute__((section(".overview_ui"))) = value
 LABEL(title, "SAVE OVERVIEW");
 LABEL(badges, "Badges");
 LABEL(back, "B back / Save in field menu");
 
-static void print_native(struct Window *window, void *string, u32 x, u32 y) {
-    AddTextPrinterParameterizedWithColor(window, 0, string, x, y, 0xFF, 0x01020F, 0);
-}
-
 static void print_number(struct Window *window, void *string, u32 number, u32 y) {
     char buffer[4];
-    u32 length = 0;
-    if (number >= 100) buffer[length++] = '0' + number / 100;
-    if (number >= 10) buffer[length++] = '0' + number / 10 % 10;
-    buffer[length++] = '0' + number % 10;
-    buffer[length] = 0;
-    EnhancedDrawText(window, string, buffer, 184, y);
+    char *digit = &buffer[3];
+    *digit = 0;
+    do {
+        *--digit = '0' + number % 10;
+        number /= 10;
+    } while (number);
+    EnhancedDrawText(window, string, digit, 184, y);
 }
 
 void EnhancedOverview(struct Window *window, void *string) {
@@ -36,7 +32,7 @@ void EnhancedOverview(struct Window *window, void *string) {
     FillWindowPixelBuffer(window, 15);
     EnhancedDrawText(window, string, title, 8, 2);
     CopyU16ArrayToString(string, profile);
-    print_native(window, string, 16, 24);
+    EnhancedDrawString(window, string, 16, 24);
     EnhancedDrawText(window, string, badges, 128, 24);
     print_number(window, string, NativeBadgeCount(profile), 24);
     void *party = SaveArray_Party_Get(save);
@@ -45,7 +41,7 @@ void EnhancedOverview(struct Window *window, void *string) {
         void *mon = Party_GetMonByIndex(party, slot);
         u32 y = 48 + slot * 16;
         GetMonData(mon, 119, string);
-        print_native(window, string, 16, y);
+        EnhancedDrawString(window, string, 16, y);
         print_number(window, string, GetMonData(mon, 161, 0), y);
     }
     EnhancedDrawText(window, string, back, 8, 158);

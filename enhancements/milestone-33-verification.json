@@ -1,0 +1,125 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 33,
+  "final_release": false,
+  "scope": "Native event selection, single queue insertion, duplicate rejection, native Save and cold reload in Mac melonDS DS. All 28 entries are covered by targeted compiled ARM tests.",
+  "automated": {
+    "passed": 84,
+    "log": {
+      "path": "local_data/milestone-33-regression.log",
+      "sha256": "11b3b98ab075d7dbc6bdf8ddfa7f117ce1e144d709ecd2d34489b9f4cac518b7"
+    }
+  },
+  "candidates": {
+    "heartgold": {
+      "rom": {
+        "path": "build/candidates/heartgold-visual-plus-gameplay-milestone-33.nds",
+        "sha256": "556b3fa786e299916bf3589f7d310ccb8f0b6dc08d87ae3e4f702ea2b7d1a85d"
+      },
+      "patch": {
+        "path": "build/candidates/heartgold-visual-plus-gameplay-milestone-33.xdelta",
+        "sha256": "0da194d0b3d83bf2294aa35402c8b009801809e12f769f7ab5a93d28748f4769"
+      },
+      "report": {
+        "path": "build/candidates/heartgold-visual-plus-gameplay-milestone-33.json",
+        "sha256": "061a1f935eb343954074699ddcd68ce1da7aaa524517b20eb768caaf81c896f4"
+      },
+      "selected": "Amity Meadow",
+      "original_queue_record": {
+        "tag": 14,
+        "card": 3,
+        "reward": 26
+      },
+      "save": {
+        "path": "local_data/verification/hg33-picker-save/cartridge.sav",
+        "sha256": "78df32b9dfa962dbfcea2dacd238d295e1fee62e771e20941d86e058725a9a47"
+      },
+      "runs": {
+        "selected": {
+          "path": "local_data/verification/hg33-picker-selected/smoke-report.json",
+          "sha256": "94b00a532283f3af13036dc577763cb4e12007b45fb5bf31e79f0b38e619adab"
+        },
+        "save": {
+          "path": "local_data/verification/hg33-picker-save/smoke-report.json",
+          "sha256": "3d3a94276365dfc8a0173e9bd412e0c9942caf3bb20e2629dbd506bdb8ff59c7"
+        },
+        "cold": {
+          "path": "local_data/verification/hg33-picker-cold/smoke-report.json",
+          "sha256": "f971eba32419d400ed9559a0105986750cc927ef803612bcdf20ca4e99690374"
+        }
+      },
+      "picker": {
+        "path": "local_data/verification/hg33-picker-selected/frame-004450.png",
+        "sha256": "58855ed6850b9c67d20e6733461a3a8d0c2cf6fa3b3c1e11c9e9498f72be93f5"
+      },
+      "duplicate_message": {
+        "path": "local_data/verification/hg33-picker-save/frame-000180.png",
+        "sha256": "3a8006461d5ccc0beaa54e7a49f166a0ed8a32ce63ec808fe445a5ed7d75a648"
+      }
+    },
+    "soulsilver": {
+      "rom": {
+        "path": "build/candidates/soulsilver-visual-plus-gameplay-milestone-33.nds",
+        "sha256": "5a492297b6b8a8998a51e2bc336a4ff2dd46f9d0634ea0ec10498da45b04595b"
+      },
+      "patch": {
+        "path": "build/candidates/soulsilver-visual-plus-gameplay-milestone-33.xdelta",
+        "sha256": "4c3181d3f66f37c731a04340ac1cda79a9c4b19c6062ca75412f67d6d9156869"
+      },
+      "report": {
+        "path": "build/candidates/soulsilver-visual-plus-gameplay-milestone-33.json",
+        "sha256": "72bf52102ef521dc4ed025b0765141cd3f700ae8976b71cd3a5b38f81b43dcc2"
+      },
+      "selected": "Celebi",
+      "original_queue_record": {
+        "tag": 1,
+        "card": 3,
+        "species": 251,
+        "pid": 140530,
+        "ot": 481638485,
+        "fateful": 1,
+        "ball": 16,
+        "level": 50,
+        "checksum_failed": 0,
+        "moves": [
+          345,
+          246,
+          226,
+          363
+        ],
+        "pp": [
+          20,
+          5,
+          40,
+          15
+        ]
+      },
+      "save": {
+        "path": "local_data/verification/ss33-picker-save/cartridge.sav",
+        "sha256": "12a2d17cf18460072f0743cecfb119354e784cef753265f421496f904b249e86"
+      },
+      "runs": {
+        "selected": {
+          "path": "local_data/verification/ss33-picker-selected/smoke-report.json",
+          "sha256": "588aba634f4cfa59255898b02253c6eac78ac254709d2ed069448d0e8a8396da"
+        },
+        "save": {
+          "path": "local_data/verification/ss33-picker-save/smoke-report.json",
+          "sha256": "8a6e4e0e2d540f9917295514c61fd662ccccb9600b65478bde856d3fe48b8709"
+        },
+        "cold": {
+          "path": "local_data/verification/ss33-picker-cold/smoke-report.json",
+          "sha256": "37d68af1d2ea1832ae484533174c6196e1b05122fe0846817de17094dbbf5c2d"
+        }
+      },
+      "picker": {
+        "path": "local_data/verification/ss33-picker-selected/frame-004450.png",
+        "sha256": "32196578a3cf0d7fdaec7ec67d091a0577805de64fe9f8c4fd2ed7254fa514c1"
+      },
+      "duplicate_message": {
+        "path": "local_data/verification/ss33-picker-save/frame-000180.png",
+        "sha256": "4d43179e2e086f756b50b569aafdbc2677d8c23d1d8181df44ddca0b13f48bd9"
+      }
+    }
+  }
+}

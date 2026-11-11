@@ -28,6 +28,7 @@ SECTIONS {
         *dex_ui.c.o(.rodata .rodata.*)
         *items.c.o(.rodata .rodata.*)
         *items_data.S.o(.rodata .rodata.*)
+        *(.event_cold)
         . = ALIGN(4);
         __enhanced_cold_end = .;
     }
@@ -258,4 +259,8 @@ NativeMysteryGift = 0x020270E5;
 NativeInsertGift = 0x0202DC2D;
 NativeGiftFlagSet = 0x0202DFAD;
 NativeGiftMove = 0x020714E9;
+NativeSavePokewalker = 0x020325ED;
 NativeBadgeCount = 0x02028FF1;
+NativeEventMessages = 0x0200BAF9;
+NativeEventMessageRead = 0x0200BB6D;
+NativeEventMessagesFree = 0x0200BB45;
