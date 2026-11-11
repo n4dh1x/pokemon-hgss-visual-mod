@@ -30,10 +30,9 @@ void EnhancedItemStep(struct EnhancedExtraOptions *e, int direction, void *strin
     e->give_item = 0;
 }
 int EnhancedGiveItem(void *field, const struct EnhancedExtraOptions *e, void *string) {
-    u32 owner; void *save = EnhancedSettingsSaveData();
+    u32 owner; void *save = EnhancedSettingsOwnedFieldSave(field, &owner);
     int result = 2;
-    if (field && save && *(void **)((u8 *)field+12) == save &&
-        EnhancedSettingsOwner(&owner) && EnhancedRepelCanUse(field)) {
+    if (save && EnhancedRepelCanUse(field)) {
         result = 5;
         if (e->give_count <= 4 && EnhancedItemValid(e->give_item,e->give_pocket,string)) {
             void *bag = Save_Bag_Get(save);

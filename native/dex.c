@@ -25,15 +25,12 @@ static void release(void) {
     gDexAction.mon = 0;
     gDexAction.johto = 0;
 }
-static int owned(void *field, u32 *owner) {
-    return field && EnhancedSettingsOwner(owner) &&
-        *(void **)((u8 *)field + 12) == EnhancedSettingsSaveData();
-}
 int EnhancedDexBegin(void *field, u32 action) {
     struct DexAction *s = &gDexAction;
     u32 owner;
-    if (s->status == 1 || action > 2 || !owned(field, &owner)) return 0;
-    void *save = EnhancedSettingsSaveData();
+    if (s->status == 1 || action > 2) return 0;
+    void *save = EnhancedSettingsOwnedFieldSave(field, &owner);
+    if (!save) return 0;
     void *dex = NativeSavePokedex(save);
     if (!dex || *(u32 *)dex != 0xBEEFCAFEu) return 0;
     s->field = field; s->save = save; s->dex = dex;
@@ -61,8 +58,7 @@ int EnhancedDexStep(void) {
     struct DexAction *s = &gDexAction;
     if (s->status != 1) return s->status == 2 ? 1 : -1;
     u32 owner;
-    if (!owned(s->field, &owner) || owner != s->owner ||
-        EnhancedSettingsSaveData() != s->save ||
+    if (EnhancedSettingsOwnedFieldSave(s->field, &owner) != s->save || owner != s->owner ||
         NativeSavePokedex(s->save) != s->dex || *(u32 *)s->dex != 0xBEEFCAFEu) {
         release(); s->status = 3; return -1;
     }

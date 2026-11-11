@@ -164,6 +164,13 @@ int EnhancedSettingsOwner(u32 *owner) {
     return 1;
 }
 
+void *EnhancedSettingsOwnedFieldSave(void *field, u32 *owner) {
+    void *save = gSettingsState.save;
+    if (!field || !save || *(void **)((u8 *)field + 12) != save ||
+        !EnhancedSettingsOwner(owner)) return 0;
+    return save;
+}
+
 int EnhancedSettingsStore(u32 trade, u32 tms, u32 visible, u32 repel, u32 capture, u32 party) {
     /* Old callers preserve auxiliary and unknown journal fields. */
     return EnhancedSettingsStoreAll(trade, tms, visible, repel, capture, party, 0);

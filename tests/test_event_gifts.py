@@ -134,7 +134,7 @@ class TestEventGifts(unittest.TestCase):
     def test_every_gift_can_be_selected_and_wonder_cards_are_preserved(self):
         sentinel = b'active Wonder Card'
         self.vm.uc.mem_write(self.block + 0x920, sentinel)
-        for index in range(28):
+        for index in range(32):
             if index and index % 8 == 0:
                 self.assertEqual(self.queue(index), 3)
                 self.assertEqual(self.vm.get(self.block + 248), (1 << index) - 1)
@@ -142,13 +142,19 @@ class TestEventGifts(unittest.TestCase):
             self.assertEqual(self.queue(index), 1)
             self.assertEqual(self.queue(index), 2)
         tags = [struct.unpack_from('<I', row)[0] for row in self.deliveries]
-        self.assertEqual(len(tags), 28)
+        self.assertEqual(len(tags), 32)
         self.assertEqual(tags.count(7), 1)
         self.assertEqual([struct.unpack_from('<I', row, 4)[0] for row, tag in zip(self.deliveries, tags) if tag == 14], list(range(21, 27)))
         self.assertEqual([struct.unpack_from('<I', row, 4)[0] for row, tag in zip(self.deliveries, tags) if tag == 3], [536])
         pokemon = [struct.unpack_from('<6I', row, 8) for row, tag in zip(self.deliveries, tags) if tag == 1]
         self.assertTrue({151, 251, 385, 386, 489, 491, 492, 493}.issubset({mon[0] for mon in pokemon}))
         self.assertEqual(len({mon[2] for mon in pokemon}), len(pokemon))
+        self.assertEqual(self.vm.get(self.block + 248), 0xFFFFFFFF)
+        self.assertEqual([struct.unpack_from('<2I', row, 8) for row in self.deliveries[-4:]],
+                         [(447, 30), (466, 50), (467, 50), (485, 50)])
+        self.assertEqual([struct.unpack_from('<4I', row, 32) for row in self.deliveries[-4:]], [
+            (396, 421, 418, 409), (9, 8, 238, 89), (53, 94, 63, 76), (284, 463, 414, 246),
+        ])
         for species, _, pid, owner, fateful, ball in pokemon:
             self.assertEqual((fateful, ball), (1, 16))
             shiny = ((pid ^ (pid >> 16) ^ owner ^ (owner >> 16)) & 0xFFFF) < 8
@@ -170,10 +176,10 @@ class TestEventGifts(unittest.TestCase):
         self.bag_blocked = True
         self.assertEqual(self.queue(1), 4)
         self.bag_blocked = False
-        self.vm.put(self.block + 248, 1)
+        self.vm.put(self.block + 248, 1 << 31)
         before = bytes(self.vm.uc.mem_read(self.block, 0x1680))
         self.assertEqual(self.queue(1), 4)
-        self.assertEqual(self.queue(28), 4)
+        self.assertEqual(self.queue(32), 4)
         self.assertEqual(bytes(self.vm.uc.mem_read(self.block, 0x1680)), before)
 
     def test_insert_failure_can_retry_and_keeps_enigma_stone_progress(self):

@@ -25,9 +25,13 @@ struct Gift { u16 species_or_reward; u8 level, kind_and_moves; };
 static const u16 gift_moves[][4] = {
     {434}, {344,450,270,203}, {192,245,396,46}, {394,245,336,46},
     {329,245,403,46}, {344,231,98,85}, {57}, {19}, {404,14,334,97},
-    {257,403,188,162}
+    {257,403,188,162},
+    {396,421,418,409}, /* Riolu */
+    {9,8,238,89}, /* Electivire */
+    {53,94,63,76}, /* Magmortar */
+    {284,463,414,246} /* Heatran */
 };
-/* Native stories retain their original progression requirements. */
+/* Native stories retain their progression requirements. Append new entries to preserve saved indices. */
 static const struct Gift gifts[] = {
     GIFT(151,5,NORMAL,0), GIFT(251,50,NORMAL,0), GIFT(385,5,NORMAL,1),
     GIFT(386,50,NORMAL,0), GIFT(489,1,NORMAL,0), GIFT(490,1,MANAPHY_EGG,0),
@@ -37,7 +41,9 @@ static const struct Gift gifts[] = {
     GIFT(25,10,NORMAL,7), GIFT(25,10,NORMAL,8), GIFT(212,50,NORMAL,9),
     GIFT(169,30,NORMAL,10), GIFT(486,100,NORMAL,0), GIFT(350,50,SHINY,0),
     GIFT(536,0,ITEM,0), GIFT(21,0,COURSE,0), GIFT(22,0,COURSE,0),
-    GIFT(23,0,COURSE,0), GIFT(24,0,COURSE,0), GIFT(25,0,COURSE,0), GIFT(26,0,COURSE,0)
+    GIFT(23,0,COURSE,0), GIFT(24,0,COURSE,0), GIFT(25,0,COURSE,0), GIFT(26,0,COURSE,0),
+    GIFT(447,30,NORMAL,11), GIFT(466,50,NORMAL,12),
+    GIFT(467,50,NORMAL,13), GIFT(485,50,NORMAL,14)
 };
 _Static_assert(sizeof(gifts) / sizeof(gifts[0]) == EVENT_GIFT_COUNT, "Event catalogue flags");
 
@@ -58,20 +64,18 @@ void EnhancedEventName(struct Window *window, void *string, u32 index) {
         EnhancedDrawString(window, string, 16, 38);
     }
     const char *detail = kind == SHINY ? "Shiny" : kind == MANAPHY_EGG ? "Egg" :
-        index == 14 ? "Surf" : index == 15 ? "Fly" : index == 16 ? "Volt Tackle" :
-        kind == COURSE ? "PokeWalker course" : 0;
+        index == 14 ? "Volt Tackle" : index == 15 ? "Surf" : index == 16 ? "Fly" :
+        kind == COURSE ? "Course" : 0;
     if (detail) EnhancedDrawText(window, string, detail, 16, 60);
 }
 
 int EnhancedQueueEvent(void *field, u32 index) {
     u32 owner;
-    void *save = EnhancedSettingsSaveData();
-    if (!field || !save || *(void **)((u8 *)field + 12) != save ||
-        !EnhancedSettingsOwner(&owner) || !EnhancedRepelCanUse(field) ||
-        index >= EVENT_GIFT_COUNT) return UNAVAILABLE;
+    void *save = EnhancedSettingsOwnedFieldSave(field, &owner);
+    if (!save || !EnhancedRepelCanUse(field) || index >= EVENT_GIFT_COUNT) return UNAVAILABLE;
     u8 *mg = NativeMysteryGift(save);
     if (!mg) return UNAVAILABLE;
-    u32 received = *(u32 *)(mg + 248) & 0x0FFFFFFFu;
+    u32 received = *(u32 *)(mg + 248);
     u16 signature = *(u16 *)(mg + 254) & 0x7FFFu;
     if (signature != EVENT_SIGNATURE && (signature || received)) return UNAVAILABLE;
     if (received & (1u << index)) return ALREADY_AVAILABLE;

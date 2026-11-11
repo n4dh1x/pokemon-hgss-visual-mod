@@ -109,7 +109,7 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
     results.extend(install_money(patched,payload))
     overlay_changes.extend(install_quick_ball(patched,payload))
     output_dir.mkdir(parents=True, exist_ok=True)
-    name = f'{info["game"]}-visual-plus-gameplay-milestone-33'
+    name = f'{info["game"]}-visual-plus-gameplay-milestone-34'
     output = output_dir / (name + '.nds')
     patch_output = output_dir / (name + '.xdelta')
     report_output = output_dir / (name + '.json')
@@ -151,12 +151,12 @@ def _build(source: Path, decoder: str, output_dir: Path) -> dict:
         'item_giver': {'pockets': ['Items','Medicine','Poke Balls','TMs and HMs','Berries','Mail','Battle items','Key items'], 'counts': [1,5,10,50,99], 'key_items': 'Quantity one; duplicate keys denied', 'picker_preferences': 'Staged with settings; normal game Save retains given items', 'capacity': 'Original native Bag checks and sorting', 'pocket_lookup': {'bytes': 269, 'sha256': sha256(item_pockets), 'source': 'Audited native item mapping and item data; ignored build-only binary'}},
         'pokedex_actions': {'choices': ['Complete Johto Dex', 'Unlock National Dex', 'Complete National Dex'], 'regional_count': 256, 'national_count': 493, 'confirmation': 'Default No; changes game progress, native Save required'},
         'event_gifts': {'activation': 'Cheats page 4 > Dex / event gifts > Choose event gifts',
-                        'catalogue_entries': 28, 'native_queue_slots': 8,
+                        'catalogue_entries': 32, 'native_queue_slots': 8,
                         'delivery': 'Poké Mart delivery NPC with native capacity checks',
                         'persistence': 'Native Mystery Gift received flags and normal Save',
                         'selection': 'D-pad or L/R to browse, A to queue one gift, B to return',
                         'duplicate_courses': 'Reject already-owned or already-queued Pokéwalker courses',
-                        'verification': 'See the milestone 31 and 33 verification reports in enhancements/'},
+                        'verification': 'See the milestone 31 and 33 verification reports and subsequent candidate reports in enhancements/'},
         'save_overview': {'button': 'Y in the enhancement menu',
                           'contents': ['trainer name', 'badge count', 'party names and levels'],
                           'persistence': 'Read-only preview. Use the original game Save.'},

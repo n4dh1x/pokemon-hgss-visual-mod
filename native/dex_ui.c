@@ -4,10 +4,10 @@ struct DexUi { u32 phase, row, action, yes; };
 struct DexUi gDexUi;
 _Static_assert(sizeof(struct DexUi) == 16, "Dex UI diagnostic ABI");
 static const char event_name[] __attribute__((section(".event_ui")))="Choose event gifts";
-static const char unavailable[] __attribute__((section(".event_ui")))="Action unavailable.";
+static const char unavailable[] __attribute__((section(".event_ui")))="Unavailable.";
 #define EVENT_TEXT(name, value) static const char name[] __attribute__((section(".event_ui"))) = value
-EVENT_TEXT(event_controls, "L/R browse  A queue  B back");
-EVENT_TEXT(event_queued, "Queued at Poke Mart");
+EVENT_TEXT(event_controls, "L/R  A queue  B back");
+EVENT_TEXT(event_queued, "Queued at Mart");
 EVENT_TEXT(event_duplicate, "Already available");
 static const char event_full[] __attribute__((section(".event_cold"))) = "Queue full";
 static const char *const event_results[] __attribute__((section(".event_ui"))) = {
