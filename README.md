@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current playable build is milestone 33.** See the [clean-ROM build instructions](docs/build-milestone-33.md) and [release checklist](docs/release-checklist.md).
+**Current playable build is milestone 34.** See the [clean-ROM build instructions](docs/build-milestone-34.md) and [release checklist](docs/release-checklist.md).
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload
@@ -112,7 +112,9 @@ Milestone 30 adds native quick ball controls and SELECT + L menu access; both ga
 Milestone 31 adds the event gift catalogue and a trainer, badges and party
 preview on Y in Enhancements. Both games pass queue activation and native
 save/restart checks. See [event gifts and save compatibility](docs/event-gifts.md).
-These candidates are not the final release.
+Milestone 34 corrects the three Pikachu labels and adds Riolu, Electivire,
+Magmortar and Heatran. Both games retain all seven tested selections across
+a normal save and cold restart. See [milestone 34 verification](enhancements/milestone-34-verification.json).
 
 - [Complete 59-row feature inventory](docs/emerald-parity.md)
 - [Machine-readable inventory and implementation states](enhancements/inventory.json)
@@ -152,8 +154,8 @@ workflow below. No ROMs, saves or locally extracted assets are committed.
 Experimental gameplay builds (after installing `requirements-dev.txt`):
 
 ```sh
-.venv/bin/python scripts/build_enhanced.py --rom /path/to/HeartGold.zip
-.venv/bin/python scripts/build_enhanced.py --rom /path/to/SoulSilver.zip
+.venv/bin/python scripts/build_enhanced.py --rom /path/to/HeartGold.zip --xdelta "$(command -v xdelta3)"
+.venv/bin/python scripts/build_enhanced.py --rom /path/to/SoulSilver.zip --xdelta "$(command -v xdelta3)"
 .venv/bin/python -m unittest discover -s tests -v
 ```
 

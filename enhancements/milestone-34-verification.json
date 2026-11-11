@@ -1,0 +1,582 @@
+{
+  "kind": "bounded-local-gameplay-verification",
+  "milestone": 34,
+  "final_release": false,
+  "source_commit": "f4a13832c80a1821656befff6826a5115ca1fe9c",
+  "scope": "Native catalogue selection, upgrade from milestone 33, Save, cold reload, and SoulSilver Heatran delivery in the Mac melonDS DS libretro core.",
+  "automated_targeted": {
+    "passed": 75,
+    "log": {
+      "path": "local_data/milestone-34-gifts-regression-fit.log",
+      "sha256": "b451c383f66e1e450f87969d1be32aa9ac92ba0997266d972c8c9cd98eff3acd"
+    },
+    "cleanup": {
+      "path": "local_data/milestone-34-gifts-regression-fit-cleanup.log",
+      "sha256": "5dbc5f6c5d8f37a74b7bf812ef51f566270e21998ca357677fe1f04ae3db68c5"
+    }
+  },
+  "candidates": {
+    "heartgold": {
+      "rom": {
+        "path": "build/candidates/heartgold-visual-plus-gameplay-milestone-34.nds",
+        "sha256": "e7c079fdb9fd4dc71de00d09eb82034bcf86a979ea7d04b7e077df66d2d9ed4a"
+      },
+      "patch": {
+        "path": "build/candidates/heartgold-visual-plus-gameplay-milestone-34.xdelta",
+        "sha256": "f383e3e80995d17d4d3f1c9ec5d85f9d031112e1b74b49bfdd836c305a9340b8"
+      },
+      "build_report": {
+        "path": "build/candidates/heartgold-visual-plus-gameplay-milestone-34.json",
+        "sha256": "49e00a84ab1bd85b589c5064ca9d2b1ae33f54015faf4ad4637112a9c9048ee6"
+      },
+      "previous_save": {
+        "path": "local_data/verification/hg33-course-redeemed-save/cartridge.sav",
+        "sha256": "d6ceef85eca5a94ae88ee7cec34b664d7397980a2044bdf245815a06577de9c8"
+      },
+      "native_save": {
+        "path": "local_data/verification/hg34-catalogue-save/cartridge.sav",
+        "sha256": "a7cc0610d172aef9f68e4ac7e523fd4cbad489f8cfa7adcda018b8344242f407"
+      },
+      "cold_restart_save": {
+        "path": "local_data/verification/hg34-catalogue-cold/cartridge.sav",
+        "sha256": "a7cc0610d172aef9f68e4ac7e523fd4cbad489f8cfa7adcda018b8344242f407"
+      },
+      "runs": {
+        "queued": {
+          "path": "local_data/verification/hg34-catalogue-queued/smoke-report.json",
+          "sha256": "fb6a82ce6791064f6ce9f1210406a92d45203a5a784a8b0867cb68fb7f0a39d7"
+        },
+        "save": {
+          "path": "local_data/verification/hg34-catalogue-save/smoke-report.json",
+          "sha256": "7b2ef75006507f4164c2b53b24a03e273cac4c91f6b7cc52f1298b6c3c7c5068"
+        },
+        "cold": {
+          "path": "local_data/verification/hg34-catalogue-cold/smoke-report.json",
+          "sha256": "76155562b785a9292ceef39e2bc5f6c23a177e9c81546a64a8f59f566076d129"
+        }
+      },
+      "retained_pokewalker_courses": [
+        0,
+        1,
+        26
+      ],
+      "wonder_cards_sha256": "5b2873e80d2b286828ddfb640a4a0f5dc23acae2e721eec34b47d0145ed8aad3",
+      "received_flags_before": "00000008000035ec",
+      "received_flags_after": "00c001f8000035ec",
+      "queue_after_cold_restart": [
+        {
+          "name": "Heatran",
+          "tag": 1,
+          "card": 3,
+          "species": 485,
+          "pid": 2101294,
+          "ot": 2836379921,
+          "fateful": 1,
+          "ball": 16,
+          "level": 50,
+          "checksum_failed": 0,
+          "moves": [
+            284,
+            463,
+            414,
+            246
+          ],
+          "pp": [
+            5,
+            5,
+            10,
+            5
+          ]
+        },
+        {
+          "name": "Magmortar",
+          "tag": 1,
+          "card": 3,
+          "species": 467,
+          "pid": 2035729,
+          "ot": 2836379921,
+          "fateful": 1,
+          "ball": 16,
+          "level": 50,
+          "checksum_failed": 0,
+          "moves": [
+            53,
+            94,
+            63,
+            76
+          ],
+          "pp": [
+            15,
+            10,
+            5,
+            10
+          ]
+        },
+        {
+          "name": "Electivire",
+          "tag": 1,
+          "card": 3,
+          "species": 466,
+          "pid": 1970192,
+          "ot": 2836379921,
+          "fateful": 1,
+          "ball": 16,
+          "level": 50,
+          "checksum_failed": 0,
+          "moves": [
+            9,
+            8,
+            238,
+            89
+          ],
+          "pp": [
+            15,
+            15,
+            5,
+            10
+          ]
+        },
+        {
+          "name": "Riolu",
+          "tag": 1,
+          "card": 3,
+          "species": 447,
+          "pid": 1904659,
+          "ot": 2836379921,
+          "fateful": 1,
+          "ball": 16,
+          "level": 30,
+          "checksum_failed": 0,
+          "moves": [
+            396,
+            421,
+            418,
+            409
+          ],
+          "pp": [
+            20,
+            15,
+            30,
+            5
+          ]
+        },
+        {
+          "name": "Pikachu (Fly)",
+          "tag": 1,
+          "card": 3,
+          "species": 25,
+          "pid": 1118239,
+          "ot": 2836379921,
+          "fateful": 1,
+          "ball": 16,
+          "level": 10,
+          "checksum_failed": 0,
+          "moves": [
+            19,
+            45,
+            39,
+            86
+          ],
+          "pp": [
+            15,
+            40,
+            30,
+            20
+          ]
+        },
+        {
+          "name": "Pikachu (Surf)",
+          "tag": 1,
+          "card": 3,
+          "species": 25,
+          "pid": 1052702,
+          "ot": 2836379921,
+          "fateful": 1,
+          "ball": 16,
+          "level": 10,
+          "checksum_failed": 0,
+          "moves": [
+            57,
+            45,
+            39,
+            86
+          ],
+          "pp": [
+            15,
+            40,
+            30,
+            20
+          ]
+        },
+        {
+          "name": "Pikachu (Volt Tackle)",
+          "tag": 1,
+          "card": 3,
+          "species": 25,
+          "pid": 987137,
+          "ot": 2836379921,
+          "fateful": 1,
+          "ball": 16,
+          "level": 50,
+          "checksum_failed": 0,
+          "moves": [
+            344,
+            231,
+            98,
+            85
+          ],
+          "pp": [
+            15,
+            15,
+            30,
+            15
+          ]
+        }
+      ],
+      "picker_screenshots": {
+        "Heatran": {
+          "path": "local_data/verification/hg34-catalogue-queued/frame-004090.png",
+          "sha256": "36832dd1ed5c18dff90e74e7b8d9f797b7453850b1651e2ba62846819c09b23a"
+        },
+        "Magmortar": {
+          "path": "local_data/verification/hg34-catalogue-queued/frame-004490.png",
+          "sha256": "9cbfd5cb48e1417bb7340feb6aeaea387d8025800c68a8a4c12c33e42adfc828"
+        },
+        "Electivire": {
+          "path": "local_data/verification/hg34-catalogue-queued/frame-004890.png",
+          "sha256": "5b23ddfcb39d0abbeb8d867075a0bee233176b72ed591a28478f60a86744227e"
+        },
+        "Riolu": {
+          "path": "local_data/verification/hg34-catalogue-queued/frame-005290.png",
+          "sha256": "faf4499b0892fc0dbd0ee470e8408dbc3845eec79b82928f43ae83b44c137eab"
+        },
+        "Pikachu (Fly)": {
+          "path": "local_data/verification/hg34-catalogue-queued/frame-006320.png",
+          "sha256": "e25d2247fcd7c712bcf8c15aa1f53641062c5e0f4e767915664337584de53a99"
+        },
+        "Pikachu (Surf)": {
+          "path": "local_data/verification/hg34-catalogue-queued/frame-006720.png",
+          "sha256": "7d9f4832b38b373f3d65557a2debfb77145f15e4de8e70adcf26b2b6384d04ea"
+        },
+        "Pikachu (Volt Tackle)": {
+          "path": "local_data/verification/hg34-catalogue-queued/frame-007130.png",
+          "sha256": "e7cc724cf44fa1d0207ca025cd1b9dde5d7b5f6420f1a341fff5a40c275780e1"
+        }
+      }
+    },
+    "soulsilver": {
+      "rom": {
+        "path": "build/candidates/soulsilver-visual-plus-gameplay-milestone-34.nds",
+        "sha256": "a22ebbcf6256aa5a97ec7f7db09fda99f0644e3d9e5cbc53f79948c56f6626d9"
+      },
+      "patch": {
+        "path": "build/candidates/soulsilver-visual-plus-gameplay-milestone-34.xdelta",
+        "sha256": "d8eed7c2ba70fd01c6e91d2a98b0f6857da1b186fe5f42901abb1b9f01bcb95e"
+      },
+      "build_report": {
+        "path": "build/candidates/soulsilver-visual-plus-gameplay-milestone-34.json",
+        "sha256": "5a48588988ddf91a6675b8665b749968cf144a9ed1393a4bff4988f285d837c8"
+      },
+      "previous_save": {
+        "path": "local_data/verification/ss33-celebi-claimed-save/cartridge.sav",
+        "sha256": "4df940280c247a92c4ad4f89d7ecac8d43aa1ceef6143c5b771bc1be50b9a303"
+      },
+      "native_save": {
+        "path": "local_data/verification/ss34-catalogue-save/cartridge.sav",
+        "sha256": "7f509290f882bc5f6ea3b47eba0edbf8ed6d8b50170e93dc8e567d1156b5d950"
+      },
+      "cold_restart_save": {
+        "path": "local_data/verification/ss34-catalogue-cold/cartridge.sav",
+        "sha256": "7f509290f882bc5f6ea3b47eba0edbf8ed6d8b50170e93dc8e567d1156b5d950"
+      },
+      "runs": {
+        "queued": {
+          "path": "local_data/verification/ss34-catalogue-queued/smoke-report.json",
+          "sha256": "59b239ea6d30609b20209c348e05418c97ecbb5ce6ced615a6b771d55bd560d1"
+        },
+        "save": {
+          "path": "local_data/verification/ss34-catalogue-save/smoke-report.json",
+          "sha256": "7205a1f162078ab6d91a3bbda20c21b0908a282eee1fb2a4633e75ce292c576a"
+        },
+        "cold": {
+          "path": "local_data/verification/ss34-catalogue-cold/smoke-report.json",
+          "sha256": "7de313fd34b924077560bf73bb23a37d2efadc7df5d549cd3ed96a7ad2eca04d"
+        }
+      },
+      "retained_pokewalker_courses": [
+        0,
+        1
+      ],
+      "wonder_cards_sha256": "5b2873e80d2b286828ddfb640a4a0f5dc23acae2e721eec34b47d0145ed8aad3",
+      "received_flags_before": "02000000000035ec",
+      "received_flags_after": "02c001f0000035ec",
+      "queue_after_cold_restart": [
+        {
+          "name": "Heatran",
+          "tag": 1,
+          "card": 3,
+          "species": 485,
+          "pid": 2106576,
+          "ot": 481638485,
+          "fateful": 1,
+          "ball": 16,
+          "level": 50,
+          "checksum_failed": 0,
+          "moves": [
+            284,
+            463,
+            414,
+            246
+          ],
+          "pp": [
+            5,
+            5,
+            10,
+            5
+          ]
+        },
+        {
+          "name": "Magmortar",
+          "tag": 1,
+          "card": 3,
+          "species": 467,
+          "pid": 2041071,
+          "ot": 481638485,
+          "fateful": 1,
+          "ball": 16,
+          "level": 50,
+          "checksum_failed": 0,
+          "moves": [
+            53,
+            94,
+            63,
+            76
+          ],
+          "pp": [
+            15,
+            10,
+            5,
+            10
+          ]
+        },
+        {
+          "name": "Electivire",
+          "tag": 1,
+          "card": 3,
+          "species": 466,
+          "pid": 1975534,
+          "ot": 481638485,
+          "fateful": 1,
+          "ball": 16,
+          "level": 50,
+          "checksum_failed": 0,
+          "moves": [
+            9,
+            8,
+            238,
+            89
+          ],
+          "pp": [
+            15,
+            15,
+            5,
+            10
+          ]
+        },
+        {
+          "name": "Riolu",
+          "tag": 1,
+          "card": 3,
+          "species": 447,
+          "pid": 1909997,
+          "ot": 481638485,
+          "fateful": 1,
+          "ball": 16,
+          "level": 30,
+          "checksum_failed": 0,
+          "moves": [
+            396,
+            421,
+            418,
+            409
+          ],
+          "pp": [
+            20,
+            15,
+            30,
+            5
+          ]
+        },
+        {
+          "name": "Pikachu (Fly)",
+          "tag": 1,
+          "card": 3,
+          "species": 25,
+          "pid": 1123553,
+          "ot": 481638485,
+          "fateful": 1,
+          "ball": 16,
+          "level": 10,
+          "checksum_failed": 0,
+          "moves": [
+            19,
+            45,
+            39,
+            86
+          ],
+          "pp": [
+            15,
+            40,
+            30,
+            20
+          ]
+        },
+        {
+          "name": "Pikachu (Surf)",
+          "tag": 1,
+          "card": 3,
+          "species": 25,
+          "pid": 1058016,
+          "ot": 481638485,
+          "fateful": 1,
+          "ball": 16,
+          "level": 10,
+          "checksum_failed": 0,
+          "moves": [
+            57,
+            45,
+            39,
+            86
+          ],
+          "pp": [
+            15,
+            40,
+            30,
+            20
+          ]
+        },
+        {
+          "name": "Pikachu (Volt Tackle)",
+          "tag": 1,
+          "card": 3,
+          "species": 25,
+          "pid": 992511,
+          "ot": 481638485,
+          "fateful": 1,
+          "ball": 16,
+          "level": 50,
+          "checksum_failed": 0,
+          "moves": [
+            344,
+            231,
+            98,
+            85
+          ],
+          "pp": [
+            15,
+            15,
+            30,
+            15
+          ]
+        }
+      ],
+      "picker_screenshots": {
+        "Heatran": {
+          "path": "local_data/verification/ss34-catalogue-queued/frame-004090.png",
+          "sha256": "4642a488b98cd29ea31cf69ba63fbf401fd96a3c022510050e5148812df056fc"
+        },
+        "Magmortar": {
+          "path": "local_data/verification/ss34-catalogue-queued/frame-004490.png",
+          "sha256": "87b8c49a9b5883e963b1b407052f28627ae1b74b6f08045a3ea106764027f191"
+        },
+        "Electivire": {
+          "path": "local_data/verification/ss34-catalogue-queued/frame-004890.png",
+          "sha256": "4632796e4930261caa67a96f1d689c977b4886106feabc7f9cd0296e26fa1578"
+        },
+        "Riolu": {
+          "path": "local_data/verification/ss34-catalogue-queued/frame-005290.png",
+          "sha256": "0dd7301187ebabc33d1045bf4d6b48c94e487a06d9e7db7d494f4c5d7131e20d"
+        },
+        "Pikachu (Fly)": {
+          "path": "local_data/verification/ss34-catalogue-queued/frame-006320.png",
+          "sha256": "32016ba8f05e07aea83a4ccd544234f5c8082c8498ee2a2adeb3f784fa38368c"
+        },
+        "Pikachu (Surf)": {
+          "path": "local_data/verification/ss34-catalogue-queued/frame-006720.png",
+          "sha256": "b2261adb59a975a1b4f175fb259d885713141a1c19c0d64a86895b17fd54f2a7"
+        },
+        "Pikachu (Volt Tackle)": {
+          "path": "local_data/verification/ss34-catalogue-queued/frame-007130.png",
+          "sha256": "8aa66a0c044d6434ddcf290f419a48d6c2585a8d78e81b06abf89f23f9ee3685"
+        }
+      },
+      "native_delivery": {
+        "run": {
+          "path": "local_data/verification/ss34-heatran-claimed/smoke-report.json",
+          "sha256": "aaefc32f6e14bdca0c252d05b27a49ed8a0843c2f3513d8a0d237c16a7570452"
+        },
+        "screenshot": {
+          "path": "local_data/verification/ss34-heatran-claimed/frame-000640.png",
+          "sha256": "2dd6f9cb78da0d5b6d729e65597d9966be0f52e347e02053d415070dc71ea975"
+        },
+        "party_after_delivery": [
+          {
+            "species": 152,
+            "level": 5,
+            "pid": 4043281597,
+            "trainer": 481638485,
+            "fateful": 0,
+            "form": 0,
+            "is_egg": 0,
+            "checksum_failed": 0,
+            "game_of_origin": 8,
+            "egg_location": 0,
+            "met_location": 126,
+            "shiny": false
+          },
+          {
+            "species": 251,
+            "level": 50,
+            "pid": 140530,
+            "trainer": 481638485,
+            "fateful": 1,
+            "form": 0,
+            "is_egg": 0,
+            "checksum_failed": 0,
+            "game_of_origin": 8,
+            "egg_location": 0,
+            "met_location": 3000,
+            "shiny": false
+          },
+          {
+            "species": 485,
+            "level": 50,
+            "pid": 2106576,
+            "trainer": 481638485,
+            "fateful": 1,
+            "form": 0,
+            "is_egg": 0,
+            "checksum_failed": 0,
+            "game_of_origin": 8,
+            "egg_location": 0,
+            "met_location": 3000,
+            "shiny": false
+          }
+        ],
+        "remaining_gifts": [
+          "Magmortar",
+          "Electivire",
+          "Riolu",
+          "Pikachu (Fly)",
+          "Pikachu (Surf)",
+          "Pikachu (Volt Tackle)"
+        ]
+      }
+    }
+  },
+  "patch_bundle": {
+    "path": "build/candidates/HGSS-Enhanced-milestone-34-patches.zip",
+    "sha256": "132efd6a007299abff82c55833c5f1c68f4c03237f9305cfad3f56abdb5e87ed",
+    "roundtrip_from_clean_usa_zips": true
+  }
+}

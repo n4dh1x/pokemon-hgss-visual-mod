@@ -58,11 +58,12 @@ Shiny field effects are part of the visible/shiny rows. Native HGSS options and 
 - Milestone 33 lets players select one gift at a time. The picker rejects
   already-owned and already-queued Pokéwalker courses. HeartGold redeemed
   Amity Meadow through the original NPC and retained the course on cold
-  reload. SoulSilver redeemed Celebi and kept it on cold reload. Correct the
-  rotated Pikachu picker labels.
-- The catalogue includes all Gen I–IV Mythical species and selected unique
-  event gifts. Add the missing Riolu, Electivire, Magmortar and Heatran from
-  the English Wonder Card audit and finish checking unique-gift coverage.
+  reload. SoulSilver redeemed Celebi and kept it on cold reload.
+- Milestone 34 corrects the Pikachu labels and adds Riolu, Electivire,
+  Magmortar and Heatran. Both games verified the seven choices across a save
+  and cold reload. SoulSilver redeemed Heatran through the original delivery
+  NPC. Finish checking unique-gift coverage beyond the 32 included entries,
+  which cover all Gen I–IV Mythical species.
 
 ## Remaining release verification and delivery
 

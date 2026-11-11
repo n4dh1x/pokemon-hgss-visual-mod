@@ -14,13 +14,32 @@ Each catalogue gift can be queued once. Saves from the earlier bulk mode
 retain the gifts already queued and the catalogue entries already marked.
 Choose any remaining entries individually in the picker.
 
-The 28-entry catalogue includes Mew, Celebi, Jirachi, Deoxys, Phione, a Manaphy
+The 32-entry catalogue includes Mew, Celebi, Jirachi, Deoxys, Phione, a Manaphy
 Egg, Darkrai, Shaymin and Arceus. Other entries include shiny Pichu, the shiny
 legendary beasts, shiny Eevee and Milotic, three Pikachu variants, Scizor,
-Crobat, Regigigas, the Enigma Stone and six Pokéwalker courses. Pokémon are
+Crobat, Regigigas, Riolu, Electivire, Magmortar, Heatran, the Enigma Stone and
+six Pokéwalker courses. Pokémon are
 created in HGSS's native format for the current trainer. The existing event
 scripts still govern what happens when you bring a gift to its story location.
 The catalogue preserves an existing Enigma Stone delivery or story progress.
+
+## Milestone 34 picker verification
+
+Both games loaded milestone 33 saves, queued the four new Pokémon and the
+three correctly labelled Pikachu variants, then kept all seven through the
+original Save and a cold restart. Native getters confirmed the expected
+moves, valid Pokémon checksums and unchanged Wonder Cards. HeartGold
+retained Amity Meadow. In SoulSilver, the original Poké Mart NPC delivered
+Lv. 50 Heatran and left the six other gifts queued.
+
+The 75 targeted tests include all 32 catalogue entries, saved indices,
+duplicate protection and the related settings and menu actions.
+See [milestone 34 verification](../enhancements/milestone-34-verification.json).
+
+The four new Pokémon use the moves from the archived Kyle Riolu, Pokétopia
+Electivire, Pokétopia Magmortar and Oblivia Heatran gifts. The remaining
+unique-gift coverage audit is open.
+[Archived English Generation IV cards](https://github.com/projectpokemon/EventsGallery/tree/master/Released/Gen%204/Wondercards/ENG)
 
 ## Milestone 33 picker verification
 
@@ -47,14 +66,8 @@ Pewter Museum exchanged it for Soul Dew. The original Pewter scripts then
 started the Lv. 40 Latias encounter. The museum and exterior fixtures
 used the original Warp command for travel.
 
-The picker currently rotates the labels for the three Pikachu variants.
-The saved queue contains the expected Fly, Surf and Volt Tackle moves.
-The labels need correction before release.
-
-The English Wonder Card archive also identifies four distinct gifts missing
-from the current catalogue. Those are Kyle Riolu, Pokétopia Electivire,
-Pokétopia Magmortar, and Oblivia Heatran. The gift catalogue audit remains open.
-[Archived English Generation IV cards](https://github.com/projectpokemon/EventsGallery/tree/master/Released/Gen%204/Wondercards/ENG)
+The three Pikachu labels were rotated in milestone 33. The queued Pokémon
+had the expected Fly, Surf and Volt Tackle moves. Milestone 34 fixes the labels.
 
 ## Milestone 31 verification
 
