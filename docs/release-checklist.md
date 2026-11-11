@@ -77,8 +77,9 @@ Shiny field effects are part of the visible/shiny rows. Native HGSS options and 
 - Verify normal save/cold restart, old enhancement journals and existing HGSS
   save compatibility without changing unrelated progress. This is not a promise
   of arbitrary HG-to-SS interchange or GBA/Emerald save compatibility.
-- OpenHome 1.17.1 opens populated raw 512 KiB saves for both titles. The
-  independent milestone-31 SoulSilver save shows the delivered Mew in Box 1.
+- OpenHome 1.17.1 opens populated raw 512 KiB saves for both titles. It
+  recognized the milestone-34 HeartGold save and the independent
+  milestone-31 SoulSilver save with the delivered Mew in Box 1.
   Both games cold-booted saves edited by the headless OpenHome v1.18.1
   storage writer. Retest the final builds and check GUI write-back and
   transfer between saves using disposable copies.

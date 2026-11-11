@@ -33,7 +33,10 @@ retained Amity Meadow. In SoulSilver, the original Poké Mart NPC delivered
 Lv. 50 Heatran and left the six other gifts queued.
 
 The 75 targeted tests include all 32 catalogue entries, saved indices,
-duplicate protection and the related settings and menu actions.
+duplicate protection and the related settings and menu actions. The full
+suite passed 319 tests. OpenHome 1.17.1 recognized the milestone 34 HeartGold
+save and the earlier SoulSilver save with Mew in Box 1. Both disposable
+512 KiB files were byte-identical after opening.
 See [milestone 34 verification](../enhancements/milestone-34-verification.json).
 
 The four new Pokémon use the moves from the archived Kyle Riolu, Pokétopia

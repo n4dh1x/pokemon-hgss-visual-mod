@@ -578,5 +578,43 @@
     "path": "build/candidates/HGSS-Enhanced-milestone-34-patches.zip",
     "sha256": "132efd6a007299abff82c55833c5f1c68f4c03237f9305cfad3f56abdb5e87ed",
     "roundtrip_from_clean_usa_zips": true
+  },
+  "automated_full_regression": {
+    "passed": 319,
+    "seconds": 719.628,
+    "log": {
+      "path": "local_data/milestone-34-full-regression.log",
+      "sha256": "6652e1c581ac8b45876291279f28294f0f1fae9a37aa27428e8727a9f7bd4678"
+    },
+    "cleanup": {
+      "path": "local_data/milestone-34-full-regression-cleanup.log",
+      "sha256": "38e699b4409ea3e962874b6b93adb8c28c9b8aa0f3e73d717f99677f11d497b3"
+    },
+    "cleanup_reclaimed_bytes": 160006144
+  },
+  "openhome_gui": {
+    "version": "1.17.1",
+    "scope": "Read-only recognition of two disposable raw 512 KiB cartridge saves in the Mac app. Opened through its recent-save entries after the native picker did not enable Open.",
+    "heartgold": {
+      "recognized_as": "HeartGold",
+      "source_milestone": 34,
+      "source_save": {
+        "path": "local_data/verification/hg34-catalogue-save/cartridge.sav",
+        "sha256": "a7cc0610d172aef9f68e4ac7e523fd4cbad489f8cfa7adcda018b8344242f407"
+      },
+      "populated_pc": true,
+      "unchanged_after_open": true
+    },
+    "soulsilver": {
+      "recognized_as": "SoulSilver",
+      "source_milestone": 31,
+      "source_save": {
+        "path": "local_data/verification/ss31b-fresh-boxed-mew-cold-native/cartridge.sav",
+        "sha256": "af806c33205dac6bdf2b393434c7e08a44bb24301cc711b3640497ae366a8d8e"
+      },
+      "populated_pc": true,
+      "unchanged_after_open": true
+    },
+    "gui_writeback_and_transfer": "Pending. This run could not perform the drag in the app window."
   }
 }
