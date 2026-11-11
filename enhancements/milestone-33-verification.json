@@ -121,5 +121,47 @@
         "sha256": "4d43179e2e086f756b50b569aafdbc2677d8c23d1d8181df44ddca0b13f48bd9"
       }
     }
+  },
+  "heartgold_native_course_redemption": {
+    "course": "Amity Meadow",
+    "course_id": 26,
+    "travel_fixture": "ccdf6de2bc1c2ca69e4766ee8613f492a124f74e8e7fb90cee00ce04ea906030",
+    "scope": "Original delivery NPC, original Save, cold restart and picker duplicate rejection. Fixture uses only native Warp/End for travel.",
+    "save": {
+      "path": "local_data/verification/hg33-course-redeemed-save/cartridge.sav",
+      "sha256": "d6ceef85eca5a94ae88ee7cec34b664d7397980a2044bdf245815a06577de9c8"
+    },
+    "runs": {
+      "course-mart-arrival": {
+        "path": "local_data/verification/hg33-course-mart-arrival/smoke-report.json",
+        "sha256": "6c4c62ea07e79a320f909d4ffc16ac4c905d01569bac434be32d74095db1cc7e"
+      },
+      "course-claimed": {
+        "path": "local_data/verification/hg33-course-claimed/smoke-report.json",
+        "sha256": "f0609cda84845fcd1ccc6eb2e7bded27f4d32136842fe74dd3a38ab20d0087b2"
+      },
+      "course-redeemed-save": {
+        "path": "local_data/verification/hg33-course-redeemed-save/smoke-report.json",
+        "sha256": "93e9c900248c432927b44200cc31ceedf603b8f65788370da1be2c0f86f1efcd"
+      },
+      "course-redeemed-cold": {
+        "path": "local_data/verification/hg33-course-redeemed-cold/smoke-report.json",
+        "sha256": "d974235cd8ddd801e148fba5c70073f2aa9827c7fb0a2107c4e9224e9eed7510"
+      },
+      "course-requeue-denied": {
+        "path": "local_data/verification/hg33-course-requeue-denied/smoke-report.json",
+        "sha256": "f2bc9b653e414540249d7fdbe70be46bc6c8281e044fbdaebe64c35d58ffc0f4"
+      }
+    },
+    "screenshots": [
+      {
+        "path": "local_data/verification/hg33-course-claimed/frame-000500.png",
+        "sha256": "bffc6827f642dd94c0889687f16a31d0ce1bc30771fd7870c1407df679198bf8"
+      },
+      {
+        "path": "local_data/verification/hg33-course-requeue-denied/frame-001310.png",
+        "sha256": "dac6468c2a51e3b1b18bcdbcc69b3e46c963b31046f8b2c5b6b03ef10d671231"
+      }
+    ]
   }
 }

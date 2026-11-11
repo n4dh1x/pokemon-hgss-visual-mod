@@ -27,7 +27,9 @@ The catalogue preserves an existing Enigma Stone delivery or story progress.
 Both games showed the original names in the picker. HeartGold queued Amity
 Meadow and SoulSilver queued Celebi. Each save contained exactly the selected
 entry after a normal Save and cold restart. The menu refused to queue a second
-copy. All 28 catalogue entries passed the compiled queue tests, including
+copy. HeartGold also redeemed Amity Meadow through the original delivery
+NPC. The course survived a normal Save and cold restart, and the picker
+refused to queue it again. All 28 catalogue entries passed the compiled queue tests, including
 duplicate courses and a full queue. See [milestone 33 verification](../enhancements/milestone-33-verification.json).
 
 ## Milestone 31 verification

@@ -4,7 +4,7 @@ Fork of the English Visual+ project. The target is to retain HeartGold/SoulSilve
 native mechanics and Visual+ presentation while adding the missing Emerald 3DS
 v0.4.0 enhancements.
 
-**Current stage: experimental gameplay milestone 29.**
+**Current playable build is milestone 33.** See the [clean-ROM build instructions](docs/build-milestone-33.md) and [release checklist](docs/release-checklist.md).
 Both games now have native roaming grass encounters, using following-Pokemon
 models and walking animations. Wilds retain their generated Pokemon into contact
 battles. HeartGold also passes menu freeze/resume and transient-object save/reload

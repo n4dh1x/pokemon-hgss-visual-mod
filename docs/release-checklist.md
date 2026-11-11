@@ -55,8 +55,9 @@ Shiny field effects are part of the visible/shiny rows. Native HGSS options and 
   Spiky-eared Pichu award through a cold reload. Verify the Sinjoh reward,
   Celebi, the Enigma Stone, later catalogue batches and HeartGold story paths.
 - Milestone 33 lets players select one gift at a time. The picker rejects
-  already-owned and already-queued Pokéwalker courses. Verify native course
-  delivery and complete the wider event checklist.
+  already-owned and already-queued Pokéwalker courses. HeartGold redeemed
+  Amity Meadow through the original NPC and retained the course on cold
+  reload. Verify SoulSilver gift redemption and the remaining event paths.
 - The catalogue includes all Gen I–IV Mythical species and selected unique
   event gifts. Continue checking unique-gift coverage against the scope.
 
