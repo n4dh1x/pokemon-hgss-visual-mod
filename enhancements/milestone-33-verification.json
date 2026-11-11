@@ -163,5 +163,215 @@
         "sha256": "dac6468c2a51e3b1b18bcdbcc69b3e46c963b31046f8b2c5b6b03ef10d671231"
       }
     ]
+  },
+  "automated_full_regression": {
+    "passed": 319,
+    "seconds": 706.798,
+    "log": {
+      "path": "local_data/milestone-33-full-release-rerun.log",
+      "sha256": "d1453fdf7f496e67f6dd2ef0afea4722f20280ed1491454cb1c1092a01132919"
+    },
+    "cleanup": {
+      "path": "local_data/milestone-33-full-release-rerun-cleanup.log",
+      "sha256": "8ae2b006561df925874a99d27aee5dd96631bd5fbc3b5da99f9d66e0e10c5ac3"
+    }
+  },
+  "soulsilver_native_celebi_redemption": {
+    "scope": "Native picker, starter selection, delivery, normal Save and cold reload. A declared native Warp/End fixture only transports the trainer to the mart.",
+    "party_after_restart": [
+      {
+        "species": 152,
+        "level": 5,
+        "pid": 4043281597,
+        "trainer": 481638485,
+        "fateful": 0,
+        "form": 0,
+        "is_egg": 0,
+        "checksum_failed": 0,
+        "game_of_origin": 8,
+        "egg_location": 0,
+        "met_location": 126,
+        "shiny": false
+      },
+      {
+        "species": 251,
+        "level": 50,
+        "pid": 140530,
+        "trainer": 481638485,
+        "fateful": 1,
+        "form": 0,
+        "is_egg": 0,
+        "checksum_failed": 0,
+        "game_of_origin": 8,
+        "egg_location": 0,
+        "met_location": 3000,
+        "shiny": false
+      }
+    ],
+    "queue_empty_and_wonder_cards_preserved": true,
+    "save": {
+      "path": "local_data/verification/ss33-celebi-claimed-save/cartridge.sav",
+      "sha256": "4df940280c247a92c4ad4f89d7ecac8d43aa1ceef6143c5b771bc1be50b9a303"
+    },
+    "travel_fixture_sha256": "d977e4a6da25e767acf362513df3ca50d1aace016a4800c9087c11df63d24161",
+    "runs": {
+      "native-starter-field": {
+        "path": "local_data/verification/ss33-native-starter-field/smoke-report.json",
+        "sha256": "24e753c4fded6f08066ab2930dfdea8e339b779b66510fe363194ac5be9d2bd5"
+      },
+      "celebi-mart-arrival": {
+        "path": "local_data/verification/ss33-celebi-mart-arrival/smoke-report.json",
+        "sha256": "89a665882df99e3918ce30904d0f5bffe432b6b39233a12f9356eb5a45409b75"
+      },
+      "celebi-claimed": {
+        "path": "local_data/verification/ss33-celebi-claimed/smoke-report.json",
+        "sha256": "9da86707b27037ee6a0b414cc861150c637b0d55825b7fd95280fcf9ba753efa"
+      },
+      "celebi-claimed-save": {
+        "path": "local_data/verification/ss33-celebi-claimed-save/smoke-report.json",
+        "sha256": "14a9c8f7e9724101880523b4db4cb2a5a1eab69da7370eaeaf9af5810012ad83"
+      },
+      "celebi-claimed-cold": {
+        "path": "local_data/verification/ss33-celebi-claimed-cold/smoke-report.json",
+        "sha256": "3f28e53db3b9448a79c0e7d3bb76b692e57ff5c4b157da012fdb36235a9227f0"
+      }
+    },
+    "screenshot": {
+      "path": "local_data/verification/ss33-celebi-claimed/frame-000510.png",
+      "sha256": "1b3cdf3ce6d2302719ff3889df5f8b9ba6fd29357e07c0bdd1a3f0792b125764"
+    }
+  },
+  "soulsilver_native_celebi_story": {
+    "scope": "Native shrine gate and time-travel sequence through the start of Giovanni's battle. A declared fixture sets only the Radio Tower progression flag and transports to the shrine.",
+    "control_travel_fixture_sha256": "62e4cb9d19d2a4a0c174367de4cf84729b7007f23661c2b50eaa98570c18160d",
+    "radio_tower_progression_fixture_sha256": "60052352c3efe0d5af8a4d76c4af6eba227080945bc64601ba89fd1d8ea0ef55",
+    "native_battle": {
+      "setup": "0x22a88a8",
+      "battle_type": 2049,
+      "enemy_party": "0x22a94b8",
+      "pokemon_sha256": "73a95d5bb508ebba7959bebe3315b78e470541a66b4c7bb71c0045bbb625ef0e",
+      "identical_retained_slots": []
+    },
+    "runs": {
+      "celebi-shrine-blocked": {
+        "path": "local_data/verification/ss33-celebi-shrine-blocked/smoke-report.json",
+        "sha256": "69c382f2d316659ce9d862bafd0290bb539c6b2ccbe6ab2abad78eddbaf476b0"
+      },
+      "celebi-shrine-cleared": {
+        "path": "local_data/verification/ss33-celebi-shrine-cleared/smoke-report.json",
+        "sha256": "0db6f4b9b292b3bc73afe5fef479e5e8055bbf6b03c896e117a9132db15645e8"
+      },
+      "celebi-route22": {
+        "path": "local_data/verification/ss33-celebi-route22/smoke-report.json",
+        "sha256": "5667b9647618adbed78899b759e83f932ce79bdf45f37d613854368f6f32feb9"
+      },
+      "celebi-tohjo-cavern": {
+        "path": "local_data/verification/ss33-celebi-tohjo-cavern/smoke-report.json",
+        "sha256": "d88ed67c99fc179a8feb4428eb92231a0f407d696a713e36e0c4c0c16a2c0529"
+      },
+      "celebi-giovanni-native-battle": {
+        "path": "local_data/verification/ss33-celebi-giovanni-native-battle/smoke-report.json",
+        "sha256": "17f927b68246c2534a7c5d21ecf11dd2fb314c6f5d3321335e2170850327fae6"
+      }
+    },
+    "screenshots": [
+      {
+        "path": "local_data/verification/ss33-celebi-shrine-blocked/frame-002010.png",
+        "sha256": "ad6d1fb00e8fec3ae914a30d7b901f51ccdabc818c9f1bd2f3d11b9cfa0a1007"
+      },
+      {
+        "path": "local_data/verification/ss33-celebi-shrine-cleared/frame-002010.png",
+        "sha256": "b4aa5998065cd81363203f935c0811bf85c5833f3d116dd44ef6d1339ad988d4"
+      },
+      {
+        "path": "local_data/verification/ss33-celebi-giovanni-native-battle/frame-001990.png",
+        "sha256": "e5f2af8cc68ae04c530b6d954ba5f6aaafdc823027d318b58cbbe01765ce27ed"
+      }
+    ]
+  },
+  "soulsilver_native_enigma_story": {
+    "scope": "Native picker and Mart receipt, museum appraisal, Soul Dew award, and start of the Latias battle. Declared museum and Pewter fixtures only use native Warp/End.",
+    "bag_before_appraisal": {
+      "item": 536,
+      "count": 1
+    },
+    "bag_after_appraisal": {
+      "item": 225,
+      "count": 1
+    },
+    "museum_travel_fixture_sha256": "107fb8f3da643036cdfea77a81cd6cde10eb20fd2c7c364fdd88f02481f24e6a",
+    "pewter_travel_fixture_sha256": "195066f9d4f9f907dd6a690bf563f78f2448ed778dacc9e1f2f6ddf98a9d32b2",
+    "native_battle": {
+      "setup": "0x22a8b00",
+      "battle_type": 0,
+      "enemy_party": "0x22a9710",
+      "pokemon_sha256": "80a2c1a6e7a2c88eee1347a26c6e3e8a7c4cdb3dbfbad0b78463d40d5fade1c6",
+      "identical_retained_slots": []
+    },
+    "runs": {
+      "enigma-queued": {
+        "path": "local_data/verification/ss33-enigma-queued/smoke-report.json",
+        "sha256": "f3866afa44dd24a3140277d6e75f32d336f11c8508bdc9aa11086b6b209fbc24"
+      },
+      "enigma-claimed": {
+        "path": "local_data/verification/ss33-enigma-claimed/smoke-report.json",
+        "sha256": "d0651be266452c0e2d4dede458a60dd0db76678214cdc71587e68aa315b3dc80"
+      },
+      "enigma-museum": {
+        "path": "local_data/verification/ss33-enigma-museum/smoke-report.json",
+        "sha256": "7db3eefc21c0c2ddfeb9cc1e9dd6bb43a9d226a6e0305793bbb596b9b4e53557"
+      },
+      "enigma-soul-dew": {
+        "path": "local_data/verification/ss33-enigma-soul-dew/smoke-report.json",
+        "sha256": "d3cd43b01dfcf2d23a477acd7f1abc0e075dc6e111f23e9b18a439afbeade833"
+      },
+      "enigma-pewter": {
+        "path": "local_data/verification/ss33-enigma-pewter/smoke-report.json",
+        "sha256": "02a1e47708b36891d0574a8b33f1d71b4ac1d3deb5c37c69ba3840174508aa0f"
+      },
+      "enigma-latias-battle": {
+        "path": "local_data/verification/ss33-enigma-latias-battle/smoke-report.json",
+        "sha256": "0493b949dd0d3cdca8b4dbb4139f4bef9125c4f95498610a3e2b53f37822abc9"
+      }
+    },
+    "screenshots": [
+      {
+        "path": "local_data/verification/ss33-enigma-museum/frame-001890.png",
+        "sha256": "0bf25c1ea6b21c57011f2864951591141e8788b317213aaf3dd5666ed9e1cdef"
+      },
+      {
+        "path": "local_data/verification/ss33-enigma-pewter/frame-002680.png",
+        "sha256": "9b4cb52b2355cc216e79bb7b06a8e2a4254c51743d7096493870154c62554340"
+      },
+      {
+        "path": "local_data/verification/ss33-enigma-latias-battle/frame-002470.png",
+        "sha256": "820cc8949b9537fca18d23a9170517d92e2d19768aa0e2672703c9923e8369ae"
+      }
+    ]
+  },
+  "known_pikachu_picker_labels": {
+    "run": {
+      "path": "local_data/verification/ss33-pikachu-label-regression/smoke-report.json",
+      "sha256": "4196e567014cf4602374d93dc86e158dfe943883e3fccd61bd6247a32907badd"
+    },
+    "labels_and_first_move_ids": {
+      "Volt Tackle": 19,
+      "Fly": 57,
+      "Surf": 344
+    },
+    "screenshots": [
+      {
+        "path": "local_data/verification/ss33-pikachu-label-regression/frame-002000.png",
+        "sha256": "9efdb6cab2e9fc525a0c4b359331bba3217f48501dc88426e654c811df83942d"
+      },
+      {
+        "path": "local_data/verification/ss33-pikachu-label-regression/frame-002410.png",
+        "sha256": "039ecdf720ec7dca8608dcebdabe191933170dcac30488187716b74b0d245664"
+      },
+      {
+        "path": "local_data/verification/ss33-pikachu-label-regression/frame-002870.png",
+        "sha256": "c4dae21e1f96c792d5506a8f9698b529be3f8c18429ae96a2e4d92981ab4a7f6"
+      }
+    ]
   }
 }

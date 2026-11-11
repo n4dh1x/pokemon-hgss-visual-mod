@@ -52,14 +52,17 @@ Shiny field effects are part of the visible/shiny rows. Native HGSS options and 
   purchases in both games. Exercise the native Bag's Sell and Toss touch
   controls in the release builds.
 - SoulSilver's native event runs reached Sinjoh Ruins and completed the
-  Spiky-eared Pichu award through a cold reload. Verify the Sinjoh reward,
-  Celebi, the Enigma Stone, later catalogue batches and HeartGold story paths.
+  Spiky-eared Pichu award through a cold reload. Milestone 33 reached the
+  original Giovanni and Latias battles. Verify Giovanni's victory and return
+  sequence, Latias capture, the Sinjoh reward and HeartGold story paths.
 - Milestone 33 lets players select one gift at a time. The picker rejects
   already-owned and already-queued Pokéwalker courses. HeartGold redeemed
   Amity Meadow through the original NPC and retained the course on cold
-  reload. Verify SoulSilver gift redemption and the remaining event paths.
+  reload. SoulSilver redeemed Celebi and kept it on cold reload. Correct the
+  rotated Pikachu picker labels.
 - The catalogue includes all Gen I–IV Mythical species and selected unique
-  event gifts. Continue checking unique-gift coverage against the scope.
+  event gifts. Add the missing Riolu, Electivire, Magmortar and Heatran from
+  the English Wonder Card audit and finish checking unique-gift coverage.
 
 ## Remaining release verification and delivery
 

@@ -32,6 +32,30 @@ NPC. The course survived a normal Save and cold restart, and the picker
 refused to queue it again. All 28 catalogue entries passed the compiled queue tests, including
 duplicate courses and a full queue. See [milestone 33 verification](../enhancements/milestone-33-verification.json).
 
+The full milestone 33 suite passed 319 tests. On a separately started
+SoulSilver save, the Poké Mart delivered the selected Lv. 50 Celebi.
+The same Pokémon remained in the party after a normal Save and cold restart.
+
+In SoulSilver, the Ilex Shrine showed its normal text before the Radio Tower
+gate. A declared test fixture supplied that one story flag and transported
+the trainer to the shrine. The original cutscene travelled through Route 22
+to Tohjo Falls and started Giovanni's battle. Battle victory and the return
+scene still need verification.
+
+On a separate branch, the original NPC delivered the Enigma Stone, and
+Pewter Museum exchanged it for Soul Dew. The original Pewter scripts then
+started the Lv. 40 Latias encounter. The museum and exterior fixtures
+used the original Warp command for travel.
+
+The picker currently rotates the labels for the three Pikachu variants.
+The saved queue contains the expected Fly, Surf and Volt Tackle moves.
+The labels need correction before release.
+
+The English Wonder Card archive also identifies four distinct gifts missing
+from the current catalogue. Those are Kyle Riolu, Pokétopia Electivire,
+Pokétopia Magmortar, and Oblivia Heatran. The gift catalogue audit remains open.
+[Archived English Generation IV cards](https://github.com/projectpokemon/EventsGallery/tree/master/Released/Gen%204/Wondercards/ENG)
+
 ## Milestone 31 verification
 
 - 317 automated tests pass. The new event tests exercise catalogue refill,
